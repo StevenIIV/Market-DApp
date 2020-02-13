@@ -82,12 +82,13 @@ window.App = {
         let newId = num.toNumber() - 1;
         console.log(num.toNumber());
         self.addRowObjectTable(newId);
-        location.reload();
       }).catch(function(e){
         console.log(e);
         self.setStatus("Error create;see log.");
       });
-    })
+    }).then(function () {
+      setTimeout(function(){window.location.reload();},1500);
+})
   },
 
   //View

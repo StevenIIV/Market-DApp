@@ -5,6 +5,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/javascripts/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascripts/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/contracts/Migrations.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/contracts/Migrations.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/contracts/ShareApp.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/contracts/ShareApp.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,24 +83,43 @@
       <option name="project" value="LOCAL" />
       <updated>1581597688622</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="update():新增插入图片功能.3 success">
+      <created>1581602050440</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1581602050440</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first" />
     <MESSAGE value="update():前端新增插入图片功能" />
     <MESSAGE value="update():新增插入图片功能 success" />
     <MESSAGE value="update():新增插入图片功能.2 success" />
-    <option name="LAST_COMMIT_MESSAGE" value="update():新增插入图片功能.2 success" />
+    <MESSAGE value="update():新增插入图片功能.3 success" />
+    <option name="LAST_COMMIT_MESSAGE" value="update():新增插入图片功能.3 success" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2011" y="142" key="CommitChangelistDialog2" timestamp="1581597688306">
+    <state x="2011" y="142" key="CommitChangelistDialog2" timestamp="1581602050232">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
-    <state x="2011" y="142" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581597688306" />
+    <state x="2011" y="142" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581602050232" />
     <state x="2236" y="258" key="RollbackChangesDialog" timestamp="1581595079855">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
