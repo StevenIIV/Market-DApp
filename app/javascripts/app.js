@@ -7,6 +7,8 @@ import { default as contract } from 'truffle-contract'
 import { default as BigNumber } from 'bignumber.js'
 // var BigNumber = require('../../node_modules/bignumber.js')
 
+const ipfsAPI = require('ipfs-api')
+
 // Import our contract artifacts and turn them into usable abstractions.
 import ShareApp_artifacts from '../../build/contracts/ShareApp.json'
 
