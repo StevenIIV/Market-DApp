@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b0e92d44-f00f-4516-ba2c-135590a11830" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/javascripts/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascripts/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/contracts/Migrations.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/contracts/Migrations.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/contracts/ShareApp.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/contracts/ShareApp.json" afterDir="false" />
@@ -93,6 +92,10 @@
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
     <state x="2011" y="142" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581586327294" />
+    <state x="2236" y="258" key="RollbackChangesDialog" timestamp="1581595079855">
+      <screen x="1440" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2236" y="258" key="RollbackChangesDialog/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581595079855" />
     <state x="2000" y="280" key="Vcs.Push.Dialog.v2" timestamp="1581581280821">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>

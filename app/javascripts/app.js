@@ -91,7 +91,6 @@ window.App = {
 
   //View
   postObject: function(_objID){  //按ID查询之后显示具体
-
     var mainInstance;
     var numObjects;
     var _objPhoto;
@@ -108,12 +107,14 @@ window.App = {
       return instance.getNumObjects.call();
     }).then(function(result){
       numObjects = result.toNumber();
+      console.log(numObjects);
       return mainInstance.getObjectName.call(_objID);
     }).then(function(objName){
       _objName = objName;
       return mainInstance.getObjectPhoto.call(_objID);
     }).then(function(objPhoto){
       _objPhoto = 'http://localhost:8080/ipfs/' + objPhoto;
+      console.log(_objPhoto);
       return mainInstance.getObjectCreator.call(_objID);
     }).then(function(objCreator){
       _objCreator = objCreator;
@@ -246,7 +247,7 @@ window.App = {
   display: function(obj){ //点击表格最后一列的<a>元素后显示当前行的具体信息
     var self = this;
     var tr = obj.parentNode.parentNode; //获取行
-    var id = tr.children[0].innerHTML; //获取行的第一列的值
+    var id = tr.children[1].innerHTML; //获取行的第一列的值
     self.postObject(id);
   },
 
