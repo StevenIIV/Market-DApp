@@ -8,7 +8,11 @@ import { default as BigNumber } from 'bignumber.js'
 // var BigNumber = require('../../node_modules/bignumber.js')
 
 const ipfsAPI = require('ipfs-api')
-
+const ipfs = ipfsAPI({
+  host: 'localhost',
+  port: '5001',
+  protocol: 'http'
+})
 // Import our contract artifacts and turn them into usable abstractions.
 import ShareApp_artifacts from '../../build/contracts/ShareApp.json'
 
@@ -60,21 +64,22 @@ window.App = {
 
   createObj: function(){
     var self = this;
-    var photoHash = saveImageOnIpfs(reader);
-    console.log(photoHash);
-    var objName = document.getElementById("objectName").value;
-    var objPriceDaily = parseInt(document.getElementById("objectPriceDaily").value);
-    var objDeposit = parseInt(document.getElementById("objectDeposit").value);
-    // var objPriceDaily = new BigNumber(document.getElementById("objectPriceDaily").value).toNumber();
-    // var objDeposit = new BigNumber(document.getElementById("objectDeposit").value).toNumber();
-    var objDetail = document.getElementById("objectDetail").value;
+    saveImageOnIpfs(reader).then(function (id) {
+      var imageHash = id;
+      console.log(imageHash);
+      var objName = document.getElementById("objectName").value;
+      var objPriceDaily = parseInt(document.getElementById("objectPriceDaily").value);
+      var objDeposit = parseInt(document.getElementById("objectDeposit").value);
+      // var objPriceDaily = new BigNumber(document.getElementById("objectPriceDaily").value).toNumber();
+      // var objDeposit = new BigNumber(document.getElementById("objectDeposit").value).toNumber();
+      var objDetail = document.getElementById("objectDetail").value;
 
-    this.setStatus("Initiating transaction... (please wait)");
+      //this.setStatus("Initiating transaction... (please wait)");
 
-    var meta;
-    ShareApp.deployed().then(function(instance){
-      meta = instance;
-      return meta.createObj(objName,objPriceDaily,objDeposit,objDetail,{from:account,gas:500000});
+      var meta;
+      ShareApp.deployed().then(function(instance){
+        meta = instance;
+        return meta.createObj(objName,objPriceDaily,objDeposit,objDetail,{from:account,gas:500000});
       }).then(function(tx){
         self.setStatus("create success!");
         console.log(meta.address);
@@ -91,6 +96,7 @@ window.App = {
         console.log(e);
         self.setStatus("Error create;see log.");
       });
+    })
   },
 
   //View
