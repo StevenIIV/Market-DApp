@@ -82,6 +82,7 @@ window.App = {
         let newId = num.toNumber() - 1;
         console.log(num.toNumber());
         self.addRowObjectTable(newId);
+        location.reload();
       }).catch(function(e){
         console.log(e);
         self.setStatus("Error create;see log.");
@@ -107,14 +108,12 @@ window.App = {
       return instance.getNumObjects.call();
     }).then(function(result){
       numObjects = result.toNumber();
-      console.log(numObjects);
       return mainInstance.getObjectName.call(_objID);
     }).then(function(objName){
       _objName = objName;
       return mainInstance.getObjectPhoto.call(_objID);
     }).then(function(objPhoto){
       _objPhoto = 'http://localhost:8080/ipfs/' + objPhoto;
-      console.log(_objPhoto);
       return mainInstance.getObjectCreator.call(_objID);
     }).then(function(objCreator){
       _objCreator = objCreator;

@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="b0e92d44-f00f-4516-ba2c-135590a11830" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/javascripts/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascripts/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/contracts/Migrations.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/contracts/Migrations.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/contracts/ShareApp.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/contracts/ShareApp.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +74,14 @@
       <option name="project" value="LOCAL" />
       <updated>1581586327572</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="update():新增插入图片功能.2 success">
+      <created>1581597688622</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1581597688622</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -85,13 +91,14 @@
     <MESSAGE value="first" />
     <MESSAGE value="update():前端新增插入图片功能" />
     <MESSAGE value="update():新增插入图片功能 success" />
-    <option name="LAST_COMMIT_MESSAGE" value="update():新增插入图片功能 success" />
+    <MESSAGE value="update():新增插入图片功能.2 success" />
+    <option name="LAST_COMMIT_MESSAGE" value="update():新增插入图片功能.2 success" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2011" y="142" key="CommitChangelistDialog2" timestamp="1581586327294">
+    <state x="2011" y="142" key="CommitChangelistDialog2" timestamp="1581597688306">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
-    <state x="2011" y="142" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581586327294" />
+    <state x="2011" y="142" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581597688306" />
     <state x="2236" y="258" key="RollbackChangesDialog" timestamp="1581595079855">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
