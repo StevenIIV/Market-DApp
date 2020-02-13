@@ -20,7 +20,7 @@ var ShareApp = contract(ShareApp_artifacts);
 // For application bootstrapping, check out window.addEventListener below.
 var accounts;
 var account;
-
+var reader;
 window.App = {
   start: function() {
     var self = this;
@@ -46,7 +46,11 @@ window.App = {
       //console.log(web3.eth.getBalance(account).toNumber());
       });
     self.postObjectsTable();
-
+    $("#product-image").change(function(event) {
+      const file = event.target.files[0]
+      reader = new window.FileReader()
+      reader.readAsArrayBuffer(file)
+    });
   },
 
   setStatus: function(message) {
@@ -56,7 +60,8 @@ window.App = {
 
   createObj: function(){
     var self = this;
-
+    var photoHash = saveImageOnIpfs(reader);
+    console.log(photoHash);
     var objName = document.getElementById("objectName").value;
     var objPriceDaily = parseInt(document.getElementById("objectPriceDaily").value);
     var objDeposit = parseInt(document.getElementById("objectDeposit").value);
@@ -334,6 +339,18 @@ window.App = {
 
 }
 
+function saveImageOnIpfs(file) {
+  return new Promise(function(resolve, reject) {
+    const buffer = Buffer.from(file.result);
+    ipfs.add(buffer)
+        .then((response) => {
+          resolve(response[0].hash);
+        }).catch((err) => {
+      console.error(err)
+      reject(err);
+    })
+  })
+}
 window.addEventListener('load', function() {
   // Checking if Web3 has been injected by the browser (Mist/MetaMask)
   if (typeof web3 !== 'undefined') {
