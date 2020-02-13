@@ -94,6 +94,7 @@ window.App = {
 
     var mainInstance;
     var numObjects;
+    var _objPhoto;
     var _objName;
     var _objCreator;
     var _objPriceDaily;
@@ -110,6 +111,9 @@ window.App = {
       return mainInstance.getObjectName.call(_objID);
     }).then(function(objName){
       _objName = objName;
+      return mainInstance.getObjectPhoto.call(_objID);
+    }).then(function(objPhoto){
+      _objPhoto = 'http://localhost:8080/ipfs/' + objPhoto;
       return mainInstance.getObjectCreator.call(_objID);
     }).then(function(objCreator){
       _objCreator = objCreator;
@@ -142,6 +146,7 @@ window.App = {
           document.getElementById("rentButton").style.display = "none";
         }
         document.getElementById("object-info").style.display = "inline";
+        document.getElementById("objPhoto").innerHTML = "<img src='"+_objPhoto+"'>";
         document.getElementById("objID").innerHTML = _objID;
         document.getElementById("objName").innerHTML = _objName;
         document.getElementById("objCreator").innerHTML = _objCreator;
