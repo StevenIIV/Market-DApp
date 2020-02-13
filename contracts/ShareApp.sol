@@ -9,6 +9,7 @@ contract ShareApp{
 
 	struct Object{
 		address creator; // +
+		string photo;
 		string name;
 		uint priceDaily;
 		uint deposit;
@@ -35,17 +36,17 @@ contract ShareApp{
 	// event NewObject(uint indexed objID, address creator);
 
 	modifier objectInRange(uint objID) {
-        if (objID >= numObjects)
-            throw;
-        _;
-    }
+		if (objID >= numObjects)
+			throw;
+		_;
+	}
 
-    modifier onlyOwner(){
-    	if(msg.sender != owner){
-    		throw;
-    	}
-    	_;
-    }
+	modifier onlyOwner(){
+		if(msg.sender != owner){
+			throw;
+		}
+		_;
+	}
 
 	/*
 	* Functions
@@ -58,7 +59,7 @@ contract ShareApp{
 		return objects[objID].rented;
 	}
 
-	function createObj(string name,uint priceDaily,uint deposit,string detail){
+	function createObj(string photo, string name,uint priceDaily,uint deposit,string detail){
 		// +
 		//owner = msg.sender;
 		// Object newObject = objects[numObjects];
@@ -66,6 +67,7 @@ contract ShareApp{
 		nameToKeys[name].keys.push(numObjects); //add the key to the name's keys
 
 		newObject.creator = msg.sender;
+		newObject.photo = photo;
 		newObject.name = name;
 		newObject.priceDaily = priceDaily;
 		newObject.deposit = deposit;
@@ -163,6 +165,10 @@ contract ShareApp{
 		objName = obj.name;
 	}
 
+	function getObjectPhoto(uint objID) objectInRange(objID) returns(string){
+		return objects[objID].photo;
+	}
+
 	function getObjectCreator(uint objID) constant objectInRange(objID) returns(address){
 		return objects[objID].creator;
 	}
@@ -188,7 +194,7 @@ contract ShareApp{
 	}
 
 	function remove() onlyOwner {
-			selfdestruct(owner);
-			// suicide(owner);
+		selfdestruct(owner);
+		// suicide(owner);
 	}
 }

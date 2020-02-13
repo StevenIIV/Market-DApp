@@ -3,7 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="b0e92d44-f00f-4516-ba2c-135590a11830" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/javascripts/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascripts/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/contracts/Migrations.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/contracts/Migrations.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/contracts/ShareApp.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/contracts/ShareApp.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contracts/ShareApp.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/ShareApp.sol" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

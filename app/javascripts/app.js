@@ -1,27 +1,17 @@
-// Import the page's CSS. Webpack will know what to do with it.
 import "../stylesheets/app.css";
-
 // Import libraries we need.
 //import { default as Web3} from 'web3';
 import { default as contract } from 'truffle-contract'
 import { default as BigNumber } from 'bignumber.js'
 // var BigNumber = require('../../node_modules/bignumber.js')
-
 const ipfsAPI = require('ipfs-api')
 const ipfs = ipfsAPI({
   host: 'localhost',
   port: '5001',
   protocol: 'http'
 })
-// Import our contract artifacts and turn them into usable abstractions.
 import ShareApp_artifacts from '../../build/contracts/ShareApp.json'
-
-// ShareApp is our usable abstraction, which we'll use through the code below.
 var ShareApp = contract(ShareApp_artifacts);
-
-// The following code is simple to show off interacting with your contracts.
-// As your needs grow you will likely need to change its form and structure.
-// For application bootstrapping, check out window.addEventListener below.
 var accounts;
 var account;
 var reader;
@@ -79,7 +69,7 @@ window.App = {
       var meta;
       ShareApp.deployed().then(function(instance){
         meta = instance;
-        return meta.createObj(objName,objPriceDaily,objDeposit,objDetail,{from:account,gas:500000});
+        return meta.createObj(imageHash,objName,objPriceDaily,objDeposit,objDetail,{from:account,gas:500000});
       }).then(function(tx){
         self.setStatus("create success!");
         console.log(meta.address);
@@ -204,6 +194,7 @@ window.App = {
   addRowObjectTable: function(_id,tbody){  //向表格中追加记录
     var self = this;
     var mainInstance;
+    var _objPhoto;
     var _objName;
     var _objPriceDaily;
     var _objDeposit;
@@ -214,6 +205,9 @@ window.App = {
           return mainInstance.getObjectName.call(_id);
         }).then(function(objName){
           _objName = objName;
+          return mainInstance.getObjectPhoto.call(_id);
+        }).then(function (objPhoto){
+          _objPhoto = 'http://localhost:8080/ipfs/' + objPhoto;
           return mainInstance.getObjectPriceDaily.call(_id);
         }).then(function(objPriceDaily){
           _objPriceDaily = objPriceDaily.valueOf();
@@ -232,13 +226,15 @@ window.App = {
           var cell4 = row.insertCell(3);  //deposit
           var cell5 = row.insertCell(4);  //rented
           var cell6 = row.insertCell(5);  //OP
+          var cell7 = row.insertCell(6);
 
-          cell1.innerHTML = _id;
-          cell2.innerHTML = _objName;
-          cell3.innerHTML = _objPriceDaily;
-          cell4.innerHTML = _objDeposit;
-          cell5.innerHTML = _objRented;
-          cell6.innerHTML = '<a href="javascript:void(0);" onclick="javascript:App.display(this)">Display</a>';
+          cell1.innerHTML = "<img src='"+_objPhoto+"'>";
+          cell2.innerHTML = _id;
+          cell3.innerHTML = _objName;
+          cell4.innerHTML = _objPriceDaily;
+          cell5.innerHTML = _objDeposit;
+          cell6.innerHTML = _objRented;
+          cell7.innerHTML = '<a href="javascript:void(0);" onclick="javascript:App.display(this)">Display</a>';
         });
   },
 
@@ -357,6 +353,7 @@ function saveImageOnIpfs(file) {
     })
   })
 }
+
 window.addEventListener('load', function() {
   // Checking if Web3 has been injected by the browser (Mist/MetaMask)
   if (typeof web3 !== 'undefined') {
