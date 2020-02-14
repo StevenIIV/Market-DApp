@@ -87,7 +87,7 @@ window.App = {
         self.setStatus("Error create;see log.");
       });
     }).then(function () {
-      setTimeout(function(){window.location.reload();},1500);
+      setTimeout(function(){window.location.reload();},2000);
 })
   },
 
