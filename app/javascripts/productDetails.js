@@ -7,29 +7,11 @@ var ShareApp = contract(ShareApp_artifacts);
 var accounts;
 var account;
 window.App = {
+  account: 0x0,
   start: function() {
     var self = this;
-
-    // Bootstrap the ShareApp abstraction for Use.
     ShareApp.setProvider(web3.currentProvider);
-
-    // Get the initial account balance so it can be displayed.
-    web3.eth.getAccounts(function(err, accs) {
-      if (err != null) {
-        alert("There was an error fetching your accounts.");
-        return;
-      }
-
-      if (accs.length == 0) {
-        alert("Couldn't get any accounts! Make sure your Ethereum client is configured correctly.");
-        return;
-      }
-
-      accounts = accs;
-      account = accounts[0];
-      console.log(accounts);
-      //console.log(web3.eth.getBalance(account).toNumber());
-      });
+    self.displayAccountInfo();
   },
 
   setStatus: function(message) {
@@ -147,7 +129,7 @@ window.App = {
     // console.log(objectID+1);
     ShareApp.deployed().then(function(instance){
       mainInstance = instance;
-      return mainInstance.rentObj(objectID,{from:account,value:10000000000000, gas:500000});
+      return mainInstance.rentObj(objectID,{from:App.account,value:10000000000000, gas:500000});
     }).then(function(tx){
       console.log(tx);
     }).catch(function(e){
@@ -161,7 +143,7 @@ window.App = {
     var objectID = parseInt(document.getElementById("objID").innerHTML);
     ShareApp.deployed().then(function(instance){
       mainInstance = instance;
-      return mainInstance.returnObj(objectID,{from:account});
+      return mainInstance.returnObj(objectID,{from:App.account});
     }).then(function(tx){
       console.log(tx);
     }).catch(function(e){
@@ -175,13 +157,27 @@ window.App = {
     var meta;
     ShareApp.deployed().then(function(instance){
       meta = instance;
-      return meta.remove({from:account});
+      return meta.remove({from:APP.account});
       }).then(function(){
         self.setStatus("remove success!");
       }).catch(function(e){
         console.log(e);
         self.setStatus("Error remove;see log.");
       });
+  },
+
+  displayAccountInfo: function() {
+    web3.eth.getCoinbase(function(err, account) {
+      if (err === null) {
+        App.account = account;
+        $("#account").text(account);
+        web3.eth.getBalance(account, function(err, balance) {
+          if (err === null) {
+            $("#accountBalance").text(web3.fromWei(balance, "ether") + " ETH");
+          }
+        });
+      }
+    });
   }
 
 }

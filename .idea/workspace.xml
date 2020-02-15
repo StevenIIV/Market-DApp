@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b0e92d44-f00f-4516-ba2c-135590a11830" name="Default Changelist" comment="fix(): web3.js直接返回contruct 失败">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/index.html" afterDir="false" />
+    <list default="true" id="b0e92d44-f00f-4516-ba2c-135590a11830" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/app/javascripts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascripts/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/contracts/ShareApp.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/contracts/ShareApp.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascripts/productDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascripts/productDetails.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/contracts/Migrations.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/contracts/Migrations.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +55,7 @@
       <updated>1581580841058</updated>
       <workItem from="1581580842669" duration="2314000" />
       <workItem from="1581757027774" duration="10580000" />
-      <workItem from="1581780456304" duration="1417000" />
+      <workItem from="1581780456304" duration="1770000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1581580929143</created>
@@ -135,7 +134,14 @@
       <option name="project" value="LOCAL" />
       <updated>1581780630002</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="update(): 新增显示AccountInfo and Balance">
+      <created>1581783026059</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1581783026059</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -165,13 +171,14 @@
     <MESSAGE value="fix():productDetails面板居中处理" />
     <MESSAGE value="fix():sol新增photo" />
     <MESSAGE value="fix(): web3.js直接返回contruct 失败" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(): web3.js直接返回contruct 失败" />
+    <MESSAGE value="update(): 新增显示AccountInfo and Balance" />
+    <option name="LAST_COMMIT_MESSAGE" value="update(): 新增显示AccountInfo and Balance" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2" timestamp="1581782641020">
+    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2" timestamp="1581783025821">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
-    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581782641020" />
+    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581783025821" />
     <state x="2236" y="258" key="RollbackChangesDialog" timestamp="1581780235991">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>

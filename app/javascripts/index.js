@@ -203,35 +203,6 @@ window.App = {
     });
   },
 
-  rentObj: function(){
-    var mainInstance;
-
-    var objectID = parseInt(document.getElementById("objID").innerHTML);
-    // console.log(objectID+1);
-    ShareApp.deployed().then(function(instance){
-      mainInstance = instance;
-      return mainInstance.rentObj(objectID,{from:App.account,value:10000000000000, gas:500000});
-    }).then(function(tx){
-      console.log(tx);
-    }).catch(function(e){
-      console.log(e);
-    });
-  },
-
-  returnObj:function(){
-    var mainInstance;
-
-    var objectID = parseInt(document.getElementById("objID").innerHTML);
-    ShareApp.deployed().then(function(instance){
-      mainInstance = instance;
-      return mainInstance.returnObj(objectID,{from:App.account});
-    }).then(function(tx){
-      console.log(tx);
-    }).catch(function(e){
-      console.log(e);
-    });
-  },
-
   remove: function(){
     var self = this;
 
@@ -239,12 +210,12 @@ window.App = {
     ShareApp.deployed().then(function(instance){
       meta = instance;
       return meta.remove({from:App.account});
-      }).then(function(){
-        self.setStatus("remove success!");
-      }).catch(function(e){
-        console.log(e);
-        self.setStatus("Error remove;see log.");
-      });
+    }).then(function(){
+      self.setStatus("remove success!");
+    }).catch(function(e){
+      console.log(e);
+      self.setStatus("Error remove;see log.");
+    });
   },
 
   displayAccountInfo: function() {
@@ -261,7 +232,7 @@ window.App = {
     });
   }
 
-}
+};
 
 function saveImageOnIpfs(file) {
   return new Promise(function(resolve, reject) {
