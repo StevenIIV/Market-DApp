@@ -12,33 +12,16 @@ const ipfs = ipfsAPI({
 })
 import ShareApp_artifacts from '../../build/contracts/ShareApp.json'
 var ShareApp = contract(ShareApp_artifacts);
-var accounts;
-var account;
+
 var reader;
 window.App = {
+  account: 0x0,
   start: function() {
     var self = this;
 
     // Bootstrap the ShareApp abstraction for Use.
     ShareApp.setProvider(web3.currentProvider);
-
-    // Get the initial account balance so it can be displayed.
-    web3.eth.getAccounts(function(err, accs) {
-      if (err != null) {
-        alert("There was an error fetching your accounts.");
-        return;
-      }
-
-      if (accs.length == 0) {
-        alert("Couldn't get any accounts! Make sure your Ethereum client is configured correctly.");
-        return;
-      }
-
-      accounts = accs;
-      account = accounts[0];
-      console.log(accounts);
-      //console.log(web3.eth.getBalance(account).toNumber());
-      });
+    self.displayAccountInfo();
     self.postObjectsTable();
     $("#product-image").change(function(event) {
       const file = event.target.files[0]
@@ -69,7 +52,7 @@ window.App = {
       var meta;
       ShareApp.deployed().then(function(instance){
         meta = instance;
-        return meta.createObj(imageHash,objName,objPriceDaily,objDeposit,objDetail,{from:account,gas:500000});
+        return meta.createObj(imageHash,objName,objPriceDaily,objDeposit,objDetail,{from:App.account,gas:500000});
       }).then(function(tx){
         self.setStatus("create success!");
         console.log(meta.address);
@@ -227,7 +210,7 @@ window.App = {
     // console.log(objectID+1);
     ShareApp.deployed().then(function(instance){
       mainInstance = instance;
-      return mainInstance.rentObj(objectID,{from:account,value:10000000000000, gas:500000});
+      return mainInstance.rentObj(objectID,{from:App.account,value:10000000000000, gas:500000});
     }).then(function(tx){
       console.log(tx);
     }).catch(function(e){
@@ -241,7 +224,7 @@ window.App = {
     var objectID = parseInt(document.getElementById("objID").innerHTML);
     ShareApp.deployed().then(function(instance){
       mainInstance = instance;
-      return mainInstance.returnObj(objectID,{from:account});
+      return mainInstance.returnObj(objectID,{from:App.account});
     }).then(function(tx){
       console.log(tx);
     }).catch(function(e){
@@ -255,13 +238,27 @@ window.App = {
     var meta;
     ShareApp.deployed().then(function(instance){
       meta = instance;
-      return meta.remove({from:account});
+      return meta.remove({from:App.account});
       }).then(function(){
         self.setStatus("remove success!");
       }).catch(function(e){
         console.log(e);
         self.setStatus("Error remove;see log.");
       });
+  },
+
+  displayAccountInfo: function() {
+    web3.eth.getCoinbase(function(err, account) {
+      if (err === null) {
+        App.account = account;
+        $("#account").text(account);
+        web3.eth.getBalance(account, function(err, balance) {
+          if (err === null) {
+            $("#accountBalance").text(web3.fromWei(balance, "ether") + " ETH");
+          }
+        });
+      }
+    });
   }
 
 }
