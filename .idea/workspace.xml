@@ -1,9 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b0e92d44-f00f-4516-ba2c-135590a11830" name="Default Changelist" comment="">
+    <list default="true" id="b0e92d44-f00f-4516-ba2c-135590a11830" name="Default Changelist" comment="fix():解决刷新问题">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/ShareAPP.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/javascripts/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascripts/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/productDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/productDetails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/clean-css/History.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/clean-css/History.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/clean-css/lib/optimizer/level-1/optimize.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/clean-css/lib/optimizer/level-1/optimize.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/clean-css/lib/optimizer/validator.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/clean-css/lib/optimizer/validator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/clean-css/lib/writer/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/clean-css/lib/writer/helpers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/clean-css/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/clean-css/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/html-webpack-plugin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/html-webpack-plugin/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/htmlparser2/node_modules/readable-stream/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/htmlparser2/node_modules/readable-stream/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/htmlparser2/node_modules/readable-stream/lib/_stream_readable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/htmlparser2/node_modules/readable-stream/lib/_stream_readable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/htmlparser2/node_modules/readable-stream/lib/_stream_writable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/htmlparser2/node_modules/readable-stream/lib/_stream_writable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/htmlparser2/node_modules/readable-stream/lib/internal/streams/buffer_list.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/htmlparser2/node_modules/readable-stream/lib/internal/streams/buffer_list.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/htmlparser2/node_modules/readable-stream/lib/internal/streams/destroy.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/htmlparser2/node_modules/readable-stream/lib/internal/streams/destroy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/htmlparser2/node_modules/readable-stream/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/htmlparser2/node_modules/readable-stream/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pngs/create.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pngs/list.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pngs/query.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pngs/rent.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pngs/return.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +136,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -129,14 +154,14 @@
     <option name="LAST_COMMIT_MESSAGE" value="fix():解决刷新问题" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2011" y="142" key="CommitChangelistDialog2" timestamp="1581613294840">
+    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2" timestamp="1581747200310">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
-    <state x="2011" y="142" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581613294840" />
-    <state x="2236" y="258" key="RollbackChangesDialog" timestamp="1581595079855">
+    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581747200310" />
+    <state x="2236" y="258" key="RollbackChangesDialog" timestamp="1581685092610">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
-    <state x="2236" y="258" key="RollbackChangesDialog/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581595079855" />
+    <state x="2236" y="258" key="RollbackChangesDialog/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581685092610" />
     <state x="2000" y="280" key="Vcs.Push.Dialog.v2" timestamp="1581581280821">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
@@ -145,5 +170,9 @@
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
     <state x="2237" y="280" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581580855464" />
+    <state x="2080" y="297" width="639" height="486" key="find.popup" timestamp="1581682799175">
+      <screen x="1440" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2080" y="297" width="639" height="486" key="find.popup/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581682799175" />
   </component>
 </project>

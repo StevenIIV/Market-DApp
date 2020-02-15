@@ -87,7 +87,7 @@ window.App = {
         self.setStatus("Error create;see log.");
       });
     }).then(function () {
-      setTimeout(function(){window.location.reload();},2000);
+      setTimeout(function(){window.location.reload();},1800);
 })
   },
 
@@ -163,13 +163,6 @@ window.App = {
     });
   },
 
-  searchObj: function(){ //按id查询
-    var self = this;
-
-    var id = parseInt(document.getElementById("search-value").value);
-    self.postObject(id);
-  },
-
   searchObjByName: function(){ //按名字查询
     var self = this;
 
@@ -234,22 +227,17 @@ window.App = {
           var cell6 = row.insertCell(5);  //OP
           var cell7 = row.insertCell(6);
 
+          var targetURL = "productDetails.html?id="+_id;
           cell1.innerHTML = "<img src='"+_objPhoto+"'>";
           cell2.innerHTML = _id;
           cell3.innerHTML = _objName;
           cell4.innerHTML = _objPriceDaily;
           cell5.innerHTML = _objDeposit;
           cell6.innerHTML = _objRented;
-          cell7.innerHTML = '<a href="javascript:void(0);" onclick="javascript:App.display(this)">Display</a>';
+          cell7.innerHTML = '<a href="productDetails.html?id='+_id+'">Display</a>';
         });
   },
 
-  display: function(obj){ //点击表格最后一列的<a>元素后显示当前行的具体信息
-    var self = this;
-    var tr = obj.parentNode.parentNode; //获取行
-    var id = tr.children[1].innerHTML; //获取行的第一列的值
-    self.postObject(id);
-  },
 
   postObjectsTable: function(){  //把所有记录显示出来
     var self = this;
@@ -358,6 +346,22 @@ function saveImageOnIpfs(file) {
       reject(err);
     })
   })
+}
+
+function changeURLArg(url,arg,arg_val){
+  var pattern=arg+'=([^&]*)';
+  var replaceText=arg+'='+arg_val;
+  if(url.match(pattern)){
+    var tmp='/('+ arg+'=)([^&]*)/gi';
+    tmp=url.replace(eval(tmp),replaceText);
+    return tmp;
+  }else{
+    if(url.match('[\?]')){
+      return url+'&'+replaceText;
+    }else{
+      return url+'?'+replaceText;
+    }
+  }
 }
 
 window.addEventListener('load', function() {
