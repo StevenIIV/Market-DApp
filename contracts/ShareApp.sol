@@ -80,27 +80,29 @@ contract ShareApp{
 		numObjects++;
 	}
 
-	// function getObj(uint objID) constant objectInRange(objID)
-	// 	returns(
-	// 		address creator,
-	// 		string name,
-	// 		uint priceDaily,
-	// 		uint deposit,
-	// 		address renterAddress,
-	// 		uint renterSince,
-	// 		bool rented,
-	// 		string detail
-	// 	)
-	// {
-	// 	creator = objects[objID].creator;
-	// 	name = objects[objID].name;
-	// 	priceDaily = objects[objID].priceDaily;
-	// 	deposit = objects[objID].deposit;
-	// 	renterAddress = objects[objID].renter.addr;
-	// 	renterSince = objects[objID].renter.since;
-	// 	rented = objects[objID].rented;
-	// 	detail = objects[objID].detail;
-	// }
+	 function getObj(uint objID) constant objectInRange(objID)
+	 	returns(
+	 		address creator,
+			string photo,
+	 		string name,
+	 		uint priceDaily,
+	 		uint deposit,
+	 		address renterAddress,
+	 		uint renterSince,
+	 		bool rented,
+	 		string detail
+	 	)
+	 {
+	 	creator = objects[objID].creator;
+		photo = objects[objID].photo;
+	 	name = objects[objID].name;
+	 	priceDaily = objects[objID].priceDaily;
+	 	deposit = objects[objID].deposit;
+	 	renterAddress = objects[objID].renter.addr;
+	 	renterSince = objects[objID].renter.since;
+	 	rented = objects[objID].rented;
+	 	detail = objects[objID].detail;
+	 }
 
 	// function getObject(uint objID) constant objectInRange(objID)
 	// 	returns(Object object)
@@ -140,6 +142,7 @@ contract ShareApp{
 		}
 		delete objects[objID].renter;
 		objects[objID].rented = false;
+		return true;
 	}
 
 	// function withdraw() {

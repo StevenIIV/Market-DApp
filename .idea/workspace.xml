@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b0e92d44-f00f-4516-ba2c-135590a11830" name="Default Changelist" comment="">
+    <list default="true" id="b0e92d44-f00f-4516-ba2c-135590a11830" name="Default Changelist" comment="fix():解决刷新问题">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascripts/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/productDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/productDetails.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/productDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/productDetails.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/contracts/Migrations.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/contracts/Migrations.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/contracts/ShareApp.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/contracts/ShareApp.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +22,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="divide" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -46,6 +42,7 @@
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -58,6 +55,7 @@
       <option name="presentableId" value="Default" />
       <updated>1581580841058</updated>
       <workItem from="1581580842669" duration="2314000" />
+      <workItem from="1581757027774" duration="5483000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1581580929143</created>
@@ -153,14 +151,14 @@
     <option name="LAST_COMMIT_MESSAGE" value="fix():productDetails面板居中处理" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2" timestamp="1581750063392">
+    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2" timestamp="1581772662779">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
-    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581750063392" />
-    <state x="2236" y="258" key="RollbackChangesDialog" timestamp="1581756195051">
+    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581772662779" />
+    <state x="2236" y="258" key="RollbackChangesDialog" timestamp="1581772882727">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
-    <state x="2236" y="258" key="RollbackChangesDialog/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581756195051" />
+    <state x="2236" y="258" key="RollbackChangesDialog/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581772882727" />
     <state x="2000" y="280" key="Vcs.Push.Dialog.v2" timestamp="1581581280821">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
