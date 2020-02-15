@@ -2,19 +2,10 @@ import "../stylesheets/app.css";
 // Import libraries we need.
 //import { default as Web3} from 'web3';
 import { default as contract } from 'truffle-contract'
-import { default as BigNumber } from 'bignumber.js'
-// var BigNumber = require('../../node_modules/bignumber.js')
-const ipfsAPI = require('ipfs-api')
-const ipfs = ipfsAPI({
-  host: 'localhost',
-  port: '5001',
-  protocol: 'http'
-})
 import ShareApp_artifacts from '../../build/contracts/ShareApp.json'
 var ShareApp = contract(ShareApp_artifacts);
 var accounts;
 var account;
-var reader;
 window.App = {
   start: function() {
     var self = this;
@@ -46,8 +37,8 @@ window.App = {
     status.innerHTML = message;
   },
 
-  //View
-  postObject: function(_objID){  //按ID查询之后显示具体
+  //按ID查询之后显示具体
+  postObject: function(_objID){
     var mainInstance;
     var numObjects;
     var _objPhoto;

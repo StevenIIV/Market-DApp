@@ -91,14 +91,16 @@ window.App = {
 })
   },
 
-  searchObjByName: function(){ //按名字查询
+  //按名字查询
+  searchObjByName: function(){
     var self = this;
 
     var name = document.getElementById("search-name").value;
     self.postObjectsTableByName(name);
   },
 
-  postObjectsTableByName: function(_name){ //按名字查询之后显示出所有记录
+  //按名字查询之后显示出所有记录
+  postObjectsTableByName: function(_name){
     var self = this;
     var ids;
     var mainInstance;
@@ -118,7 +120,8 @@ window.App = {
     });
   },
 
-  addRowObjectTable: function(_id,tbody){  //向表格中追加记录
+  //向表格中追加记录
+  addRowObjectTable: function(_id,tbody){
     var self = this;
     var mainInstance;
     var _objPhoto;
@@ -166,7 +169,8 @@ window.App = {
         });
   },
 
-  postObjectsTable: function(){  //把所有记录显示出来
+  //把所有记录显示出来
+  postObjectsTable: function(){
     var self = this;
     var ids;
     var mainInstance;
@@ -273,22 +277,6 @@ function saveImageOnIpfs(file) {
       reject(err);
     })
   })
-}
-
-function changeURLArg(url,arg,arg_val){
-  var pattern=arg+'=([^&]*)';
-  var replaceText=arg+'='+arg_val;
-  if(url.match(pattern)){
-    var tmp='/('+ arg+'=)([^&]*)/gi';
-    tmp=url.replace(eval(tmp),replaceText);
-    return tmp;
-  }else{
-    if(url.match('[\?]')){
-      return url+'&'+replaceText;
-    }else{
-      return url+'?'+replaceText;
-    }
-  }
 }
 
 window.addEventListener('load', function() {
