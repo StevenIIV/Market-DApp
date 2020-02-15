@@ -4,8 +4,6 @@ import "../stylesheets/app.css";
 import { default as contract } from 'truffle-contract'
 import ShareApp_artifacts from '../../build/contracts/ShareApp.json'
 var ShareApp = contract(ShareApp_artifacts);
-var accounts;
-var account;
 window.App = {
   account: 0x0,
   start: function() {
@@ -54,7 +52,7 @@ window.App = {
       _objDeposit = objDeposit.valueOf();
       return mainInstance.getObjectRenterAddress.call(_objID);
     }).then(function(objRenterAddress){
-      _objRenterAddress = objRenterAddress;
+      _objRenterAddress = (objRenterAddress == "0x0000000000000000000000000000000000000000")?"no renter":objRenterAddress;
       return mainInstance.getObjectRenterSince.call(_objID);
     }).then(function(objRenterSince){
       _objRenterSince = objRenterSince.valueOf();
@@ -66,14 +64,17 @@ window.App = {
       _objDetail = objDetail;
 
       if(_objID < numObjects && _objID >= 0){
-        if(_objRented == false){
+        if(App.account == _objCreator){
+          document.getElementById("rentButton").style.display = "none";
+          document.getElementById("returnButton").style.display = "none";
+        } else if(_objRented == false){
           document.getElementById("rentButton").style.display = "inline";
           document.getElementById("returnButton").style.display = "none";
-        }
-        else{
+        } else{
           document.getElementById("returnButton").style.display = "inline";
           document.getElementById("rentButton").style.display = "none";
         }
+
         document.getElementById("objPhoto").innerHTML = "<img src='"+_objPhoto+"'>";
         document.getElementById("objID").innerHTML = _objID;
         document.getElementById("objName").innerHTML = _objName;

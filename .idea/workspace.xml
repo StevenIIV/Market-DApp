@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b0e92d44-f00f-4516-ba2c-135590a11830" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/javascripts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascripts/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/javascripts/productDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascripts/productDetails.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/contracts/Migrations.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/contracts/Migrations.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/productDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/productDetails.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +36,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -55,7 +56,7 @@
       <updated>1581580841058</updated>
       <workItem from="1581580842669" duration="2314000" />
       <workItem from="1581757027774" duration="10580000" />
-      <workItem from="1581780456304" duration="1770000" />
+      <workItem from="1581780456304" duration="2751000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1581580929143</created>
@@ -141,7 +142,14 @@
       <option name="project" value="LOCAL" />
       <updated>1581783026059</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="fix(): 修饰一下前一条的问题">
+      <created>1581783311278</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1581783311278</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,13 +180,14 @@
     <MESSAGE value="fix():sol新增photo" />
     <MESSAGE value="fix(): web3.js直接返回contruct 失败" />
     <MESSAGE value="update(): 新增显示AccountInfo and Balance" />
-    <option name="LAST_COMMIT_MESSAGE" value="update(): 新增显示AccountInfo and Balance" />
+    <MESSAGE value="fix(): 修饰一下前一条的问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix(): 修饰一下前一条的问题" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2" timestamp="1581783025821">
+    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2" timestamp="1581783311037">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
-    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581783025821" />
+    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581783311037" />
     <state x="2236" y="258" key="RollbackChangesDialog" timestamp="1581780235991">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
