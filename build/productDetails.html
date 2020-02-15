@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>productDetails</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' type='text/css'>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="./app.js"></script>
+    <script src="http://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<!-- Object info -->
+<div class="container max-width-960 margin-top" id="object-info">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Object Info</h3>
+        </div>
+        <div class="panel-body">
+            <ul class="list-group">
+                <li class="list-group-item"><span id="objPhoto"></span></li>
+                <li class="list-group-item"><strong>ID:</strong> <span id="objID"></span> <button class="btn btn-default" type="button" onclick="App.rentObj()" id="rentButton" style="float:right">Rent</button><button class="btn btn-default" type="button" onclick="App.returnObj()" id="returnButton" style="float:right">Return</button></li>
+                <li class="list-group-item"><strong>Name:</strong> <span id="objName"></span></li>
+                <li class="list-group-item"><strong>Creator:</strong> <span id="objCreator"></span></li>
+                <li class="list-group-item"><strong>PriceDaily:</strong> <span id="objPriceDaily"></span></li>
+                <li class="list-group-item"><strong>Deposit:</strong> <span id="objDeposit"></span></li>
+                <li class="list-group-item"><strong>RenterAddress:</strong> <span id="objRenterAddress"></span></li>
+                <li class="list-group-item"><strong>RenterSince:</strong> <span id="objRenterSince"></span></li>
+                <li class="list-group-item"><strong>Rented:</strong> <span id="objRented"></span></li>
+                <li class="list-group-item"><strong>Detail:</strong> <span id="objDetail"></span></li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

@@ -146,7 +146,6 @@ window.App = {
           document.getElementById("returnButton").style.display = "inline";
           document.getElementById("rentButton").style.display = "none";
         }
-        document.getElementById("object-info").style.display = "inline";
         document.getElementById("objPhoto").innerHTML = "<img src='"+_objPhoto+"'>";
         document.getElementById("objID").innerHTML = _objID;
         document.getElementById("objName").innerHTML = _objName;
