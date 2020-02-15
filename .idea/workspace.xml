@@ -1,31 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b0e92d44-f00f-4516-ba2c-135590a11830" name="Default Changelist" comment="fix():解决刷新问题">
+    <list default="true" id="b0e92d44-f00f-4516-ba2c-135590a11830" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ShareAPP.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascripts/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascripts/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascripts/app.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/productDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/productDetails.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/clean-css/History.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/clean-css/History.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/clean-css/lib/optimizer/level-1/optimize.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/clean-css/lib/optimizer/level-1/optimize.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/clean-css/lib/optimizer/validator.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/clean-css/lib/optimizer/validator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/clean-css/lib/writer/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/clean-css/lib/writer/helpers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/clean-css/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/clean-css/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/html-webpack-plugin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/html-webpack-plugin/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/htmlparser2/node_modules/readable-stream/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/htmlparser2/node_modules/readable-stream/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/htmlparser2/node_modules/readable-stream/lib/_stream_readable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/htmlparser2/node_modules/readable-stream/lib/_stream_readable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/htmlparser2/node_modules/readable-stream/lib/_stream_writable.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/htmlparser2/node_modules/readable-stream/lib/_stream_writable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/htmlparser2/node_modules/readable-stream/lib/internal/streams/buffer_list.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/htmlparser2/node_modules/readable-stream/lib/internal/streams/buffer_list.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/htmlparser2/node_modules/readable-stream/lib/internal/streams/destroy.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/htmlparser2/node_modules/readable-stream/lib/internal/streams/destroy.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/htmlparser2/node_modules/readable-stream/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/htmlparser2/node_modules/readable-stream/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pngs/create.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pngs/list.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pngs/query.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pngs/rent.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pngs/return.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/productDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/productDetails.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -125,7 +108,21 @@
       <option name="project" value="LOCAL" />
       <updated>1581613295205</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="fix():解决多网页问题，但仍无法去除.html后缀">
+      <created>1581747435304</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1581747435304</updated>
+    </task>
+    <task id="LOCAL-00009" summary="fix():productDetails面板居中处理">
+      <created>1581750063668</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1581750063668</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -151,17 +148,19 @@
     <MESSAGE value="update():新增插入图片功能.2 success" />
     <MESSAGE value="update():新增插入图片功能.3 success" />
     <MESSAGE value="fix():解决刷新问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix():解决刷新问题" />
+    <MESSAGE value="fix():解决多网页问题，但仍无法去除.html后缀" />
+    <MESSAGE value="fix():productDetails面板居中处理" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix():productDetails面板居中处理" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2" timestamp="1581747200310">
+    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2" timestamp="1581750063392">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
-    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581747200310" />
-    <state x="2236" y="258" key="RollbackChangesDialog" timestamp="1581685092610">
+    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581750063392" />
+    <state x="2236" y="258" key="RollbackChangesDialog" timestamp="1581756195051">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
-    <state x="2236" y="258" key="RollbackChangesDialog/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581685092610" />
+    <state x="2236" y="258" key="RollbackChangesDialog/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581756195051" />
     <state x="2000" y="280" key="Vcs.Push.Dialog.v2" timestamp="1581581280821">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
