@@ -75,6 +75,7 @@ window.App = {
     articleTemplate.find('.panel-title').text(name);
     articleTemplate.find('.article-description').text(description);
     articleTemplate.find('.article-price').text(etherPrice + " ETH");
+    articleTemplate.find('.article-display').attr('href',"productDetails.html?type=0&id="+id);
     articleTemplate.find('.btn-buy').attr('data-id', id);
     articleTemplate.find('.btn-buy').attr('data-value', etherPrice);
 

@@ -148,7 +148,7 @@ window.App = {
           cell4.innerHTML = _objPriceDaily;
           cell5.innerHTML = _objDeposit;
           cell6.innerHTML = _objRented;
-          cell7.innerHTML = '<a href="productDetails.html?id='+_id+'">Display</a>';
+          cell7.innerHTML = '<a href="productDetails.html?type=1&id='+_id+'">Display</a>';
         });
   },
 
