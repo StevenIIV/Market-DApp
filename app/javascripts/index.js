@@ -9,7 +9,7 @@ const ipfs = ipfsAPI({
   host: 'localhost',
   port: '5001',
   protocol: 'http'
-})
+});
 import ShareApp_artifacts from '../../build/contracts/ShareApp.json'
 var ShareApp = contract(ShareApp_artifacts);
 

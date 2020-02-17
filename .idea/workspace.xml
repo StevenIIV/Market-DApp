@@ -3,8 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="b0e92d44-f00f-4516-ba2c-135590a11830" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascripts/productDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascripts/productDetails.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/productDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/productDetails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascripts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascripts/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/contracts/Migrations.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/contracts/Migrations.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/contracts/ShareApp.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/contracts/ShareApp.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/productDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/productDetails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/productDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/productDetails.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/2_deploy_contracts.js" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/2_deploy_contracts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,12 +28,15 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="divide" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1XkCjf5KxrOJffsVrItyrYvcLAZ" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -38,11 +48,18 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app" />
+      <recent name="$PROJECT_DIR$/app/javascripts" />
+      <recent name="$PROJECT_DIR$/contracts" />
+    </key>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -56,7 +73,7 @@
       <updated>1581580841058</updated>
       <workItem from="1581580842669" duration="2314000" />
       <workItem from="1581757027774" duration="10580000" />
-      <workItem from="1581780456304" duration="2751000" />
+      <workItem from="1581780456304" duration="13183000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1581580929143</created>
@@ -149,7 +166,14 @@
       <option name="project" value="LOCAL" />
       <updated>1581783311278</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="fix(): 修改rent按钮针对不同用户的显示以及renterAddress返回无效值的问题">
+      <created>1581784305687</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1581784305687</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,13 +205,14 @@
     <MESSAGE value="fix(): web3.js直接返回contruct 失败" />
     <MESSAGE value="update(): 新增显示AccountInfo and Balance" />
     <MESSAGE value="fix(): 修饰一下前一条的问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(): 修饰一下前一条的问题" />
+    <MESSAGE value="fix(): 修改rent按钮针对不同用户的显示以及renterAddress返回无效值的问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix(): 修改rent按钮针对不同用户的显示以及renterAddress返回无效值的问题" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2" timestamp="1581783311037">
+    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2" timestamp="1581784305456">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
-    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581783311037" />
+    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581784305456" />
     <state x="2236" y="258" key="RollbackChangesDialog" timestamp="1581780235991">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
