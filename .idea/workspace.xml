@@ -3,11 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="b0e92d44-f00f-4516-ba2c-135590a11830" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascripts/market.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascripts/market.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/javascripts/productDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascripts/productDetails.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/market.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/market.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/productDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/productDetails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/contracts/MarketPlace.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/contracts/MarketPlace.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/contracts/Migrations.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/contracts/Migrations.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/contracts/ShareApp.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/contracts/ShareApp.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contracts/MarketPlace.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/MarketPlace.sol" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +70,7 @@
       <updated>1581580841058</updated>
       <workItem from="1581580842669" duration="2314000" />
       <workItem from="1581757027774" duration="10580000" />
-      <workItem from="1581780456304" duration="22800000" />
+      <workItem from="1581780456304" duration="31376000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1581580929143</created>
@@ -190,7 +191,14 @@
       <option name="project" value="LOCAL" />
       <updated>1581929303931</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="update(): 增加了在marketplace中display展示商品，展示页面与shareapp共享.2">
+      <created>1581943501545</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1581943501545</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -236,21 +244,22 @@
     <MESSAGE value="feat(): 加入新的交易板块，两个sol" />
     <MESSAGE value="update(): 增加忘记了的购买功能&amp;&amp;把延迟刷新的时间缩短来达到速度优化效果" />
     <MESSAGE value="update(): 增加了在marketplace中display展示商品，展示页面与shareapp共享" />
-    <option name="LAST_COMMIT_MESSAGE" value="update(): 增加了在marketplace中display展示商品，展示页面与shareapp共享" />
+    <MESSAGE value="update(): 增加了在marketplace中display展示商品，展示页面与shareapp共享.2" />
+    <option name="LAST_COMMIT_MESSAGE" value="update(): 增加了在marketplace中display展示商品，展示页面与shareapp共享.2" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2" timestamp="1581929303737">
+    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2" timestamp="1581956091675">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
-    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581929303737" />
+    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581956091675" />
     <state x="1824" y="169" key="DiffContextDialog" timestamp="1581926128457">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
     <state x="1824" y="169" key="DiffContextDialog/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581926128457" />
-    <state x="2236" y="258" key="RollbackChangesDialog" timestamp="1581780235991">
+    <state x="2236" y="258" key="RollbackChangesDialog" timestamp="1581947197880">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
-    <state x="2236" y="258" key="RollbackChangesDialog/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581780235991" />
+    <state x="2236" y="258" key="RollbackChangesDialog/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581947197880" />
     <state x="2000" y="280" key="Vcs.Push.Dialog.v2" timestamp="1581581280821">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>

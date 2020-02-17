@@ -16,8 +16,7 @@
                 App.postObjectForRent(getQueryVariable("id"));
             }
             else if(getQueryVariable("type") == 0){
-                document.getElementById("object-sell-info").style.display="inline";
-                App.postObjectForSell(getQueryVariable("id"));
+                App.checkSellValidAndShow(getQueryVariable("id"));
             }
         }
         function getQueryVariable(variable) {
@@ -86,15 +85,23 @@
                 <li class="list-group-item"><span id="_objPhoto"></span></li>
                 <li class="list-group-item">
                     <strong>ID:</strong> <span id="_objID"></span>
-                    <button type="button" class="btn btn-primary btn-success btn-buy" onclick="App.buyArticle(); return false;" id="buyButton"style="float: right; display: none">Buy</button>
+                    <button type="button" class="btn btn-primary btn-success btn-buy" onclick="App.buyArticle(getQueryVariable('id')); return false;" id="buyButton"style="float: right; display: none">Buy</button>
                 </li>
                 <li class="list-group-item"><strong>Name:</strong> <span id="_objName"></span></li>
                 <li class="list-group-item"><strong>Creator:</strong> <span id="_objCreator"></span></li>
-                <li class="list-group-item"><strong>Deposit:</strong> <span id="_objPrice"></span></li>
+                <li class="list-group-item"><strong>Price:</strong> <span id="_objPrice"></span></li>
                 <li class="list-group-item"><strong>Detail:</strong> <span id="_objDetail"></span></li>
             </ul>
         </div>
     </div>
+</div>
+
+<!-- error -->
+<div id="error" style="display: none">
+    <center>
+        <h1>illegal Access!</h1><br/>
+        <h2>product have been sold</h2>
+    </center>
 </div>
 </body>
 </html>

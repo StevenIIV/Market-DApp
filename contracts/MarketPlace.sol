@@ -34,6 +34,17 @@ contract MarketPlace {
     string _name,
     uint256 _price);
 
+  //modifiers
+  modifier onlyOwner() {
+    require(msg.sender == owner);
+    _;
+  }
+
+  modifier objectInRange(uint objID) {
+    if (objID >= articleCounter)
+      throw;
+    _;
+  }
 
   //sell an article
   function sellArticle(string _photo, string _name, string _description, uint256 _price) public {
@@ -121,12 +132,6 @@ contract MarketPlace {
   //kill the smart contract
   function kill() onlyOwner {
     selfdestruct(owner);
-  }
-
-  //modifiers
-  modifier onlyOwner() {
-    require(msg.sender == owner);
-    _;
   }
 
   // constructor

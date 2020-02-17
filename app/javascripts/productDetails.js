@@ -20,7 +20,6 @@ window.App = {
     status.innerHTML = message;
   },
 
-  //按ID查询之后显示具体
   postObjectForRent: function(_objID){
     var mainInstance;
     var numObjects;
@@ -191,23 +190,21 @@ window.App = {
       });
   },
 
-  buyArticle: function() {
-    event.preventDefault();
-
-    // retrieve the article price
-    var _articleId = $(event.target).data('id');
-    var _price = parseFloat($(event.target).data('value'));
-
+  buyArticle: function(_articleId) {
     Market.deployed().then(function(instance) {
-      return instance.buyArticle(_articleId, {
-        from: App.account,
-        value: web3.toWei(_price, "ether"),
-        gas: 500000
-      });
-    }).then(function(result) {
-      setTimeout(function(){window.location.reload();},800);
-    }).catch(function(err) {
-      console.error(err);
+          instance.articles(_articleId).then(function (article) {
+            return article[6];
+          }).then(function (_price) {
+            return instance.buyArticle(_articleId, {
+              from: App.account,
+              value: _price,
+              gas: 500000
+            });
+          }).then(function (result) {
+            window.location.href="market.html";
+          }).catch(function (err) {
+            console.error(err);
+          });
     });
   },
 
@@ -223,8 +220,20 @@ window.App = {
         });
       }
     });
-  }
+  },
 
+  checkSellValidAndShow: function (id) {
+    Market.deployed().then(function (instance) {
+      instance.articles(id).then(function (article) {
+        if(article[2]!="0x0000000000000000000000000000000000000000") {
+          document.getElementById("error").style.display = "inline";
+        }else {
+          document.getElementById("object-sell-info").style.display="inline";
+          App.postObjectForSell(getQueryVariable("id"));
+        }
+      })
+    });
+  }
 }
 
 window.addEventListener('load', function() {
