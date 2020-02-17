@@ -8,7 +8,12 @@
       <change beforePath="$PROJECT_DIR$/build/contracts/MarketPlace.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/contracts/MarketPlace.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/contracts/Migrations.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/contracts/Migrations.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/contracts/ShareApp.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/contracts/ShareApp.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contracts/MarketPlace.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/MarketPlace.sol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/market.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/market.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/market.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/market.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/productDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/productDetails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/productDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/productDetails.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -248,10 +253,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="update(): 增加了在marketplace中display展示商品，展示页面与shareapp共享.2" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2" timestamp="1581956091675">
+    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2" timestamp="1581956695412">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
-    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581956091675" />
+    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581956695412" />
     <state x="1824" y="169" key="DiffContextDialog" timestamp="1581926128457">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>

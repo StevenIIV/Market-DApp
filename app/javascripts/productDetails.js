@@ -72,9 +72,14 @@ window.App = {
         } else if(_objRented == false){
           document.getElementById("rentButton").style.display = "inline";
           document.getElementById("returnButton").style.display = "none";
-        } else{
-          document.getElementById("returnButton").style.display = "inline";
-          document.getElementById("rentButton").style.display = "none";
+        } else if (_objRented == true){
+          if (App.account != _objRenterAddress){
+            document.getElementById("rentButton").style.display = "none";
+            document.getElementById("returnButton").style.display = "none";
+          }else{
+            document.getElementById("returnButton").style.display = "inline";
+            document.getElementById("rentButton").style.display = "none";
+          }
         }
 
         document.getElementById("objPhoto").innerHTML = "<img src='"+_objPhoto+"'>";
@@ -155,6 +160,7 @@ window.App = {
       mainInstance = instance;
       return mainInstance.rentObj(objectID,{from:App.account,value:10000000000000, gas:500000});
     }).then(function(tx){
+      window.location.reload();
       console.log(tx);
     }).catch(function(e){
       console.log(e);
@@ -169,6 +175,7 @@ window.App = {
       mainInstance = instance;
       return mainInstance.returnObj(objectID,{from:App.account});
     }).then(function(tx){
+      window.location.reload();
       console.log(tx);
     }).catch(function(e){
       console.log(e);

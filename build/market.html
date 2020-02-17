@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MarketPlace</title>
-<!--  <link href="stylesheets/font-awesome.min.css" rel="stylesheet">-->
+  <script src="./market.js"></script>
   <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="http://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
   <script src="http://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
@@ -19,6 +19,17 @@
 </head>
 
 <body>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container max-width-960">
+    <div class="navbar-header" style="float: left">
+      <a href="./index.html"><img src="../img/logo.png" alt="logo" class="navbar-brand"></a>
+    </div>
+    <div style="float: left; margin-top: 15px">
+      <button onclick="location='index.html'">index</button>
+      <button onclick="location='market.html'">market</button>
+    </div>
+  </div>
+</nav>
   <div class="container">
     <div class="jumbotron text-center">
       <h1>Market Place</h1>
@@ -35,7 +46,6 @@
       <div class="row panel panel-default">
         <div class="panel-heading clearfix">
           <div class="panel-title">
-            <button class="btn btn-info btn-lg pull-left" data-toggle="collapse" data-target="#events" aria-expanded="false" aria-controls="events">Events</button>
             <button class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#sellArticle">Sell an article</button>
           </div>
         </div>
@@ -56,14 +66,15 @@
           <h3 class="panel-title"></h3>
         </div>
         <div class="panel-body">
-          <span class="photo-hash"></span>
+          <img src="" class="photo-hash"><br/>
           <strong>Description</strong>: <span class="article-description"></span><br/>
           <strong>Price (ETH)</strong>: <span class="article-price"></span><br/>
           <strong>Sold by</strong>: <span class="article-seller"></span><br/>
+          <a href="" class="article-display">display</a>
         </div>
-        <div class="panel-footer">
-          <button type="button" class="btn btn-primary btn-success btn-buy" onclick="App.buyArticle(); return false;">Buy</button>
-        </div>
+<!--        <div class="panel-footer">-->
+<!--          <button type="button" class="btn btn-primary btn-success btn-buy" onclick="App.buyArticle(); return false;">Buy</button>-->
+<!--        </div>-->
       </div>
     </div>
   </div>
@@ -112,14 +123,14 @@
     </div>
   </div>
 
-  <div id="footer" class="container">
-    <nav class="navbar navbar-default navbar-fixed-bottom">
-      <div class="navbar-inner navbar-content-center text-center">
-        <p class="text-muted" credit><a href="http://about.me/zalakshah">Zalak Shah</a> - &copy; 2017 - <a href="https://github.com/zalak13" class="fa fa-github" aria-hidden="true"></a></p>
+<!--  <div id="footer" class="container">-->
+<!--    <nav class="navbar navbar-default navbar-fixed-bottom">-->
+<!--      <div class="navbar-inner navbar-content-center text-center">-->
+<!--        <p class="text-muted" credit><a href="http://about.me/zalakshah">Zalak Shah</a> - &copy; 2017 - <a href="https://github.com/zalak13" class="fa fa-github" aria-hidden="true"></a></p>-->
 
-      </div>
-    </nav>
-  </div>
+<!--      </div>-->
+<!--    </nav>-->
+<!--  </div>-->
 </body>
 
 </html>

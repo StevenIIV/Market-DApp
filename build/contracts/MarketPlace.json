@@ -8347,12 +8347,13 @@
         }
       },
       "links": {},
-      "address": "0x566Ce86C6d9A850BE6dfe4ad6cD9B6eE14803C19",
-      "transactionHash": "0x7978b9bfc3e81357d5988e7c0eb80cfcd591f25efc36e0268f529f636543fad9"
+      "address": "0xB2e3c6B95De1205df4e0eaF039Bd269F629f9b70",
+      "transactionHash": "0x7f38c8888e84f1879b3677f79ea5d518f70c8e673f5f728fc0c72a9895a5e247"
     }
   },
   "schemaVersion": "3.0.19",
-  "updatedAt": "2020-02-17T13:55:18.966Z",
+  "updatedAt": "2020-02-17T16:17:26.440Z",
+  "networkType": "ethereum",
   "devdoc": {
     "methods": {}
   },
