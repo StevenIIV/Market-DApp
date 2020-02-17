@@ -3,9 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="b0e92d44-f00f-4516-ba2c-135590a11830" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascripts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascripts/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/javascripts/market.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascripts/market.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascripts/productDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascripts/productDetails.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/market.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/market.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/productDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/productDetails.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +69,7 @@
       <updated>1581580841058</updated>
       <workItem from="1581580842669" duration="2314000" />
       <workItem from="1581757027774" duration="10580000" />
-      <workItem from="1581780456304" duration="16576000" />
+      <workItem from="1581780456304" duration="22800000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1581580929143</created>
@@ -181,11 +183,28 @@
       <option name="project" value="LOCAL" />
       <updated>1581926243802</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="update(): 增加了在marketplace中display展示商品，展示页面与shareapp共享">
+      <created>1581929303931</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1581929303931</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -216,13 +235,14 @@
     <MESSAGE value="fix(): 修改rent按钮针对不同用户的显示以及renterAddress返回无效值的问题" />
     <MESSAGE value="feat(): 加入新的交易板块，两个sol" />
     <MESSAGE value="update(): 增加忘记了的购买功能&amp;&amp;把延迟刷新的时间缩短来达到速度优化效果" />
-    <option name="LAST_COMMIT_MESSAGE" value="update(): 增加忘记了的购买功能&amp;&amp;把延迟刷新的时间缩短来达到速度优化效果" />
+    <MESSAGE value="update(): 增加了在marketplace中display展示商品，展示页面与shareapp共享" />
+    <option name="LAST_COMMIT_MESSAGE" value="update(): 增加了在marketplace中display展示商品，展示页面与shareapp共享" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2" timestamp="1581929244091">
+    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2" timestamp="1581929303737">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
-    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581929244091" />
+    <state x="1440" y="0" width="1920" height="1080" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581929303737" />
     <state x="1824" y="169" key="DiffContextDialog" timestamp="1581926128457">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
@@ -247,5 +267,9 @@
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
     <state x="2174" y="260" key="git4idea.branch.GitSmartOperationDialog/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581928956338" />
+    <state x="2065" y="241" width="670" height="676" key="search.everywhere.popup" timestamp="1581933263017">
+      <screen x="1440" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2065" y="241" width="670" height="676" key="search.everywhere.popup/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1581933263017" />
   </component>
 </project>

@@ -11,18 +11,23 @@
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
         window.onload = function () {
-            App.postObject(getQueryVariable("id"));
-            console.log(getQueryVariable("id"));
+            if (getQueryVariable("type") == 1){
+                document.getElementById("object-rent-info").style.display="inline";
+                App.postObjectForRent(getQueryVariable("id"));
+            }
+            else if(getQueryVariable("type") == 0){
+                document.getElementById("object-sell-info").style.display="inline";
+                App.postObjectForSell(getQueryVariable("id"));
+            }
         }
-        function getQueryVariable(variable)
-        {
+        function getQueryVariable(variable) {
             var query = window.location.search.substring(1);
             var vars = query.split("&");
             for (var i=0;i<vars.length;i++) {
                 var pair = vars[i].split("=");
                 if(pair[0] == variable){return pair[1];}
             }
-            return(false);
+            return false;
         }
     </script>
 </head>
@@ -33,14 +38,18 @@
         <div class="navbar-header" style="float: left">
             <a href="./index.html"><img src="../img/logo.png" alt="logo" class="navbar-brand"></a>
         </div>
-        <div style="float: left">
+        <div style="float: left; margin-top: 15px">
+            <button onclick="location='index.html'">index</button>
+            <button onclick="location='market.html'">market</button>
+        </div>
+        <div style="float: right">
             <p id="account"></p>
             <p id="accountBalance"></p>
         </div>
     </div>
 </nav>
-<!-- Object info -->
-<div class="container max-width-960 margin-top" id="object-info" style="display: inline">
+<!-- Object for rent info -->
+<div class="container max-width-960 margin-top" id="object-rent-info" style="display: none">
     <div class="container max-width-960" >
         <div class="panel-heading">
             <h3 class="panel-title">Object Info</h3>
@@ -48,7 +57,11 @@
         <div class="panel-body">
             <ul class="list-group">
                 <li class="list-group-item"><span id="objPhoto"></span></li>
-                <li class="list-group-item"><strong>ID:</strong> <span id="objID"></span> <button class="btn btn-default" type="button" onclick="App.rentObj()" id="rentButton" style="float:right; display: none">Rent</button><button class="btn btn-default" type="button" onclick="App.returnObj()" id="returnButton" style="float:right">Return</button></li>
+                <li class="list-group-item">
+                    <strong>ID:</strong> <span id="objID"></span>
+                    <button class="btn btn-default" type="button" onclick="App.rentObj()" id="rentButton" style="float:right; display: none">Rent</button>
+                    <button class="btn btn-default" type="button" onclick="App.returnObj()" id="returnButton" style="float:right">Return</button>
+                </li>
                 <li class="list-group-item"><strong>Name:</strong> <span id="objName"></span></li>
                 <li class="list-group-item"><strong>Creator:</strong> <span id="objCreator"></span></li>
                 <li class="list-group-item"><strong>PriceDaily:</strong> <span id="objPriceDaily"></span></li>
@@ -57,6 +70,28 @@
                 <li class="list-group-item"><strong>RenterSince:</strong> <span id="objRenterSince"></span></li>
                 <li class="list-group-item"><strong>Rented:</strong> <span id="objRented"></span></li>
                 <li class="list-group-item"><strong>Detail:</strong> <span id="objDetail"></span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Object for sell info -->
+<div class="container max-width-960 margin-top" id="object-sell-info" style="display: none">
+    <div class="container max-width-960" >
+        <div class="panel-heading">
+            <h3 class="panel-title">Object Info</h3>
+        </div>
+        <div class="panel-body">
+            <ul class="list-group">
+                <li class="list-group-item"><span id="_objPhoto"></span></li>
+                <li class="list-group-item">
+                    <strong>ID:</strong> <span id="_objID"></span>
+                    <button type="button" class="btn btn-primary btn-success btn-buy" onclick="App.buyArticle(); return false;" id="buyButton"style="float: right; display: none">Buy</button>
+                </li>
+                <li class="list-group-item"><strong>Name:</strong> <span id="_objName"></span></li>
+                <li class="list-group-item"><strong>Creator:</strong> <span id="_objCreator"></span></li>
+                <li class="list-group-item"><strong>Deposit:</strong> <span id="_objPrice"></span></li>
+                <li class="list-group-item"><strong>Detail:</strong> <span id="_objDetail"></span></li>
             </ul>
         </div>
     </div>

@@ -3,12 +3,15 @@ import "../stylesheets/app.css";
 //import { default as Web3} from 'web3';
 import { default as contract } from 'truffle-contract'
 import ShareApp_artifacts from '../../build/contracts/ShareApp.json'
+import Market_artifacts from '../../build/contracts/MarketPlace.json'
+var Market = contract(Market_artifacts);
 var ShareApp = contract(ShareApp_artifacts);
 window.App = {
   account: 0x0,
   start: function() {
     var self = this;
     ShareApp.setProvider(web3.currentProvider);
+    Market.setProvider(web3.currentProvider);
     self.displayAccountInfo();
   },
 
@@ -18,7 +21,7 @@ window.App = {
   },
 
   //按ID查询之后显示具体
-  postObject: function(_objID){
+  postObjectForRent: function(_objID){
     var mainInstance;
     var numObjects;
     var _objPhoto;
@@ -89,6 +92,27 @@ window.App = {
         alert("There is no object with id " + id); // error message
       }
     });
+  },
+
+  postObjectForSell: function(_objID){
+    var marketPlaceInstance;
+    Market.deployed().then(function(instance) {
+      marketPlaceInstance = instance;
+      marketPlaceInstance.articles(_objID).then(function (article) {
+        var objPhoto = 'http://localhost:8080/ipfs/' + article[3];
+        if(article[1] == App.account){
+          document.getElementById("buyButton").style.display="none";
+        }else{
+          document.getElementById("buyButton").style.display="inline";
+        }
+        document.getElementById("_objID").innerHTML = article[0];
+        document.getElementById("_objName").innerHTML = article[4];
+        document.getElementById("_objPhoto").innerHTML = "<img src='"+objPhoto+"'>";
+        document.getElementById("_objPrice").innerHTML = article[6];
+        document.getElementById("_objCreator").innerHTML = article[1];
+        document.getElementById("_objDetail").innerHTML = article[5];
+      })
+    })
   },
 
   //中文编码格式转换
@@ -165,6 +189,26 @@ window.App = {
         console.log(e);
         self.setStatus("Error remove;see log.");
       });
+  },
+
+  buyArticle: function() {
+    event.preventDefault();
+
+    // retrieve the article price
+    var _articleId = $(event.target).data('id');
+    var _price = parseFloat($(event.target).data('value'));
+
+    Market.deployed().then(function(instance) {
+      return instance.buyArticle(_articleId, {
+        from: App.account,
+        value: web3.toWei(_price, "ether"),
+        gas: 500000
+      });
+    }).then(function(result) {
+      setTimeout(function(){window.location.reload();},800);
+    }).catch(function(err) {
+      console.error(err);
+    });
   },
 
   displayAccountInfo: function() {
