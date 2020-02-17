@@ -110,12 +110,33 @@ window.App = {
           gas: 500000
         });
       }).then(function(result) {
-
+        setTimeout(function(){window.location.reload();},800);
       }).catch(function(err) {
         console.error(err);
       });
     });
   },
+
+  buyArticle: function() {
+    event.preventDefault();
+
+    // retrieve the article price
+    var _articleId = $(event.target).data('id');
+    var _price = parseFloat($(event.target).data('value'));
+
+    Market.deployed().then(function(instance) {
+      return instance.buyArticle(_articleId, {
+        from: App.account,
+        value: web3.toWei(_price, "ether"),
+        gas: 500000
+      });
+    }).then(function(result) {
+      setTimeout(function(){window.location.reload();},800);
+    }).catch(function(err) {
+      console.error(err);
+    });
+  },
+
   //中文编码格式转换
   toUtf8: function(str) {
     var out, i, len, c;
