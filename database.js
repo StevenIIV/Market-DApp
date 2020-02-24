@@ -73,11 +73,47 @@ function rentEventListener() {
         })
     })
 }
+
+function returnEventListener() {
+    let returnEvent;
+    ShareApp.deployed().then(function (instance) {
+        returnEvent = instance.NewReturn({
+            fromBlock: 0,
+            toBlock: 'latest'
+        });
+        returnEvent.watch(function (err, result) {
+            if (err){
+                console.log(err);
+                return;
+            }
+            saveReturnRecord(result.args);
+        })
+    })
+}
+
+function TransactionEventListener() {
+    let transactionEvent;
+    Market.deployed().then(function (instance) {
+        transactionEvent = instance.buyArticleEvent({
+            fromBlock: 0,
+            toBlock: 'latest'
+        });
+        transactionEvent.watch(function (err, result) {
+            if (err){
+                console.log(err);
+                return;
+            }
+            saveTransaction(result.args);
+        })
+    })
+}
+
 function saveRentRecord(obj) {
     RentingModel.findOne({
-        'blockchainId': obj._objID.toLocaleString()
+        'objectId': obj._objID.toLocaleString()
     },function (err, result) {
         if (result != null){
+            saveReturnRecord(obj);
             return
         }
         var rentRecord = new RentingModel({
@@ -93,12 +129,60 @@ function saveRentRecord(obj) {
             if (err){
                 handleError(err)
             }else {
+                console.log('rent success');
                 RentingModel.count({}, function (err, count) {
-                    console.log('count is ${count}');
+                    console.log('count is '+count);
                 })
             }
         })
         }
     )
 }
+
+function saveReturnRecord(obj) {
+    var whereStr = {
+        'objectId': obj._objID.toLocaleString()
+    };
+    var updateStr = {
+        'rented': obj._rented
+    };
+    RentingModel.update(whereStr, updateStr, function (err, result) {
+        if (err){
+            console.log(err);
+        }else {
+            console.log('return success');
+        }
+    })
+}
+
+function saveTransaction(article) {
+    TransactionModel.findOne({
+            'articleId': article._id.toLocaleString()
+        },function (err, result) {
+            if (result != null){
+                return
+            }
+            var transactionRecord = new TransactionModel({
+                articleId: article._objID,
+                seller: article._seller,
+                articlePhoto: article._photo,
+                articleName: article._name,
+                price: article._price
+            });
+            transactionRecord.save(function (err) {
+                if (err){
+                    handleError(err)
+                }else {
+                    console.log('buy success');
+                    TransactionModel.count({}, function (err, count) {
+                        console.log('count is '+count);
+                    })
+                }
+            })
+        }
+    )
+}
+
 rentEventListener();
+returnEventListener();
+TransactionEventListener();

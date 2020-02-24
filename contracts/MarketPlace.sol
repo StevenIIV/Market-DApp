@@ -11,7 +11,7 @@ contract MarketPlace {
     string photo;
     string name;
     string description;
-    uint256 price;
+    uint price;
   }
 
   // State variables
@@ -24,7 +24,7 @@ contract MarketPlace {
     address indexed _seller,
     string _photo,
     string _name,
-    uint256 _price);
+    uint _price);
 
   event buyArticleEvent(
     uint indexed _id,
@@ -32,7 +32,7 @@ contract MarketPlace {
     address indexed _buyer,
     string _photo,
     string _name,
-    uint256 _price);
+    uint _price);
 
   //modifiers
   modifier onlyOwner() {
@@ -47,7 +47,7 @@ contract MarketPlace {
   }
 
   //sell an article
-  function sellArticle(string _photo, string _name, string _description, uint256 _price) public {
+  function sellArticle(string _photo, string _name, string _description, uint _price) public {
     // a new article
     articleCounter++;
 
