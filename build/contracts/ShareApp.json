@@ -15395,11 +15395,115 @@
           "name": "NewObject",
           "type": "event",
           "signature": "0x34ed2f26f2ce17e86e267fe3e5e005eb9e9f078e4514c7c473e985fa83a04d1d"
+        },
+        "0xd71484d586bb48382edad134c7dc6519b1535e51f80bb7ba07187321a7d77cf3": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "_objID",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "_creator",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "_photo",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "_name",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "_priceDaily",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "_deposit",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "_rented",
+              "type": "bool"
+            }
+          ],
+          "name": "NewObject",
+          "type": "event",
+          "signature": "0xd71484d586bb48382edad134c7dc6519b1535e51f80bb7ba07187321a7d77cf3"
+        },
+        "0x392836fec3e603311b30f9ba0b5292a47bdad94fb1685b48faadf1f470322ed4": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "_objID",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "_creator",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "_photo",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "_name",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "_priceDaily",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "_deposit",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "_rented",
+              "type": "bool"
+            }
+          ],
+          "name": "NewRent",
+          "type": "event",
+          "signature": "0x392836fec3e603311b30f9ba0b5292a47bdad94fb1685b48faadf1f470322ed4"
+        },
+        "0x1d79d9b318f9a7e9affbc1e6af967c9daec17576e0a299432824843157972904": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "_objID",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "_rented",
+              "type": "bool"
+            }
+          ],
+          "name": "NewReturn",
+          "type": "event",
+          "signature": "0x1d79d9b318f9a7e9affbc1e6af967c9daec17576e0a299432824843157972904"
         }
       },
       "links": {},
-      "address": "0x81BbA2b77BC0a8fAdce95670Dc3Bc62521Be5B5c",
-      "transactionHash": "0x5cee0671c8dbe45426f3e523d0927890a0732b177f6e8543b984eee471de5e11"
+      "address": "0x4D724653A8e6EC4C314400DF883a1C1ED794F435",
+      "transactionHash": "0x4e5bc364b659f53a27392ed7843101ce411c6d4aa2083182d317d661028ec528"
     },
     "1498093116275": {
       "events": {
@@ -15481,7 +15585,8 @@
     }
   },
   "schemaVersion": "3.0.19",
-  "updatedAt": "2020-02-22T16:01:41.317Z",
+  "updatedAt": "2020-02-24T14:48:13.304Z",
+  "networkType": "ethereum",
   "devdoc": {
     "methods": {}
   },
