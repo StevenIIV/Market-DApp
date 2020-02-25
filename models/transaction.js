@@ -10,7 +10,7 @@ const TransactionSchema = new Schema({
     buyer: String,
     articlePhoto: String,
     price: Number
-})
+});
 
 const TransactionModel = mongoose.model('TransactionModel', TransactionSchema);
 module.exports = TransactionModel;

@@ -72,7 +72,7 @@ express.get('/getRentRecords', function (req, res) {
 
 express.get('/getTransactionRecords', function (req, res) {
     var query = {
-        'renter': req.query._renter
+        'buyer': req.query._buyer
     };
     TransactionModel.find(query, function (err, records) {
         res.send(records);
@@ -190,7 +190,7 @@ function saveTransaction(article) {
                 return
             }
             var transactionRecord = new TransactionModel({
-                articleId: article._objID,
+                articleId: article._id,
                 seller: article._seller,
                 buyer: article._buyer,
                 articlePhoto: article._photo,

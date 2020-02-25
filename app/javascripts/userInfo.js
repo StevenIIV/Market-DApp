@@ -15,6 +15,7 @@ window.App = {
         Market.setProvider(web3.currentProvider);
         self.displayAccountInfo();
         self.showUserRentRecord();
+        self.showUserTransactionRecord();
     },
 
     showUserRentRecord: function() {
@@ -36,32 +37,57 @@ window.App = {
                 while (response.length > 0){
                     let chunks = response.splice(0,8);
                     chunks.forEach(function (value) {
-                        document.getElementById("rentHistory").append("<div>" + value.objectName + "</div>")
+                        var row = document.getElementById("rentHistory").insertRow(0);
+                        var cell0 = row.insertCell(0);   //photo
+                        var cell1 = row.insertCell(1);  //id
+                        var cell2 = row.insertCell(2);  //name
+                        var cell3 = row.insertCell(3);  //priceDaily
+                        var cell4 = row.insertCell(4);  //deposit
+                        var cell5 = row.insertCell(5);  //rented
+                        cell0.innerHTML = "<img src='"+ipfsURL+value.objectPhoto+"'>";
+                        cell1.innerHTML = value.objectId;
+                        cell2.innerHTML = value.objectName;
+                        cell3.innerHTML = value.priceDaily;
+                        cell4.innerHTML = value.deposit;
+                        cell5.innerHTML = value.rented;
                     })
                 }
             })
         });
     },
 
-    showUserTransactionRecord: function(userAddress) {
+    showUserTransactionRecord: function() {
         web3.eth.getCoinbase(function(err, account) {
-                var acc = account;
-                $.ajax({
-                    url: offchainServer + '/getTransactionRecords',
-                    type: 'get',
-                    contentType: "application/json; charset=utf-8",
-                    data: {
-                        _renter: acc
-                    }
-                }).done(function (response) {
-                    console.log(response.length);
-                    if (response.length == 0){
-                        document.getElementById("transactionHistory").innerHTML = 'No records found';
-                    }
-                    while (response.length > 0){
-
-                    }
-                })
+            var acc = account;
+            $.ajax({
+                url: offchainServer + '/getTransactionRecords',
+                type: 'get',
+                contentType: "application/json; charset=utf-8",
+                data: {
+                    _buyer: acc
+                }
+            }).done(function (response) {
+                console.log(response.length);
+                if (response.length == 0){
+                    document.getElementById("transactionHistory").innerHTML = 'No records found';
+                }
+                while (response.length > 0){
+                    let chunks = response.splice(0,5);
+                    chunks.forEach(function (value) {
+                        var row = document.getElementById("transactionHistory").insertRow(0);
+                        var cell0 = row.insertCell(0);   //photo
+                        var cell1 = row.insertCell(1);  //id
+                        var cell2 = row.insertCell(2);  //name
+                        var cell3 = row.insertCell(3);  //seller
+                        var cell4 = row.insertCell(4);  //price
+                        cell0.innerHTML = "<img src='"+ipfsURL+value.articlePhoto+"'>";
+                        cell1.innerHTML = value.articleId;
+                        cell2.innerHTML = value.articleName;
+                        cell3.innerHTML = value.seller;
+                        cell4.innerHTML = value.price;
+                    })
+                }
+            })
         });
     },
 
