@@ -6,6 +6,7 @@ mongoose.Promise = global.Promise;
 const RentingSchema = new Schema({
     objectId: Number,
     creator: String,
+    renter: String,
     objectPhoto: String,
     objectName: String,
     priceDaily: Number,

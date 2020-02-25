@@ -44,8 +44,6 @@ db.on('error', function(){
 
 const RentingModel = require('./models/renting');
 const TransactionModel = require('./models/transaction');
-
-
 express.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -55,7 +53,15 @@ express.use(function(req, res, next) {
 express.get('/',(req,res) => {
     // 成功接收后，发起回调参数。
     res.send('Hello World')
-})
+});
+
+express.get('/getRentRecords', function (req, err) {
+    RentingModel.find()
+});
+
+express.get('/getTransactionRecords', function (req, err) {
+
+});
 
 function rentEventListener() {
     let rentEvent;
@@ -86,7 +92,7 @@ function returnEventListener() {
                 console.log(err);
                 return;
             }
-            saveReturnRecord(result.args);
+            saveRentChangeStatus(result.args);
         })
     })
 }
@@ -110,15 +116,17 @@ function TransactionEventListener() {
 
 function saveRentRecord(obj) {
     RentingModel.findOne({
-        'objectId': obj._objID.toLocaleString()
+        'objectId': obj._objID.toLocaleString(),
+        'renter': obj._renter.toLocaleString()
     },function (err, result) {
         if (result != null){
-            saveReturnRecord(obj);
+            saveRentChangeStatus(obj);
             return
         }
         var rentRecord = new RentingModel({
             objectId: obj._objID,
             creator: obj._creator,
+            renter: obj._renter,
             objectPhoto: obj._photo,
             objectName: obj._name,
             priceDaily: obj._priceDaily,
@@ -139,18 +147,21 @@ function saveRentRecord(obj) {
     )
 }
 
-function saveReturnRecord(obj) {
+function saveRentChangeStatus(obj) {
     var whereStr = {
-        'objectId': obj._objID.toLocaleString()
+        'objectId': obj._objID.toLocaleString(),
+        'renter': obj._renter.toLocaleString()
     };
     var updateStr = {
         'rented': obj._rented
     };
-    RentingModel.update(whereStr, updateStr, function (err, result) {
+    console.log(whereStr);
+    console.log(updateStr);
+    RentingModel.updateOne(whereStr, updateStr, function (err, result) {
         if (err){
             console.log(err);
         }else {
-            console.log('return success');
+            console.log('change status success --'+obj._rented);
         }
     })
 }
@@ -165,6 +176,7 @@ function saveTransaction(article) {
             var transactionRecord = new TransactionModel({
                 articleId: article._objID,
                 seller: article._seller,
+                buyer: article._buyer,
                 articlePhoto: article._photo,
                 articleName: article._name,
                 price: article._price

@@ -33,8 +33,8 @@ contract ShareApp{
 
 	//Events
 	event NewObject(uint _objID, address _creator, string _photo, string _name, uint _priceDaily, uint _deposit, bool _rented);
-	event NewRent(uint _objID, address _creator, string _photo,string _name, uint _priceDaily, uint _deposit, bool _rented);
-	event NewReturn(uint _objID, bool _rented);
+	event NewRent(uint _objID, address _creator, address _renter, string _photo, string _name, uint _priceDaily, uint _deposit, bool _rented);
+	event NewReturn(uint _objID, address _renter, bool _rented);
 
 	modifier objectInRange(uint objID) {
 		if (objID >= numObjects)
@@ -121,7 +121,7 @@ contract ShareApp{
 			throw;
 		}
 		objects[objID].rented = true;
-		NewRent(objID, objects[objID].creator, objects[objID].photo, objects[objID].name, objects[objID].priceDaily, objects[objID].deposit, true);
+		NewRent(objID, objects[objID].creator, objects[objID].renter.addr, objects[objID].photo, objects[objID].name, objects[objID].priceDaily, objects[objID].deposit, true);
 		return true;
 	}
 
@@ -144,7 +144,7 @@ contract ShareApp{
 		}
 		delete objects[objID].renter;
 		objects[objID].rented = false;
-		NewReturn(objID, false);
+		NewReturn(objID, msg.sender, false);
 		return true;
 	}
 

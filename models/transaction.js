@@ -7,6 +7,7 @@ const TransactionSchema = new Schema({
     articleId: Number,
     articleName: String,
     seller: String,
+    buyer: String,
     articlePhoto: String,
     price: Number
 })
