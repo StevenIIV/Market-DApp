@@ -152,6 +152,7 @@ window.App = {
   },
 
   rentObj: function(){
+    console.log(App.account);
     var mainInstance;
 
     var objectID = parseInt(document.getElementById("objID").innerHTML);

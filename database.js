@@ -55,12 +55,28 @@ express.get('/',(req,res) => {
     res.send('Hello World')
 });
 
-express.get('/getRentRecords', function (req, err) {
-    RentingModel.find()
+express.get('/RentRecords', function (req, res) {
+    RentingModel.find({},function (err, records) {
+        res.send(records);
+    })
 });
 
-express.get('/getTransactionRecords', function (req, err) {
+express.get('/getRentRecords', function (req, res) {
+    var query = {
+        'renter': req.query._renter
+    };
+    RentingModel.find(query, function (err, records) {
+        res.send(records);
+    })
+});
 
+express.get('/getTransactionRecords', function (req, res) {
+    var query = {
+        'renter': req.query._renter
+    };
+    TransactionModel.find(query, function (err, records) {
+        res.send(records);
+    })
 });
 
 function rentEventListener() {

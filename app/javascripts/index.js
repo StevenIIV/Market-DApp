@@ -241,7 +241,7 @@ function saveImageOnIpfs(file) {
         .then((response) => {
           resolve(response[0].hash);
         }).catch((err) => {
-      console.error(err)
+      console.error(err);
       reject(err);
     })
   })

@@ -5,7 +5,8 @@ module.exports = {
   entry: {
     index: './app/javascripts/index.js',
     productDetails: './app/javascripts/productDetails.js',
-    market: './app/javascripts/market.js'
+    market: './app/javascripts/market.js',
+    userInfo:'./app/javascripts/userInfo.js'
   },
   output: {
     path: path.resolve(__dirname, 'build'),
@@ -16,7 +17,8 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: './app/index.html', to: "index.html" },
       { from: './app/productDetails.html', to: "productDetails.html" },
-      { from: './app/market.html', to: "market.html" }
+      { from: './app/market.html', to: "market.html" },
+      { from: './app/userInfo.html', to: "userInfo.html"}
     ])
   ],
   module: {

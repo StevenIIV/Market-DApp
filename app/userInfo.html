@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>userInfo</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' type='text/css'>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="./userInfo.js"></script>
+    <script src="http://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- navigation bar -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container max-width-960">
+        <div class="navbar-header" style="float: left">
+            <a href="./index.html"><img src="../img/logo.png" alt="logo" class="navbar-brand"></a>
+        </div>
+        <div style="float: left; margin-top: 15px">
+            <button onclick="location='index.html'">index</button>
+            <button onclick="location='market.html'">market</button>
+        </div>
+        <div style="float: right; margin-top: 15px"><button onclick="location='userInfo.html'">userInfo</button> </div>
+        <div style="float: right">
+            <p id="account"></p>
+            <p id="accountBalance"></p>
+        </div>
+    </div>
+</nav>
+
+<div class="row  margin-top">
+    <div id="rentHistory">
+
+    </div>
+
+    <div id="transactionHistory">
+
+    </div>
+</div>
+</body>
+</html>
