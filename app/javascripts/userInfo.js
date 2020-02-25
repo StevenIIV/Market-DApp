@@ -2,9 +2,10 @@ import "../stylesheets/app.css";
 import { default as contract } from 'truffle-contract'
 import ShareApp_artifacts from '../../build/contracts/ShareApp.json'
 import Market_artifacts from '../../build/contracts/MarketPlace.json'
+import UserApp_artifacts from  '../../build/contracts/UserApp.json'
 var Market = contract(Market_artifacts);
 var ShareApp = contract(ShareApp_artifacts);
-
+var UserApp = contract(UserApp_artifacts);
 const offchainServer = "http://localhost:3000";
 const ipfsURL = "http://localhost:8080/ipfs/";
 window.App = {
