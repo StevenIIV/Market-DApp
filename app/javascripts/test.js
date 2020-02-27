@@ -29,16 +29,33 @@ window.App = {
             return instance.getArticleCommentsLength.call(1)
         }).then(function (res) {
             document.getElementById("show").innerText = res;
+            return res;
         })
     },
     getComment: function () {
-        var objectId = document.getElementById("queryId").value;
+        var articleId = document.getElementById("queryArticleId").value;
         Comment.deployed().then(function (instance) {
-            instance.getArticleComment(1,objectId).then(function (res) {
-                console.log(res[1]);
-            })
+            return instance.getArticleCommentsLength.call(articleId);
+        }).then(function (size) {
+            Comment.deployed().then(function (instance) {
+                for (var i=0;i<size;i++){
+                    instance.getArticleComment(articleId,i).then(function (article) {
+                        App.displayComment(article[0],article[1],article[2],article[3]);
+                    })
+                }
+            });
         })
 
+    },
+
+    displayComment: function (time, sender, rating, comment) {
+        var articlesRow = $('#articlesRow');
+        var commentTemplate = $('#commentTemplate');
+        commentTemplate.find('.createTime').text(time);
+        commentTemplate.find('.creator').text(sender);
+        commentTemplate.find('.rating').text(rating);
+        commentTemplate.find('.comment').text(comment);
+        articlesRow.append(commentTemplate.html());
     }
 
 };

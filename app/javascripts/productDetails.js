@@ -4,14 +4,17 @@ import "../stylesheets/app.css";
 import { default as contract } from 'truffle-contract'
 import ShareApp_artifacts from '../../build/contracts/ShareApp.json'
 import Market_artifacts from '../../build/contracts/MarketPlace.json'
+import Comment_artifacts from '../../build/contracts/Comment.json'
 var Market = contract(Market_artifacts);
 var ShareApp = contract(ShareApp_artifacts);
+var Comment = contract(Comment_artifacts);
 window.App = {
   account: 0x0,
   start: function() {
     var self = this;
     ShareApp.setProvider(web3.currentProvider);
     Market.setProvider(web3.currentProvider);
+    Comment.setProvider(web3.currentProvider);
     self.displayAccountInfo();
   },
 
@@ -119,27 +122,6 @@ window.App = {
     })
   },
 
-  //中文编码格式转换
-  toUtf8: function(str) {
-        var out, i, len, c;
-        out = "";
-        len = str.length;
-        for(i = 0; i < len; i++) {
-            c = str.charCodeAt(i);
-            if ((c >= 0x0001) && (c <= 0x007F)) {
-                out += str.charAt(i);
-            } else if (c > 0x07FF) {
-                out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));
-                out += String.fromCharCode(0x80 | ((c >>  6) & 0x3F));
-                out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));
-            } else {
-                out += String.fromCharCode(0xC0 | ((c >>  6) & 0x1F));
-                out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));
-            }
-        }
-        return out;
-  },
-
   qrcode: function(){
     var content = "test\nhello";
     $('#qrcode').qrcode({
@@ -241,8 +223,46 @@ window.App = {
         }
       })
     });
+  },
+
+  getArticleComment: function (articleId) {
+    Comment.deployed().then(function (instance) {
+      return instance.getArticleCommentsLength.call(articleId);
+    }).then(function (size) {
+      Comment.deployed().then(function (instance) {
+        for (var i=0;i<size;i++){
+          instance.getArticleComment(articleId,i).then(function (article) {
+            App.displayComment(article[0],article[1],article[2],article[3]);
+          })
+        }
+      });
+    })
+  },
+
+  getObjectComment: function (objectId) {
+    Comment.deployed().then(function (instance) {
+      return instance.getObjectCommentsLength.call(objectId);
+    }).then(function (size) {
+      Comment.deployed().then(function (instance) {
+        for (var i=0;i<size;i++){
+          instance.getObjectComment(objectId,i).then(function (article) {
+            App.displayComment(article[0],article[1],article[2],article[3]);
+          })
+        }
+      });
+    })
+  },
+
+  displayComment: function (time, sender, rating, comment) {
+    var commentPanel = $('#displayComment');
+    var commentTemplate = $('#commentTemplate');
+    commentTemplate.find('.createTime').text(time);
+    commentTemplate.find('.creator').text(sender);
+    commentTemplate.find('.rating').text(rating);
+    commentTemplate.find('.comment').text(comment);
+    commentPanel.append(commentTemplate.html());
   }
-}
+};
 
 window.addEventListener('load', function() {
   // Checking if Web3 has been injected by the browser (Mist/MetaMask)
