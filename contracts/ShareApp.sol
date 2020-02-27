@@ -16,6 +16,7 @@ contract ShareApp{
 		Renter renter;
 		bool rented;  //rented ?
 		string detail;
+		uint categories;
 	}
 
 	struct NameKey{ // storage the name's keys
@@ -32,9 +33,9 @@ contract ShareApp{
 	address public owner;
 
 	//Events
-	event NewObject(uint _objID, address _creator, string _photo, string _name, uint _priceDaily, uint _deposit, bool _rented);
-	event NewRent(uint _objID, address _creator, address _renter, string _photo, string _name, uint _priceDaily, uint _deposit, bool _rented);
-	event NewReturn(uint _objID, address _renter, bool _rented);
+	event NewObject(uint _objID, address _creator, string _photo, string _name, uint _priceDaily, uint _deposit, uint categories, bool _rented);
+	event NewRent(uint _objID, address _creator, address _renter, string _photo, string _name, uint _priceDaily, uint _deposit, bool _rented, uint _createAt);
+	event NewReturn(uint _objID, address _renter, bool _rented, uint _createAt);
 
 	modifier objectInRange(uint objID) {
 		if (objID >= numObjects)
@@ -60,7 +61,7 @@ contract ShareApp{
 		return objects[objID].rented;
 	}
 
-	function createObj(string photo, string name,uint priceDaily,uint deposit,string detail){
+	function createObj(string photo, string name,uint priceDaily,uint deposit,string detail, uint categories){
 		// +
 		//owner = msg.sender;
 		// Object newObject = objects[numObjects];
@@ -74,9 +75,10 @@ contract ShareApp{
 		newObject.deposit = deposit;
 		newObject.rented = false;
 		newObject.detail = detail;
+		newObject.categories = categories;
 
 		// objects[numObjects] = newObject;
-		NewObject(numObjects, msg.sender, photo, name, priceDaily, deposit, false);
+		NewObject(numObjects, msg.sender, photo, name, priceDaily, deposit, categories, false);
 		ids.push(numObjects);
 		numObjects++;
 	}
@@ -121,7 +123,7 @@ contract ShareApp{
 			throw;
 		}
 		objects[objID].rented = true;
-		NewRent(objID, objects[objID].creator, objects[objID].renter.addr, objects[objID].photo, objects[objID].name, objects[objID].priceDaily, objects[objID].deposit, true);
+		NewRent(objID, objects[objID].creator, objects[objID].renter.addr, objects[objID].photo, objects[objID].name, objects[objID].priceDaily, objects[objID].deposit, true, now);
 		return true;
 	}
 
@@ -144,7 +146,7 @@ contract ShareApp{
 		}
 		delete objects[objID].renter;
 		objects[objID].rented = false;
-		NewReturn(objID, msg.sender, false);
+		NewReturn(objID, msg.sender, false, now);
 		return true;
 	}
 
@@ -197,6 +199,10 @@ contract ShareApp{
 
 	function getObjectDetail(uint objID) constant objectInRange(objID) returns(string){
 		return objects[objID].detail;
+	}
+
+	function getObjectCategories(uint objID) constant objectInRange(objID) returns(uint){
+		return objects[objID].categories;
 	}
 
 	function remove() onlyOwner {

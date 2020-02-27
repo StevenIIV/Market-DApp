@@ -147,7 +147,8 @@ function saveRentRecord(obj) {
             objectName: obj._name,
             priceDaily: obj._priceDaily,
             deposit: obj._deposit,
-            rented: obj._rented
+            rented: obj._rented,
+            createAt: obj._createAt
         });
         rentRecord.save(function (err) {
             if (err){
@@ -169,7 +170,8 @@ function saveRentChangeStatus(obj) {
         'renter': obj._renter.toLocaleString()
     };
     var updateStr = {
-        'rented': obj._rented
+        'rented': obj._rented,
+        'createAt': obj._createAt
     };
     console.log(whereStr);
     console.log(updateStr);

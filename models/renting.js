@@ -12,7 +12,8 @@ const RentingSchema = new Schema({
     priceDaily: Number,
     deposit: Number,
     rented: Boolean,
-})
+    createAt: Number
+});
 
 const RentingModel = mongoose.model('RentingModel', RentingSchema);
 

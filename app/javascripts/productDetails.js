@@ -36,6 +36,7 @@ window.App = {
     var _objRenterSince;
     var _objRented;
     var _objDetail;
+    var _objType;
     ShareApp.deployed().then(function(instance){
       mainInstance = instance;
       return instance.getNumObjects.call();
@@ -68,7 +69,9 @@ window.App = {
       return mainInstance.getObjectDetail.call(_objID);
     }).then(function(objDetail){
       _objDetail = objDetail;
-
+      return mainInstance.getObjectCategories.call(_objID);
+    }).then(function (objType) {
+      _objType = objType;
       if(_objID < numObjects && _objID >= 0){
         if(App.account == _objCreator){
           document.getElementById("rentButton").style.display = "none";
@@ -93,13 +96,14 @@ window.App = {
         document.getElementById("objPriceDaily").innerHTML = _objPriceDaily;
         document.getElementById("objDeposit").innerHTML = _objDeposit;
         document.getElementById("objRenterAddress").innerHTML = _objRenterAddress;
-        document.getElementById("objRenterSince").innerHTML = _objRenterSince;
+        document.getElementById("objRenterSince").innerHTML = (new Date(_objRenterSince*1000)).toLocaleDateString();;
         document.getElementById("objRented").innerHTML = _objRented;
         document.getElementById("objDetail").innerHTML = _objDetail;
+        document.getElementById("objType").innerHTML = categories[_objType];
       }else{
         alert("There is no object with id " + id); // error message
       }
-    });
+    })
   },
 
   postObjectForSell: function(_objID){

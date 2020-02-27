@@ -12,7 +12,7 @@ const ipfs = ipfsAPI({
 });
 import ShareApp_artifacts from '../../build/contracts/ShareApp.json'
 var ShareApp = contract(ShareApp_artifacts);
-
+const categories = ["Clothing","Food","Digital Products","Book","Jewellery","Crafts","Others"];
 var reader;
 window.App = {
   account: 0x0,
@@ -46,13 +46,11 @@ window.App = {
       // var objPriceDaily = new BigNumber(document.getElementById("objectPriceDaily").value).toNumber();
       // var objDeposit = new BigNumber(document.getElementById("objectDeposit").value).toNumber();
       var objDetail = document.getElementById("objectDetail").value;
-
-      //this.setStatus("Initiating transaction... (please wait)");
-
+      var objType = document.getElementById("objectType").value;
       var meta;
       ShareApp.deployed().then(function(instance){
         meta = instance;
-        return meta.createObj(imageHash,objName,objPriceDaily,objDeposit,objDetail,{from:App.account,gas:500000});
+        return meta.createObj(imageHash,objName,objPriceDaily,objDeposit,objDetail,objType,{from:App.account,gas:500000});
       }).then(function(tx){
         self.setStatus("create success!");
         console.log(meta.address);
@@ -112,6 +110,7 @@ window.App = {
     var _objPriceDaily;
     var _objDeposit;
     var _objRented;
+    var _objType;
     // var tbody = document.getElementById("objectsTable").tBodies[0];
     ShareApp.deployed().then(function(instance){
           mainInstance = instance;
@@ -130,26 +129,30 @@ window.App = {
           return mainInstance.objectIsRented.call(_id);
         }).then(function(objRented){
           _objRented = objRented;
-
+          return mainInstance.getObjectCategories.call(_id);
+        }).then(function (objType) {
+          _objType = objType;
           var row = tbody.insertRow(0);
 
           var cell1 = row.insertCell(0);  //id
           var cell2 = row.insertCell(1);  //name
-          var cell3 = row.insertCell(2);  //priceDaily
-          var cell4 = row.insertCell(3);  //deposit
-          var cell5 = row.insertCell(4);  //rented
-          var cell6 = row.insertCell(5);  //OP
-          var cell7 = row.insertCell(6);
+          var cell3 = row.insertCell(2);  //type
+          var cell4 = row.insertCell(3);  //priceDaily
+          var cell5 = row.insertCell(4);  //deposit
+          var cell6 = row.insertCell(5);  //rented
+          var cell7 = row.insertCell(6);  //OP
+          var cell8 = row.insertCell(7);
 
           var targetURL = "productDetails.html?id="+_id;
           cell1.innerHTML = "<img src='"+_objPhoto+"'>";
           cell2.innerHTML = _id;
           cell3.innerHTML = _objName;
-          cell4.innerHTML = _objPriceDaily;
-          cell5.innerHTML = _objDeposit;
-          cell6.innerHTML = _objRented;
-          cell7.innerHTML = '<a href="productDetails.html?type=1&id='+_id+'">Display</a>';
-        });
+          cell4.innerHTML = categories[_objType];
+          cell5.innerHTML = _objPriceDaily;
+          cell6.innerHTML = _objDeposit;
+          cell7.innerHTML = _objRented;
+          cell8.innerHTML = '<a href="productDetails.html?type=1&id='+_id+'">Display</a>';
+    })
   },
 
   //把所有记录显示出来

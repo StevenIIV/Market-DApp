@@ -45,12 +45,14 @@ window.App = {
                         var cell3 = row.insertCell(3);  //priceDaily
                         var cell4 = row.insertCell(4);  //deposit
                         var cell5 = row.insertCell(5);  //rented
+                        var cell6 = row.insertCell(6);  //time
                         cell0.innerHTML = "<img src='"+ipfsURL+value.objectPhoto+"'>";
                         cell1.innerHTML = value.objectId;
                         cell2.innerHTML = value.objectName;
                         cell3.innerHTML = value.priceDaily;
                         cell4.innerHTML = value.deposit;
                         cell5.innerHTML = value.rented;
+                        cell6.innerHTML = (new Date(value.createAt*1000)).toLocaleDateString();
                     })
                 }
             })
