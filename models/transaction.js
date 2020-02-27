@@ -9,7 +9,8 @@ const TransactionSchema = new Schema({
     seller: String,
     buyer: String,
     articlePhoto: String,
-    price: Number
+    price: Number,
+    createAt: Number
 });
 
 const TransactionModel = mongoose.model('TransactionModel', TransactionSchema);

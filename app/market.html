@@ -68,6 +68,7 @@
         </div>
         <div class="panel-body">
           <img src="" class="photo-hash"><br/>
+          <strong>Type</strong>: <span class="article-type"></span><br/>
           <strong>Description</strong>: <span class="article-description"></span><br/>
           <strong>Price (ETH)</strong>: <span class="article-price"></span><br/>
           <strong>Sold by</strong>: <span class="article-seller"></span><br/>
@@ -106,6 +107,22 @@
                 <div class="form-group">
                   <label for="article_price">Price in ETH</label>
                   <input type="number" class="form-control" id="article_price" placeholder="1" pattern="[0-9]+([\.,][0-9]+)?" step="0.01">
+                </div>
+                <div class="form-group">
+                  <label for="article_Number">Number in ETH</label>
+                  <input type="number" class="form-control" id="article_Number" placeholder="1" pattern="[0-9]+([\.,][0-9]+)?" step="0.01">
+                </div>
+                <div class="form-group">
+                  <label for="article_Type">Number in ETH</label>
+                  <select id="article_Type">
+                    <option value ="0">Clothing</option>
+                    <option value ="1">Food</option>
+                    <option value ="2">Digital Products</option>
+                    <option value ="3">Book</option>
+                    <option value ="4">Jewellery</option>
+                    <option value ="5">Crafts</option>
+                    <option value ="6">Others</option>
+                  </select>
                 </div>
                 <div class="form-group">
                   <label for="article_description">Description</label>

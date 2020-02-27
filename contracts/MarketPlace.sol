@@ -12,6 +12,8 @@ contract MarketPlace {
     string name;
     string description;
     uint price;
+    uint number;
+    uint categories;
   }
 
   // State variables
@@ -24,7 +26,10 @@ contract MarketPlace {
     address indexed _seller,
     string _photo,
     string _name,
-    uint _price);
+    uint _price,
+    uint _number,
+    uint _categories
+  );
 
   event buyArticleEvent(
     uint indexed _id,
@@ -32,7 +37,9 @@ contract MarketPlace {
     address indexed _buyer,
     string _photo,
     string _name,
-    uint _price);
+    uint _price,
+    uint _createAt
+  );
 
   //modifiers
   modifier onlyOwner() {
@@ -47,7 +54,7 @@ contract MarketPlace {
   }
 
   //sell an article
-  function sellArticle(string _photo, string _name, string _description, uint _price) public {
+  function sellArticle(string _photo, string _name, string _description, uint _price, uint _number, uint _categories) public {
     // a new article
     articleCounter++;
 
@@ -59,11 +66,13 @@ contract MarketPlace {
       _photo,
       _name,
       _description,
-      _price
+      _price,
+      _number,
+      _categories
     );
 
     // trigger the event
-    sellArticleEvent(articleCounter, msg.sender, _photo, _name, _price);
+    sellArticleEvent(articleCounter, msg.sender, _photo, _name, _price, _number, _categories);
   }
 
   // fetch the number of articles in the contract
@@ -126,7 +135,7 @@ contract MarketPlace {
     article.seller.transfer(msg.value);
 
     // trigger the event
-    buyArticleEvent(_id, article.seller, article.buyer, article.photo, article.name, article.price);
+    buyArticleEvent(_id, article.seller, article.buyer, article.photo, article.name, article.price, now);
   }
 
   //kill the smart contract

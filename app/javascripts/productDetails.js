@@ -8,6 +8,7 @@ import Comment_artifacts from '../../build/contracts/Comment.json'
 var Market = contract(Market_artifacts);
 var ShareApp = contract(ShareApp_artifacts);
 var Comment = contract(Comment_artifacts);
+const categories = ["Clothing","Food","Digital Products","Book","Jewellery","Crafts","Others"];
 window.App = {
   account: 0x0,
   start: function() {
@@ -118,6 +119,8 @@ window.App = {
         document.getElementById("_objPrice").innerHTML = article[6];
         document.getElementById("_objCreator").innerHTML = article[1];
         document.getElementById("_objDetail").innerHTML = article[5];
+        document.getElementById("_objNumber").innerHTML = article[7];
+        document.getElementById("_objType").innerHTML = categories[article[8]];
       })
     })
   },

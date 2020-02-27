@@ -195,7 +195,8 @@ function saveTransaction(article) {
                 buyer: article._buyer,
                 articlePhoto: article._photo,
                 articleName: article._name,
-                price: article._price
+                price: article._price,
+                createAt: article._createAt
             });
             transactionRecord.save(function (err) {
                 if (err){

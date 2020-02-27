@@ -73,7 +73,7 @@ window.App = {
                     document.getElementById("transactionHistory").innerHTML = 'No records found';
                 }
                 while (response.length > 0){
-                    let chunks = response.splice(0,5);
+                    let chunks = response.splice(0,6);
                     chunks.forEach(function (value) {
                         var row = document.getElementById("transactionHistory").insertRow(0);
                         var cell0 = row.insertCell(0);   //photo
@@ -81,11 +81,13 @@ window.App = {
                         var cell2 = row.insertCell(2);  //name
                         var cell3 = row.insertCell(3);  //seller
                         var cell4 = row.insertCell(4);  //price
+                        var cell5 = row.insertCell(5); //time
                         cell0.innerHTML = "<img src='"+ipfsURL+value.articlePhoto+"'>";
                         cell1.innerHTML = value.articleId;
                         cell2.innerHTML = value.articleName;
                         cell3.innerHTML = value.seller;
                         cell4.innerHTML = value.price;
+                        cell5.innerHTML = (new Date(value.createAt*1000)).toLocaleDateString();
                     })
                 }
             })

@@ -9,6 +9,7 @@ const ipfs = ipfsAPI({
   protocol: 'http'
 });
 var reader;
+const categories = ["Clothing","Food","Digital Products","Book","Jewellery","Crafts","Others"];
 window.App = {
   account: 0x0,
   start: function() {
@@ -51,7 +52,8 @@ window.App = {
               article[3],
               article[4],
               article[5],
-              article[6]
+              article[6],
+              article[8]
           );
         });
       }
@@ -62,7 +64,7 @@ window.App = {
     });
   },
 
-  displayArticle: function(id, seller, photo, name, description, price) {
+  displayArticle: function(id, seller, photo, name, description, price, type) {
     // Retrieve the article placeholder
     var articlesRow = $('#articlesRow');
 
@@ -78,7 +80,7 @@ window.App = {
     articleTemplate.find('.article-display').attr('href',"productDetails.html?type=0&id="+id);
     articleTemplate.find('.btn-buy').attr('data-id', id);
     articleTemplate.find('.btn-buy').attr('data-value', etherPrice);
-
+    articleTemplate.find('.article-type').text(categories[type]);
     // seller?
     if (seller == App.account) {
       articleTemplate.find('.article-seller').text("You");
@@ -99,14 +101,15 @@ window.App = {
       var _article_name = $("#article_name").val();
       var _description = $("#article_description").val();
       var _price = web3.toWei(parseFloat($("#article_price").val() || 0), "ether");
-
+      var _number = document.getElementById("article_Number").value;
+      var _type = document.getElementById("article_Type").value;
       if ((_article_name.trim() == '') || (_price == 0)) {
         // nothing to sell
         return false;
       }
 
       Market.deployed().then(function(instance) {
-        return instance.sellArticle(_product_photo, _article_name, _description, _price, {
+        return instance.sellArticle(_product_photo, _article_name, _description, _price, _number, _type, {
           from: App.account,
           gas: 500000
         });
