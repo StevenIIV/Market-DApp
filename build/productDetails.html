@@ -11,12 +11,15 @@
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
         window.onload = function () {
-            if (getQueryVariable("type") == 1){
+            var id = getQueryVariable("id");
+            if (getQueryVariable("type") == 1){//rent
                 document.getElementById("object-rent-info").style.display="inline";
-                App.postObjectForRent(getQueryVariable("id"));
+                App.postObjectForRent(id);
+                App.getObjectComment(id)
             }
-            else if(getQueryVariable("type") == 0){
-                App.checkSellValidAndShow(getQueryVariable("id"));
+            else if(getQueryVariable("type") == 0){//market
+                App.checkSellValidAndShow(id);
+                App.getArticleComment(id);
             }
         }
         function getQueryVariable(variable) {
@@ -48,9 +51,10 @@
         </div>
     </div>
 </nav>
-<!-- Object for rent info -->
-<div class="container max-width-960 margin-top" id="object-rent-info" style="display: none">
-    <div class="container max-width-960" >
+
+<div class="container max-width-960 margin-top">
+    <!-- Object for rent info -->
+    <div class="container max-width-960" id="object-rent-info" style="display: none">
         <div class="panel-heading">
             <h3 class="panel-title">Object Info</h3>
         </div>
@@ -63,6 +67,7 @@
                     <button class="btn btn-default" type="button" onclick="App.returnObj()" id="returnButton" style="float:right; display: none">Return</button>
                 </li>
                 <li class="list-group-item"><strong>Name:</strong> <span id="objName"></span></li>
+                <li class="list-group-item"><strong>Type:</strong> <span id="objType"></span></li>
                 <li class="list-group-item"><strong>Creator:</strong> <span id="objCreator"></span></li>
                 <li class="list-group-item"><strong>PriceDaily:</strong> <span id="objPriceDaily"></span></li>
                 <li class="list-group-item"><strong>Deposit:</strong> <span id="objDeposit"></span></li>
@@ -73,13 +78,10 @@
             </ul>
         </div>
     </div>
-</div>
-
-<!-- Object for sell info -->
-<div class="container max-width-960 margin-top" id="object-sell-info" style="display: none">
-    <div class="container max-width-960" >
+    <!-- Object for sell info -->
+    <div class="container max-width-960" id="object-sell-info" style="display: none">
         <div class="panel-heading">
-            <h3 class="panel-title">Object Info</h3>
+            <h3 class="panel-title">Article Info</h3>
         </div>
         <div class="panel-body">
             <ul class="list-group">
@@ -89,11 +91,17 @@
                     <button type="button" class="btn btn-primary btn-success btn-buy" onclick="App.buyArticle(getQueryVariable('id')); return false;" id="buyButton"style="float: right; display: none">Buy</button>
                 </li>
                 <li class="list-group-item"><strong>Name:</strong> <span id="_objName"></span></li>
+                <li class="list-group-item"><strong>Number:</strong> <span id="_objNumber"></span></li>
+                <li class="list-group-item"><strong>Type:</strong> <span id="_objType"></span></li>
                 <li class="list-group-item"><strong>Creator:</strong> <span id="_objCreator"></span></li>
                 <li class="list-group-item"><strong>Price:</strong> <span id="_objPrice"></span></li>
                 <li class="list-group-item"><strong>Detail:</strong> <span id="_objDetail"></span></li>
             </ul>
         </div>
+    </div>
+    <h1>comment</h1>
+    <div id="displayComment" class="row">
+        <!-- ARTICLES LOAD HERE -->
     </div>
 </div>
 
@@ -103,6 +111,23 @@
         <h1>illegal Access!</h1><br/>
         <h2>product have been sold</h2>
     </center>
+</div>
+
+<!-- comment template -->
+<div id="commentTemplate" style="display: none;">
+    <div class="row-lg-12">
+        <div class="panel panel-default panel-article">
+            <div class="panel-heading">
+                <h3 class="panel-title"></h3>
+            </div>
+            <div class="panel-body">
+                <strong>createTime</strong>: <span class="createTime"></span><br/>
+                <strong>creator</strong>: <span class="creator"></span><br/>
+                <strong>rating</strong>: <span class="rating"></span><br/>
+                <strong>comment</strong>: <span class="comment"></span><br/>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

@@ -4,8 +4,52 @@
     <meta charset="UTF-8">
     <title>test</title>
     <script src="./test.js"></script>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+<div>
+    <form>
+        <select id="select">
+            <option value ="1">rent</option>
+            <option value ="0">article</option>
+        </select>
+        <input type="text" id="objectId">
+        <input type="text" id="rating">
+        <input type="text" id="comment">
+        <input type="button" id="submit" onclick="App.addComment()">
+    </form>
+</div>
+<input type="button" onclick="App.getLength()">
+<div>
+    <form>
+        <input type="text" id="queryArticleId">
+        <input type="button" onclick="App.getComment()">
+    </form>
+</div>
+<div id="show">
 
+</div>
+<div id="articlesRow" class="row">
+    <!-- ARTICLES LOAD HERE -->
+</div>
+
+<div id="commentTemplate" style="display: none;">
+    <div class="row-lg-12">
+        <div class="panel panel-default panel-article">
+            <div class="panel-heading">
+                <h3 class="panel-title"></h3>
+            </div>
+            <div class="panel-body">
+                <strong>createTime</strong>: <span class="createTime"></span><br/>
+                <strong>creator</strong>: <span class="creator"></span><br/>
+                <strong>rating</strong>: <span class="rating"></span><br/>
+                <strong>comment</strong>: <span class="comment"></span><br/>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

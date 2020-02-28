@@ -1,4 +1,4 @@
-import "../stylesheets/app.css";
+// import "../stylesheets/app.css";
 import { default as contract } from 'truffle-contract'
 import Market_artifacts from '../../build/contracts/MarketPlace.json'
 var Market = contract(Market_artifacts);

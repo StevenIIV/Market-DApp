@@ -6602,79 +6602,7 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 133:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(134)();
-// imports
-
-
-// module
-exports.push([module.i, "body {\n  padding-top: 50px;\n  background-color: #F0F0F0;\n  color: #7C7C7C;\n}\n\n.navbar{\n  background-color:#2C5C84;\n}\n\n.nav-text{\n  color: #FFFFFF !important;\n}\n\n.nav-text:hover{\n  background-color:#346C9B !important;\n} \n\nli.active2{\n  background-color:#4A8BC2 !important;\n}\n\n.max-width-960{\n  max-width:960px;\n}\n\n.margin-form{\n  margin-top:50px;\n}\n\nhr{\n  background-color: #CCCCCC;\n  height: 1px;\n}\n\n.text-center{\n  text-align:center;\n}\n\n.margin-top{\n  margin-top: 30px;\n}\n\n.footer{\n  background-color:#1F2123;\n}\n\n.footer2{\n  background-color:#000000;\n  text-align:center;\n  padding:8px;\n}\n\n.right{\n  float:right;\n}\n\n.separador{\n  border-top:solid 1px #CCC;\n  border-bottom:solid 1px #CCC;\n  padding: 30px;\n  margin: 20px 0px;\n  text-align: center;\n  color: #4A8BC2;\n  background-color:#F9F9F9;\n  font-size:2em;\n}\n\n#rentButton, #returnButton{\n  background-color:#33ffcc;\n}\n\n#verificationButton, #returnButton, #object-info,#nameObjects{\n  display: none;\n}\n\n/*.box{\n    width:50%; margin-top:10%; margin:auto; padding:28px;\n    height:350px; border:1px #111 solid;\n    position: fixed;\n    top: 400px;\n    left: 200px;\n    background-color: #FFF;\n    display:none;            \n}\n.box.show{display:block;} \n.box .x{ font-size:18px; text-align:right; display:block;}\n.box input{width:80%; font-size:18px; margin-top:18px;}*/", ""]);
-
-// exports
-
-
-/***/ }),
-
 /***/ 134:
-/***/ (function(module, exports) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function() {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		var result = [];
-		for(var i = 0; i < this.length; i++) {
-			var item = this[i];
-			if(item[2]) {
-				result.push("@media " + item[2] + "{" + item[1] + "}");
-			} else {
-				result.push(item[1]);
-			}
-		}
-		return result.join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
-
-/***/ }),
-
-/***/ 136:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6682,7 +6610,7 @@ module.exports = function() {
 
 /* eslint-disable */
 
-var utils = __webpack_require__(137);
+var utils = __webpack_require__(135);
 var uint256Coder = utils.uint256Coder;
 var coderBoolean = utils.coderBoolean;
 var coderFixedBytes = utils.coderFixedBytes;
@@ -6815,15 +6743,15 @@ module.exports = {
 
 /***/ }),
 
-/***/ 137:
+/***/ 135:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(Buffer) {
 
 var BN = __webpack_require__(48);
-var numberToBN = __webpack_require__(149);
-var keccak256 = __webpack_require__(143).keccak_256;
+var numberToBN = __webpack_require__(147);
+var keccak256 = __webpack_require__(141).keccak_256;
 
 // from ethereumjs-util
 function stripZeros(aInput) {
@@ -7240,7 +7168,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 142:
+/***/ 140:
 /***/ (function(module, exports) {
 
 /**
@@ -7260,7 +7188,7 @@ module.exports = function isHexPrefixed(str) {
 
 /***/ }),
 
-/***/ 143:
+/***/ 141:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process, global) {/**
@@ -7739,11 +7667,11 @@ module.exports = function isHexPrefixed(str) {
 
 /***/ }),
 
-/***/ 149:
+/***/ 147:
 /***/ (function(module, exports, __webpack_require__) {
 
 var BN = __webpack_require__(48);
-var stripHexPrefix = __webpack_require__(156);
+var stripHexPrefix = __webpack_require__(154);
 
 /**
  * Returns a BN object, converts a number value to a BN
@@ -7784,10 +7712,10 @@ module.exports = function numberToBN(arg) {
 
 /***/ }),
 
-/***/ 156:
+/***/ 154:
 /***/ (function(module, exports, __webpack_require__) {
 
-var isHexPrefixed = __webpack_require__(142);
+var isHexPrefixed = __webpack_require__(140);
 
 /**
  * Removes '0x' from a given `String` is present
@@ -7805,265 +7733,12 @@ module.exports = function stripHexPrefix(str) {
 
 /***/ }),
 
-/***/ 157:
-/***/ (function(module, exports) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-var stylesInDom = {},
-	memoize = function(fn) {
-		var memo;
-		return function () {
-			if (typeof memo === "undefined") memo = fn.apply(this, arguments);
-			return memo;
-		};
-	},
-	isOldIE = memoize(function() {
-		return /msie [6-9]\b/.test(self.navigator.userAgent.toLowerCase());
-	}),
-	getHeadElement = memoize(function () {
-		return document.head || document.getElementsByTagName("head")[0];
-	}),
-	singletonElement = null,
-	singletonCounter = 0,
-	styleElementsInsertedAtTop = [];
-
-module.exports = function(list, options) {
-	if(typeof DEBUG !== "undefined" && DEBUG) {
-		if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
-	}
-
-	options = options || {};
-	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-	// tags it will allow on a page
-	if (typeof options.singleton === "undefined") options.singleton = isOldIE();
-
-	// By default, add <style> tags to the bottom of <head>.
-	if (typeof options.insertAt === "undefined") options.insertAt = "bottom";
-
-	var styles = listToStyles(list);
-	addStylesToDom(styles, options);
-
-	return function update(newList) {
-		var mayRemove = [];
-		for(var i = 0; i < styles.length; i++) {
-			var item = styles[i];
-			var domStyle = stylesInDom[item.id];
-			domStyle.refs--;
-			mayRemove.push(domStyle);
-		}
-		if(newList) {
-			var newStyles = listToStyles(newList);
-			addStylesToDom(newStyles, options);
-		}
-		for(var i = 0; i < mayRemove.length; i++) {
-			var domStyle = mayRemove[i];
-			if(domStyle.refs === 0) {
-				for(var j = 0; j < domStyle.parts.length; j++)
-					domStyle.parts[j]();
-				delete stylesInDom[domStyle.id];
-			}
-		}
-	};
-}
-
-function addStylesToDom(styles, options) {
-	for(var i = 0; i < styles.length; i++) {
-		var item = styles[i];
-		var domStyle = stylesInDom[item.id];
-		if(domStyle) {
-			domStyle.refs++;
-			for(var j = 0; j < domStyle.parts.length; j++) {
-				domStyle.parts[j](item.parts[j]);
-			}
-			for(; j < item.parts.length; j++) {
-				domStyle.parts.push(addStyle(item.parts[j], options));
-			}
-		} else {
-			var parts = [];
-			for(var j = 0; j < item.parts.length; j++) {
-				parts.push(addStyle(item.parts[j], options));
-			}
-			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
-		}
-	}
-}
-
-function listToStyles(list) {
-	var styles = [];
-	var newStyles = {};
-	for(var i = 0; i < list.length; i++) {
-		var item = list[i];
-		var id = item[0];
-		var css = item[1];
-		var media = item[2];
-		var sourceMap = item[3];
-		var part = {css: css, media: media, sourceMap: sourceMap};
-		if(!newStyles[id])
-			styles.push(newStyles[id] = {id: id, parts: [part]});
-		else
-			newStyles[id].parts.push(part);
-	}
-	return styles;
-}
-
-function insertStyleElement(options, styleElement) {
-	var head = getHeadElement();
-	var lastStyleElementInsertedAtTop = styleElementsInsertedAtTop[styleElementsInsertedAtTop.length - 1];
-	if (options.insertAt === "top") {
-		if(!lastStyleElementInsertedAtTop) {
-			head.insertBefore(styleElement, head.firstChild);
-		} else if(lastStyleElementInsertedAtTop.nextSibling) {
-			head.insertBefore(styleElement, lastStyleElementInsertedAtTop.nextSibling);
-		} else {
-			head.appendChild(styleElement);
-		}
-		styleElementsInsertedAtTop.push(styleElement);
-	} else if (options.insertAt === "bottom") {
-		head.appendChild(styleElement);
-	} else {
-		throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
-	}
-}
-
-function removeStyleElement(styleElement) {
-	styleElement.parentNode.removeChild(styleElement);
-	var idx = styleElementsInsertedAtTop.indexOf(styleElement);
-	if(idx >= 0) {
-		styleElementsInsertedAtTop.splice(idx, 1);
-	}
-}
-
-function createStyleElement(options) {
-	var styleElement = document.createElement("style");
-	styleElement.type = "text/css";
-	insertStyleElement(options, styleElement);
-	return styleElement;
-}
-
-function createLinkElement(options) {
-	var linkElement = document.createElement("link");
-	linkElement.rel = "stylesheet";
-	insertStyleElement(options, linkElement);
-	return linkElement;
-}
-
-function addStyle(obj, options) {
-	var styleElement, update, remove;
-
-	if (options.singleton) {
-		var styleIndex = singletonCounter++;
-		styleElement = singletonElement || (singletonElement = createStyleElement(options));
-		update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
-		remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
-	} else if(obj.sourceMap &&
-		typeof URL === "function" &&
-		typeof URL.createObjectURL === "function" &&
-		typeof URL.revokeObjectURL === "function" &&
-		typeof Blob === "function" &&
-		typeof btoa === "function") {
-		styleElement = createLinkElement(options);
-		update = updateLink.bind(null, styleElement);
-		remove = function() {
-			removeStyleElement(styleElement);
-			if(styleElement.href)
-				URL.revokeObjectURL(styleElement.href);
-		};
-	} else {
-		styleElement = createStyleElement(options);
-		update = applyToTag.bind(null, styleElement);
-		remove = function() {
-			removeStyleElement(styleElement);
-		};
-	}
-
-	update(obj);
-
-	return function updateStyle(newObj) {
-		if(newObj) {
-			if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
-				return;
-			update(obj = newObj);
-		} else {
-			remove();
-		}
-	};
-}
-
-var replaceText = (function () {
-	var textStore = [];
-
-	return function (index, replacement) {
-		textStore[index] = replacement;
-		return textStore.filter(Boolean).join('\n');
-	};
-})();
-
-function applyToSingletonTag(styleElement, index, remove, obj) {
-	var css = remove ? "" : obj.css;
-
-	if (styleElement.styleSheet) {
-		styleElement.styleSheet.cssText = replaceText(index, css);
-	} else {
-		var cssNode = document.createTextNode(css);
-		var childNodes = styleElement.childNodes;
-		if (childNodes[index]) styleElement.removeChild(childNodes[index]);
-		if (childNodes.length) {
-			styleElement.insertBefore(cssNode, childNodes[index]);
-		} else {
-			styleElement.appendChild(cssNode);
-		}
-	}
-}
-
-function applyToTag(styleElement, obj) {
-	var css = obj.css;
-	var media = obj.media;
-
-	if(media) {
-		styleElement.setAttribute("media", media)
-	}
-
-	if(styleElement.styleSheet) {
-		styleElement.styleSheet.cssText = css;
-	} else {
-		while(styleElement.firstChild) {
-			styleElement.removeChild(styleElement.firstChild);
-		}
-		styleElement.appendChild(document.createTextNode(css));
-	}
-}
-
-function updateLink(linkElement, obj) {
-	var css = obj.css;
-	var sourceMap = obj.sourceMap;
-
-	if(sourceMap) {
-		// http://stackoverflow.com/a/26603875
-		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
-	}
-
-	var blob = new Blob([css], { type: "text/css" });
-
-	var oldSrc = linkElement.href;
-
-	linkElement.href = URL.createObjectURL(blob);
-
-	if(oldSrc)
-		URL.revokeObjectURL(oldSrc);
-}
-
-
-/***/ }),
-
-/***/ 158:
+/***/ 155:
 /***/ (function(module, exports, __webpack_require__) {
 
 // TODO: remove web3 requirement
 // Call functions directly on the provider.
-var Web3 = __webpack_require__(159);
+var Web3 = __webpack_require__(156);
 
 var Blockchain = {
   parse: function(uri) {
@@ -8126,10 +7801,10 @@ module.exports = Blockchain;
 
 /***/ }),
 
-/***/ 159:
+/***/ 156:
 /***/ (function(module, exports, __webpack_require__) {
 
-var Web3 = __webpack_require__(174);
+var Web3 = __webpack_require__(171);
 
 // dont override global variable
 if (typeof window !== 'undefined' && typeof window.Web3 === 'undefined') {
@@ -8141,28 +7816,28 @@ module.exports = Web3;
 
 /***/ }),
 
-/***/ 160:
+/***/ 157:
 /***/ (function(module, exports) {
 
 module.exports = [{"constant":true,"inputs":[{"name":"_owner","type":"address"}],"name":"name","outputs":[{"name":"o_name","type":"bytes32"}],"type":"function"},{"constant":true,"inputs":[{"name":"_name","type":"bytes32"}],"name":"owner","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":true,"inputs":[{"name":"_name","type":"bytes32"}],"name":"content","outputs":[{"name":"","type":"bytes32"}],"type":"function"},{"constant":true,"inputs":[{"name":"_name","type":"bytes32"}],"name":"addr","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":false,"inputs":[{"name":"_name","type":"bytes32"}],"name":"reserve","outputs":[],"type":"function"},{"constant":true,"inputs":[{"name":"_name","type":"bytes32"}],"name":"subRegistrar","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":false,"inputs":[{"name":"_name","type":"bytes32"},{"name":"_newOwner","type":"address"}],"name":"transfer","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"_name","type":"bytes32"},{"name":"_registrar","type":"address"}],"name":"setSubRegistrar","outputs":[],"type":"function"},{"constant":false,"inputs":[],"name":"Registrar","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"_name","type":"bytes32"},{"name":"_a","type":"address"},{"name":"_primary","type":"bool"}],"name":"setAddress","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"_name","type":"bytes32"},{"name":"_content","type":"bytes32"}],"name":"setContent","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"_name","type":"bytes32"}],"name":"disown","outputs":[],"type":"function"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_name","type":"bytes32"},{"indexed":false,"name":"_winner","type":"address"}],"name":"AuctionEnded","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_name","type":"bytes32"},{"indexed":false,"name":"_bidder","type":"address"},{"indexed":false,"name":"_value","type":"uint256"}],"name":"NewBid","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"name","type":"bytes32"}],"name":"Changed","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"name","type":"bytes32"},{"indexed":true,"name":"addr","type":"address"}],"name":"PrimaryChanged","type":"event"}]
 
 /***/ }),
 
-/***/ 161:
+/***/ 158:
 /***/ (function(module, exports) {
 
 module.exports = [{"constant":true,"inputs":[{"name":"_name","type":"bytes32"}],"name":"owner","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":false,"inputs":[{"name":"_name","type":"bytes32"},{"name":"_refund","type":"address"}],"name":"disown","outputs":[],"type":"function"},{"constant":true,"inputs":[{"name":"_name","type":"bytes32"}],"name":"addr","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":false,"inputs":[{"name":"_name","type":"bytes32"}],"name":"reserve","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"_name","type":"bytes32"},{"name":"_newOwner","type":"address"}],"name":"transfer","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"_name","type":"bytes32"},{"name":"_a","type":"address"}],"name":"setAddr","outputs":[],"type":"function"},{"anonymous":false,"inputs":[{"indexed":true,"name":"name","type":"bytes32"}],"name":"Changed","type":"event"}]
 
 /***/ }),
 
-/***/ 162:
+/***/ 159:
 /***/ (function(module, exports) {
 
 module.exports = [{"constant":false,"inputs":[{"name":"from","type":"bytes32"},{"name":"to","type":"address"},{"name":"value","type":"uint256"}],"name":"transfer","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"from","type":"bytes32"},{"name":"to","type":"address"},{"name":"indirectId","type":"bytes32"},{"name":"value","type":"uint256"}],"name":"icapTransfer","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"to","type":"bytes32"}],"name":"deposit","outputs":[],"payable":true,"type":"function"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"AnonymousDeposit","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"bytes32"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Deposit","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"bytes32"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"bytes32"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"indirectId","type":"bytes32"},{"indexed":false,"name":"value","type":"uint256"}],"name":"IcapTransfer","type":"event"}]
 
 /***/ }),
 
-/***/ 163:
+/***/ 160:
 /***/ (function(module, exports, __webpack_require__) {
 
 var f = __webpack_require__(10);
@@ -8195,7 +7870,7 @@ module.exports = SolidityTypeAddress;
 
 /***/ }),
 
-/***/ 164:
+/***/ 161:
 /***/ (function(module, exports, __webpack_require__) {
 
 var f = __webpack_require__(10);
@@ -8228,7 +7903,7 @@ module.exports = SolidityTypeBool;
 
 /***/ }),
 
-/***/ 165:
+/***/ 162:
 /***/ (function(module, exports, __webpack_require__) {
 
 var f = __webpack_require__(10);
@@ -8264,7 +7939,7 @@ module.exports = SolidityTypeBytes;
 
 /***/ }),
 
-/***/ 166:
+/***/ 163:
 /***/ (function(module, exports, __webpack_require__) {
 
 var f = __webpack_require__(10);
@@ -8291,7 +7966,7 @@ module.exports = SolidityTypeDynamicBytes;
 
 /***/ }),
 
-/***/ 167:
+/***/ 164:
 /***/ (function(module, exports, __webpack_require__) {
 
 var f = __webpack_require__(10);
@@ -8330,7 +8005,7 @@ module.exports = SolidityTypeInt;
 
 /***/ }),
 
-/***/ 168:
+/***/ 165:
 /***/ (function(module, exports, __webpack_require__) {
 
 var f = __webpack_require__(10);
@@ -8369,7 +8044,7 @@ module.exports = SolidityTypeReal;
 
 /***/ }),
 
-/***/ 169:
+/***/ 166:
 /***/ (function(module, exports, __webpack_require__) {
 
 var f = __webpack_require__(10);
@@ -8392,6 +8067,101 @@ SolidityTypeString.prototype.isDynamicType = function () {
 };
 
 module.exports = SolidityTypeString;
+
+
+/***/ }),
+
+/***/ 167:
+/***/ (function(module, exports, __webpack_require__) {
+
+var f = __webpack_require__(10);
+var SolidityType = __webpack_require__(17);
+
+/**
+ * SolidityTypeUInt is a prootype that represents uint type
+ * It matches:
+ * uint
+ * uint[]
+ * uint[4]
+ * uint[][]
+ * uint[3][]
+ * uint[][6][], ...
+ * uint32
+ * uint64[]
+ * uint8[4]
+ * uint256[][]
+ * uint[3][]
+ * uint64[][6][], ...
+ */
+var SolidityTypeUInt = function () {
+    this._inputFormatter = f.formatInputInt;
+    this._outputFormatter = f.formatOutputUInt;
+};
+
+SolidityTypeUInt.prototype = new SolidityType({});
+SolidityTypeUInt.prototype.constructor = SolidityTypeUInt;
+
+SolidityTypeUInt.prototype.isType = function (name) {
+    return !!name.match(/^uint([0-9]*)?(\[([0-9]*)\])*$/);
+};
+
+module.exports = SolidityTypeUInt;
+
+
+/***/ }),
+
+/***/ 168:
+/***/ (function(module, exports, __webpack_require__) {
+
+var f = __webpack_require__(10);
+var SolidityType = __webpack_require__(17);
+
+/**
+ * SolidityTypeUReal is a prootype that represents ureal type
+ * It matches:
+ * ureal
+ * ureal[]
+ * ureal[4]
+ * ureal[][]
+ * ureal[3][]
+ * ureal[][6][], ...
+ * ureal32
+ * ureal64[]
+ * ureal8[4]
+ * ureal256[][]
+ * ureal[3][]
+ * ureal64[][6][], ...
+ */
+var SolidityTypeUReal = function () {
+    this._inputFormatter = f.formatInputReal;
+    this._outputFormatter = f.formatOutputUReal;
+};
+
+SolidityTypeUReal.prototype = new SolidityType({});
+SolidityTypeUReal.prototype.constructor = SolidityTypeUReal;
+
+SolidityTypeUReal.prototype.isType = function (name) {
+    return !!name.match(/^ureal([0-9]*)?(\[([0-9]*)\])*$/);
+};
+
+module.exports = SolidityTypeUReal;
+
+
+/***/ }),
+
+/***/ 169:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+// go env doesn't have and need XMLHttpRequest
+if (typeof XMLHttpRequest === 'undefined') {
+    exports.XMLHttpRequest = {};
+} else {
+    exports.XMLHttpRequest = XMLHttpRequest; // jshint ignore:line
+}
+
 
 
 /***/ }),
@@ -8659,108 +8429,13 @@ module.exports = SolidityType;
 /***/ }),
 
 /***/ 170:
-/***/ (function(module, exports, __webpack_require__) {
-
-var f = __webpack_require__(10);
-var SolidityType = __webpack_require__(17);
-
-/**
- * SolidityTypeUInt is a prootype that represents uint type
- * It matches:
- * uint
- * uint[]
- * uint[4]
- * uint[][]
- * uint[3][]
- * uint[][6][], ...
- * uint32
- * uint64[]
- * uint8[4]
- * uint256[][]
- * uint[3][]
- * uint64[][6][], ...
- */
-var SolidityTypeUInt = function () {
-    this._inputFormatter = f.formatInputInt;
-    this._outputFormatter = f.formatOutputUInt;
-};
-
-SolidityTypeUInt.prototype = new SolidityType({});
-SolidityTypeUInt.prototype.constructor = SolidityTypeUInt;
-
-SolidityTypeUInt.prototype.isType = function (name) {
-    return !!name.match(/^uint([0-9]*)?(\[([0-9]*)\])*$/);
-};
-
-module.exports = SolidityTypeUInt;
-
-
-/***/ }),
-
-/***/ 171:
-/***/ (function(module, exports, __webpack_require__) {
-
-var f = __webpack_require__(10);
-var SolidityType = __webpack_require__(17);
-
-/**
- * SolidityTypeUReal is a prootype that represents ureal type
- * It matches:
- * ureal
- * ureal[]
- * ureal[4]
- * ureal[][]
- * ureal[3][]
- * ureal[][6][], ...
- * ureal32
- * ureal64[]
- * ureal8[4]
- * ureal256[][]
- * ureal[3][]
- * ureal64[][6][], ...
- */
-var SolidityTypeUReal = function () {
-    this._inputFormatter = f.formatInputReal;
-    this._outputFormatter = f.formatOutputUReal;
-};
-
-SolidityTypeUReal.prototype = new SolidityType({});
-SolidityTypeUReal.prototype.constructor = SolidityTypeUReal;
-
-SolidityTypeUReal.prototype.isType = function (name) {
-    return !!name.match(/^ureal([0-9]*)?(\[([0-9]*)\])*$/);
-};
-
-module.exports = SolidityTypeUReal;
-
-
-/***/ }),
-
-/***/ 172:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-// go env doesn't have and need XMLHttpRequest
-if (typeof XMLHttpRequest === 'undefined') {
-    exports.XMLHttpRequest = {};
-} else {
-    exports.XMLHttpRequest = XMLHttpRequest; // jshint ignore:line
-}
-
-
-
-/***/ }),
-
-/***/ 173:
 /***/ (function(module, exports) {
 
 module.exports = {"version":"0.18.4"}
 
 /***/ }),
 
-/***/ 174:
+/***/ 171:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -8790,23 +8465,23 @@ module.exports = {"version":"0.18.4"}
  * @date 2014
  */
 
-var RequestManager = __webpack_require__(189);
+var RequestManager = __webpack_require__(186);
 var Iban = __webpack_require__(41);
-var Eth = __webpack_require__(183);
-var DB = __webpack_require__(182);
-var Shh = __webpack_require__(186);
-var Net = __webpack_require__(184);
-var Personal = __webpack_require__(185);
-var Swarm = __webpack_require__(187);
-var Settings = __webpack_require__(190);
-var version = __webpack_require__(173);
+var Eth = __webpack_require__(180);
+var DB = __webpack_require__(179);
+var Shh = __webpack_require__(183);
+var Net = __webpack_require__(181);
+var Personal = __webpack_require__(182);
+var Swarm = __webpack_require__(184);
+var Settings = __webpack_require__(187);
+var version = __webpack_require__(170);
 var utils = __webpack_require__(4);
 var sha3 = __webpack_require__(31);
-var extend = __webpack_require__(178);
-var Batch = __webpack_require__(176);
+var extend = __webpack_require__(175);
+var Batch = __webpack_require__(173);
 var Property = __webpack_require__(26);
-var HttpProvider = __webpack_require__(180);
-var IpcProvider = __webpack_require__(181);
+var HttpProvider = __webpack_require__(177);
+var IpcProvider = __webpack_require__(178);
 var BigNumber = __webpack_require__(30);
 
 
@@ -8917,7 +8592,7 @@ module.exports = Web3;
 
 /***/ }),
 
-/***/ 175:
+/***/ 172:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -9012,7 +8687,7 @@ module.exports = AllSolidityEvents;
 
 /***/ }),
 
-/***/ 176:
+/***/ 173:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -9085,7 +8760,7 @@ module.exports = Batch;
 
 /***/ }),
 
-/***/ 177:
+/***/ 174:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -9113,8 +8788,8 @@ module.exports = Batch;
 var utils = __webpack_require__(4);
 var coder = __webpack_require__(57);
 var SolidityEvent = __webpack_require__(71);
-var SolidityFunction = __webpack_require__(179);
-var AllEvents = __webpack_require__(175);
+var SolidityFunction = __webpack_require__(176);
+var AllEvents = __webpack_require__(172);
 
 /**
  * Should be called to encode constructor params
@@ -9402,7 +9077,7 @@ module.exports = ContractFactory;
 
 /***/ }),
 
-/***/ 178:
+/***/ 175:
 /***/ (function(module, exports, __webpack_require__) {
 
 var formatters = __webpack_require__(18);
@@ -9457,7 +9132,7 @@ module.exports = extend;
 
 /***/ }),
 
-/***/ 179:
+/***/ 176:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -9722,6 +9397,454 @@ SolidityFunction.prototype.attachToContract = function (contract) {
 
 module.exports = SolidityFunction;
 
+
+
+/***/ }),
+
+/***/ 177:
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+    This file is part of web3.js.
+
+    web3.js is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    web3.js is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public License
+    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/** @file httpprovider.js
+ * @authors:
+ *   Marek Kotewicz <marek@ethdev.com>
+ *   Marian Oancea <marian@ethdev.com>
+ *   Fabian Vogelsteller <fabian@ethdev.com>
+ * @date 2015
+ */
+
+
+var errors = __webpack_require__(32);
+
+// workaround to use httpprovider in different envs
+
+// browser
+if (typeof window !== 'undefined' && window.XMLHttpRequest) {
+    XMLHttpRequest = window.XMLHttpRequest; // jshint ignore: line
+// node
+} else {
+    XMLHttpRequest = __webpack_require__(169).XMLHttpRequest; // jshint ignore: line
+}
+
+var XHR2 = __webpack_require__(228); // jshint ignore: line
+
+/**
+ * HttpProvider should be used to send rpc calls over http
+ */
+var HttpProvider = function (host, timeout) {
+    this.host = host || 'http://localhost:8545';
+    this.timeout = timeout || 0;
+};
+
+/**
+ * Should be called to prepare new XMLHttpRequest
+ *
+ * @method prepareRequest
+ * @param {Boolean} true if request should be async
+ * @return {XMLHttpRequest} object
+ */
+HttpProvider.prototype.prepareRequest = function (async) {
+    var request;
+
+    if (async) {
+      request = new XHR2();
+      request.timeout = this.timeout;
+    }else {
+      request = new XMLHttpRequest();
+    }
+
+    request.open('POST', this.host, async);
+    request.setRequestHeader('Content-Type','application/json');
+    return request;
+};
+
+/**
+ * Should be called to make sync request
+ *
+ * @method send
+ * @param {Object} payload
+ * @return {Object} result
+ */
+HttpProvider.prototype.send = function (payload) {
+    var request = this.prepareRequest(false);
+
+    try {
+        request.send(JSON.stringify(payload));
+    } catch(error) {
+        throw errors.InvalidConnection(this.host);
+    }
+
+    var result = request.responseText;
+
+    try {
+        result = JSON.parse(result);
+    } catch(e) {
+        throw errors.InvalidResponse(request.responseText);
+    }
+
+    return result;
+};
+
+/**
+ * Should be used to make async request
+ *
+ * @method sendAsync
+ * @param {Object} payload
+ * @param {Function} callback triggered on end with (err, result)
+ */
+HttpProvider.prototype.sendAsync = function (payload, callback) {
+    var request = this.prepareRequest(true);
+
+    request.onreadystatechange = function() {
+        if (request.readyState === 4 && request.timeout !== 1) {
+            var result = request.responseText;
+            var error = null;
+
+            try {
+                result = JSON.parse(result);
+            } catch(e) {
+                error = errors.InvalidResponse(request.responseText);
+            }
+
+            callback(error, result);
+        }
+    };
+
+    request.ontimeout = function() {
+      callback(errors.ConnectionTimeout(this.timeout));
+    };
+
+    try {
+        request.send(JSON.stringify(payload));
+    } catch(error) {
+        callback(errors.InvalidConnection(this.host));
+    }
+};
+
+/**
+ * Synchronously tries to make Http request
+ *
+ * @method isConnected
+ * @return {Boolean} returns true if request haven't failed. Otherwise false
+ */
+HttpProvider.prototype.isConnected = function() {
+    try {
+        this.send({
+            id: 9999999999,
+            jsonrpc: '2.0',
+            method: 'net_listening',
+            params: []
+        });
+        return true;
+    } catch(e) {
+        return false;
+    }
+};
+
+module.exports = HttpProvider;
+
+
+/***/ }),
+
+/***/ 178:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/*
+    This file is part of web3.js.
+
+    web3.js is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    web3.js is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public License
+    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/** @file ipcprovider.js
+ * @authors:
+ *   Fabian Vogelsteller <fabian@ethdev.com>
+ * @date 2015
+ */
+
+
+
+var utils = __webpack_require__(4);
+var errors = __webpack_require__(32);
+
+
+var IpcProvider = function (path, net) {
+    var _this = this;
+    this.responseCallbacks = {};
+    this.path = path;
+    
+    this.connection = net.connect({path: this.path});
+
+    this.connection.on('error', function(e){
+        console.error('IPC Connection Error', e);
+        _this._timeout();
+    });
+
+    this.connection.on('end', function(){
+        _this._timeout();
+    }); 
+
+
+    // LISTEN FOR CONNECTION RESPONSES
+    this.connection.on('data', function(data) {
+        /*jshint maxcomplexity: 6 */
+
+        _this._parseResponse(data.toString()).forEach(function(result){
+
+            var id = null;
+
+            // get the id which matches the returned id
+            if(utils.isArray(result)) {
+                result.forEach(function(load){
+                    if(_this.responseCallbacks[load.id])
+                        id = load.id;
+                });
+            } else {
+                id = result.id;
+            }
+
+            // fire the callback
+            if(_this.responseCallbacks[id]) {
+                _this.responseCallbacks[id](null, result);
+                delete _this.responseCallbacks[id];
+            }
+        });
+    });
+};
+
+/**
+Will parse the response and make an array out of it.
+
+@method _parseResponse
+@param {String} data
+*/
+IpcProvider.prototype._parseResponse = function(data) {
+    var _this = this,
+        returnValues = [];
+    
+    // DE-CHUNKER
+    var dechunkedData = data
+        .replace(/\}[\n\r]?\{/g,'}|--|{') // }{
+        .replace(/\}\][\n\r]?\[\{/g,'}]|--|[{') // }][{
+        .replace(/\}[\n\r]?\[\{/g,'}|--|[{') // }[{
+        .replace(/\}\][\n\r]?\{/g,'}]|--|{') // }]{
+        .split('|--|');
+
+    dechunkedData.forEach(function(data){
+
+        // prepend the last chunk
+        if(_this.lastChunk)
+            data = _this.lastChunk + data;
+
+        var result = null;
+
+        try {
+            result = JSON.parse(data);
+
+        } catch(e) {
+
+            _this.lastChunk = data;
+
+            // start timeout to cancel all requests
+            clearTimeout(_this.lastChunkTimeout);
+            _this.lastChunkTimeout = setTimeout(function(){
+                _this._timeout();
+                throw errors.InvalidResponse(data);
+            }, 1000 * 15);
+
+            return;
+        }
+
+        // cancel timeout and set chunk to null
+        clearTimeout(_this.lastChunkTimeout);
+        _this.lastChunk = null;
+
+        if(result)
+            returnValues.push(result);
+    });
+
+    return returnValues;
+};
+
+
+/**
+Get the adds a callback to the responseCallbacks object,
+which will be called if a response matching the response Id will arrive.
+
+@method _addResponseCallback
+*/
+IpcProvider.prototype._addResponseCallback = function(payload, callback) {
+    var id = payload.id || payload[0].id;
+    var method = payload.method || payload[0].method;
+
+    this.responseCallbacks[id] = callback;
+    this.responseCallbacks[id].method = method;
+};
+
+/**
+Timeout all requests when the end/error event is fired
+
+@method _timeout
+*/
+IpcProvider.prototype._timeout = function() {
+    for(var key in this.responseCallbacks) {
+        if(this.responseCallbacks.hasOwnProperty(key)){
+            this.responseCallbacks[key](errors.InvalidConnection('on IPC'));
+            delete this.responseCallbacks[key];
+        }
+    }
+};
+
+
+/**
+Check if the current connection is still valid.
+
+@method isConnected
+*/
+IpcProvider.prototype.isConnected = function() {
+    var _this = this;
+
+    // try reconnect, when connection is gone
+    if(!_this.connection.writable)
+        _this.connection.connect({path: _this.path});
+
+    return !!this.connection.writable;
+};
+
+IpcProvider.prototype.send = function (payload) {
+
+    if(this.connection.writeSync) {
+        var result;
+
+        // try reconnect, when connection is gone
+        if(!this.connection.writable)
+            this.connection.connect({path: this.path});
+
+        var data = this.connection.writeSync(JSON.stringify(payload));
+
+        try {
+            result = JSON.parse(data);
+        } catch(e) {
+            throw errors.InvalidResponse(data);                
+        }
+
+        return result;
+
+    } else {
+        throw new Error('You tried to send "'+ payload.method +'" synchronously. Synchronous requests are not supported by the IPC provider.');
+    }
+};
+
+IpcProvider.prototype.sendAsync = function (payload, callback) {
+    // try reconnect, when connection is gone
+    if(!this.connection.writable)
+        this.connection.connect({path: this.path});
+
+
+    this.connection.write(JSON.stringify(payload));
+    this._addResponseCallback(payload, callback);
+};
+
+module.exports = IpcProvider;
+
+
+
+/***/ }),
+
+/***/ 179:
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+    This file is part of web3.js.
+
+    web3.js is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    web3.js is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public License
+    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/** @file db.js
+ * @authors:
+ *   Marek Kotewicz <marek@ethdev.com>
+ * @date 2015
+ */
+
+var Method = __webpack_require__(22);
+
+var DB = function (web3) {
+    this._requestManager = web3._requestManager;
+
+    var self = this;
+    
+    methods().forEach(function(method) { 
+        method.attachToObject(self);
+        method.setRequestManager(web3._requestManager);
+    });
+};
+
+var methods = function () {
+    var putString = new Method({
+        name: 'putString',
+        call: 'db_putString',
+        params: 3
+    });
+
+    var getString = new Method({
+        name: 'getString',
+        call: 'db_getString',
+        params: 2
+    });
+
+    var putHex = new Method({
+        name: 'putHex',
+        call: 'db_putHex',
+        params: 3
+    });
+
+    var getHex = new Method({
+        name: 'getHex',
+        call: 'db_getHex',
+        params: 2
+    });
+
+    return [
+        putString, getString, putHex, getHex
+    ];
+};
+
+module.exports = DB;
 
 
 /***/ }),
@@ -10039,454 +10162,6 @@ module.exports = {
 /***/ 180:
 /***/ (function(module, exports, __webpack_require__) {
 
-/*
-    This file is part of web3.js.
-
-    web3.js is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Lesser General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    web3.js is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-
-    You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
-*/
-/** @file httpprovider.js
- * @authors:
- *   Marek Kotewicz <marek@ethdev.com>
- *   Marian Oancea <marian@ethdev.com>
- *   Fabian Vogelsteller <fabian@ethdev.com>
- * @date 2015
- */
-
-
-var errors = __webpack_require__(32);
-
-// workaround to use httpprovider in different envs
-
-// browser
-if (typeof window !== 'undefined' && window.XMLHttpRequest) {
-    XMLHttpRequest = window.XMLHttpRequest; // jshint ignore: line
-// node
-} else {
-    XMLHttpRequest = __webpack_require__(172).XMLHttpRequest; // jshint ignore: line
-}
-
-var XHR2 = __webpack_require__(231); // jshint ignore: line
-
-/**
- * HttpProvider should be used to send rpc calls over http
- */
-var HttpProvider = function (host, timeout) {
-    this.host = host || 'http://localhost:8545';
-    this.timeout = timeout || 0;
-};
-
-/**
- * Should be called to prepare new XMLHttpRequest
- *
- * @method prepareRequest
- * @param {Boolean} true if request should be async
- * @return {XMLHttpRequest} object
- */
-HttpProvider.prototype.prepareRequest = function (async) {
-    var request;
-
-    if (async) {
-      request = new XHR2();
-      request.timeout = this.timeout;
-    }else {
-      request = new XMLHttpRequest();
-    }
-
-    request.open('POST', this.host, async);
-    request.setRequestHeader('Content-Type','application/json');
-    return request;
-};
-
-/**
- * Should be called to make sync request
- *
- * @method send
- * @param {Object} payload
- * @return {Object} result
- */
-HttpProvider.prototype.send = function (payload) {
-    var request = this.prepareRequest(false);
-
-    try {
-        request.send(JSON.stringify(payload));
-    } catch(error) {
-        throw errors.InvalidConnection(this.host);
-    }
-
-    var result = request.responseText;
-
-    try {
-        result = JSON.parse(result);
-    } catch(e) {
-        throw errors.InvalidResponse(request.responseText);
-    }
-
-    return result;
-};
-
-/**
- * Should be used to make async request
- *
- * @method sendAsync
- * @param {Object} payload
- * @param {Function} callback triggered on end with (err, result)
- */
-HttpProvider.prototype.sendAsync = function (payload, callback) {
-    var request = this.prepareRequest(true);
-
-    request.onreadystatechange = function() {
-        if (request.readyState === 4 && request.timeout !== 1) {
-            var result = request.responseText;
-            var error = null;
-
-            try {
-                result = JSON.parse(result);
-            } catch(e) {
-                error = errors.InvalidResponse(request.responseText);
-            }
-
-            callback(error, result);
-        }
-    };
-
-    request.ontimeout = function() {
-      callback(errors.ConnectionTimeout(this.timeout));
-    };
-
-    try {
-        request.send(JSON.stringify(payload));
-    } catch(error) {
-        callback(errors.InvalidConnection(this.host));
-    }
-};
-
-/**
- * Synchronously tries to make Http request
- *
- * @method isConnected
- * @return {Boolean} returns true if request haven't failed. Otherwise false
- */
-HttpProvider.prototype.isConnected = function() {
-    try {
-        this.send({
-            id: 9999999999,
-            jsonrpc: '2.0',
-            method: 'net_listening',
-            params: []
-        });
-        return true;
-    } catch(e) {
-        return false;
-    }
-};
-
-module.exports = HttpProvider;
-
-
-/***/ }),
-
-/***/ 181:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*
-    This file is part of web3.js.
-
-    web3.js is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Lesser General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    web3.js is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-
-    You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
-*/
-/** @file ipcprovider.js
- * @authors:
- *   Fabian Vogelsteller <fabian@ethdev.com>
- * @date 2015
- */
-
-
-
-var utils = __webpack_require__(4);
-var errors = __webpack_require__(32);
-
-
-var IpcProvider = function (path, net) {
-    var _this = this;
-    this.responseCallbacks = {};
-    this.path = path;
-    
-    this.connection = net.connect({path: this.path});
-
-    this.connection.on('error', function(e){
-        console.error('IPC Connection Error', e);
-        _this._timeout();
-    });
-
-    this.connection.on('end', function(){
-        _this._timeout();
-    }); 
-
-
-    // LISTEN FOR CONNECTION RESPONSES
-    this.connection.on('data', function(data) {
-        /*jshint maxcomplexity: 6 */
-
-        _this._parseResponse(data.toString()).forEach(function(result){
-
-            var id = null;
-
-            // get the id which matches the returned id
-            if(utils.isArray(result)) {
-                result.forEach(function(load){
-                    if(_this.responseCallbacks[load.id])
-                        id = load.id;
-                });
-            } else {
-                id = result.id;
-            }
-
-            // fire the callback
-            if(_this.responseCallbacks[id]) {
-                _this.responseCallbacks[id](null, result);
-                delete _this.responseCallbacks[id];
-            }
-        });
-    });
-};
-
-/**
-Will parse the response and make an array out of it.
-
-@method _parseResponse
-@param {String} data
-*/
-IpcProvider.prototype._parseResponse = function(data) {
-    var _this = this,
-        returnValues = [];
-    
-    // DE-CHUNKER
-    var dechunkedData = data
-        .replace(/\}[\n\r]?\{/g,'}|--|{') // }{
-        .replace(/\}\][\n\r]?\[\{/g,'}]|--|[{') // }][{
-        .replace(/\}[\n\r]?\[\{/g,'}|--|[{') // }[{
-        .replace(/\}\][\n\r]?\{/g,'}]|--|{') // }]{
-        .split('|--|');
-
-    dechunkedData.forEach(function(data){
-
-        // prepend the last chunk
-        if(_this.lastChunk)
-            data = _this.lastChunk + data;
-
-        var result = null;
-
-        try {
-            result = JSON.parse(data);
-
-        } catch(e) {
-
-            _this.lastChunk = data;
-
-            // start timeout to cancel all requests
-            clearTimeout(_this.lastChunkTimeout);
-            _this.lastChunkTimeout = setTimeout(function(){
-                _this._timeout();
-                throw errors.InvalidResponse(data);
-            }, 1000 * 15);
-
-            return;
-        }
-
-        // cancel timeout and set chunk to null
-        clearTimeout(_this.lastChunkTimeout);
-        _this.lastChunk = null;
-
-        if(result)
-            returnValues.push(result);
-    });
-
-    return returnValues;
-};
-
-
-/**
-Get the adds a callback to the responseCallbacks object,
-which will be called if a response matching the response Id will arrive.
-
-@method _addResponseCallback
-*/
-IpcProvider.prototype._addResponseCallback = function(payload, callback) {
-    var id = payload.id || payload[0].id;
-    var method = payload.method || payload[0].method;
-
-    this.responseCallbacks[id] = callback;
-    this.responseCallbacks[id].method = method;
-};
-
-/**
-Timeout all requests when the end/error event is fired
-
-@method _timeout
-*/
-IpcProvider.prototype._timeout = function() {
-    for(var key in this.responseCallbacks) {
-        if(this.responseCallbacks.hasOwnProperty(key)){
-            this.responseCallbacks[key](errors.InvalidConnection('on IPC'));
-            delete this.responseCallbacks[key];
-        }
-    }
-};
-
-
-/**
-Check if the current connection is still valid.
-
-@method isConnected
-*/
-IpcProvider.prototype.isConnected = function() {
-    var _this = this;
-
-    // try reconnect, when connection is gone
-    if(!_this.connection.writable)
-        _this.connection.connect({path: _this.path});
-
-    return !!this.connection.writable;
-};
-
-IpcProvider.prototype.send = function (payload) {
-
-    if(this.connection.writeSync) {
-        var result;
-
-        // try reconnect, when connection is gone
-        if(!this.connection.writable)
-            this.connection.connect({path: this.path});
-
-        var data = this.connection.writeSync(JSON.stringify(payload));
-
-        try {
-            result = JSON.parse(data);
-        } catch(e) {
-            throw errors.InvalidResponse(data);                
-        }
-
-        return result;
-
-    } else {
-        throw new Error('You tried to send "'+ payload.method +'" synchronously. Synchronous requests are not supported by the IPC provider.');
-    }
-};
-
-IpcProvider.prototype.sendAsync = function (payload, callback) {
-    // try reconnect, when connection is gone
-    if(!this.connection.writable)
-        this.connection.connect({path: this.path});
-
-
-    this.connection.write(JSON.stringify(payload));
-    this._addResponseCallback(payload, callback);
-};
-
-module.exports = IpcProvider;
-
-
-
-/***/ }),
-
-/***/ 182:
-/***/ (function(module, exports, __webpack_require__) {
-
-/*
-    This file is part of web3.js.
-
-    web3.js is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Lesser General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    web3.js is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-
-    You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
-*/
-/** @file db.js
- * @authors:
- *   Marek Kotewicz <marek@ethdev.com>
- * @date 2015
- */
-
-var Method = __webpack_require__(22);
-
-var DB = function (web3) {
-    this._requestManager = web3._requestManager;
-
-    var self = this;
-    
-    methods().forEach(function(method) { 
-        method.attachToObject(self);
-        method.setRequestManager(web3._requestManager);
-    });
-};
-
-var methods = function () {
-    var putString = new Method({
-        name: 'putString',
-        call: 'db_putString',
-        params: 3
-    });
-
-    var getString = new Method({
-        name: 'getString',
-        call: 'db_getString',
-        params: 2
-    });
-
-    var putHex = new Method({
-        name: 'putHex',
-        call: 'db_putHex',
-        params: 3
-    });
-
-    var getHex = new Method({
-        name: 'getHex',
-        call: 'db_getHex',
-        params: 2
-    });
-
-    return [
-        putString, getString, putHex, getHex
-    ];
-};
-
-module.exports = DB;
-
-
-/***/ }),
-
-/***/ 183:
-/***/ (function(module, exports, __webpack_require__) {
-
 "use strict";
 /*
     This file is part of web3.js.
@@ -10518,13 +10193,13 @@ var utils = __webpack_require__(4);
 var Method = __webpack_require__(22);
 var Property = __webpack_require__(26);
 var c = __webpack_require__(39);
-var Contract = __webpack_require__(177);
+var Contract = __webpack_require__(174);
 var watches = __webpack_require__(42);
 var Filter = __webpack_require__(40);
-var IsSyncing = __webpack_require__(191);
-var namereg = __webpack_require__(188);
+var IsSyncing = __webpack_require__(188);
+var namereg = __webpack_require__(185);
 var Iban = __webpack_require__(41);
-var transfer = __webpack_require__(192);
+var transfer = __webpack_require__(189);
 
 var blockCall = function (args) {
     return (utils.isString(args[0]) && args[0].indexOf('0x') === 0) ? "eth_getBlockByHash" : "eth_getBlockByNumber";
@@ -10846,7 +10521,7 @@ module.exports = Eth;
 
 /***/ }),
 
-/***/ 184:
+/***/ 181:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -10905,7 +10580,7 @@ module.exports = Net;
 
 /***/ }),
 
-/***/ 185:
+/***/ 182:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11006,7 +10681,7 @@ module.exports = Personal;
 
 /***/ }),
 
-/***/ 186:
+/***/ 183:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -11099,7 +10774,7 @@ module.exports = Shh;
 
 /***/ }),
 
-/***/ 187:
+/***/ 184:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11252,7 +10927,7 @@ module.exports = Swarm;
 
 /***/ }),
 
-/***/ 188:
+/***/ 185:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -11277,8 +10952,8 @@ module.exports = Swarm;
  * @date 2015
  */
 
-var globalRegistrarAbi = __webpack_require__(160);
-var icapRegistrarAbi= __webpack_require__(161);
+var globalRegistrarAbi = __webpack_require__(157);
+var icapRegistrarAbi= __webpack_require__(158);
 
 var globalNameregAddress = '0xc6d9d2cd449a754c494264e1809c50e34d64562b';
 var icapNameregAddress = '0xa1a111bc074c9cfa781f0c38e63bd51c91b8af00';
@@ -11298,7 +10973,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 189:
+/***/ 186:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -11570,6 +11245,221 @@ module.exports = RequestManager;
 
 /***/ }),
 
+/***/ 187:
+/***/ (function(module, exports) {
+
+
+
+var Settings = function () {
+    this.defaultBlock = 'latest';
+    this.defaultAccount = undefined;
+};
+
+module.exports = Settings;
+
+
+
+/***/ }),
+
+/***/ 188:
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+    This file is part of web3.js.
+
+    web3.js is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    web3.js is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public License
+    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/** @file syncing.js
+ * @authors:
+ *   Fabian Vogelsteller <fabian@ethdev.com>
+ * @date 2015
+ */
+
+var formatters = __webpack_require__(18);
+var utils = __webpack_require__(4);
+
+var count = 1;
+
+/**
+Adds the callback and sets up the methods, to iterate over the results.
+
+@method pollSyncing
+@param {Object} self
+*/
+var pollSyncing = function(self) {
+
+    var onMessage = function (error, sync) {
+        if (error) {
+            return self.callbacks.forEach(function (callback) {
+                callback(error);
+            });
+        }
+
+        if(utils.isObject(sync) && sync.startingBlock)
+            sync = formatters.outputSyncingFormatter(sync);
+
+        self.callbacks.forEach(function (callback) {
+            if (self.lastSyncState !== sync) {
+                
+                // call the callback with true first so the app can stop anything, before receiving the sync data
+                if(!self.lastSyncState && utils.isObject(sync))
+                    callback(null, true);
+                
+                // call on the next CPU cycle, so the actions of the sync stop can be processes first
+                setTimeout(function() {
+                    callback(null, sync);
+                }, 0);
+                
+                self.lastSyncState = sync;
+            }
+        });
+    };
+
+    self.requestManager.startPolling({
+        method: 'eth_syncing',
+        params: [],
+    }, self.pollId, onMessage, self.stopWatching.bind(self));
+
+};
+
+var IsSyncing = function (requestManager, callback) {
+    this.requestManager = requestManager;
+    this.pollId = 'syncPoll_'+ count++;
+    this.callbacks = [];
+    this.addCallback(callback);
+    this.lastSyncState = false;
+    pollSyncing(this);
+
+    return this;
+};
+
+IsSyncing.prototype.addCallback = function (callback) {
+    if(callback)
+        this.callbacks.push(callback);
+    return this;
+};
+
+IsSyncing.prototype.stopWatching = function () {
+    this.requestManager.stopPolling(this.pollId);
+    this.callbacks = [];
+};
+
+module.exports = IsSyncing;
+
+
+
+/***/ }),
+
+/***/ 189:
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+    This file is part of web3.js.
+
+    web3.js is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    web3.js is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public License
+    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/** 
+ * @file transfer.js
+ * @author Marek Kotewicz <marek@ethdev.com>
+ * @date 2015
+ */
+
+var Iban = __webpack_require__(41);
+var exchangeAbi = __webpack_require__(159);
+
+/**
+ * Should be used to make Iban transfer
+ *
+ * @method transfer
+ * @param {String} from
+ * @param {String} to iban
+ * @param {Value} value to be tranfered
+ * @param {Function} callback, callback
+ */
+var transfer = function (eth, from, to, value, callback) {
+    var iban = new Iban(to); 
+    if (!iban.isValid()) {
+        throw new Error('invalid iban address');
+    }
+
+    if (iban.isDirect()) {
+        return transferToAddress(eth, from, iban.address(), value, callback);
+    }
+    
+    if (!callback) {
+        var address = eth.icapNamereg().addr(iban.institution());
+        return deposit(eth, from, address, value, iban.client());
+    }
+
+    eth.icapNamereg().addr(iban.institution(), function (err, address) {
+        return deposit(eth, from, address, value, iban.client(), callback);
+    });
+    
+};
+
+/**
+ * Should be used to transfer funds to certain address
+ *
+ * @method transferToAddress
+ * @param {String} from
+ * @param {String} to
+ * @param {Value} value to be tranfered
+ * @param {Function} callback, callback
+ */
+var transferToAddress = function (eth, from, to, value, callback) {
+    return eth.sendTransaction({
+        address: to,
+        from: from,
+        value: value
+    }, callback);
+};
+
+/**
+ * Should be used to deposit funds to generic Exchange contract (must implement deposit(bytes32) method!)
+ *
+ * @method deposit
+ * @param {String} from
+ * @param {String} to
+ * @param {Value} value to be transfered
+ * @param {String} client unique identifier
+ * @param {Function} callback, callback
+ */
+var deposit = function (eth, from, to, value, client, callback) {
+    var abi = exchangeAbi;
+    return eth.contract(abi).at(to).deposit(client, {
+        from: from,
+        value: value
+    }, callback);
+};
+
+module.exports = transfer;
+
+
+
+/***/ }),
+
 /***/ 19:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11823,225 +11713,10 @@ module.exports = SolidityType;
 /***/ }),
 
 /***/ 190:
-/***/ (function(module, exports) {
-
-
-
-var Settings = function () {
-    this.defaultBlock = 'latest';
-    this.defaultAccount = undefined;
-};
-
-module.exports = Settings;
-
-
-
-/***/ }),
-
-/***/ 191:
 /***/ (function(module, exports, __webpack_require__) {
 
-/*
-    This file is part of web3.js.
-
-    web3.js is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Lesser General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    web3.js is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-
-    You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
-*/
-/** @file syncing.js
- * @authors:
- *   Fabian Vogelsteller <fabian@ethdev.com>
- * @date 2015
- */
-
-var formatters = __webpack_require__(18);
-var utils = __webpack_require__(4);
-
-var count = 1;
-
-/**
-Adds the callback and sets up the methods, to iterate over the results.
-
-@method pollSyncing
-@param {Object} self
-*/
-var pollSyncing = function(self) {
-
-    var onMessage = function (error, sync) {
-        if (error) {
-            return self.callbacks.forEach(function (callback) {
-                callback(error);
-            });
-        }
-
-        if(utils.isObject(sync) && sync.startingBlock)
-            sync = formatters.outputSyncingFormatter(sync);
-
-        self.callbacks.forEach(function (callback) {
-            if (self.lastSyncState !== sync) {
-                
-                // call the callback with true first so the app can stop anything, before receiving the sync data
-                if(!self.lastSyncState && utils.isObject(sync))
-                    callback(null, true);
-                
-                // call on the next CPU cycle, so the actions of the sync stop can be processes first
-                setTimeout(function() {
-                    callback(null, sync);
-                }, 0);
-                
-                self.lastSyncState = sync;
-            }
-        });
-    };
-
-    self.requestManager.startPolling({
-        method: 'eth_syncing',
-        params: [],
-    }, self.pollId, onMessage, self.stopWatching.bind(self));
-
-};
-
-var IsSyncing = function (requestManager, callback) {
-    this.requestManager = requestManager;
-    this.pollId = 'syncPoll_'+ count++;
-    this.callbacks = [];
-    this.addCallback(callback);
-    this.lastSyncState = false;
-    pollSyncing(this);
-
-    return this;
-};
-
-IsSyncing.prototype.addCallback = function (callback) {
-    if(callback)
-        this.callbacks.push(callback);
-    return this;
-};
-
-IsSyncing.prototype.stopWatching = function () {
-    this.requestManager.stopPolling(this.pollId);
-    this.callbacks = [];
-};
-
-module.exports = IsSyncing;
-
-
-
-/***/ }),
-
-/***/ 192:
-/***/ (function(module, exports, __webpack_require__) {
-
-/*
-    This file is part of web3.js.
-
-    web3.js is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Lesser General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    web3.js is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-
-    You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
-*/
-/** 
- * @file transfer.js
- * @author Marek Kotewicz <marek@ethdev.com>
- * @date 2015
- */
-
-var Iban = __webpack_require__(41);
-var exchangeAbi = __webpack_require__(162);
-
-/**
- * Should be used to make Iban transfer
- *
- * @method transfer
- * @param {String} from
- * @param {String} to iban
- * @param {Value} value to be tranfered
- * @param {Function} callback, callback
- */
-var transfer = function (eth, from, to, value, callback) {
-    var iban = new Iban(to); 
-    if (!iban.isValid()) {
-        throw new Error('invalid iban address');
-    }
-
-    if (iban.isDirect()) {
-        return transferToAddress(eth, from, iban.address(), value, callback);
-    }
-    
-    if (!callback) {
-        var address = eth.icapNamereg().addr(iban.institution());
-        return deposit(eth, from, address, value, iban.client());
-    }
-
-    eth.icapNamereg().addr(iban.institution(), function (err, address) {
-        return deposit(eth, from, address, value, iban.client(), callback);
-    });
-    
-};
-
-/**
- * Should be used to transfer funds to certain address
- *
- * @method transferToAddress
- * @param {String} from
- * @param {String} to
- * @param {Value} value to be tranfered
- * @param {Function} callback, callback
- */
-var transferToAddress = function (eth, from, to, value, callback) {
-    return eth.sendTransaction({
-        address: to,
-        from: from,
-        value: value
-    }, callback);
-};
-
-/**
- * Should be used to deposit funds to generic Exchange contract (must implement deposit(bytes32) method!)
- *
- * @method deposit
- * @param {String} from
- * @param {String} to
- * @param {Value} value to be transfered
- * @param {String} client unique identifier
- * @param {Function} callback, callback
- */
-var deposit = function (eth, from, to, value, client, callback) {
-    var abi = exchangeAbi;
-    return eth.contract(abi).at(to).deposit(client, {
-        from: from,
-        value: value
-    }, callback);
-};
-
-module.exports = transfer;
-
-
-
-/***/ }),
-
-/***/ 193:
-/***/ (function(module, exports, __webpack_require__) {
-
-var sha3 = __webpack_require__(194);
-var schema_version = __webpack_require__(196).version;
+var sha3 = __webpack_require__(191);
+var schema_version = __webpack_require__(193).version;
 
 var TruffleSchema = {
   // Normalize options passed in to be the exact options required
@@ -12225,13 +11900,13 @@ module.exports = TruffleSchema;
 
 /***/ }),
 
-/***/ 194:
+/***/ 191:
 /***/ (function(module, exports, __webpack_require__) {
 
 ;(function (root, factory, undef) {
 	if (true) {
 		// CommonJS
-		module.exports = exports = factory(__webpack_require__(73), __webpack_require__(195));
+		module.exports = exports = factory(__webpack_require__(73), __webpack_require__(192));
 	}
 	else if (typeof define === "function" && define.amd) {
 		// AMD
@@ -12554,7 +12229,7 @@ module.exports = TruffleSchema;
 
 /***/ }),
 
-/***/ 195:
+/***/ 192:
 /***/ (function(module, exports, __webpack_require__) {
 
 ;(function (root, factory) {
@@ -12864,19 +12539,19 @@ module.exports = TruffleSchema;
 
 /***/ }),
 
-/***/ 196:
+/***/ 193:
 /***/ (function(module, exports) {
 
 module.exports = {"_from":"truffle-contract-schema@0.0.5","_id":"truffle-contract-schema@0.0.5","_inBundle":false,"_integrity":"sha1-Xp0gvQvyon/pQxB0gknUhO7kmWE=","_location":"/truffle-contract-schema","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"truffle-contract-schema@0.0.5","name":"truffle-contract-schema","escapedName":"truffle-contract-schema","rawSpec":"0.0.5","saveSpec":null,"fetchSpec":"0.0.5"},"_requiredBy":["/truffle-contract"],"_resolved":"https://registry.npm.taobao.org/truffle-contract-schema/download/truffle-contract-schema-0.0.5.tgz","_shasum":"5e9d20bd0bf2a27fe94310748249d484eee49961","_spec":"truffle-contract-schema@0.0.5","_where":"/Users/steveniiv/Test/ShareApp-master/node_modules/truffle-contract","author":{"name":"Tim Coulter","email":"tim.coulter@consensys.net"},"bugs":{"url":"https://github.com/trufflesuite/truffle-schema/issues"},"bundleDependencies":false,"dependencies":{"crypto-js":"^3.1.9-1"},"deprecated":"WARNING: This package has been renamed to @truffle/contract-schema.","description":"JSON schema for contract artifacts","devDependencies":{"mocha":"^3.2.0"},"homepage":"https://github.com/trufflesuite/truffle-schema#readme","keywords":["ethereum","json","schema","contract","artifacts"],"license":"MIT","main":"index.js","name":"truffle-contract-schema","repository":{"type":"git","url":"git+https://github.com/trufflesuite/truffle-schema.git"},"scripts":{"test":"mocha"},"version":"0.0.5"}
 
 /***/ }),
 
-/***/ 197:
+/***/ 194:
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global, module) {var ethJSABI = __webpack_require__(136);
-var BlockchainUtils = __webpack_require__(158);
-var Web3 = __webpack_require__(198);
+/* WEBPACK VAR INJECTION */(function(global, module) {var ethJSABI = __webpack_require__(134);
+var BlockchainUtils = __webpack_require__(155);
+var Web3 = __webpack_require__(195);
 
 // For browserified version. If browserify gave us an empty version,
 // look for the one provided by the user.
@@ -13674,10 +13349,10 @@ var contract = (function(module) {
 
 /***/ }),
 
-/***/ 198:
+/***/ 195:
 /***/ (function(module, exports, __webpack_require__) {
 
-var Web3 = __webpack_require__(213);
+var Web3 = __webpack_require__(210);
 
 // dont override global variable
 if (typeof window !== 'undefined' && typeof window.Web3 === 'undefined') {
@@ -13689,10 +13364,62 @@ module.exports = Web3;
 
 /***/ }),
 
-/***/ 199:
+/***/ 196:
 /***/ (function(module, exports) {
 
 module.exports = [{"constant":true,"inputs":[{"name":"_owner","type":"address"}],"name":"name","outputs":[{"name":"o_name","type":"bytes32"}],"type":"function"},{"constant":true,"inputs":[{"name":"_name","type":"bytes32"}],"name":"owner","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":true,"inputs":[{"name":"_name","type":"bytes32"}],"name":"content","outputs":[{"name":"","type":"bytes32"}],"type":"function"},{"constant":true,"inputs":[{"name":"_name","type":"bytes32"}],"name":"addr","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":false,"inputs":[{"name":"_name","type":"bytes32"}],"name":"reserve","outputs":[],"type":"function"},{"constant":true,"inputs":[{"name":"_name","type":"bytes32"}],"name":"subRegistrar","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":false,"inputs":[{"name":"_name","type":"bytes32"},{"name":"_newOwner","type":"address"}],"name":"transfer","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"_name","type":"bytes32"},{"name":"_registrar","type":"address"}],"name":"setSubRegistrar","outputs":[],"type":"function"},{"constant":false,"inputs":[],"name":"Registrar","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"_name","type":"bytes32"},{"name":"_a","type":"address"},{"name":"_primary","type":"bool"}],"name":"setAddress","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"_name","type":"bytes32"},{"name":"_content","type":"bytes32"}],"name":"setContent","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"_name","type":"bytes32"}],"name":"disown","outputs":[],"type":"function"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_name","type":"bytes32"},{"indexed":false,"name":"_winner","type":"address"}],"name":"AuctionEnded","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_name","type":"bytes32"},{"indexed":false,"name":"_bidder","type":"address"},{"indexed":false,"name":"_value","type":"uint256"}],"name":"NewBid","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"name","type":"bytes32"}],"name":"Changed","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"name","type":"bytes32"},{"indexed":true,"name":"addr","type":"address"}],"name":"PrimaryChanged","type":"event"}]
+
+/***/ }),
+
+/***/ 197:
+/***/ (function(module, exports) {
+
+module.exports = [{"constant":true,"inputs":[{"name":"_name","type":"bytes32"}],"name":"owner","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":false,"inputs":[{"name":"_name","type":"bytes32"},{"name":"_refund","type":"address"}],"name":"disown","outputs":[],"type":"function"},{"constant":true,"inputs":[{"name":"_name","type":"bytes32"}],"name":"addr","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":false,"inputs":[{"name":"_name","type":"bytes32"}],"name":"reserve","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"_name","type":"bytes32"},{"name":"_newOwner","type":"address"}],"name":"transfer","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"_name","type":"bytes32"},{"name":"_a","type":"address"}],"name":"setAddr","outputs":[],"type":"function"},{"anonymous":false,"inputs":[{"indexed":true,"name":"name","type":"bytes32"}],"name":"Changed","type":"event"}]
+
+/***/ }),
+
+/***/ 198:
+/***/ (function(module, exports) {
+
+module.exports = [{"constant":false,"inputs":[{"name":"from","type":"bytes32"},{"name":"to","type":"address"},{"name":"value","type":"uint256"}],"name":"transfer","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"from","type":"bytes32"},{"name":"to","type":"address"},{"name":"indirectId","type":"bytes32"},{"name":"value","type":"uint256"}],"name":"icapTransfer","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"to","type":"bytes32"}],"name":"deposit","outputs":[],"type":"function"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"AnonymousDeposit","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"bytes32"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Deposit","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"bytes32"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"bytes32"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"indirectId","type":"bytes32"},{"indexed":false,"name":"value","type":"uint256"}],"name":"IcapTransfer","type":"event"}]
+
+/***/ }),
+
+/***/ 199:
+/***/ (function(module, exports, __webpack_require__) {
+
+var f = __webpack_require__(11);
+var SolidityType = __webpack_require__(19);
+
+/**
+ * SolidityTypeAddress is a prootype that represents address type
+ * It matches:
+ * address
+ * address[]
+ * address[4]
+ * address[][]
+ * address[3][]
+ * address[][6][], ...
+ */
+var SolidityTypeAddress = function () {
+    this._inputFormatter = f.formatInputInt;
+    this._outputFormatter = f.formatOutputAddress;
+};
+
+SolidityTypeAddress.prototype = new SolidityType({});
+SolidityTypeAddress.prototype.constructor = SolidityTypeAddress;
+
+SolidityTypeAddress.prototype.isType = function (name) {
+    return !!name.match(/address(\[([0-9]*)\])?/);
+};
+
+SolidityTypeAddress.prototype.staticPartLength = function (name) {
+    return 32 * this.staticArrayLength(name);
+};
+
+module.exports = SolidityTypeAddress;
+
+
 
 /***/ }),
 
@@ -14003,58 +13730,6 @@ module.exports = {
 /***/ }),
 
 /***/ 200:
-/***/ (function(module, exports) {
-
-module.exports = [{"constant":true,"inputs":[{"name":"_name","type":"bytes32"}],"name":"owner","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":false,"inputs":[{"name":"_name","type":"bytes32"},{"name":"_refund","type":"address"}],"name":"disown","outputs":[],"type":"function"},{"constant":true,"inputs":[{"name":"_name","type":"bytes32"}],"name":"addr","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":false,"inputs":[{"name":"_name","type":"bytes32"}],"name":"reserve","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"_name","type":"bytes32"},{"name":"_newOwner","type":"address"}],"name":"transfer","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"_name","type":"bytes32"},{"name":"_a","type":"address"}],"name":"setAddr","outputs":[],"type":"function"},{"anonymous":false,"inputs":[{"indexed":true,"name":"name","type":"bytes32"}],"name":"Changed","type":"event"}]
-
-/***/ }),
-
-/***/ 201:
-/***/ (function(module, exports) {
-
-module.exports = [{"constant":false,"inputs":[{"name":"from","type":"bytes32"},{"name":"to","type":"address"},{"name":"value","type":"uint256"}],"name":"transfer","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"from","type":"bytes32"},{"name":"to","type":"address"},{"name":"indirectId","type":"bytes32"},{"name":"value","type":"uint256"}],"name":"icapTransfer","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"to","type":"bytes32"}],"name":"deposit","outputs":[],"type":"function"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"AnonymousDeposit","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"bytes32"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Deposit","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"bytes32"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"bytes32"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"indirectId","type":"bytes32"},{"indexed":false,"name":"value","type":"uint256"}],"name":"IcapTransfer","type":"event"}]
-
-/***/ }),
-
-/***/ 202:
-/***/ (function(module, exports, __webpack_require__) {
-
-var f = __webpack_require__(11);
-var SolidityType = __webpack_require__(19);
-
-/**
- * SolidityTypeAddress is a prootype that represents address type
- * It matches:
- * address
- * address[]
- * address[4]
- * address[][]
- * address[3][]
- * address[][6][], ...
- */
-var SolidityTypeAddress = function () {
-    this._inputFormatter = f.formatInputInt;
-    this._outputFormatter = f.formatOutputAddress;
-};
-
-SolidityTypeAddress.prototype = new SolidityType({});
-SolidityTypeAddress.prototype.constructor = SolidityTypeAddress;
-
-SolidityTypeAddress.prototype.isType = function (name) {
-    return !!name.match(/address(\[([0-9]*)\])?/);
-};
-
-SolidityTypeAddress.prototype.staticPartLength = function (name) {
-    return 32 * this.staticArrayLength(name);
-};
-
-module.exports = SolidityTypeAddress;
-
-
-
-/***/ }),
-
-/***/ 203:
 /***/ (function(module, exports, __webpack_require__) {
 
 var f = __webpack_require__(11);
@@ -14091,7 +13766,7 @@ module.exports = SolidityTypeBool;
 
 /***/ }),
 
-/***/ 204:
+/***/ 201:
 /***/ (function(module, exports, __webpack_require__) {
 
 var f = __webpack_require__(11);
@@ -14136,7 +13811,7 @@ module.exports = SolidityTypeBytes;
 
 /***/ }),
 
-/***/ 205:
+/***/ 202:
 /***/ (function(module, exports, __webpack_require__) {
 
 var f = __webpack_require__(11);
@@ -14168,7 +13843,7 @@ module.exports = SolidityTypeDynamicBytes;
 
 /***/ }),
 
-/***/ 206:
+/***/ 203:
 /***/ (function(module, exports, __webpack_require__) {
 
 var f = __webpack_require__(11);
@@ -14211,7 +13886,7 @@ module.exports = SolidityTypeInt;
 
 /***/ }),
 
-/***/ 207:
+/***/ 204:
 /***/ (function(module, exports, __webpack_require__) {
 
 var f = __webpack_require__(11);
@@ -14254,7 +13929,7 @@ module.exports = SolidityTypeReal;
 
 /***/ }),
 
-/***/ 208:
+/***/ 205:
 /***/ (function(module, exports, __webpack_require__) {
 
 var f = __webpack_require__(11);
@@ -14286,7 +13961,7 @@ module.exports = SolidityTypeString;
 
 /***/ }),
 
-/***/ 209:
+/***/ 206:
 /***/ (function(module, exports, __webpack_require__) {
 
 var f = __webpack_require__(11);
@@ -14329,7 +14004,7 @@ module.exports = SolidityTypeUInt;
 
 /***/ }),
 
-/***/ 210:
+/***/ 207:
 /***/ (function(module, exports, __webpack_require__) {
 
 var f = __webpack_require__(11);
@@ -14372,7 +14047,7 @@ module.exports = SolidityTypeUReal;
 
 /***/ }),
 
-/***/ 211:
+/***/ 208:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14389,14 +14064,14 @@ if (typeof XMLHttpRequest === 'undefined') {
 
 /***/ }),
 
-/***/ 212:
+/***/ 209:
 /***/ (function(module, exports) {
 
 module.exports = {"version":"0.16.0"}
 
 /***/ }),
 
-/***/ 213:
+/***/ 210:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -14426,22 +14101,22 @@ module.exports = {"version":"0.16.0"}
  * @date 2014
  */
 
-var RequestManager = __webpack_require__(227);
+var RequestManager = __webpack_require__(224);
 var Iban = __webpack_require__(46);
-var Eth = __webpack_require__(222);
-var DB = __webpack_require__(221);
-var Shh = __webpack_require__(225);
-var Net = __webpack_require__(223);
-var Personal = __webpack_require__(224);
-var Settings = __webpack_require__(228);
-var version = __webpack_require__(212);
+var Eth = __webpack_require__(219);
+var DB = __webpack_require__(218);
+var Shh = __webpack_require__(222);
+var Net = __webpack_require__(220);
+var Personal = __webpack_require__(221);
+var Settings = __webpack_require__(225);
+var version = __webpack_require__(209);
 var utils = __webpack_require__(5);
 var sha3 = __webpack_require__(33);
-var extend = __webpack_require__(217);
-var Batch = __webpack_require__(215);
+var extend = __webpack_require__(214);
+var Batch = __webpack_require__(212);
 var Property = __webpack_require__(35);
-var HttpProvider = __webpack_require__(219);
-var IpcProvider = __webpack_require__(220);
+var HttpProvider = __webpack_require__(216);
+var IpcProvider = __webpack_require__(217);
 
 
 
@@ -14549,7 +14224,7 @@ module.exports = Web3;
 
 /***/ }),
 
-/***/ 214:
+/***/ 211:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -14644,7 +14319,7 @@ module.exports = AllSolidityEvents;
 
 /***/ }),
 
-/***/ 215:
+/***/ 212:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -14717,7 +14392,7 @@ module.exports = Batch;
 
 /***/ }),
 
-/***/ 216:
+/***/ 213:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -14745,8 +14420,8 @@ module.exports = Batch;
 var utils = __webpack_require__(5);
 var coder = __webpack_require__(58);
 var SolidityEvent = __webpack_require__(75);
-var SolidityFunction = __webpack_require__(218);
-var AllEvents = __webpack_require__(214);
+var SolidityFunction = __webpack_require__(215);
+var AllEvents = __webpack_require__(211);
 
 /**
  * Should be called to encode constructor params
@@ -15022,7 +14697,7 @@ module.exports = ContractFactory;
 
 /***/ }),
 
-/***/ 217:
+/***/ 214:
 /***/ (function(module, exports, __webpack_require__) {
 
 var formatters = __webpack_require__(20);
@@ -15077,7 +14752,7 @@ module.exports = extend;
 
 /***/ }),
 
-/***/ 218:
+/***/ 215:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -15331,7 +15006,7 @@ module.exports = SolidityFunction;
 
 /***/ }),
 
-/***/ 219:
+/***/ 216:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15376,7 +15051,7 @@ if (typeof Meteor !== 'undefined' && Meteor.isServer) { // jshint ignore: line
 
 // node
 } else {
-    XMLHttpRequest = __webpack_require__(211).XMLHttpRequest; // jshint ignore: line
+    XMLHttpRequest = __webpack_require__(208).XMLHttpRequest; // jshint ignore: line
 }
 
 /**
@@ -15485,179 +15160,7 @@ module.exports = HttpProvider;
 
 /***/ }),
 
-/***/ 22:
-/***/ (function(module, exports, __webpack_require__) {
-
-/*
-    This file is part of web3.js.
-
-    web3.js is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Lesser General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    web3.js is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-
-    You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
-*/
-/**
- * @file method.js
- * @author Marek Kotewicz <marek@ethdev.com>
- * @date 2015
- */
-
-var utils = __webpack_require__(4);
-var errors = __webpack_require__(32);
-
-var Method = function (options) {
-    this.name = options.name;
-    this.call = options.call;
-    this.params = options.params || 0;
-    this.inputFormatter = options.inputFormatter;
-    this.outputFormatter = options.outputFormatter;
-    this.requestManager = null;
-};
-
-Method.prototype.setRequestManager = function (rm) {
-    this.requestManager = rm;
-};
-
-/**
- * Should be used to determine name of the jsonrpc method based on arguments
- *
- * @method getCall
- * @param {Array} arguments
- * @return {String} name of jsonrpc method
- */
-Method.prototype.getCall = function (args) {
-    return utils.isFunction(this.call) ? this.call(args) : this.call;
-};
-
-/**
- * Should be used to extract callback from array of arguments. Modifies input param
- *
- * @method extractCallback
- * @param {Array} arguments
- * @return {Function|Null} callback, if exists
- */
-Method.prototype.extractCallback = function (args) {
-    if (utils.isFunction(args[args.length - 1])) {
-        return args.pop(); // modify the args array!
-    }
-};
-
-/**
- * Should be called to check if the number of arguments is correct
- * 
- * @method validateArgs
- * @param {Array} arguments
- * @throws {Error} if it is not
- */
-Method.prototype.validateArgs = function (args) {
-    if (args.length !== this.params) {
-        throw errors.InvalidNumberOfParams();
-    }
-};
-
-/**
- * Should be called to format input args of method
- * 
- * @method formatInput
- * @param {Array}
- * @return {Array}
- */
-Method.prototype.formatInput = function (args) {
-    if (!this.inputFormatter) {
-        return args;
-    }
-
-    return this.inputFormatter.map(function (formatter, index) {
-        return formatter ? formatter(args[index]) : args[index];
-    });
-};
-
-/**
- * Should be called to format output(result) of method
- *
- * @method formatOutput
- * @param {Object}
- * @return {Object}
- */
-Method.prototype.formatOutput = function (result) {
-    return this.outputFormatter && result ? this.outputFormatter(result) : result;
-};
-
-/**
- * Should create payload from given input args
- *
- * @method toPayload
- * @param {Array} args
- * @return {Object}
- */
-Method.prototype.toPayload = function (args) {
-    var call = this.getCall(args);
-    var callback = this.extractCallback(args);
-    var params = this.formatInput(args);
-    this.validateArgs(params);
-
-    return {
-        method: call,
-        params: params,
-        callback: callback
-    };
-};
-
-Method.prototype.attachToObject = function (obj) {
-    var func = this.buildCall();
-    func.call = this.call; // TODO!!! that's ugly. filter.js uses it
-    var name = this.name.split('.');
-    if (name.length > 1) {
-        obj[name[0]] = obj[name[0]] || {};
-        obj[name[0]][name[1]] = func;
-    } else {
-        obj[name[0]] = func; 
-    }
-};
-
-Method.prototype.buildCall = function() {
-    var method = this;
-    var send = function () {
-        var payload = method.toPayload(Array.prototype.slice.call(arguments));
-        if (payload.callback) {
-            return method.requestManager.sendAsync(payload, function (err, result) {
-                payload.callback(err, method.formatOutput(result));
-            });
-        }
-        return method.formatOutput(method.requestManager.send(payload));
-    };
-    send.request = this.request.bind(this);
-    return send;
-};
-
-/**
- * Should be called to create pure JSONRPC request which can be used in batch request
- *
- * @method request
- * @param {...} params
- * @return {Object} jsonrpc request
- */
-Method.prototype.request = function () {
-    var payload = this.toPayload(Array.prototype.slice.call(arguments));
-    payload.format = this.formatOutput.bind(this);
-    return payload;
-};
-
-module.exports = Method;
-
-
-
-/***/ }),
-
-/***/ 220:
+/***/ 217:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15872,7 +15375,7 @@ module.exports = IpcProvider;
 
 /***/ }),
 
-/***/ 221:
+/***/ 218:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -15945,7 +15448,7 @@ module.exports = DB;
 
 /***/ }),
 
-/***/ 222:
+/***/ 219:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15979,13 +15482,13 @@ var utils = __webpack_require__(5);
 var Method = __webpack_require__(27);
 var Property = __webpack_require__(35);
 var c = __webpack_require__(44);
-var Contract = __webpack_require__(216);
+var Contract = __webpack_require__(213);
 var watches = __webpack_require__(47);
 var Filter = __webpack_require__(45);
-var IsSyncing = __webpack_require__(229);
-var namereg = __webpack_require__(226);
+var IsSyncing = __webpack_require__(226);
+var namereg = __webpack_require__(223);
 var Iban = __webpack_require__(46);
-var transfer = __webpack_require__(230);
+var transfer = __webpack_require__(227);
 
 var blockCall = function (args) {
     return (utils.isString(args[0]) && args[0].indexOf('0x') === 0) ? "eth_getBlockByHash" : "eth_getBlockByNumber";
@@ -16296,7 +15799,179 @@ module.exports = Eth;
 
 /***/ }),
 
-/***/ 223:
+/***/ 22:
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+    This file is part of web3.js.
+
+    web3.js is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    web3.js is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public License
+    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/**
+ * @file method.js
+ * @author Marek Kotewicz <marek@ethdev.com>
+ * @date 2015
+ */
+
+var utils = __webpack_require__(4);
+var errors = __webpack_require__(32);
+
+var Method = function (options) {
+    this.name = options.name;
+    this.call = options.call;
+    this.params = options.params || 0;
+    this.inputFormatter = options.inputFormatter;
+    this.outputFormatter = options.outputFormatter;
+    this.requestManager = null;
+};
+
+Method.prototype.setRequestManager = function (rm) {
+    this.requestManager = rm;
+};
+
+/**
+ * Should be used to determine name of the jsonrpc method based on arguments
+ *
+ * @method getCall
+ * @param {Array} arguments
+ * @return {String} name of jsonrpc method
+ */
+Method.prototype.getCall = function (args) {
+    return utils.isFunction(this.call) ? this.call(args) : this.call;
+};
+
+/**
+ * Should be used to extract callback from array of arguments. Modifies input param
+ *
+ * @method extractCallback
+ * @param {Array} arguments
+ * @return {Function|Null} callback, if exists
+ */
+Method.prototype.extractCallback = function (args) {
+    if (utils.isFunction(args[args.length - 1])) {
+        return args.pop(); // modify the args array!
+    }
+};
+
+/**
+ * Should be called to check if the number of arguments is correct
+ * 
+ * @method validateArgs
+ * @param {Array} arguments
+ * @throws {Error} if it is not
+ */
+Method.prototype.validateArgs = function (args) {
+    if (args.length !== this.params) {
+        throw errors.InvalidNumberOfParams();
+    }
+};
+
+/**
+ * Should be called to format input args of method
+ * 
+ * @method formatInput
+ * @param {Array}
+ * @return {Array}
+ */
+Method.prototype.formatInput = function (args) {
+    if (!this.inputFormatter) {
+        return args;
+    }
+
+    return this.inputFormatter.map(function (formatter, index) {
+        return formatter ? formatter(args[index]) : args[index];
+    });
+};
+
+/**
+ * Should be called to format output(result) of method
+ *
+ * @method formatOutput
+ * @param {Object}
+ * @return {Object}
+ */
+Method.prototype.formatOutput = function (result) {
+    return this.outputFormatter && result ? this.outputFormatter(result) : result;
+};
+
+/**
+ * Should create payload from given input args
+ *
+ * @method toPayload
+ * @param {Array} args
+ * @return {Object}
+ */
+Method.prototype.toPayload = function (args) {
+    var call = this.getCall(args);
+    var callback = this.extractCallback(args);
+    var params = this.formatInput(args);
+    this.validateArgs(params);
+
+    return {
+        method: call,
+        params: params,
+        callback: callback
+    };
+};
+
+Method.prototype.attachToObject = function (obj) {
+    var func = this.buildCall();
+    func.call = this.call; // TODO!!! that's ugly. filter.js uses it
+    var name = this.name.split('.');
+    if (name.length > 1) {
+        obj[name[0]] = obj[name[0]] || {};
+        obj[name[0]][name[1]] = func;
+    } else {
+        obj[name[0]] = func; 
+    }
+};
+
+Method.prototype.buildCall = function() {
+    var method = this;
+    var send = function () {
+        var payload = method.toPayload(Array.prototype.slice.call(arguments));
+        if (payload.callback) {
+            return method.requestManager.sendAsync(payload, function (err, result) {
+                payload.callback(err, method.formatOutput(result));
+            });
+        }
+        return method.formatOutput(method.requestManager.send(payload));
+    };
+    send.request = this.request.bind(this);
+    return send;
+};
+
+/**
+ * Should be called to create pure JSONRPC request which can be used in batch request
+ *
+ * @method request
+ * @param {...} params
+ * @return {Object} jsonrpc request
+ */
+Method.prototype.request = function () {
+    var payload = this.toPayload(Array.prototype.slice.call(arguments));
+    payload.format = this.formatOutput.bind(this);
+    return payload;
+};
+
+module.exports = Method;
+
+
+
+/***/ }),
+
+/***/ 220:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -16355,7 +16030,7 @@ module.exports = Net;
 
 /***/ }),
 
-/***/ 224:
+/***/ 221:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16448,7 +16123,7 @@ module.exports = Personal;
 
 /***/ }),
 
-/***/ 225:
+/***/ 222:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -16541,7 +16216,7 @@ module.exports = Shh;
 
 /***/ }),
 
-/***/ 226:
+/***/ 223:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -16566,8 +16241,8 @@ module.exports = Shh;
  * @date 2015
  */
 
-var globalRegistrarAbi = __webpack_require__(199);
-var icapRegistrarAbi= __webpack_require__(200);
+var globalRegistrarAbi = __webpack_require__(196);
+var icapRegistrarAbi= __webpack_require__(197);
 
 var globalNameregAddress = '0xc6d9d2cd449a754c494264e1809c50e34d64562b';
 var icapNameregAddress = '0xa1a111bc074c9cfa781f0c38e63bd51c91b8af00';
@@ -16587,7 +16262,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 227:
+/***/ 224:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -16859,7 +16534,7 @@ module.exports = RequestManager;
 
 /***/ }),
 
-/***/ 228:
+/***/ 225:
 /***/ (function(module, exports) {
 
 
@@ -16875,7 +16550,7 @@ module.exports = Settings;
 
 /***/ }),
 
-/***/ 229:
+/***/ 226:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -16971,6 +16646,113 @@ IsSyncing.prototype.stopWatching = function () {
 
 module.exports = IsSyncing;
 
+
+
+/***/ }),
+
+/***/ 227:
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+    This file is part of web3.js.
+
+    web3.js is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    web3.js is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public License
+    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/** 
+ * @file transfer.js
+ * @author Marek Kotewicz <marek@ethdev.com>
+ * @date 2015
+ */
+
+var Iban = __webpack_require__(46);
+var exchangeAbi = __webpack_require__(198);
+
+/**
+ * Should be used to make Iban transfer
+ *
+ * @method transfer
+ * @param {String} from
+ * @param {String} to iban
+ * @param {Value} value to be tranfered
+ * @param {Function} callback, callback
+ */
+var transfer = function (eth, from, to, value, callback) {
+    var iban = new Iban(to); 
+    if (!iban.isValid()) {
+        throw new Error('invalid iban address');
+    }
+
+    if (iban.isDirect()) {
+        return transferToAddress(eth, from, iban.address(), value, callback);
+    }
+    
+    if (!callback) {
+        var address = eth.icapNamereg().addr(iban.institution());
+        return deposit(eth, from, address, value, iban.client());
+    }
+
+    eth.icapNamereg().addr(iban.institution(), function (err, address) {
+        return deposit(eth, from, address, value, iban.client(), callback);
+    });
+    
+};
+
+/**
+ * Should be used to transfer funds to certain address
+ *
+ * @method transferToAddress
+ * @param {String} from
+ * @param {String} to
+ * @param {Value} value to be tranfered
+ * @param {Function} callback, callback
+ */
+var transferToAddress = function (eth, from, to, value, callback) {
+    return eth.sendTransaction({
+        address: to,
+        from: from,
+        value: value
+    }, callback);
+};
+
+/**
+ * Should be used to deposit funds to generic Exchange contract (must implement deposit(bytes32) method!)
+ *
+ * @method deposit
+ * @param {String} from
+ * @param {String} to
+ * @param {Value} value to be transfered
+ * @param {String} client unique identifier
+ * @param {Function} callback, callback
+ */
+var deposit = function (eth, from, to, value, client, callback) {
+    var abi = exchangeAbi;
+    return eth.contract(abi).at(to).deposit(client, {
+        from: from,
+        value: value
+    }, callback);
+};
+
+module.exports = transfer;
+
+
+
+/***/ }),
+
+/***/ 228:
+/***/ (function(module, exports) {
+
+module.exports = XMLHttpRequest;
 
 
 /***/ }),
@@ -17116,109 +16898,74 @@ module.exports = IsSyncing;
 
 /***/ }),
 
-/***/ 230:
+/***/ 234:
 /***/ (function(module, exports, __webpack_require__) {
 
-/*
-    This file is part of web3.js.
+exports = module.exports = __webpack_require__(235)();
+// imports
 
-    web3.js is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Lesser General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
+// module
+exports.push([module.i, "body {\n  padding-top: 50px;\n  background-color: #F0F0F0;\n  color: #7C7C7C;\n}\n\n.navbar{\n  background-color:#2C5C84;\n}\n\n.nav-text{\n  color: #FFFFFF !important;\n}\n\n.nav-text:hover{\n  background-color:#346C9B !important;\n} \n\nli.active2{\n  background-color:#4A8BC2 !important;\n}\n\n.max-width-960{\n  max-width:960px;\n}\n\n.margin-form{\n  margin-top:50px;\n}\n\nhr{\n  background-color: #CCCCCC;\n  height: 1px;\n}\n\n.text-center{\n  text-align:center;\n}\n\n.margin-top{\n  margin-top: 30px;\n}\n\n.footer{\n  background-color:#1F2123;\n}\n\n.footer2{\n  background-color:#000000;\n  text-align:center;\n  padding:8px;\n}\n\n.right{\n  float:right;\n}\n\n.separador{\n  border-top:solid 1px #CCC;\n  border-bottom:solid 1px #CCC;\n  padding: 30px;\n  margin: 20px 0px;\n  text-align: center;\n  color: #4A8BC2;\n  background-color:#F9F9F9;\n  font-size:2em;\n}\n\n#rentButton, #returnButton{\n  background-color:#33ffcc;\n}\n\n#verificationButton, #returnButton, #object-info,#nameObjects{\n  display: none;\n}\n\n/*.box{\n    width:50%; margin-top:10%; margin:auto; padding:28px;\n    height:350px; border:1px #111 solid;\n    position: fixed;\n    top: 400px;\n    left: 200px;\n    background-color: #FFF;\n    display:none;            \n}\n.box.show{display:block;} \n.box .x{ font-size:18px; text-align:right; display:block;}\n.box input{width:80%; font-size:18px; margin-top:18px;}*/", ""]);
 
-    You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
-*/
-/** 
- * @file transfer.js
- * @author Marek Kotewicz <marek@ethdev.com>
- * @date 2015
- */
-
-var Iban = __webpack_require__(46);
-var exchangeAbi = __webpack_require__(201);
-
-/**
- * Should be used to make Iban transfer
- *
- * @method transfer
- * @param {String} from
- * @param {String} to iban
- * @param {Value} value to be tranfered
- * @param {Function} callback, callback
- */
-var transfer = function (eth, from, to, value, callback) {
-    var iban = new Iban(to); 
-    if (!iban.isValid()) {
-        throw new Error('invalid iban address');
-    }
-
-    if (iban.isDirect()) {
-        return transferToAddress(eth, from, iban.address(), value, callback);
-    }
-    
-    if (!callback) {
-        var address = eth.icapNamereg().addr(iban.institution());
-        return deposit(eth, from, address, value, iban.client());
-    }
-
-    eth.icapNamereg().addr(iban.institution(), function (err, address) {
-        return deposit(eth, from, address, value, iban.client(), callback);
-    });
-    
-};
-
-/**
- * Should be used to transfer funds to certain address
- *
- * @method transferToAddress
- * @param {String} from
- * @param {String} to
- * @param {Value} value to be tranfered
- * @param {Function} callback, callback
- */
-var transferToAddress = function (eth, from, to, value, callback) {
-    return eth.sendTransaction({
-        address: to,
-        from: from,
-        value: value
-    }, callback);
-};
-
-/**
- * Should be used to deposit funds to generic Exchange contract (must implement deposit(bytes32) method!)
- *
- * @method deposit
- * @param {String} from
- * @param {String} to
- * @param {Value} value to be transfered
- * @param {String} client unique identifier
- * @param {Function} callback, callback
- */
-var deposit = function (eth, from, to, value, client, callback) {
-    var abi = exchangeAbi;
-    return eth.contract(abi).at(to).deposit(client, {
-        from: from,
-        value: value
-    }, callback);
-};
-
-module.exports = transfer;
-
+// exports
 
 
 /***/ }),
 
-/***/ 231:
+/***/ 235:
 /***/ (function(module, exports) {
 
-module.exports = XMLHttpRequest;
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function() {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		var result = [];
+		for(var i = 0; i < this.length; i++) {
+			var item = this[i];
+			if(item[2]) {
+				result.push("@media " + item[2] + "{" + item[1] + "}");
+			} else {
+				result.push(item[1]);
+			}
+		}
+		return result.join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
 
 
 /***/ }),
@@ -17632,6 +17379,259 @@ module.exports = XMLHttpRequest;
 	return CryptoJS.MD5;
 
 }));
+
+/***/ }),
+
+/***/ 251:
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+var stylesInDom = {},
+	memoize = function(fn) {
+		var memo;
+		return function () {
+			if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+			return memo;
+		};
+	},
+	isOldIE = memoize(function() {
+		return /msie [6-9]\b/.test(self.navigator.userAgent.toLowerCase());
+	}),
+	getHeadElement = memoize(function () {
+		return document.head || document.getElementsByTagName("head")[0];
+	}),
+	singletonElement = null,
+	singletonCounter = 0,
+	styleElementsInsertedAtTop = [];
+
+module.exports = function(list, options) {
+	if(typeof DEBUG !== "undefined" && DEBUG) {
+		if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+	}
+
+	options = options || {};
+	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+	// tags it will allow on a page
+	if (typeof options.singleton === "undefined") options.singleton = isOldIE();
+
+	// By default, add <style> tags to the bottom of <head>.
+	if (typeof options.insertAt === "undefined") options.insertAt = "bottom";
+
+	var styles = listToStyles(list);
+	addStylesToDom(styles, options);
+
+	return function update(newList) {
+		var mayRemove = [];
+		for(var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+			domStyle.refs--;
+			mayRemove.push(domStyle);
+		}
+		if(newList) {
+			var newStyles = listToStyles(newList);
+			addStylesToDom(newStyles, options);
+		}
+		for(var i = 0; i < mayRemove.length; i++) {
+			var domStyle = mayRemove[i];
+			if(domStyle.refs === 0) {
+				for(var j = 0; j < domStyle.parts.length; j++)
+					domStyle.parts[j]();
+				delete stylesInDom[domStyle.id];
+			}
+		}
+	};
+}
+
+function addStylesToDom(styles, options) {
+	for(var i = 0; i < styles.length; i++) {
+		var item = styles[i];
+		var domStyle = stylesInDom[item.id];
+		if(domStyle) {
+			domStyle.refs++;
+			for(var j = 0; j < domStyle.parts.length; j++) {
+				domStyle.parts[j](item.parts[j]);
+			}
+			for(; j < item.parts.length; j++) {
+				domStyle.parts.push(addStyle(item.parts[j], options));
+			}
+		} else {
+			var parts = [];
+			for(var j = 0; j < item.parts.length; j++) {
+				parts.push(addStyle(item.parts[j], options));
+			}
+			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+		}
+	}
+}
+
+function listToStyles(list) {
+	var styles = [];
+	var newStyles = {};
+	for(var i = 0; i < list.length; i++) {
+		var item = list[i];
+		var id = item[0];
+		var css = item[1];
+		var media = item[2];
+		var sourceMap = item[3];
+		var part = {css: css, media: media, sourceMap: sourceMap};
+		if(!newStyles[id])
+			styles.push(newStyles[id] = {id: id, parts: [part]});
+		else
+			newStyles[id].parts.push(part);
+	}
+	return styles;
+}
+
+function insertStyleElement(options, styleElement) {
+	var head = getHeadElement();
+	var lastStyleElementInsertedAtTop = styleElementsInsertedAtTop[styleElementsInsertedAtTop.length - 1];
+	if (options.insertAt === "top") {
+		if(!lastStyleElementInsertedAtTop) {
+			head.insertBefore(styleElement, head.firstChild);
+		} else if(lastStyleElementInsertedAtTop.nextSibling) {
+			head.insertBefore(styleElement, lastStyleElementInsertedAtTop.nextSibling);
+		} else {
+			head.appendChild(styleElement);
+		}
+		styleElementsInsertedAtTop.push(styleElement);
+	} else if (options.insertAt === "bottom") {
+		head.appendChild(styleElement);
+	} else {
+		throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
+	}
+}
+
+function removeStyleElement(styleElement) {
+	styleElement.parentNode.removeChild(styleElement);
+	var idx = styleElementsInsertedAtTop.indexOf(styleElement);
+	if(idx >= 0) {
+		styleElementsInsertedAtTop.splice(idx, 1);
+	}
+}
+
+function createStyleElement(options) {
+	var styleElement = document.createElement("style");
+	styleElement.type = "text/css";
+	insertStyleElement(options, styleElement);
+	return styleElement;
+}
+
+function createLinkElement(options) {
+	var linkElement = document.createElement("link");
+	linkElement.rel = "stylesheet";
+	insertStyleElement(options, linkElement);
+	return linkElement;
+}
+
+function addStyle(obj, options) {
+	var styleElement, update, remove;
+
+	if (options.singleton) {
+		var styleIndex = singletonCounter++;
+		styleElement = singletonElement || (singletonElement = createStyleElement(options));
+		update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
+		remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
+	} else if(obj.sourceMap &&
+		typeof URL === "function" &&
+		typeof URL.createObjectURL === "function" &&
+		typeof URL.revokeObjectURL === "function" &&
+		typeof Blob === "function" &&
+		typeof btoa === "function") {
+		styleElement = createLinkElement(options);
+		update = updateLink.bind(null, styleElement);
+		remove = function() {
+			removeStyleElement(styleElement);
+			if(styleElement.href)
+				URL.revokeObjectURL(styleElement.href);
+		};
+	} else {
+		styleElement = createStyleElement(options);
+		update = applyToTag.bind(null, styleElement);
+		remove = function() {
+			removeStyleElement(styleElement);
+		};
+	}
+
+	update(obj);
+
+	return function updateStyle(newObj) {
+		if(newObj) {
+			if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
+				return;
+			update(obj = newObj);
+		} else {
+			remove();
+		}
+	};
+}
+
+var replaceText = (function () {
+	var textStore = [];
+
+	return function (index, replacement) {
+		textStore[index] = replacement;
+		return textStore.filter(Boolean).join('\n');
+	};
+})();
+
+function applyToSingletonTag(styleElement, index, remove, obj) {
+	var css = remove ? "" : obj.css;
+
+	if (styleElement.styleSheet) {
+		styleElement.styleSheet.cssText = replaceText(index, css);
+	} else {
+		var cssNode = document.createTextNode(css);
+		var childNodes = styleElement.childNodes;
+		if (childNodes[index]) styleElement.removeChild(childNodes[index]);
+		if (childNodes.length) {
+			styleElement.insertBefore(cssNode, childNodes[index]);
+		} else {
+			styleElement.appendChild(cssNode);
+		}
+	}
+}
+
+function applyToTag(styleElement, obj) {
+	var css = obj.css;
+	var media = obj.media;
+
+	if(media) {
+		styleElement.setAttribute("media", media)
+	}
+
+	if(styleElement.styleSheet) {
+		styleElement.styleSheet.cssText = css;
+	} else {
+		while(styleElement.firstChild) {
+			styleElement.removeChild(styleElement.firstChild);
+		}
+		styleElement.appendChild(document.createTextNode(css));
+	}
+}
+
+function updateLink(linkElement, obj) {
+	var css = obj.css;
+	var sourceMap = obj.sourceMap;
+
+	if(sourceMap) {
+		// http://stackoverflow.com/a/26603875
+		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+	}
+
+	var blob = new Blob([css], { type: "text/css" });
+
+	var oldSrc = linkElement.href;
+
+	linkElement.href = URL.createObjectURL(blob);
+
+	if(oldSrc)
+		URL.revokeObjectURL(oldSrc);
+}
+
 
 /***/ }),
 
@@ -26536,10 +26536,10 @@ module.exports = Filter;
 
 /***/ }),
 
-/***/ 454:
+/***/ 455:
 /***/ (function(module, exports) {
 
-module.exports = {"contractName":"UserApp","abi":[{"constant":true,"inputs":[{"name":"userAddress","type":"address"}],"name":"isUser","outputs":[{"name":"isIndeed","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"userName","type":"string"},{"name":"passWord","type":"string"},{"name":"email","type":"string"},{"name":"age","type":"uint256"},{"name":"userAddress","type":"address"},{"name":"sex","type":"string"},{"name":"description","type":"string"}],"name":"addNewUser","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_userAddress","type":"address"}],"name":"getUser","outputs":[{"name":"userName","type":"string"},{"name":"passWord","type":"string"},{"name":"email","type":"string"},{"name":"age","type":"uint256"},{"name":"userAddress","type":"address"},{"name":"sex","type":"string"},{"name":"description","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"userAddress","type":"address"},{"name":"passWord","type":"string"}],"name":"checkUser","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"userName","type":"string"},{"name":"passWord","type":"string"},{"name":"email","type":"string"},{"name":"age","type":"uint256"},{"name":"userAddress","type":"address"},{"name":"sex","type":"string"},{"name":"description","type":"string"}],"name":"modifyUser","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"}],"metadata":"{\"compiler\":{\"version\":\"0.4.19+commit.c4cbbb05\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"name\":\"userName\",\"type\":\"string\"},{\"name\":\"passWord\",\"type\":\"string\"},{\"name\":\"email\",\"type\":\"string\"},{\"name\":\"age\",\"type\":\"uint256\"},{\"name\":\"userAddress\",\"type\":\"address\"},{\"name\":\"sex\",\"type\":\"string\"},{\"name\":\"description\",\"type\":\"string\"}],\"name\":\"modifyUser\",\"outputs\":[{\"name\":\"success\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"userName\",\"type\":\"string\"},{\"name\":\"passWord\",\"type\":\"string\"},{\"name\":\"email\",\"type\":\"string\"},{\"name\":\"age\",\"type\":\"uint256\"},{\"name\":\"userAddress\",\"type\":\"address\"},{\"name\":\"sex\",\"type\":\"string\"},{\"name\":\"description\",\"type\":\"string\"}],\"name\":\"addNewUser\",\"outputs\":[{\"name\":\"success\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"userAddress\",\"type\":\"address\"}],\"name\":\"isUser\",\"outputs\":[{\"name\":\"isIndeed\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"userAddress\",\"type\":\"address\"},{\"name\":\"passWord\",\"type\":\"string\"}],\"name\":\"checkUser\",\"outputs\":[{\"name\":\"success\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_userAddress\",\"type\":\"address\"}],\"name\":\"getUser\",\"outputs\":[{\"name\":\"userName\",\"type\":\"string\"},{\"name\":\"passWord\",\"type\":\"string\"},{\"name\":\"email\",\"type\":\"string\"},{\"name\":\"age\",\"type\":\"uint256\"},{\"name\":\"userAddress\",\"type\":\"address\"},{\"name\":\"sex\",\"type\":\"string\"},{\"name\":\"description\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/steveniiv/Test/Market-DApp/contracts/UserApp.sol\":\"UserApp\"},\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/steveniiv/Test/Market-DApp/contracts/UserApp.sol\":{\"keccak256\":\"0x928eb33d52686d10d55ca776b1ce86a255c6b250790f4000bac392266494f6c1\",\"urls\":[\"bzzr://b8808fcd1e41918781decad41236ee408620a7675e4c0e81363088c2389f6693\"]}},\"version\":1}","bytecode":"0x6060604052341561000f57600080fd5b6115388061001e6000396000f30060606040526004361061006d576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680630165ba0b1461007257806338a1ea1f1461021b5780634209fff1146103c457806353ee88f5146104155780636f77926b146104a9575b600080fd5b341561007d57600080fd5b610201600480803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001909190803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f01602080910402602001604051908101604052809392919081815260200183838082843782019150505050505091905050610745565b604051808215151515815260200191505060405180910390f35b341561022657600080fd5b6103aa600480803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001909190803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f016020809104026020016040519081016040528093929190818152602001838380828437820191505050505050919050506109cd565b604051808215151515815260200191505060405180910390f35b34156103cf57600080fd5b6103fb600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610d04565b604051808215151515815260200191505060405180910390f35b341561042057600080fd5b61048f600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803590602001908201803590602001908080601f01602080910402602001604051908101604052809392919081815260200183838082843782019150505050505091905050610d63565b604051808215151515815260200191505060405180910390f35b34156104b457600080fd5b6104e0600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610ee7565b604051808060200180602001806020018881526020018773ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001806020018060200186810386528d818151815260200191508051906020019080838360005b8381101561056857808201518184015260208101905061054d565b50505050905090810190601f1680156105955780820380516001836020036101000a031916815260200191505b5086810385528c818151815260200191508051906020019080838360005b838110156105ce5780820151818401526020810190506105b3565b50505050905090810190601f1680156105fb5780820380516001836020036101000a031916815260200191505b5086810384528b818151815260200191508051906020019080838360005b83811015610634578082015181840152602081019050610619565b50505050905090810190601f1680156106615780820380516001836020036101000a031916815260200191505b50868103835288818151815260200191508051906020019080838360005b8381101561069a57808201518184015260208101905061067f565b50505050905090810190601f1680156106c75780820380516001836020036101000a031916815260200191505b50868103825287818151815260200191508051906020019080838360005b838110156107005780820151818401526020810190506106e5565b50505050905090810190601f16801561072d5780820380516001836020036101000a031916815260200191505b509c5050505050505050505050505060405180910390f35b600087600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600101908051906020019061079d929190611427565b5086600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060020190805190602001906107f4929190611427565b5085600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600301908051906020019061084b929190611427565b5084600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206004018190555083600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060050160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555082600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600601908051906020019061096a929190611427565b5081600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060070190805190602001906109c1929190611427565b50979650505050505050565b600087600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206001019080519060200190610a25929190611427565b5086600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206002019080519060200190610a7c929190611427565b5085600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206003019080519060200190610ad3929190611427565b5084600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206004018190555083600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060050160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555082600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206006019080519060200190610bf2929190611427565b5081600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206007019080519060200190610c49929190611427565b50600160028054806001018281610c6091906114a7565b9160005260206000209001600087909190916101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555003600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000018190555060019050979650505050505050565b600080600160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600001541115610d595760019050610d5e565b600090505b919050565b600080600160008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600001541115610edc57816040518082805190602001908083835b602083101515610de55780518252602082019150602081019050602083039250610dc0565b6001836020036101000a038019825116818451168082178552505050505050905001915050604051809103902060001916600160008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206002016040518082805460018160011615610100020316600290048015610eb35780601f10610e91576101008083540402835291820191610eb3565b820191906000526020600020905b815481529060010190602001808311610e9f575b50509150506040518091039020600019161415610ed35760019050610ee1565b60009050610ee1565b600090505b92915050565b610eef6114d3565b610ef76114d3565b610eff6114d3565b600080610f0a6114d3565b610f126114d3565b600160008973ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600101600160008a73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600201600160008b73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600301600160008c73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060040154600160008d73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060050160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16600160008e73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600601600160008f73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600701868054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156111975780601f1061116c57610100808354040283529160200191611197565b820191906000526020600020905b81548152906001019060200180831161117a57829003601f168201915b50505050509650858054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156112335780601f1061120857610100808354040283529160200191611233565b820191906000526020600020905b81548152906001019060200180831161121657829003601f168201915b50505050509550848054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156112cf5780601f106112a4576101008083540402835291602001916112cf565b820191906000526020600020905b8154815290600101906020018083116112b257829003601f168201915b50505050509450818054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561136b5780601f106113405761010080835404028352916020019161136b565b820191906000526020600020905b81548152906001019060200180831161134e57829003601f168201915b50505050509150808054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156114075780601f106113dc57610100808354040283529160200191611407565b820191906000526020600020905b8154815290600101906020018083116113ea57829003601f168201915b505050505090509650965096509650965096509650919395979092949650565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061146857805160ff1916838001178555611496565b82800160010185558215611496579182015b8281111561149557825182559160200191906001019061147a565b5b5090506114a391906114e7565b5090565b8154818355818115116114ce578183600052602060002091820191016114cd91906114e7565b5b505050565b602060405190810160405280600081525090565b61150991905b808211156115055760008160009055506001016114ed565b5090565b905600a165627a7a72305820a8b9c87ffd08e992a0545b35be9c5e05f750720b52bba006e59677ed9e2703750029","deployedBytecode":"0x60606040526004361061006d576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680630165ba0b1461007257806338a1ea1f1461021b5780634209fff1146103c457806353ee88f5146104155780636f77926b146104a9575b600080fd5b341561007d57600080fd5b610201600480803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001909190803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f01602080910402602001604051908101604052809392919081815260200183838082843782019150505050505091905050610745565b604051808215151515815260200191505060405180910390f35b341561022657600080fd5b6103aa600480803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001909190803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f016020809104026020016040519081016040528093929190818152602001838380828437820191505050505050919050506109cd565b604051808215151515815260200191505060405180910390f35b34156103cf57600080fd5b6103fb600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610d04565b604051808215151515815260200191505060405180910390f35b341561042057600080fd5b61048f600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803590602001908201803590602001908080601f01602080910402602001604051908101604052809392919081815260200183838082843782019150505050505091905050610d63565b604051808215151515815260200191505060405180910390f35b34156104b457600080fd5b6104e0600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610ee7565b604051808060200180602001806020018881526020018773ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001806020018060200186810386528d818151815260200191508051906020019080838360005b8381101561056857808201518184015260208101905061054d565b50505050905090810190601f1680156105955780820380516001836020036101000a031916815260200191505b5086810385528c818151815260200191508051906020019080838360005b838110156105ce5780820151818401526020810190506105b3565b50505050905090810190601f1680156105fb5780820380516001836020036101000a031916815260200191505b5086810384528b818151815260200191508051906020019080838360005b83811015610634578082015181840152602081019050610619565b50505050905090810190601f1680156106615780820380516001836020036101000a031916815260200191505b50868103835288818151815260200191508051906020019080838360005b8381101561069a57808201518184015260208101905061067f565b50505050905090810190601f1680156106c75780820380516001836020036101000a031916815260200191505b50868103825287818151815260200191508051906020019080838360005b838110156107005780820151818401526020810190506106e5565b50505050905090810190601f16801561072d5780820380516001836020036101000a031916815260200191505b509c5050505050505050505050505060405180910390f35b600087600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600101908051906020019061079d929190611427565b5086600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060020190805190602001906107f4929190611427565b5085600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600301908051906020019061084b929190611427565b5084600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206004018190555083600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060050160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555082600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600601908051906020019061096a929190611427565b5081600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060070190805190602001906109c1929190611427565b50979650505050505050565b600087600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206001019080519060200190610a25929190611427565b5086600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206002019080519060200190610a7c929190611427565b5085600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206003019080519060200190610ad3929190611427565b5084600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206004018190555083600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060050160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555082600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206006019080519060200190610bf2929190611427565b5081600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206007019080519060200190610c49929190611427565b50600160028054806001018281610c6091906114a7565b9160005260206000209001600087909190916101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555003600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000018190555060019050979650505050505050565b600080600160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600001541115610d595760019050610d5e565b600090505b919050565b600080600160008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600001541115610edc57816040518082805190602001908083835b602083101515610de55780518252602082019150602081019050602083039250610dc0565b6001836020036101000a038019825116818451168082178552505050505050905001915050604051809103902060001916600160008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206002016040518082805460018160011615610100020316600290048015610eb35780601f10610e91576101008083540402835291820191610eb3565b820191906000526020600020905b815481529060010190602001808311610e9f575b50509150506040518091039020600019161415610ed35760019050610ee1565b60009050610ee1565b600090505b92915050565b610eef6114d3565b610ef76114d3565b610eff6114d3565b600080610f0a6114d3565b610f126114d3565b600160008973ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600101600160008a73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600201600160008b73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600301600160008c73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060040154600160008d73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060050160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16600160008e73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600601600160008f73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600701868054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156111975780601f1061116c57610100808354040283529160200191611197565b820191906000526020600020905b81548152906001019060200180831161117a57829003601f168201915b50505050509650858054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156112335780601f1061120857610100808354040283529160200191611233565b820191906000526020600020905b81548152906001019060200180831161121657829003601f168201915b50505050509550848054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156112cf5780601f106112a4576101008083540402835291602001916112cf565b820191906000526020600020905b8154815290600101906020018083116112b257829003601f168201915b50505050509450818054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561136b5780601f106113405761010080835404028352916020019161136b565b820191906000526020600020905b81548152906001019060200180831161134e57829003601f168201915b50505050509150808054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156114075780601f106113dc57610100808354040283529160200191611407565b820191906000526020600020905b8154815290600101906020018083116113ea57829003601f168201915b505050505090509650965096509650965096509650919395979092949650565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061146857805160ff1916838001178555611496565b82800160010185558215611496579182015b8281111561149557825182559160200191906001019061147a565b5b5090506114a391906114e7565b5090565b8154818355818115116114ce578183600052602060002091820191016114cd91906114e7565b5b505050565b602060405190810160405280600081525090565b61150991905b808211156115055760008160009055506001016114ed565b5090565b905600a165627a7a72305820a8b9c87ffd08e992a0545b35be9c5e05f750720b52bba006e59677ed9e2703750029","sourceMap":"26:2705:3:-;;;;;;;;;;;;;;;;;","deployedSourceMap":"26:2705:3:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2197:532;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;669:625;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;453:210;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1814:377;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1300:508;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:2;8:100;;;99:1;94:3;90;84:5;80:1;75:3;71;64:6;52:2;49:1;45:3;40:15;;8:100;;;12:14;3:109;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1;8:100;33:3;30:1;27:2;8:100;;;99:1;94:3;90;84:5;80:1;75:3;71;64:6;52:2;49:1;45:3;40:15;;8:100;;;12:14;3:109;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1;8:100;33:3;30:1;27:2;8:100;;;99:1;94:3;90;84:5;80:1;75:3;71;64:6;52:2;49:1;45:3;40:15;;8:100;;;12:14;3:109;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1;8:100;33:3;30:1;27:2;8:100;;;99:1;94:3;90;84:5;80:1;75:3;71;64:6;52:2;49:1;45:3;40:15;;8:100;;;12:14;3:109;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1;8:100;33:3;30:1;27:2;8:100;;;99:1;94:3;90;84:5;80:1;75:3;71;64:6;52:2;49:1;45:3;40:15;;8:100;;;12:14;3:109;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2197:532:3;2344:12;2404:8;2368:11;:24;2380:11;2368:24;;;;;;;;;;;;;;;:33;;:44;;;;;;;;;;;;:::i;:::-;;2458:8;2422:11;:24;2434:11;2422:24;;;;;;;;;;;;;;;:33;;:44;;;;;;;;;;;;:::i;:::-;;2509:5;2476:11;:24;2488:11;2476:24;;;;;;;;;;;;;;;:30;;:38;;;;;;;;;;;;:::i;:::-;;2555:3;2524:11;:24;2536:11;2524:24;;;;;;;;;;;;;;;:28;;:34;;;;2607:11;2568;:24;2580:11;2568:24;;;;;;;;;;;;;;;:36;;;:50;;;;;;;;;;;;;;;;;;2659:3;2628:11;:24;2640:11;2628:24;;;;;;;;;;;;;;;:28;;:34;;;;;;;;;;;;:::i;:::-;;2711:11;2672;:24;2684:11;2672:24;;;;;;;;;;;;;;;:36;;:50;;;;;;;;;;;;:::i;:::-;;2197:532;;;;;;;;;:::o;669:625::-;816:12;876:8;840:11;:24;852:11;840:24;;;;;;;;;;;;;;;:33;;:44;;;;;;;;;;;;:::i;:::-;;930:8;894:11;:24;906:11;894:24;;;;;;;;;;;;;;;:33;;:44;;;;;;;;;;;;:::i;:::-;;981:5;948:11;:24;960:11;948:24;;;;;;;;;;;;;;;:30;;:38;;;;;;;;;;;;:::i;:::-;;1027:3;996:11;:24;1008:11;996:24;;;;;;;;;;;;;;;:28;;:34;;;;1079:11;1040;:24;1052:11;1040:24;;;;;;;;;;;;;;;:36;;;:50;;;;;;;;;;;;;;;;;;1131:3;1100:11;:24;1112:11;1100:24;;;;;;;;;;;;;;;:28;;:34;;;;;;;;;;;;:::i;:::-;;1183:11;1144;:24;1156:11;1144:24;;;;;;;;;;;;;;;:36;;:50;;;;;;;;;;;;:::i;:::-;;1265:1;1237:9;:27;;;;;;;;;;;:::i;:::-;;;;;;;;;;1252:11;1237:27;;;;;;;;;;;;;;;;;;;;;;:29;1204:11;:24;1216:11;1204:24;;;;;;;;;;;;;;;:30;;:62;;;;1283:4;1276:11;;669:625;;;;;;;;;:::o;453:210::-;514:13;575:1;542:11;:24;554:11;542:24;;;;;;;;;;;;;;;:30;;;:34;539:118;;;599:4;592:11;;;;539:118;641:5;634:12;;453:210;;;;:::o;1814:377::-;1887:12;1948:1;1915:11;:24;1927:11;1915:24;;;;;;;;;;;;;;;:30;;;:34;1911:274;;;2027:8;2017:19;;;;;;;;;;;;;36:153:-1;66:2;61:3;58:2;51:6;36:153;;;182:3;176:5;171:3;164:6;98:2;93:3;89;82:19;;123:2;118:3;114;107:19;;148:2;143:3;139;132:19;;36:153;;;274:1;267:3;263:2;259:3;254;250;246;315:4;311:3;305;299:5;295:3;356:4;350:3;344:5;340:3;389:7;380;377:2;372:3;365:6;3:399;;;;;;;;;;;;;;;;;;;1969:67:3;;;1979:11;:24;1991:11;1979:24;;;;;;;;;;;;;;;:33;;1969:44;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:67;;;;1965:167;;;2063:4;2056:11;;;;1965:167;2112:5;2105:12;;;;1911:274;2169:5;2162:12;;1814:377;;;;;:::o;1300:508::-;1363:15;;:::i;:::-;1380;;:::i;:::-;1397:12;;:::i;:::-;1411:8;1421:19;1442:10;;:::i;:::-;1454:18;;:::i;:::-;1500:11;:25;1512:12;1500:25;;;;;;;;;;;;;;;:34;;1544:11;:25;1556:12;1544:25;;;;;;;;;;;;;;;:34;;1588:11;:25;1600:12;1588:25;;;;;;;;;;;;;;;:31;;1629:11;:25;1641:12;1629:25;;;;;;;;;;;;;;;:29;;;1668:11;:25;1680:12;1668:25;;;;;;;;;;;;;;;:37;;;;;;;;;;;;1715:11;:25;1727:12;1715:25;;;;;;;;;;;;;;;:29;;1754:11;:25;1766:12;1754:25;;;;;;;;;;;;;;;:37;;1484:317;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1300:508;;;;;;;;;:::o;26:2705::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;:::o;:::-;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o","source":"pragma solidity ^0.4.19;\n\ncontract UserApp {\n    struct UserStruct {\n        uint index;\n        string userName;\n        string passWord;\n        string email;\n        uint age;\n        address userAddress;\n        string sex;\n        string description;\n    }\n\n    mapping (address => uint) userBalances;\n\n    // make these private because they're related\n    mapping(address => UserStruct) private userStructs;\n    address[] private userIndex;\n\n\n    function isUser(address userAddress) public constant returns(bool isIndeed) {\n        if(userStructs[userAddress].index > 0) {\n            return true;\n        } else {\n            return false;\n        }\n    }\n\n    function addNewUser(string userName, string passWord, string email, uint age, address userAddress, string sex, string description) public returns (bool success) {\n        userStructs[userAddress].userName = userName;\n        userStructs[userAddress].passWord = passWord;\n        userStructs[userAddress].email = email;\n        userStructs[userAddress].age = age;\n        userStructs[userAddress].userAddress = userAddress;\n        userStructs[userAddress].sex = sex;\n        userStructs[userAddress].description = description;\n        userStructs[userAddress].index = userIndex.push(userAddress)-1;\n        return true;\n    }\n\n    function getUser(address _userAddress) public constant returns(string userName, string passWord, string email, uint age, address userAddress, string sex, string description) {\n        return(\n        userStructs[_userAddress].userName,\n        userStructs[_userAddress].passWord,\n        userStructs[_userAddress].email,\n        userStructs[_userAddress].age,\n        userStructs[_userAddress].userAddress,\n        userStructs[_userAddress].sex,\n        userStructs[_userAddress].description\n        );\n    }\n\n    function checkUser(address userAddress, string passWord) public returns (bool success) {\n        if (userStructs[userAddress].index > 0) {\n            if (keccak256(userStructs[userAddress].passWord) == keccak256(passWord)) {\n                return true;\n            } else{\n                return false;\n            }\n        } else {\n            return false;\n        }\n    }\n\n    function modifyUser(string userName, string passWord, string email, uint age, address userAddress, string sex, string description) public returns (bool success) {\n        userStructs[userAddress].userName = userName;\n        userStructs[userAddress].passWord = passWord;\n        userStructs[userAddress].email = email;\n        userStructs[userAddress].age = age;\n        userStructs[userAddress].userAddress = userAddress;\n        userStructs[userAddress].sex = sex;\n        userStructs[userAddress].description = description;\n    }\n}","sourcePath":"/Users/steveniiv/Test/Market-DApp/contracts/UserApp.sol","ast":{"absolutePath":"/Users/steveniiv/Test/Market-DApp/contracts/UserApp.sol","exportedSymbols":{"UserApp":[1280]},"id":1281,"nodeType":"SourceUnit","nodes":[{"id":990,"literals":["solidity","^","0.4",".19"],"nodeType":"PragmaDirective","src":"0:24:3"},{"baseContracts":[],"contractDependencies":[],"contractKind":"contract","documentation":null,"fullyImplemented":true,"id":1280,"linearizedBaseContracts":[1280],"name":"UserApp","nodeType":"ContractDefinition","nodes":[{"canonicalName":"UserApp.UserStruct","id":1007,"members":[{"constant":false,"id":992,"name":"index","nodeType":"VariableDeclaration","scope":1007,"src":"77:10:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"},"typeName":{"id":991,"name":"uint","nodeType":"ElementaryTypeName","src":"77:4:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"value":null,"visibility":"internal"},{"constant":false,"id":994,"name":"userName","nodeType":"VariableDeclaration","scope":1007,"src":"97:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"},"typeName":{"id":993,"name":"string","nodeType":"ElementaryTypeName","src":"97:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":996,"name":"passWord","nodeType":"VariableDeclaration","scope":1007,"src":"122:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"},"typeName":{"id":995,"name":"string","nodeType":"ElementaryTypeName","src":"122:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":998,"name":"email","nodeType":"VariableDeclaration","scope":1007,"src":"147:12:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"},"typeName":{"id":997,"name":"string","nodeType":"ElementaryTypeName","src":"147:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1000,"name":"age","nodeType":"VariableDeclaration","scope":1007,"src":"169:8:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"},"typeName":{"id":999,"name":"uint","nodeType":"ElementaryTypeName","src":"169:4:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"value":null,"visibility":"internal"},{"constant":false,"id":1002,"name":"userAddress","nodeType":"VariableDeclaration","scope":1007,"src":"187:19:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"},"typeName":{"id":1001,"name":"address","nodeType":"ElementaryTypeName","src":"187:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"value":null,"visibility":"internal"},{"constant":false,"id":1004,"name":"sex","nodeType":"VariableDeclaration","scope":1007,"src":"216:10:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"},"typeName":{"id":1003,"name":"string","nodeType":"ElementaryTypeName","src":"216:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1006,"name":"description","nodeType":"VariableDeclaration","scope":1007,"src":"236:18:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"},"typeName":{"id":1005,"name":"string","nodeType":"ElementaryTypeName","src":"236:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"}],"name":"UserStruct","nodeType":"StructDefinition","scope":1280,"src":"49:212:3","visibility":"public"},{"constant":false,"id":1011,"name":"userBalances","nodeType":"VariableDeclaration","scope":1280,"src":"267:38:3","stateVariable":true,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_uint256_$","typeString":"mapping(address => uint256)"},"typeName":{"id":1010,"keyType":{"id":1008,"name":"address","nodeType":"ElementaryTypeName","src":"276:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"nodeType":"Mapping","src":"267:25:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_uint256_$","typeString":"mapping(address => uint256)"},"valueType":{"id":1009,"name":"uint","nodeType":"ElementaryTypeName","src":"287:4:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}}},"value":null,"visibility":"internal"},{"constant":false,"id":1015,"name":"userStructs","nodeType":"VariableDeclaration","scope":1280,"src":"362:50:3","stateVariable":true,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"},"typeName":{"id":1014,"keyType":{"id":1012,"name":"address","nodeType":"ElementaryTypeName","src":"370:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"nodeType":"Mapping","src":"362:30:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"},"valueType":{"contractScope":null,"id":1013,"name":"UserStruct","nodeType":"UserDefinedTypeName","referencedDeclaration":1007,"src":"381:10:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage_ptr","typeString":"struct UserApp.UserStruct storage pointer"}}},"value":null,"visibility":"private"},{"constant":false,"id":1018,"name":"userIndex","nodeType":"VariableDeclaration","scope":1280,"src":"418:27:3","stateVariable":true,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_array$_t_address_$dyn_storage","typeString":"address[] storage ref"},"typeName":{"baseType":{"id":1016,"name":"address","nodeType":"ElementaryTypeName","src":"418:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"id":1017,"length":null,"nodeType":"ArrayTypeName","src":"418:9:3","typeDescriptions":{"typeIdentifier":"t_array$_t_address_$dyn_storage_ptr","typeString":"address[] storage pointer"}},"value":null,"visibility":"private"},{"body":{"id":1038,"nodeType":"Block","src":"529:134:3","statements":[{"condition":{"argumentTypes":null,"commonType":{"typeIdentifier":"t_uint256","typeString":"uint256"},"id":1030,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftExpression":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1025,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"542:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1027,"indexExpression":{"argumentTypes":null,"id":1026,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1020,"src":"554:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"542:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1028,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"index","nodeType":"MemberAccess","referencedDeclaration":992,"src":"542:30:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"nodeType":"BinaryOperation","operator":">","rightExpression":{"argumentTypes":null,"hexValue":"30","id":1029,"isConstant":false,"isLValue":false,"isPure":true,"kind":"number","lValueRequested":false,"nodeType":"Literal","src":"575:1:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_rational_0_by_1","typeString":"int_const 0"},"value":"0"},"src":"542:34:3","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"}},"falseBody":{"id":1036,"nodeType":"Block","src":"620:37:3","statements":[{"expression":{"argumentTypes":null,"hexValue":"66616c7365","id":1034,"isConstant":false,"isLValue":false,"isPure":true,"kind":"bool","lValueRequested":false,"nodeType":"Literal","src":"641:5:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"value":"false"},"functionReturnParameters":1024,"id":1035,"nodeType":"Return","src":"634:12:3"}]},"id":1037,"nodeType":"IfStatement","src":"539:118:3","trueBody":{"id":1033,"nodeType":"Block","src":"578:36:3","statements":[{"expression":{"argumentTypes":null,"hexValue":"74727565","id":1031,"isConstant":false,"isLValue":false,"isPure":true,"kind":"bool","lValueRequested":false,"nodeType":"Literal","src":"599:4:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"value":"true"},"functionReturnParameters":1024,"id":1032,"nodeType":"Return","src":"592:11:3"}]}}]},"id":1039,"implemented":true,"isConstructor":false,"isDeclaredConst":true,"modifiers":[],"name":"isUser","nodeType":"FunctionDefinition","parameters":{"id":1021,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1020,"name":"userAddress","nodeType":"VariableDeclaration","scope":1039,"src":"469:19:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"},"typeName":{"id":1019,"name":"address","nodeType":"ElementaryTypeName","src":"469:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"value":null,"visibility":"internal"}],"src":"468:21:3"},"payable":false,"returnParameters":{"id":1024,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1023,"name":"isIndeed","nodeType":"VariableDeclaration","scope":1039,"src":"514:13:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"typeName":{"id":1022,"name":"bool","nodeType":"ElementaryTypeName","src":"514:4:3","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"}},"value":null,"visibility":"internal"}],"src":"513:15:3"},"scope":1280,"src":"453:210:3","stateMutability":"view","superFunction":null,"visibility":"public"},{"body":{"id":1121,"nodeType":"Block","src":"830:464:3","statements":[{"expression":{"argumentTypes":null,"id":1063,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1058,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"840:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1060,"indexExpression":{"argumentTypes":null,"id":1059,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"852:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"840:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1061,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"userName","nodeType":"MemberAccess","referencedDeclaration":994,"src":"840:33:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1062,"name":"userName","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1041,"src":"876:8:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"840:44:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1064,"nodeType":"ExpressionStatement","src":"840:44:3"},{"expression":{"argumentTypes":null,"id":1070,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1065,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"894:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1067,"indexExpression":{"argumentTypes":null,"id":1066,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"906:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"894:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1068,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"passWord","nodeType":"MemberAccess","referencedDeclaration":996,"src":"894:33:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1069,"name":"passWord","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1043,"src":"930:8:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"894:44:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1071,"nodeType":"ExpressionStatement","src":"894:44:3"},{"expression":{"argumentTypes":null,"id":1077,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1072,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"948:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1074,"indexExpression":{"argumentTypes":null,"id":1073,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"960:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"948:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1075,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"email","nodeType":"MemberAccess","referencedDeclaration":998,"src":"948:30:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1076,"name":"email","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1045,"src":"981:5:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"948:38:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1078,"nodeType":"ExpressionStatement","src":"948:38:3"},{"expression":{"argumentTypes":null,"id":1084,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1079,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"996:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1081,"indexExpression":{"argumentTypes":null,"id":1080,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"1008:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"996:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1082,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"age","nodeType":"MemberAccess","referencedDeclaration":1000,"src":"996:28:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1083,"name":"age","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1047,"src":"1027:3:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"src":"996:34:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"id":1085,"nodeType":"ExpressionStatement","src":"996:34:3"},{"expression":{"argumentTypes":null,"id":1091,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1086,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1040:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1088,"indexExpression":{"argumentTypes":null,"id":1087,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"1052:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1040:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1089,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"userAddress","nodeType":"MemberAccess","referencedDeclaration":1002,"src":"1040:36:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1090,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"1079:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"src":"1040:50:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"id":1092,"nodeType":"ExpressionStatement","src":"1040:50:3"},{"expression":{"argumentTypes":null,"id":1098,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1093,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1100:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1095,"indexExpression":{"argumentTypes":null,"id":1094,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"1112:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1100:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1096,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"sex","nodeType":"MemberAccess","referencedDeclaration":1004,"src":"1100:28:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1097,"name":"sex","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1051,"src":"1131:3:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"1100:34:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1099,"nodeType":"ExpressionStatement","src":"1100:34:3"},{"expression":{"argumentTypes":null,"id":1105,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1100,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1144:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1102,"indexExpression":{"argumentTypes":null,"id":1101,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"1156:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1144:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1103,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"description","nodeType":"MemberAccess","referencedDeclaration":1006,"src":"1144:36:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1104,"name":"description","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1053,"src":"1183:11:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"1144:50:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1106,"nodeType":"ExpressionStatement","src":"1144:50:3"},{"expression":{"argumentTypes":null,"id":1117,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1107,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1204:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1109,"indexExpression":{"argumentTypes":null,"id":1108,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"1216:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1204:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1110,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"index","nodeType":"MemberAccess","referencedDeclaration":992,"src":"1204:30:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"commonType":{"typeIdentifier":"t_uint256","typeString":"uint256"},"id":1116,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftExpression":{"argumentTypes":null,"arguments":[{"argumentTypes":null,"id":1113,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"1252:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}}],"expression":{"argumentTypes":[{"typeIdentifier":"t_address","typeString":"address"}],"expression":{"argumentTypes":null,"id":1111,"name":"userIndex","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1018,"src":"1237:9:3","typeDescriptions":{"typeIdentifier":"t_array$_t_address_$dyn_storage","typeString":"address[] storage ref"}},"id":1112,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"memberName":"push","nodeType":"MemberAccess","referencedDeclaration":null,"src":"1237:14:3","typeDescriptions":{"typeIdentifier":"t_function_arraypush_nonpayable$_t_address_$returns$_t_uint256_$","typeString":"function (address) returns (uint256)"}},"id":1114,"isConstant":false,"isLValue":false,"isPure":false,"kind":"functionCall","lValueRequested":false,"names":[],"nodeType":"FunctionCall","src":"1237:27:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"nodeType":"BinaryOperation","operator":"-","rightExpression":{"argumentTypes":null,"hexValue":"31","id":1115,"isConstant":false,"isLValue":false,"isPure":true,"kind":"number","lValueRequested":false,"nodeType":"Literal","src":"1265:1:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_rational_1_by_1","typeString":"int_const 1"},"value":"1"},"src":"1237:29:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"src":"1204:62:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"id":1118,"nodeType":"ExpressionStatement","src":"1204:62:3"},{"expression":{"argumentTypes":null,"hexValue":"74727565","id":1119,"isConstant":false,"isLValue":false,"isPure":true,"kind":"bool","lValueRequested":false,"nodeType":"Literal","src":"1283:4:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"value":"true"},"functionReturnParameters":1057,"id":1120,"nodeType":"Return","src":"1276:11:3"}]},"id":1122,"implemented":true,"isConstructor":false,"isDeclaredConst":false,"modifiers":[],"name":"addNewUser","nodeType":"FunctionDefinition","parameters":{"id":1054,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1041,"name":"userName","nodeType":"VariableDeclaration","scope":1122,"src":"689:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1040,"name":"string","nodeType":"ElementaryTypeName","src":"689:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1043,"name":"passWord","nodeType":"VariableDeclaration","scope":1122,"src":"706:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1042,"name":"string","nodeType":"ElementaryTypeName","src":"706:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1045,"name":"email","nodeType":"VariableDeclaration","scope":1122,"src":"723:12:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1044,"name":"string","nodeType":"ElementaryTypeName","src":"723:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1047,"name":"age","nodeType":"VariableDeclaration","scope":1122,"src":"737:8:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"},"typeName":{"id":1046,"name":"uint","nodeType":"ElementaryTypeName","src":"737:4:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"value":null,"visibility":"internal"},{"constant":false,"id":1049,"name":"userAddress","nodeType":"VariableDeclaration","scope":1122,"src":"747:19:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"},"typeName":{"id":1048,"name":"address","nodeType":"ElementaryTypeName","src":"747:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"value":null,"visibility":"internal"},{"constant":false,"id":1051,"name":"sex","nodeType":"VariableDeclaration","scope":1122,"src":"768:10:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1050,"name":"string","nodeType":"ElementaryTypeName","src":"768:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1053,"name":"description","nodeType":"VariableDeclaration","scope":1122,"src":"780:18:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1052,"name":"string","nodeType":"ElementaryTypeName","src":"780:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"}],"src":"688:111:3"},"payable":false,"returnParameters":{"id":1057,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1056,"name":"success","nodeType":"VariableDeclaration","scope":1122,"src":"816:12:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"typeName":{"id":1055,"name":"bool","nodeType":"ElementaryTypeName","src":"816:4:3","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"}},"value":null,"visibility":"internal"}],"src":"815:14:3"},"scope":1280,"src":"669:625:3","stateMutability":"nonpayable","superFunction":null,"visibility":"public"},{"body":{"id":1171,"nodeType":"Block","src":"1474:334:3","statements":[{"expression":{"argumentTypes":null,"components":[{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1141,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1500:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1143,"indexExpression":{"argumentTypes":null,"id":1142,"name":"_userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1124,"src":"1512:12:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1500:25:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1144,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"userName","nodeType":"MemberAccess","referencedDeclaration":994,"src":"1500:34:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1145,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1544:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1147,"indexExpression":{"argumentTypes":null,"id":1146,"name":"_userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1124,"src":"1556:12:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1544:25:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1148,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"passWord","nodeType":"MemberAccess","referencedDeclaration":996,"src":"1544:34:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1149,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1588:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1151,"indexExpression":{"argumentTypes":null,"id":1150,"name":"_userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1124,"src":"1600:12:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1588:25:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1152,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"email","nodeType":"MemberAccess","referencedDeclaration":998,"src":"1588:31:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1153,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1629:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1155,"indexExpression":{"argumentTypes":null,"id":1154,"name":"_userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1124,"src":"1641:12:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1629:25:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1156,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"age","nodeType":"MemberAccess","referencedDeclaration":1000,"src":"1629:29:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1157,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1668:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1159,"indexExpression":{"argumentTypes":null,"id":1158,"name":"_userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1124,"src":"1680:12:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1668:25:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1160,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"userAddress","nodeType":"MemberAccess","referencedDeclaration":1002,"src":"1668:37:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1161,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1715:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1163,"indexExpression":{"argumentTypes":null,"id":1162,"name":"_userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1124,"src":"1727:12:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1715:25:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1164,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"sex","nodeType":"MemberAccess","referencedDeclaration":1004,"src":"1715:29:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1165,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1754:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1167,"indexExpression":{"argumentTypes":null,"id":1166,"name":"_userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1124,"src":"1766:12:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1754:25:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1168,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"description","nodeType":"MemberAccess","referencedDeclaration":1006,"src":"1754:37:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}}],"id":1169,"isConstant":false,"isInlineArray":false,"isLValue":false,"isPure":false,"lValueRequested":false,"nodeType":"TupleExpression","src":"1490:311:3","typeDescriptions":{"typeIdentifier":"t_tuple$_t_string_storage_$_t_string_storage_$_t_string_storage_$_t_uint256_$_t_address_$_t_string_storage_$_t_string_storage_$","typeString":"tuple(string storage ref,string storage ref,string storage ref,uint256,address,string storage ref,string storage ref)"}},"functionReturnParameters":1140,"id":1170,"nodeType":"Return","src":"1484:317:3"}]},"id":1172,"implemented":true,"isConstructor":false,"isDeclaredConst":true,"modifiers":[],"name":"getUser","nodeType":"FunctionDefinition","parameters":{"id":1125,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1124,"name":"_userAddress","nodeType":"VariableDeclaration","scope":1172,"src":"1317:20:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"},"typeName":{"id":1123,"name":"address","nodeType":"ElementaryTypeName","src":"1317:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"value":null,"visibility":"internal"}],"src":"1316:22:3"},"payable":false,"returnParameters":{"id":1140,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1127,"name":"userName","nodeType":"VariableDeclaration","scope":1172,"src":"1363:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1126,"name":"string","nodeType":"ElementaryTypeName","src":"1363:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1129,"name":"passWord","nodeType":"VariableDeclaration","scope":1172,"src":"1380:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1128,"name":"string","nodeType":"ElementaryTypeName","src":"1380:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1131,"name":"email","nodeType":"VariableDeclaration","scope":1172,"src":"1397:12:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1130,"name":"string","nodeType":"ElementaryTypeName","src":"1397:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1133,"name":"age","nodeType":"VariableDeclaration","scope":1172,"src":"1411:8:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"},"typeName":{"id":1132,"name":"uint","nodeType":"ElementaryTypeName","src":"1411:4:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"value":null,"visibility":"internal"},{"constant":false,"id":1135,"name":"userAddress","nodeType":"VariableDeclaration","scope":1172,"src":"1421:19:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"},"typeName":{"id":1134,"name":"address","nodeType":"ElementaryTypeName","src":"1421:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"value":null,"visibility":"internal"},{"constant":false,"id":1137,"name":"sex","nodeType":"VariableDeclaration","scope":1172,"src":"1442:10:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1136,"name":"string","nodeType":"ElementaryTypeName","src":"1442:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1139,"name":"description","nodeType":"VariableDeclaration","scope":1172,"src":"1454:18:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1138,"name":"string","nodeType":"ElementaryTypeName","src":"1454:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"}],"src":"1362:111:3"},"scope":1280,"src":"1300:508:3","stateMutability":"view","superFunction":null,"visibility":"public"},{"body":{"id":1209,"nodeType":"Block","src":"1901:290:3","statements":[{"condition":{"argumentTypes":null,"commonType":{"typeIdentifier":"t_uint256","typeString":"uint256"},"id":1186,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftExpression":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1181,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1915:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1183,"indexExpression":{"argumentTypes":null,"id":1182,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1174,"src":"1927:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1915:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1184,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"index","nodeType":"MemberAccess","referencedDeclaration":992,"src":"1915:30:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"nodeType":"BinaryOperation","operator":">","rightExpression":{"argumentTypes":null,"hexValue":"30","id":1185,"isConstant":false,"isLValue":false,"isPure":true,"kind":"number","lValueRequested":false,"nodeType":"Literal","src":"1948:1:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_rational_0_by_1","typeString":"int_const 0"},"value":"0"},"src":"1915:34:3","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"}},"falseBody":{"id":1207,"nodeType":"Block","src":"2148:37:3","statements":[{"expression":{"argumentTypes":null,"hexValue":"66616c7365","id":1205,"isConstant":false,"isLValue":false,"isPure":true,"kind":"bool","lValueRequested":false,"nodeType":"Literal","src":"2169:5:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"value":"false"},"functionReturnParameters":1180,"id":1206,"nodeType":"Return","src":"2162:12:3"}]},"id":1208,"nodeType":"IfStatement","src":"1911:274:3","trueBody":{"id":1204,"nodeType":"Block","src":"1951:191:3","statements":[{"condition":{"argumentTypes":null,"commonType":{"typeIdentifier":"t_bytes32","typeString":"bytes32"},"id":1196,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftExpression":{"argumentTypes":null,"arguments":[{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1188,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1979:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1190,"indexExpression":{"argumentTypes":null,"id":1189,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1174,"src":"1991:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1979:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1191,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"passWord","nodeType":"MemberAccess","referencedDeclaration":996,"src":"1979:33:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}}],"expression":{"argumentTypes":[{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}],"id":1187,"name":"keccak256","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1286,"src":"1969:9:3","typeDescriptions":{"typeIdentifier":"t_function_sha3_pure$__$returns$_t_bytes32_$","typeString":"function () pure returns (bytes32)"}},"id":1192,"isConstant":false,"isLValue":false,"isPure":false,"kind":"functionCall","lValueRequested":false,"names":[],"nodeType":"FunctionCall","src":"1969:44:3","typeDescriptions":{"typeIdentifier":"t_bytes32","typeString":"bytes32"}},"nodeType":"BinaryOperation","operator":"==","rightExpression":{"argumentTypes":null,"arguments":[{"argumentTypes":null,"id":1194,"name":"passWord","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1176,"src":"2027:8:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}}],"expression":{"argumentTypes":[{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}],"id":1193,"name":"keccak256","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1286,"src":"2017:9:3","typeDescriptions":{"typeIdentifier":"t_function_sha3_pure$__$returns$_t_bytes32_$","typeString":"function () pure returns (bytes32)"}},"id":1195,"isConstant":false,"isLValue":false,"isPure":false,"kind":"functionCall","lValueRequested":false,"names":[],"nodeType":"FunctionCall","src":"2017:19:3","typeDescriptions":{"typeIdentifier":"t_bytes32","typeString":"bytes32"}},"src":"1969:67:3","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"}},"falseBody":{"id":1202,"nodeType":"Block","src":"2087:45:3","statements":[{"expression":{"argumentTypes":null,"hexValue":"66616c7365","id":1200,"isConstant":false,"isLValue":false,"isPure":true,"kind":"bool","lValueRequested":false,"nodeType":"Literal","src":"2112:5:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"value":"false"},"functionReturnParameters":1180,"id":1201,"nodeType":"Return","src":"2105:12:3"}]},"id":1203,"nodeType":"IfStatement","src":"1965:167:3","trueBody":{"id":1199,"nodeType":"Block","src":"2038:44:3","statements":[{"expression":{"argumentTypes":null,"hexValue":"74727565","id":1197,"isConstant":false,"isLValue":false,"isPure":true,"kind":"bool","lValueRequested":false,"nodeType":"Literal","src":"2063:4:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"value":"true"},"functionReturnParameters":1180,"id":1198,"nodeType":"Return","src":"2056:11:3"}]}}]}}]},"id":1210,"implemented":true,"isConstructor":false,"isDeclaredConst":false,"modifiers":[],"name":"checkUser","nodeType":"FunctionDefinition","parameters":{"id":1177,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1174,"name":"userAddress","nodeType":"VariableDeclaration","scope":1210,"src":"1833:19:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"},"typeName":{"id":1173,"name":"address","nodeType":"ElementaryTypeName","src":"1833:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"value":null,"visibility":"internal"},{"constant":false,"id":1176,"name":"passWord","nodeType":"VariableDeclaration","scope":1210,"src":"1854:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1175,"name":"string","nodeType":"ElementaryTypeName","src":"1854:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"}],"src":"1832:38:3"},"payable":false,"returnParameters":{"id":1180,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1179,"name":"success","nodeType":"VariableDeclaration","scope":1210,"src":"1887:12:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"typeName":{"id":1178,"name":"bool","nodeType":"ElementaryTypeName","src":"1887:4:3","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"}},"value":null,"visibility":"internal"}],"src":"1886:14:3"},"scope":1280,"src":"1814:377:3","stateMutability":"nonpayable","superFunction":null,"visibility":"public"},{"body":{"id":1278,"nodeType":"Block","src":"2358:371:3","statements":[{"expression":{"argumentTypes":null,"id":1234,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1229,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"2368:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1231,"indexExpression":{"argumentTypes":null,"id":1230,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1220,"src":"2380:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"2368:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1232,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"userName","nodeType":"MemberAccess","referencedDeclaration":994,"src":"2368:33:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1233,"name":"userName","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1212,"src":"2404:8:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"2368:44:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1235,"nodeType":"ExpressionStatement","src":"2368:44:3"},{"expression":{"argumentTypes":null,"id":1241,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1236,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"2422:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1238,"indexExpression":{"argumentTypes":null,"id":1237,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1220,"src":"2434:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"2422:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1239,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"passWord","nodeType":"MemberAccess","referencedDeclaration":996,"src":"2422:33:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1240,"name":"passWord","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1214,"src":"2458:8:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"2422:44:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1242,"nodeType":"ExpressionStatement","src":"2422:44:3"},{"expression":{"argumentTypes":null,"id":1248,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1243,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"2476:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1245,"indexExpression":{"argumentTypes":null,"id":1244,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1220,"src":"2488:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"2476:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1246,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"email","nodeType":"MemberAccess","referencedDeclaration":998,"src":"2476:30:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1247,"name":"email","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1216,"src":"2509:5:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"2476:38:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1249,"nodeType":"ExpressionStatement","src":"2476:38:3"},{"expression":{"argumentTypes":null,"id":1255,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1250,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"2524:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1252,"indexExpression":{"argumentTypes":null,"id":1251,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1220,"src":"2536:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"2524:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1253,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"age","nodeType":"MemberAccess","referencedDeclaration":1000,"src":"2524:28:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1254,"name":"age","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1218,"src":"2555:3:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"src":"2524:34:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"id":1256,"nodeType":"ExpressionStatement","src":"2524:34:3"},{"expression":{"argumentTypes":null,"id":1262,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1257,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"2568:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1259,"indexExpression":{"argumentTypes":null,"id":1258,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1220,"src":"2580:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"2568:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1260,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"userAddress","nodeType":"MemberAccess","referencedDeclaration":1002,"src":"2568:36:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1261,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1220,"src":"2607:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"src":"2568:50:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"id":1263,"nodeType":"ExpressionStatement","src":"2568:50:3"},{"expression":{"argumentTypes":null,"id":1269,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1264,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"2628:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1266,"indexExpression":{"argumentTypes":null,"id":1265,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1220,"src":"2640:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"2628:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1267,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"sex","nodeType":"MemberAccess","referencedDeclaration":1004,"src":"2628:28:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1268,"name":"sex","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1222,"src":"2659:3:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"2628:34:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1270,"nodeType":"ExpressionStatement","src":"2628:34:3"},{"expression":{"argumentTypes":null,"id":1276,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1271,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"2672:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1273,"indexExpression":{"argumentTypes":null,"id":1272,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1220,"src":"2684:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"2672:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1274,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"description","nodeType":"MemberAccess","referencedDeclaration":1006,"src":"2672:36:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1275,"name":"description","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1224,"src":"2711:11:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"2672:50:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1277,"nodeType":"ExpressionStatement","src":"2672:50:3"}]},"id":1279,"implemented":true,"isConstructor":false,"isDeclaredConst":false,"modifiers":[],"name":"modifyUser","nodeType":"FunctionDefinition","parameters":{"id":1225,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1212,"name":"userName","nodeType":"VariableDeclaration","scope":1279,"src":"2217:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1211,"name":"string","nodeType":"ElementaryTypeName","src":"2217:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1214,"name":"passWord","nodeType":"VariableDeclaration","scope":1279,"src":"2234:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1213,"name":"string","nodeType":"ElementaryTypeName","src":"2234:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1216,"name":"email","nodeType":"VariableDeclaration","scope":1279,"src":"2251:12:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1215,"name":"string","nodeType":"ElementaryTypeName","src":"2251:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1218,"name":"age","nodeType":"VariableDeclaration","scope":1279,"src":"2265:8:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"},"typeName":{"id":1217,"name":"uint","nodeType":"ElementaryTypeName","src":"2265:4:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"value":null,"visibility":"internal"},{"constant":false,"id":1220,"name":"userAddress","nodeType":"VariableDeclaration","scope":1279,"src":"2275:19:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"},"typeName":{"id":1219,"name":"address","nodeType":"ElementaryTypeName","src":"2275:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"value":null,"visibility":"internal"},{"constant":false,"id":1222,"name":"sex","nodeType":"VariableDeclaration","scope":1279,"src":"2296:10:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1221,"name":"string","nodeType":"ElementaryTypeName","src":"2296:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1224,"name":"description","nodeType":"VariableDeclaration","scope":1279,"src":"2308:18:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1223,"name":"string","nodeType":"ElementaryTypeName","src":"2308:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"}],"src":"2216:111:3"},"payable":false,"returnParameters":{"id":1228,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1227,"name":"success","nodeType":"VariableDeclaration","scope":1279,"src":"2344:12:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"typeName":{"id":1226,"name":"bool","nodeType":"ElementaryTypeName","src":"2344:4:3","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"}},"value":null,"visibility":"internal"}],"src":"2343:14:3"},"scope":1280,"src":"2197:532:3","stateMutability":"nonpayable","superFunction":null,"visibility":"public"}],"scope":1281,"src":"26:2705:3"}],"src":"0:2731:3"},"legacyAST":{"absolutePath":"/Users/steveniiv/Test/Market-DApp/contracts/UserApp.sol","exportedSymbols":{"UserApp":[1280]},"id":1281,"nodeType":"SourceUnit","nodes":[{"id":990,"literals":["solidity","^","0.4",".19"],"nodeType":"PragmaDirective","src":"0:24:3"},{"baseContracts":[],"contractDependencies":[],"contractKind":"contract","documentation":null,"fullyImplemented":true,"id":1280,"linearizedBaseContracts":[1280],"name":"UserApp","nodeType":"ContractDefinition","nodes":[{"canonicalName":"UserApp.UserStruct","id":1007,"members":[{"constant":false,"id":992,"name":"index","nodeType":"VariableDeclaration","scope":1007,"src":"77:10:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"},"typeName":{"id":991,"name":"uint","nodeType":"ElementaryTypeName","src":"77:4:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"value":null,"visibility":"internal"},{"constant":false,"id":994,"name":"userName","nodeType":"VariableDeclaration","scope":1007,"src":"97:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"},"typeName":{"id":993,"name":"string","nodeType":"ElementaryTypeName","src":"97:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":996,"name":"passWord","nodeType":"VariableDeclaration","scope":1007,"src":"122:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"},"typeName":{"id":995,"name":"string","nodeType":"ElementaryTypeName","src":"122:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":998,"name":"email","nodeType":"VariableDeclaration","scope":1007,"src":"147:12:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"},"typeName":{"id":997,"name":"string","nodeType":"ElementaryTypeName","src":"147:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1000,"name":"age","nodeType":"VariableDeclaration","scope":1007,"src":"169:8:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"},"typeName":{"id":999,"name":"uint","nodeType":"ElementaryTypeName","src":"169:4:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"value":null,"visibility":"internal"},{"constant":false,"id":1002,"name":"userAddress","nodeType":"VariableDeclaration","scope":1007,"src":"187:19:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"},"typeName":{"id":1001,"name":"address","nodeType":"ElementaryTypeName","src":"187:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"value":null,"visibility":"internal"},{"constant":false,"id":1004,"name":"sex","nodeType":"VariableDeclaration","scope":1007,"src":"216:10:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"},"typeName":{"id":1003,"name":"string","nodeType":"ElementaryTypeName","src":"216:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1006,"name":"description","nodeType":"VariableDeclaration","scope":1007,"src":"236:18:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"},"typeName":{"id":1005,"name":"string","nodeType":"ElementaryTypeName","src":"236:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"}],"name":"UserStruct","nodeType":"StructDefinition","scope":1280,"src":"49:212:3","visibility":"public"},{"constant":false,"id":1011,"name":"userBalances","nodeType":"VariableDeclaration","scope":1280,"src":"267:38:3","stateVariable":true,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_uint256_$","typeString":"mapping(address => uint256)"},"typeName":{"id":1010,"keyType":{"id":1008,"name":"address","nodeType":"ElementaryTypeName","src":"276:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"nodeType":"Mapping","src":"267:25:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_uint256_$","typeString":"mapping(address => uint256)"},"valueType":{"id":1009,"name":"uint","nodeType":"ElementaryTypeName","src":"287:4:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}}},"value":null,"visibility":"internal"},{"constant":false,"id":1015,"name":"userStructs","nodeType":"VariableDeclaration","scope":1280,"src":"362:50:3","stateVariable":true,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"},"typeName":{"id":1014,"keyType":{"id":1012,"name":"address","nodeType":"ElementaryTypeName","src":"370:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"nodeType":"Mapping","src":"362:30:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"},"valueType":{"contractScope":null,"id":1013,"name":"UserStruct","nodeType":"UserDefinedTypeName","referencedDeclaration":1007,"src":"381:10:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage_ptr","typeString":"struct UserApp.UserStruct storage pointer"}}},"value":null,"visibility":"private"},{"constant":false,"id":1018,"name":"userIndex","nodeType":"VariableDeclaration","scope":1280,"src":"418:27:3","stateVariable":true,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_array$_t_address_$dyn_storage","typeString":"address[] storage ref"},"typeName":{"baseType":{"id":1016,"name":"address","nodeType":"ElementaryTypeName","src":"418:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"id":1017,"length":null,"nodeType":"ArrayTypeName","src":"418:9:3","typeDescriptions":{"typeIdentifier":"t_array$_t_address_$dyn_storage_ptr","typeString":"address[] storage pointer"}},"value":null,"visibility":"private"},{"body":{"id":1038,"nodeType":"Block","src":"529:134:3","statements":[{"condition":{"argumentTypes":null,"commonType":{"typeIdentifier":"t_uint256","typeString":"uint256"},"id":1030,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftExpression":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1025,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"542:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1027,"indexExpression":{"argumentTypes":null,"id":1026,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1020,"src":"554:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"542:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1028,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"index","nodeType":"MemberAccess","referencedDeclaration":992,"src":"542:30:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"nodeType":"BinaryOperation","operator":">","rightExpression":{"argumentTypes":null,"hexValue":"30","id":1029,"isConstant":false,"isLValue":false,"isPure":true,"kind":"number","lValueRequested":false,"nodeType":"Literal","src":"575:1:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_rational_0_by_1","typeString":"int_const 0"},"value":"0"},"src":"542:34:3","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"}},"falseBody":{"id":1036,"nodeType":"Block","src":"620:37:3","statements":[{"expression":{"argumentTypes":null,"hexValue":"66616c7365","id":1034,"isConstant":false,"isLValue":false,"isPure":true,"kind":"bool","lValueRequested":false,"nodeType":"Literal","src":"641:5:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"value":"false"},"functionReturnParameters":1024,"id":1035,"nodeType":"Return","src":"634:12:3"}]},"id":1037,"nodeType":"IfStatement","src":"539:118:3","trueBody":{"id":1033,"nodeType":"Block","src":"578:36:3","statements":[{"expression":{"argumentTypes":null,"hexValue":"74727565","id":1031,"isConstant":false,"isLValue":false,"isPure":true,"kind":"bool","lValueRequested":false,"nodeType":"Literal","src":"599:4:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"value":"true"},"functionReturnParameters":1024,"id":1032,"nodeType":"Return","src":"592:11:3"}]}}]},"id":1039,"implemented":true,"isConstructor":false,"isDeclaredConst":true,"modifiers":[],"name":"isUser","nodeType":"FunctionDefinition","parameters":{"id":1021,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1020,"name":"userAddress","nodeType":"VariableDeclaration","scope":1039,"src":"469:19:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"},"typeName":{"id":1019,"name":"address","nodeType":"ElementaryTypeName","src":"469:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"value":null,"visibility":"internal"}],"src":"468:21:3"},"payable":false,"returnParameters":{"id":1024,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1023,"name":"isIndeed","nodeType":"VariableDeclaration","scope":1039,"src":"514:13:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"typeName":{"id":1022,"name":"bool","nodeType":"ElementaryTypeName","src":"514:4:3","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"}},"value":null,"visibility":"internal"}],"src":"513:15:3"},"scope":1280,"src":"453:210:3","stateMutability":"view","superFunction":null,"visibility":"public"},{"body":{"id":1121,"nodeType":"Block","src":"830:464:3","statements":[{"expression":{"argumentTypes":null,"id":1063,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1058,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"840:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1060,"indexExpression":{"argumentTypes":null,"id":1059,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"852:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"840:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1061,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"userName","nodeType":"MemberAccess","referencedDeclaration":994,"src":"840:33:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1062,"name":"userName","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1041,"src":"876:8:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"840:44:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1064,"nodeType":"ExpressionStatement","src":"840:44:3"},{"expression":{"argumentTypes":null,"id":1070,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1065,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"894:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1067,"indexExpression":{"argumentTypes":null,"id":1066,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"906:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"894:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1068,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"passWord","nodeType":"MemberAccess","referencedDeclaration":996,"src":"894:33:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1069,"name":"passWord","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1043,"src":"930:8:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"894:44:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1071,"nodeType":"ExpressionStatement","src":"894:44:3"},{"expression":{"argumentTypes":null,"id":1077,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1072,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"948:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1074,"indexExpression":{"argumentTypes":null,"id":1073,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"960:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"948:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1075,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"email","nodeType":"MemberAccess","referencedDeclaration":998,"src":"948:30:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1076,"name":"email","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1045,"src":"981:5:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"948:38:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1078,"nodeType":"ExpressionStatement","src":"948:38:3"},{"expression":{"argumentTypes":null,"id":1084,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1079,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"996:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1081,"indexExpression":{"argumentTypes":null,"id":1080,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"1008:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"996:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1082,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"age","nodeType":"MemberAccess","referencedDeclaration":1000,"src":"996:28:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1083,"name":"age","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1047,"src":"1027:3:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"src":"996:34:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"id":1085,"nodeType":"ExpressionStatement","src":"996:34:3"},{"expression":{"argumentTypes":null,"id":1091,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1086,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1040:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1088,"indexExpression":{"argumentTypes":null,"id":1087,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"1052:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1040:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1089,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"userAddress","nodeType":"MemberAccess","referencedDeclaration":1002,"src":"1040:36:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1090,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"1079:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"src":"1040:50:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"id":1092,"nodeType":"ExpressionStatement","src":"1040:50:3"},{"expression":{"argumentTypes":null,"id":1098,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1093,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1100:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1095,"indexExpression":{"argumentTypes":null,"id":1094,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"1112:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1100:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1096,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"sex","nodeType":"MemberAccess","referencedDeclaration":1004,"src":"1100:28:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1097,"name":"sex","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1051,"src":"1131:3:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"1100:34:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1099,"nodeType":"ExpressionStatement","src":"1100:34:3"},{"expression":{"argumentTypes":null,"id":1105,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1100,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1144:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1102,"indexExpression":{"argumentTypes":null,"id":1101,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"1156:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1144:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1103,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"description","nodeType":"MemberAccess","referencedDeclaration":1006,"src":"1144:36:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1104,"name":"description","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1053,"src":"1183:11:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"1144:50:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1106,"nodeType":"ExpressionStatement","src":"1144:50:3"},{"expression":{"argumentTypes":null,"id":1117,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1107,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1204:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1109,"indexExpression":{"argumentTypes":null,"id":1108,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"1216:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1204:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1110,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"index","nodeType":"MemberAccess","referencedDeclaration":992,"src":"1204:30:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"commonType":{"typeIdentifier":"t_uint256","typeString":"uint256"},"id":1116,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftExpression":{"argumentTypes":null,"arguments":[{"argumentTypes":null,"id":1113,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"1252:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}}],"expression":{"argumentTypes":[{"typeIdentifier":"t_address","typeString":"address"}],"expression":{"argumentTypes":null,"id":1111,"name":"userIndex","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1018,"src":"1237:9:3","typeDescriptions":{"typeIdentifier":"t_array$_t_address_$dyn_storage","typeString":"address[] storage ref"}},"id":1112,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"memberName":"push","nodeType":"MemberAccess","referencedDeclaration":null,"src":"1237:14:3","typeDescriptions":{"typeIdentifier":"t_function_arraypush_nonpayable$_t_address_$returns$_t_uint256_$","typeString":"function (address) returns (uint256)"}},"id":1114,"isConstant":false,"isLValue":false,"isPure":false,"kind":"functionCall","lValueRequested":false,"names":[],"nodeType":"FunctionCall","src":"1237:27:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"nodeType":"BinaryOperation","operator":"-","rightExpression":{"argumentTypes":null,"hexValue":"31","id":1115,"isConstant":false,"isLValue":false,"isPure":true,"kind":"number","lValueRequested":false,"nodeType":"Literal","src":"1265:1:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_rational_1_by_1","typeString":"int_const 1"},"value":"1"},"src":"1237:29:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"src":"1204:62:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"id":1118,"nodeType":"ExpressionStatement","src":"1204:62:3"},{"expression":{"argumentTypes":null,"hexValue":"74727565","id":1119,"isConstant":false,"isLValue":false,"isPure":true,"kind":"bool","lValueRequested":false,"nodeType":"Literal","src":"1283:4:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"value":"true"},"functionReturnParameters":1057,"id":1120,"nodeType":"Return","src":"1276:11:3"}]},"id":1122,"implemented":true,"isConstructor":false,"isDeclaredConst":false,"modifiers":[],"name":"addNewUser","nodeType":"FunctionDefinition","parameters":{"id":1054,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1041,"name":"userName","nodeType":"VariableDeclaration","scope":1122,"src":"689:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1040,"name":"string","nodeType":"ElementaryTypeName","src":"689:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1043,"name":"passWord","nodeType":"VariableDeclaration","scope":1122,"src":"706:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1042,"name":"string","nodeType":"ElementaryTypeName","src":"706:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1045,"name":"email","nodeType":"VariableDeclaration","scope":1122,"src":"723:12:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1044,"name":"string","nodeType":"ElementaryTypeName","src":"723:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1047,"name":"age","nodeType":"VariableDeclaration","scope":1122,"src":"737:8:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"},"typeName":{"id":1046,"name":"uint","nodeType":"ElementaryTypeName","src":"737:4:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"value":null,"visibility":"internal"},{"constant":false,"id":1049,"name":"userAddress","nodeType":"VariableDeclaration","scope":1122,"src":"747:19:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"},"typeName":{"id":1048,"name":"address","nodeType":"ElementaryTypeName","src":"747:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"value":null,"visibility":"internal"},{"constant":false,"id":1051,"name":"sex","nodeType":"VariableDeclaration","scope":1122,"src":"768:10:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1050,"name":"string","nodeType":"ElementaryTypeName","src":"768:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1053,"name":"description","nodeType":"VariableDeclaration","scope":1122,"src":"780:18:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1052,"name":"string","nodeType":"ElementaryTypeName","src":"780:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"}],"src":"688:111:3"},"payable":false,"returnParameters":{"id":1057,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1056,"name":"success","nodeType":"VariableDeclaration","scope":1122,"src":"816:12:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"typeName":{"id":1055,"name":"bool","nodeType":"ElementaryTypeName","src":"816:4:3","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"}},"value":null,"visibility":"internal"}],"src":"815:14:3"},"scope":1280,"src":"669:625:3","stateMutability":"nonpayable","superFunction":null,"visibility":"public"},{"body":{"id":1171,"nodeType":"Block","src":"1474:334:3","statements":[{"expression":{"argumentTypes":null,"components":[{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1141,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1500:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1143,"indexExpression":{"argumentTypes":null,"id":1142,"name":"_userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1124,"src":"1512:12:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1500:25:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1144,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"userName","nodeType":"MemberAccess","referencedDeclaration":994,"src":"1500:34:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1145,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1544:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1147,"indexExpression":{"argumentTypes":null,"id":1146,"name":"_userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1124,"src":"1556:12:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1544:25:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1148,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"passWord","nodeType":"MemberAccess","referencedDeclaration":996,"src":"1544:34:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1149,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1588:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1151,"indexExpression":{"argumentTypes":null,"id":1150,"name":"_userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1124,"src":"1600:12:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1588:25:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1152,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"email","nodeType":"MemberAccess","referencedDeclaration":998,"src":"1588:31:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1153,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1629:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1155,"indexExpression":{"argumentTypes":null,"id":1154,"name":"_userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1124,"src":"1641:12:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1629:25:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1156,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"age","nodeType":"MemberAccess","referencedDeclaration":1000,"src":"1629:29:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1157,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1668:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1159,"indexExpression":{"argumentTypes":null,"id":1158,"name":"_userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1124,"src":"1680:12:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1668:25:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1160,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"userAddress","nodeType":"MemberAccess","referencedDeclaration":1002,"src":"1668:37:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1161,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1715:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1163,"indexExpression":{"argumentTypes":null,"id":1162,"name":"_userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1124,"src":"1727:12:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1715:25:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1164,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"sex","nodeType":"MemberAccess","referencedDeclaration":1004,"src":"1715:29:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1165,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1754:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1167,"indexExpression":{"argumentTypes":null,"id":1166,"name":"_userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1124,"src":"1766:12:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1754:25:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1168,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"description","nodeType":"MemberAccess","referencedDeclaration":1006,"src":"1754:37:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}}],"id":1169,"isConstant":false,"isInlineArray":false,"isLValue":false,"isPure":false,"lValueRequested":false,"nodeType":"TupleExpression","src":"1490:311:3","typeDescriptions":{"typeIdentifier":"t_tuple$_t_string_storage_$_t_string_storage_$_t_string_storage_$_t_uint256_$_t_address_$_t_string_storage_$_t_string_storage_$","typeString":"tuple(string storage ref,string storage ref,string storage ref,uint256,address,string storage ref,string storage ref)"}},"functionReturnParameters":1140,"id":1170,"nodeType":"Return","src":"1484:317:3"}]},"id":1172,"implemented":true,"isConstructor":false,"isDeclaredConst":true,"modifiers":[],"name":"getUser","nodeType":"FunctionDefinition","parameters":{"id":1125,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1124,"name":"_userAddress","nodeType":"VariableDeclaration","scope":1172,"src":"1317:20:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"},"typeName":{"id":1123,"name":"address","nodeType":"ElementaryTypeName","src":"1317:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"value":null,"visibility":"internal"}],"src":"1316:22:3"},"payable":false,"returnParameters":{"id":1140,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1127,"name":"userName","nodeType":"VariableDeclaration","scope":1172,"src":"1363:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1126,"name":"string","nodeType":"ElementaryTypeName","src":"1363:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1129,"name":"passWord","nodeType":"VariableDeclaration","scope":1172,"src":"1380:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1128,"name":"string","nodeType":"ElementaryTypeName","src":"1380:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1131,"name":"email","nodeType":"VariableDeclaration","scope":1172,"src":"1397:12:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1130,"name":"string","nodeType":"ElementaryTypeName","src":"1397:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1133,"name":"age","nodeType":"VariableDeclaration","scope":1172,"src":"1411:8:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"},"typeName":{"id":1132,"name":"uint","nodeType":"ElementaryTypeName","src":"1411:4:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"value":null,"visibility":"internal"},{"constant":false,"id":1135,"name":"userAddress","nodeType":"VariableDeclaration","scope":1172,"src":"1421:19:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"},"typeName":{"id":1134,"name":"address","nodeType":"ElementaryTypeName","src":"1421:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"value":null,"visibility":"internal"},{"constant":false,"id":1137,"name":"sex","nodeType":"VariableDeclaration","scope":1172,"src":"1442:10:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1136,"name":"string","nodeType":"ElementaryTypeName","src":"1442:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1139,"name":"description","nodeType":"VariableDeclaration","scope":1172,"src":"1454:18:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1138,"name":"string","nodeType":"ElementaryTypeName","src":"1454:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"}],"src":"1362:111:3"},"scope":1280,"src":"1300:508:3","stateMutability":"view","superFunction":null,"visibility":"public"},{"body":{"id":1209,"nodeType":"Block","src":"1901:290:3","statements":[{"condition":{"argumentTypes":null,"commonType":{"typeIdentifier":"t_uint256","typeString":"uint256"},"id":1186,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftExpression":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1181,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1915:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1183,"indexExpression":{"argumentTypes":null,"id":1182,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1174,"src":"1927:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1915:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1184,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"index","nodeType":"MemberAccess","referencedDeclaration":992,"src":"1915:30:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"nodeType":"BinaryOperation","operator":">","rightExpression":{"argumentTypes":null,"hexValue":"30","id":1185,"isConstant":false,"isLValue":false,"isPure":true,"kind":"number","lValueRequested":false,"nodeType":"Literal","src":"1948:1:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_rational_0_by_1","typeString":"int_const 0"},"value":"0"},"src":"1915:34:3","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"}},"falseBody":{"id":1207,"nodeType":"Block","src":"2148:37:3","statements":[{"expression":{"argumentTypes":null,"hexValue":"66616c7365","id":1205,"isConstant":false,"isLValue":false,"isPure":true,"kind":"bool","lValueRequested":false,"nodeType":"Literal","src":"2169:5:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"value":"false"},"functionReturnParameters":1180,"id":1206,"nodeType":"Return","src":"2162:12:3"}]},"id":1208,"nodeType":"IfStatement","src":"1911:274:3","trueBody":{"id":1204,"nodeType":"Block","src":"1951:191:3","statements":[{"condition":{"argumentTypes":null,"commonType":{"typeIdentifier":"t_bytes32","typeString":"bytes32"},"id":1196,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftExpression":{"argumentTypes":null,"arguments":[{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1188,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1979:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1190,"indexExpression":{"argumentTypes":null,"id":1189,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1174,"src":"1991:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1979:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1191,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"passWord","nodeType":"MemberAccess","referencedDeclaration":996,"src":"1979:33:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}}],"expression":{"argumentTypes":[{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}],"id":1187,"name":"keccak256","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1286,"src":"1969:9:3","typeDescriptions":{"typeIdentifier":"t_function_sha3_pure$__$returns$_t_bytes32_$","typeString":"function () pure returns (bytes32)"}},"id":1192,"isConstant":false,"isLValue":false,"isPure":false,"kind":"functionCall","lValueRequested":false,"names":[],"nodeType":"FunctionCall","src":"1969:44:3","typeDescriptions":{"typeIdentifier":"t_bytes32","typeString":"bytes32"}},"nodeType":"BinaryOperation","operator":"==","rightExpression":{"argumentTypes":null,"arguments":[{"argumentTypes":null,"id":1194,"name":"passWord","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1176,"src":"2027:8:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}}],"expression":{"argumentTypes":[{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}],"id":1193,"name":"keccak256","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1286,"src":"2017:9:3","typeDescriptions":{"typeIdentifier":"t_function_sha3_pure$__$returns$_t_bytes32_$","typeString":"function () pure returns (bytes32)"}},"id":1195,"isConstant":false,"isLValue":false,"isPure":false,"kind":"functionCall","lValueRequested":false,"names":[],"nodeType":"FunctionCall","src":"2017:19:3","typeDescriptions":{"typeIdentifier":"t_bytes32","typeString":"bytes32"}},"src":"1969:67:3","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"}},"falseBody":{"id":1202,"nodeType":"Block","src":"2087:45:3","statements":[{"expression":{"argumentTypes":null,"hexValue":"66616c7365","id":1200,"isConstant":false,"isLValue":false,"isPure":true,"kind":"bool","lValueRequested":false,"nodeType":"Literal","src":"2112:5:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"value":"false"},"functionReturnParameters":1180,"id":1201,"nodeType":"Return","src":"2105:12:3"}]},"id":1203,"nodeType":"IfStatement","src":"1965:167:3","trueBody":{"id":1199,"nodeType":"Block","src":"2038:44:3","statements":[{"expression":{"argumentTypes":null,"hexValue":"74727565","id":1197,"isConstant":false,"isLValue":false,"isPure":true,"kind":"bool","lValueRequested":false,"nodeType":"Literal","src":"2063:4:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"value":"true"},"functionReturnParameters":1180,"id":1198,"nodeType":"Return","src":"2056:11:3"}]}}]}}]},"id":1210,"implemented":true,"isConstructor":false,"isDeclaredConst":false,"modifiers":[],"name":"checkUser","nodeType":"FunctionDefinition","parameters":{"id":1177,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1174,"name":"userAddress","nodeType":"VariableDeclaration","scope":1210,"src":"1833:19:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"},"typeName":{"id":1173,"name":"address","nodeType":"ElementaryTypeName","src":"1833:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"value":null,"visibility":"internal"},{"constant":false,"id":1176,"name":"passWord","nodeType":"VariableDeclaration","scope":1210,"src":"1854:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1175,"name":"string","nodeType":"ElementaryTypeName","src":"1854:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"}],"src":"1832:38:3"},"payable":false,"returnParameters":{"id":1180,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1179,"name":"success","nodeType":"VariableDeclaration","scope":1210,"src":"1887:12:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"typeName":{"id":1178,"name":"bool","nodeType":"ElementaryTypeName","src":"1887:4:3","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"}},"value":null,"visibility":"internal"}],"src":"1886:14:3"},"scope":1280,"src":"1814:377:3","stateMutability":"nonpayable","superFunction":null,"visibility":"public"},{"body":{"id":1278,"nodeType":"Block","src":"2358:371:3","statements":[{"expression":{"argumentTypes":null,"id":1234,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1229,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"2368:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1231,"indexExpression":{"argumentTypes":null,"id":1230,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1220,"src":"2380:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"2368:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1232,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"userName","nodeType":"MemberAccess","referencedDeclaration":994,"src":"2368:33:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1233,"name":"userName","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1212,"src":"2404:8:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"2368:44:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1235,"nodeType":"ExpressionStatement","src":"2368:44:3"},{"expression":{"argumentTypes":null,"id":1241,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1236,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"2422:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1238,"indexExpression":{"argumentTypes":null,"id":1237,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1220,"src":"2434:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"2422:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1239,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"passWord","nodeType":"MemberAccess","referencedDeclaration":996,"src":"2422:33:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1240,"name":"passWord","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1214,"src":"2458:8:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"2422:44:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1242,"nodeType":"ExpressionStatement","src":"2422:44:3"},{"expression":{"argumentTypes":null,"id":1248,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1243,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"2476:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1245,"indexExpression":{"argumentTypes":null,"id":1244,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1220,"src":"2488:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"2476:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1246,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"email","nodeType":"MemberAccess","referencedDeclaration":998,"src":"2476:30:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1247,"name":"email","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1216,"src":"2509:5:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"2476:38:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1249,"nodeType":"ExpressionStatement","src":"2476:38:3"},{"expression":{"argumentTypes":null,"id":1255,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1250,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"2524:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1252,"indexExpression":{"argumentTypes":null,"id":1251,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1220,"src":"2536:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"2524:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1253,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"age","nodeType":"MemberAccess","referencedDeclaration":1000,"src":"2524:28:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1254,"name":"age","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1218,"src":"2555:3:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"src":"2524:34:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"id":1256,"nodeType":"ExpressionStatement","src":"2524:34:3"},{"expression":{"argumentTypes":null,"id":1262,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1257,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"2568:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1259,"indexExpression":{"argumentTypes":null,"id":1258,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1220,"src":"2580:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"2568:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1260,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"userAddress","nodeType":"MemberAccess","referencedDeclaration":1002,"src":"2568:36:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1261,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1220,"src":"2607:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"src":"2568:50:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"id":1263,"nodeType":"ExpressionStatement","src":"2568:50:3"},{"expression":{"argumentTypes":null,"id":1269,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1264,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"2628:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1266,"indexExpression":{"argumentTypes":null,"id":1265,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1220,"src":"2640:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"2628:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1267,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"sex","nodeType":"MemberAccess","referencedDeclaration":1004,"src":"2628:28:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1268,"name":"sex","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1222,"src":"2659:3:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"2628:34:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1270,"nodeType":"ExpressionStatement","src":"2628:34:3"},{"expression":{"argumentTypes":null,"id":1276,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1271,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"2672:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1273,"indexExpression":{"argumentTypes":null,"id":1272,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1220,"src":"2684:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"2672:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1274,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"description","nodeType":"MemberAccess","referencedDeclaration":1006,"src":"2672:36:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1275,"name":"description","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1224,"src":"2711:11:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"2672:50:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1277,"nodeType":"ExpressionStatement","src":"2672:50:3"}]},"id":1279,"implemented":true,"isConstructor":false,"isDeclaredConst":false,"modifiers":[],"name":"modifyUser","nodeType":"FunctionDefinition","parameters":{"id":1225,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1212,"name":"userName","nodeType":"VariableDeclaration","scope":1279,"src":"2217:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1211,"name":"string","nodeType":"ElementaryTypeName","src":"2217:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1214,"name":"passWord","nodeType":"VariableDeclaration","scope":1279,"src":"2234:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1213,"name":"string","nodeType":"ElementaryTypeName","src":"2234:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1216,"name":"email","nodeType":"VariableDeclaration","scope":1279,"src":"2251:12:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1215,"name":"string","nodeType":"ElementaryTypeName","src":"2251:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1218,"name":"age","nodeType":"VariableDeclaration","scope":1279,"src":"2265:8:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"},"typeName":{"id":1217,"name":"uint","nodeType":"ElementaryTypeName","src":"2265:4:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"value":null,"visibility":"internal"},{"constant":false,"id":1220,"name":"userAddress","nodeType":"VariableDeclaration","scope":1279,"src":"2275:19:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"},"typeName":{"id":1219,"name":"address","nodeType":"ElementaryTypeName","src":"2275:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"value":null,"visibility":"internal"},{"constant":false,"id":1222,"name":"sex","nodeType":"VariableDeclaration","scope":1279,"src":"2296:10:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1221,"name":"string","nodeType":"ElementaryTypeName","src":"2296:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1224,"name":"description","nodeType":"VariableDeclaration","scope":1279,"src":"2308:18:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1223,"name":"string","nodeType":"ElementaryTypeName","src":"2308:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"}],"src":"2216:111:3"},"payable":false,"returnParameters":{"id":1228,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1227,"name":"success","nodeType":"VariableDeclaration","scope":1279,"src":"2344:12:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"typeName":{"id":1226,"name":"bool","nodeType":"ElementaryTypeName","src":"2344:4:3","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"}},"value":null,"visibility":"internal"}],"src":"2343:14:3"},"scope":1280,"src":"2197:532:3","stateMutability":"nonpayable","superFunction":null,"visibility":"public"}],"scope":1281,"src":"26:2705:3"}],"src":"0:2731:3"},"compiler":{"name":"solc","version":"0.4.19+commit.c4cbbb05.Emscripten.clang"},"networks":{"5777":{"events":{},"links":{},"address":"0x2453BB721Bc25faB6d413c7249dbdd3dbF6D62da","transactionHash":"0xac92a45e56d94b906726db266a41c5c5863ec08953cd10f001c6a3f918b4f43a"}},"schemaVersion":"3.0.19","updatedAt":"2020-02-26T09:40:00.316Z","networkType":"ethereum","devdoc":{"methods":{}},"userdoc":{"methods":{}}}
+module.exports = {"contractName":"UserApp","abi":[{"constant":true,"inputs":[{"name":"userAddress","type":"address"}],"name":"isUser","outputs":[{"name":"isIndeed","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"userName","type":"string"},{"name":"passWord","type":"string"},{"name":"email","type":"string"},{"name":"age","type":"uint256"},{"name":"userAddress","type":"address"},{"name":"sex","type":"string"},{"name":"description","type":"string"}],"name":"addNewUser","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_userAddress","type":"address"}],"name":"getUser","outputs":[{"name":"userName","type":"string"},{"name":"passWord","type":"string"},{"name":"email","type":"string"},{"name":"age","type":"uint256"},{"name":"userAddress","type":"address"},{"name":"sex","type":"string"},{"name":"description","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"userAddress","type":"address"},{"name":"passWord","type":"string"}],"name":"checkUser","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"userName","type":"string"},{"name":"passWord","type":"string"},{"name":"email","type":"string"},{"name":"age","type":"uint256"},{"name":"userAddress","type":"address"},{"name":"sex","type":"string"},{"name":"description","type":"string"}],"name":"modifyUser","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"}],"metadata":"{\"compiler\":{\"version\":\"0.4.19+commit.c4cbbb05\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"name\":\"userName\",\"type\":\"string\"},{\"name\":\"passWord\",\"type\":\"string\"},{\"name\":\"email\",\"type\":\"string\"},{\"name\":\"age\",\"type\":\"uint256\"},{\"name\":\"userAddress\",\"type\":\"address\"},{\"name\":\"sex\",\"type\":\"string\"},{\"name\":\"description\",\"type\":\"string\"}],\"name\":\"modifyUser\",\"outputs\":[{\"name\":\"success\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"userName\",\"type\":\"string\"},{\"name\":\"passWord\",\"type\":\"string\"},{\"name\":\"email\",\"type\":\"string\"},{\"name\":\"age\",\"type\":\"uint256\"},{\"name\":\"userAddress\",\"type\":\"address\"},{\"name\":\"sex\",\"type\":\"string\"},{\"name\":\"description\",\"type\":\"string\"}],\"name\":\"addNewUser\",\"outputs\":[{\"name\":\"success\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"userAddress\",\"type\":\"address\"}],\"name\":\"isUser\",\"outputs\":[{\"name\":\"isIndeed\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"userAddress\",\"type\":\"address\"},{\"name\":\"passWord\",\"type\":\"string\"}],\"name\":\"checkUser\",\"outputs\":[{\"name\":\"success\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_userAddress\",\"type\":\"address\"}],\"name\":\"getUser\",\"outputs\":[{\"name\":\"userName\",\"type\":\"string\"},{\"name\":\"passWord\",\"type\":\"string\"},{\"name\":\"email\",\"type\":\"string\"},{\"name\":\"age\",\"type\":\"uint256\"},{\"name\":\"userAddress\",\"type\":\"address\"},{\"name\":\"sex\",\"type\":\"string\"},{\"name\":\"description\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/steveniiv/Test/Market-DApp/contracts/UserApp.sol\":\"UserApp\"},\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/steveniiv/Test/Market-DApp/contracts/UserApp.sol\":{\"keccak256\":\"0x928eb33d52686d10d55ca776b1ce86a255c6b250790f4000bac392266494f6c1\",\"urls\":[\"bzzr://b8808fcd1e41918781decad41236ee408620a7675e4c0e81363088c2389f6693\"]}},\"version\":1}","bytecode":"0x6060604052341561000f57600080fd5b6115388061001e6000396000f30060606040526004361061006d576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680630165ba0b1461007257806338a1ea1f1461021b5780634209fff1146103c457806353ee88f5146104155780636f77926b146104a9575b600080fd5b341561007d57600080fd5b610201600480803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001909190803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f01602080910402602001604051908101604052809392919081815260200183838082843782019150505050505091905050610745565b604051808215151515815260200191505060405180910390f35b341561022657600080fd5b6103aa600480803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001909190803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f016020809104026020016040519081016040528093929190818152602001838380828437820191505050505050919050506109cd565b604051808215151515815260200191505060405180910390f35b34156103cf57600080fd5b6103fb600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610d04565b604051808215151515815260200191505060405180910390f35b341561042057600080fd5b61048f600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803590602001908201803590602001908080601f01602080910402602001604051908101604052809392919081815260200183838082843782019150505050505091905050610d63565b604051808215151515815260200191505060405180910390f35b34156104b457600080fd5b6104e0600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610ee7565b604051808060200180602001806020018881526020018773ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001806020018060200186810386528d818151815260200191508051906020019080838360005b8381101561056857808201518184015260208101905061054d565b50505050905090810190601f1680156105955780820380516001836020036101000a031916815260200191505b5086810385528c818151815260200191508051906020019080838360005b838110156105ce5780820151818401526020810190506105b3565b50505050905090810190601f1680156105fb5780820380516001836020036101000a031916815260200191505b5086810384528b818151815260200191508051906020019080838360005b83811015610634578082015181840152602081019050610619565b50505050905090810190601f1680156106615780820380516001836020036101000a031916815260200191505b50868103835288818151815260200191508051906020019080838360005b8381101561069a57808201518184015260208101905061067f565b50505050905090810190601f1680156106c75780820380516001836020036101000a031916815260200191505b50868103825287818151815260200191508051906020019080838360005b838110156107005780820151818401526020810190506106e5565b50505050905090810190601f16801561072d5780820380516001836020036101000a031916815260200191505b509c5050505050505050505050505060405180910390f35b600087600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600101908051906020019061079d929190611427565b5086600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060020190805190602001906107f4929190611427565b5085600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600301908051906020019061084b929190611427565b5084600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206004018190555083600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060050160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555082600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600601908051906020019061096a929190611427565b5081600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060070190805190602001906109c1929190611427565b50979650505050505050565b600087600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206001019080519060200190610a25929190611427565b5086600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206002019080519060200190610a7c929190611427565b5085600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206003019080519060200190610ad3929190611427565b5084600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206004018190555083600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060050160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555082600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206006019080519060200190610bf2929190611427565b5081600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206007019080519060200190610c49929190611427565b50600160028054806001018281610c6091906114a7565b9160005260206000209001600087909190916101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555003600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000018190555060019050979650505050505050565b600080600160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600001541115610d595760019050610d5e565b600090505b919050565b600080600160008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600001541115610edc57816040518082805190602001908083835b602083101515610de55780518252602082019150602081019050602083039250610dc0565b6001836020036101000a038019825116818451168082178552505050505050905001915050604051809103902060001916600160008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206002016040518082805460018160011615610100020316600290048015610eb35780601f10610e91576101008083540402835291820191610eb3565b820191906000526020600020905b815481529060010190602001808311610e9f575b50509150506040518091039020600019161415610ed35760019050610ee1565b60009050610ee1565b600090505b92915050565b610eef6114d3565b610ef76114d3565b610eff6114d3565b600080610f0a6114d3565b610f126114d3565b600160008973ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600101600160008a73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600201600160008b73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600301600160008c73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060040154600160008d73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060050160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16600160008e73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600601600160008f73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600701868054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156111975780601f1061116c57610100808354040283529160200191611197565b820191906000526020600020905b81548152906001019060200180831161117a57829003601f168201915b50505050509650858054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156112335780601f1061120857610100808354040283529160200191611233565b820191906000526020600020905b81548152906001019060200180831161121657829003601f168201915b50505050509550848054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156112cf5780601f106112a4576101008083540402835291602001916112cf565b820191906000526020600020905b8154815290600101906020018083116112b257829003601f168201915b50505050509450818054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561136b5780601f106113405761010080835404028352916020019161136b565b820191906000526020600020905b81548152906001019060200180831161134e57829003601f168201915b50505050509150808054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156114075780601f106113dc57610100808354040283529160200191611407565b820191906000526020600020905b8154815290600101906020018083116113ea57829003601f168201915b505050505090509650965096509650965096509650919395979092949650565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061146857805160ff1916838001178555611496565b82800160010185558215611496579182015b8281111561149557825182559160200191906001019061147a565b5b5090506114a391906114e7565b5090565b8154818355818115116114ce578183600052602060002091820191016114cd91906114e7565b5b505050565b602060405190810160405280600081525090565b61150991905b808211156115055760008160009055506001016114ed565b5090565b905600a165627a7a72305820a8b9c87ffd08e992a0545b35be9c5e05f750720b52bba006e59677ed9e2703750029","deployedBytecode":"0x60606040526004361061006d576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680630165ba0b1461007257806338a1ea1f1461021b5780634209fff1146103c457806353ee88f5146104155780636f77926b146104a9575b600080fd5b341561007d57600080fd5b610201600480803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001909190803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f01602080910402602001604051908101604052809392919081815260200183838082843782019150505050505091905050610745565b604051808215151515815260200191505060405180910390f35b341561022657600080fd5b6103aa600480803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001909190803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f016020809104026020016040519081016040528093929190818152602001838380828437820191505050505050919050506109cd565b604051808215151515815260200191505060405180910390f35b34156103cf57600080fd5b6103fb600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610d04565b604051808215151515815260200191505060405180910390f35b341561042057600080fd5b61048f600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803590602001908201803590602001908080601f01602080910402602001604051908101604052809392919081815260200183838082843782019150505050505091905050610d63565b604051808215151515815260200191505060405180910390f35b34156104b457600080fd5b6104e0600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610ee7565b604051808060200180602001806020018881526020018773ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001806020018060200186810386528d818151815260200191508051906020019080838360005b8381101561056857808201518184015260208101905061054d565b50505050905090810190601f1680156105955780820380516001836020036101000a031916815260200191505b5086810385528c818151815260200191508051906020019080838360005b838110156105ce5780820151818401526020810190506105b3565b50505050905090810190601f1680156105fb5780820380516001836020036101000a031916815260200191505b5086810384528b818151815260200191508051906020019080838360005b83811015610634578082015181840152602081019050610619565b50505050905090810190601f1680156106615780820380516001836020036101000a031916815260200191505b50868103835288818151815260200191508051906020019080838360005b8381101561069a57808201518184015260208101905061067f565b50505050905090810190601f1680156106c75780820380516001836020036101000a031916815260200191505b50868103825287818151815260200191508051906020019080838360005b838110156107005780820151818401526020810190506106e5565b50505050905090810190601f16801561072d5780820380516001836020036101000a031916815260200191505b509c5050505050505050505050505060405180910390f35b600087600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600101908051906020019061079d929190611427565b5086600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060020190805190602001906107f4929190611427565b5085600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600301908051906020019061084b929190611427565b5084600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206004018190555083600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060050160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555082600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600601908051906020019061096a929190611427565b5081600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060070190805190602001906109c1929190611427565b50979650505050505050565b600087600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206001019080519060200190610a25929190611427565b5086600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206002019080519060200190610a7c929190611427565b5085600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206003019080519060200190610ad3929190611427565b5084600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206004018190555083600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060050160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555082600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206006019080519060200190610bf2929190611427565b5081600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206007019080519060200190610c49929190611427565b50600160028054806001018281610c6091906114a7565b9160005260206000209001600087909190916101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555003600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000018190555060019050979650505050505050565b600080600160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600001541115610d595760019050610d5e565b600090505b919050565b600080600160008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600001541115610edc57816040518082805190602001908083835b602083101515610de55780518252602082019150602081019050602083039250610dc0565b6001836020036101000a038019825116818451168082178552505050505050905001915050604051809103902060001916600160008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206002016040518082805460018160011615610100020316600290048015610eb35780601f10610e91576101008083540402835291820191610eb3565b820191906000526020600020905b815481529060010190602001808311610e9f575b50509150506040518091039020600019161415610ed35760019050610ee1565b60009050610ee1565b600090505b92915050565b610eef6114d3565b610ef76114d3565b610eff6114d3565b600080610f0a6114d3565b610f126114d3565b600160008973ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600101600160008a73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600201600160008b73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600301600160008c73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060040154600160008d73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060050160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16600160008e73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600601600160008f73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600701868054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156111975780601f1061116c57610100808354040283529160200191611197565b820191906000526020600020905b81548152906001019060200180831161117a57829003601f168201915b50505050509650858054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156112335780601f1061120857610100808354040283529160200191611233565b820191906000526020600020905b81548152906001019060200180831161121657829003601f168201915b50505050509550848054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156112cf5780601f106112a4576101008083540402835291602001916112cf565b820191906000526020600020905b8154815290600101906020018083116112b257829003601f168201915b50505050509450818054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561136b5780601f106113405761010080835404028352916020019161136b565b820191906000526020600020905b81548152906001019060200180831161134e57829003601f168201915b50505050509150808054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156114075780601f106113dc57610100808354040283529160200191611407565b820191906000526020600020905b8154815290600101906020018083116113ea57829003601f168201915b505050505090509650965096509650965096509650919395979092949650565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061146857805160ff1916838001178555611496565b82800160010185558215611496579182015b8281111561149557825182559160200191906001019061147a565b5b5090506114a391906114e7565b5090565b8154818355818115116114ce578183600052602060002091820191016114cd91906114e7565b5b505050565b602060405190810160405280600081525090565b61150991905b808211156115055760008160009055506001016114ed565b5090565b905600a165627a7a72305820a8b9c87ffd08e992a0545b35be9c5e05f750720b52bba006e59677ed9e2703750029","sourceMap":"26:2705:3:-;;;;;;;;;;;;;;;;;","deployedSourceMap":"26:2705:3:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2197:532;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;669:625;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;453:210;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1814:377;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1300:508;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:2;8:100;;;99:1;94:3;90;84:5;80:1;75:3;71;64:6;52:2;49:1;45:3;40:15;;8:100;;;12:14;3:109;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1;8:100;33:3;30:1;27:2;8:100;;;99:1;94:3;90;84:5;80:1;75:3;71;64:6;52:2;49:1;45:3;40:15;;8:100;;;12:14;3:109;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1;8:100;33:3;30:1;27:2;8:100;;;99:1;94:3;90;84:5;80:1;75:3;71;64:6;52:2;49:1;45:3;40:15;;8:100;;;12:14;3:109;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1;8:100;33:3;30:1;27:2;8:100;;;99:1;94:3;90;84:5;80:1;75:3;71;64:6;52:2;49:1;45:3;40:15;;8:100;;;12:14;3:109;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1;8:100;33:3;30:1;27:2;8:100;;;99:1;94:3;90;84:5;80:1;75:3;71;64:6;52:2;49:1;45:3;40:15;;8:100;;;12:14;3:109;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2197:532:3;2344:12;2404:8;2368:11;:24;2380:11;2368:24;;;;;;;;;;;;;;;:33;;:44;;;;;;;;;;;;:::i;:::-;;2458:8;2422:11;:24;2434:11;2422:24;;;;;;;;;;;;;;;:33;;:44;;;;;;;;;;;;:::i;:::-;;2509:5;2476:11;:24;2488:11;2476:24;;;;;;;;;;;;;;;:30;;:38;;;;;;;;;;;;:::i;:::-;;2555:3;2524:11;:24;2536:11;2524:24;;;;;;;;;;;;;;;:28;;:34;;;;2607:11;2568;:24;2580:11;2568:24;;;;;;;;;;;;;;;:36;;;:50;;;;;;;;;;;;;;;;;;2659:3;2628:11;:24;2640:11;2628:24;;;;;;;;;;;;;;;:28;;:34;;;;;;;;;;;;:::i;:::-;;2711:11;2672;:24;2684:11;2672:24;;;;;;;;;;;;;;;:36;;:50;;;;;;;;;;;;:::i;:::-;;2197:532;;;;;;;;;:::o;669:625::-;816:12;876:8;840:11;:24;852:11;840:24;;;;;;;;;;;;;;;:33;;:44;;;;;;;;;;;;:::i;:::-;;930:8;894:11;:24;906:11;894:24;;;;;;;;;;;;;;;:33;;:44;;;;;;;;;;;;:::i;:::-;;981:5;948:11;:24;960:11;948:24;;;;;;;;;;;;;;;:30;;:38;;;;;;;;;;;;:::i;:::-;;1027:3;996:11;:24;1008:11;996:24;;;;;;;;;;;;;;;:28;;:34;;;;1079:11;1040;:24;1052:11;1040:24;;;;;;;;;;;;;;;:36;;;:50;;;;;;;;;;;;;;;;;;1131:3;1100:11;:24;1112:11;1100:24;;;;;;;;;;;;;;;:28;;:34;;;;;;;;;;;;:::i;:::-;;1183:11;1144;:24;1156:11;1144:24;;;;;;;;;;;;;;;:36;;:50;;;;;;;;;;;;:::i;:::-;;1265:1;1237:9;:27;;;;;;;;;;;:::i;:::-;;;;;;;;;;1252:11;1237:27;;;;;;;;;;;;;;;;;;;;;;:29;1204:11;:24;1216:11;1204:24;;;;;;;;;;;;;;;:30;;:62;;;;1283:4;1276:11;;669:625;;;;;;;;;:::o;453:210::-;514:13;575:1;542:11;:24;554:11;542:24;;;;;;;;;;;;;;;:30;;;:34;539:118;;;599:4;592:11;;;;539:118;641:5;634:12;;453:210;;;;:::o;1814:377::-;1887:12;1948:1;1915:11;:24;1927:11;1915:24;;;;;;;;;;;;;;;:30;;;:34;1911:274;;;2027:8;2017:19;;;;;;;;;;;;;36:153:-1;66:2;61:3;58:2;51:6;36:153;;;182:3;176:5;171:3;164:6;98:2;93:3;89;82:19;;123:2;118:3;114;107:19;;148:2;143:3;139;132:19;;36:153;;;274:1;267:3;263:2;259:3;254;250;246;315:4;311:3;305;299:5;295:3;356:4;350:3;344:5;340:3;389:7;380;377:2;372:3;365:6;3:399;;;;;;;;;;;;;;;;;;;1969:67:3;;;1979:11;:24;1991:11;1979:24;;;;;;;;;;;;;;;:33;;1969:44;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:67;;;;1965:167;;;2063:4;2056:11;;;;1965:167;2112:5;2105:12;;;;1911:274;2169:5;2162:12;;1814:377;;;;;:::o;1300:508::-;1363:15;;:::i;:::-;1380;;:::i;:::-;1397:12;;:::i;:::-;1411:8;1421:19;1442:10;;:::i;:::-;1454:18;;:::i;:::-;1500:11;:25;1512:12;1500:25;;;;;;;;;;;;;;;:34;;1544:11;:25;1556:12;1544:25;;;;;;;;;;;;;;;:34;;1588:11;:25;1600:12;1588:25;;;;;;;;;;;;;;;:31;;1629:11;:25;1641:12;1629:25;;;;;;;;;;;;;;;:29;;;1668:11;:25;1680:12;1668:25;;;;;;;;;;;;;;;:37;;;;;;;;;;;;1715:11;:25;1727:12;1715:25;;;;;;;;;;;;;;;:29;;1754:11;:25;1766:12;1754:25;;;;;;;;;;;;;;;:37;;1484:317;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1300:508;;;;;;;;;:::o;26:2705::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;:::o;:::-;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o","source":"pragma solidity ^0.4.19;\n\ncontract UserApp {\n    struct UserStruct {\n        uint index;\n        string userName;\n        string passWord;\n        string email;\n        uint age;\n        address userAddress;\n        string sex;\n        string description;\n    }\n\n    mapping (address => uint) userBalances;\n\n    // make these private because they're related\n    mapping(address => UserStruct) private userStructs;\n    address[] private userIndex;\n\n\n    function isUser(address userAddress) public constant returns(bool isIndeed) {\n        if(userStructs[userAddress].index > 0) {\n            return true;\n        } else {\n            return false;\n        }\n    }\n\n    function addNewUser(string userName, string passWord, string email, uint age, address userAddress, string sex, string description) public returns (bool success) {\n        userStructs[userAddress].userName = userName;\n        userStructs[userAddress].passWord = passWord;\n        userStructs[userAddress].email = email;\n        userStructs[userAddress].age = age;\n        userStructs[userAddress].userAddress = userAddress;\n        userStructs[userAddress].sex = sex;\n        userStructs[userAddress].description = description;\n        userStructs[userAddress].index = userIndex.push(userAddress)-1;\n        return true;\n    }\n\n    function getUser(address _userAddress) public constant returns(string userName, string passWord, string email, uint age, address userAddress, string sex, string description) {\n        return(\n        userStructs[_userAddress].userName,\n        userStructs[_userAddress].passWord,\n        userStructs[_userAddress].email,\n        userStructs[_userAddress].age,\n        userStructs[_userAddress].userAddress,\n        userStructs[_userAddress].sex,\n        userStructs[_userAddress].description\n        );\n    }\n\n    function checkUser(address userAddress, string passWord) public returns (bool success) {\n        if (userStructs[userAddress].index > 0) {\n            if (keccak256(userStructs[userAddress].passWord) == keccak256(passWord)) {\n                return true;\n            } else{\n                return false;\n            }\n        } else {\n            return false;\n        }\n    }\n\n    function modifyUser(string userName, string passWord, string email, uint age, address userAddress, string sex, string description) public returns (bool success) {\n        userStructs[userAddress].userName = userName;\n        userStructs[userAddress].passWord = passWord;\n        userStructs[userAddress].email = email;\n        userStructs[userAddress].age = age;\n        userStructs[userAddress].userAddress = userAddress;\n        userStructs[userAddress].sex = sex;\n        userStructs[userAddress].description = description;\n    }\n}","sourcePath":"/Users/steveniiv/Test/Market-DApp/contracts/UserApp.sol","ast":{"absolutePath":"/Users/steveniiv/Test/Market-DApp/contracts/UserApp.sol","exportedSymbols":{"UserApp":[1280]},"id":1281,"nodeType":"SourceUnit","nodes":[{"id":990,"literals":["solidity","^","0.4",".19"],"nodeType":"PragmaDirective","src":"0:24:3"},{"baseContracts":[],"contractDependencies":[],"contractKind":"contract","documentation":null,"fullyImplemented":true,"id":1280,"linearizedBaseContracts":[1280],"name":"UserApp","nodeType":"ContractDefinition","nodes":[{"canonicalName":"UserApp.UserStruct","id":1007,"members":[{"constant":false,"id":992,"name":"index","nodeType":"VariableDeclaration","scope":1007,"src":"77:10:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"},"typeName":{"id":991,"name":"uint","nodeType":"ElementaryTypeName","src":"77:4:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"value":null,"visibility":"internal"},{"constant":false,"id":994,"name":"userName","nodeType":"VariableDeclaration","scope":1007,"src":"97:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"},"typeName":{"id":993,"name":"string","nodeType":"ElementaryTypeName","src":"97:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":996,"name":"passWord","nodeType":"VariableDeclaration","scope":1007,"src":"122:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"},"typeName":{"id":995,"name":"string","nodeType":"ElementaryTypeName","src":"122:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":998,"name":"email","nodeType":"VariableDeclaration","scope":1007,"src":"147:12:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"},"typeName":{"id":997,"name":"string","nodeType":"ElementaryTypeName","src":"147:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1000,"name":"age","nodeType":"VariableDeclaration","scope":1007,"src":"169:8:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"},"typeName":{"id":999,"name":"uint","nodeType":"ElementaryTypeName","src":"169:4:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"value":null,"visibility":"internal"},{"constant":false,"id":1002,"name":"userAddress","nodeType":"VariableDeclaration","scope":1007,"src":"187:19:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"},"typeName":{"id":1001,"name":"address","nodeType":"ElementaryTypeName","src":"187:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"value":null,"visibility":"internal"},{"constant":false,"id":1004,"name":"sex","nodeType":"VariableDeclaration","scope":1007,"src":"216:10:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"},"typeName":{"id":1003,"name":"string","nodeType":"ElementaryTypeName","src":"216:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1006,"name":"description","nodeType":"VariableDeclaration","scope":1007,"src":"236:18:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"},"typeName":{"id":1005,"name":"string","nodeType":"ElementaryTypeName","src":"236:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"}],"name":"UserStruct","nodeType":"StructDefinition","scope":1280,"src":"49:212:3","visibility":"public"},{"constant":false,"id":1011,"name":"userBalances","nodeType":"VariableDeclaration","scope":1280,"src":"267:38:3","stateVariable":true,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_uint256_$","typeString":"mapping(address => uint256)"},"typeName":{"id":1010,"keyType":{"id":1008,"name":"address","nodeType":"ElementaryTypeName","src":"276:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"nodeType":"Mapping","src":"267:25:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_uint256_$","typeString":"mapping(address => uint256)"},"valueType":{"id":1009,"name":"uint","nodeType":"ElementaryTypeName","src":"287:4:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}}},"value":null,"visibility":"internal"},{"constant":false,"id":1015,"name":"userStructs","nodeType":"VariableDeclaration","scope":1280,"src":"362:50:3","stateVariable":true,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"},"typeName":{"id":1014,"keyType":{"id":1012,"name":"address","nodeType":"ElementaryTypeName","src":"370:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"nodeType":"Mapping","src":"362:30:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"},"valueType":{"contractScope":null,"id":1013,"name":"UserStruct","nodeType":"UserDefinedTypeName","referencedDeclaration":1007,"src":"381:10:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage_ptr","typeString":"struct UserApp.UserStruct storage pointer"}}},"value":null,"visibility":"private"},{"constant":false,"id":1018,"name":"userIndex","nodeType":"VariableDeclaration","scope":1280,"src":"418:27:3","stateVariable":true,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_array$_t_address_$dyn_storage","typeString":"address[] storage ref"},"typeName":{"baseType":{"id":1016,"name":"address","nodeType":"ElementaryTypeName","src":"418:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"id":1017,"length":null,"nodeType":"ArrayTypeName","src":"418:9:3","typeDescriptions":{"typeIdentifier":"t_array$_t_address_$dyn_storage_ptr","typeString":"address[] storage pointer"}},"value":null,"visibility":"private"},{"body":{"id":1038,"nodeType":"Block","src":"529:134:3","statements":[{"condition":{"argumentTypes":null,"commonType":{"typeIdentifier":"t_uint256","typeString":"uint256"},"id":1030,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftExpression":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1025,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"542:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1027,"indexExpression":{"argumentTypes":null,"id":1026,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1020,"src":"554:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"542:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1028,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"index","nodeType":"MemberAccess","referencedDeclaration":992,"src":"542:30:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"nodeType":"BinaryOperation","operator":">","rightExpression":{"argumentTypes":null,"hexValue":"30","id":1029,"isConstant":false,"isLValue":false,"isPure":true,"kind":"number","lValueRequested":false,"nodeType":"Literal","src":"575:1:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_rational_0_by_1","typeString":"int_const 0"},"value":"0"},"src":"542:34:3","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"}},"falseBody":{"id":1036,"nodeType":"Block","src":"620:37:3","statements":[{"expression":{"argumentTypes":null,"hexValue":"66616c7365","id":1034,"isConstant":false,"isLValue":false,"isPure":true,"kind":"bool","lValueRequested":false,"nodeType":"Literal","src":"641:5:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"value":"false"},"functionReturnParameters":1024,"id":1035,"nodeType":"Return","src":"634:12:3"}]},"id":1037,"nodeType":"IfStatement","src":"539:118:3","trueBody":{"id":1033,"nodeType":"Block","src":"578:36:3","statements":[{"expression":{"argumentTypes":null,"hexValue":"74727565","id":1031,"isConstant":false,"isLValue":false,"isPure":true,"kind":"bool","lValueRequested":false,"nodeType":"Literal","src":"599:4:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"value":"true"},"functionReturnParameters":1024,"id":1032,"nodeType":"Return","src":"592:11:3"}]}}]},"id":1039,"implemented":true,"isConstructor":false,"isDeclaredConst":true,"modifiers":[],"name":"isUser","nodeType":"FunctionDefinition","parameters":{"id":1021,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1020,"name":"userAddress","nodeType":"VariableDeclaration","scope":1039,"src":"469:19:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"},"typeName":{"id":1019,"name":"address","nodeType":"ElementaryTypeName","src":"469:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"value":null,"visibility":"internal"}],"src":"468:21:3"},"payable":false,"returnParameters":{"id":1024,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1023,"name":"isIndeed","nodeType":"VariableDeclaration","scope":1039,"src":"514:13:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"typeName":{"id":1022,"name":"bool","nodeType":"ElementaryTypeName","src":"514:4:3","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"}},"value":null,"visibility":"internal"}],"src":"513:15:3"},"scope":1280,"src":"453:210:3","stateMutability":"view","superFunction":null,"visibility":"public"},{"body":{"id":1121,"nodeType":"Block","src":"830:464:3","statements":[{"expression":{"argumentTypes":null,"id":1063,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1058,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"840:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1060,"indexExpression":{"argumentTypes":null,"id":1059,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"852:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"840:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1061,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"userName","nodeType":"MemberAccess","referencedDeclaration":994,"src":"840:33:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1062,"name":"userName","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1041,"src":"876:8:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"840:44:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1064,"nodeType":"ExpressionStatement","src":"840:44:3"},{"expression":{"argumentTypes":null,"id":1070,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1065,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"894:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1067,"indexExpression":{"argumentTypes":null,"id":1066,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"906:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"894:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1068,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"passWord","nodeType":"MemberAccess","referencedDeclaration":996,"src":"894:33:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1069,"name":"passWord","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1043,"src":"930:8:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"894:44:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1071,"nodeType":"ExpressionStatement","src":"894:44:3"},{"expression":{"argumentTypes":null,"id":1077,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1072,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"948:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1074,"indexExpression":{"argumentTypes":null,"id":1073,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"960:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"948:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1075,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"email","nodeType":"MemberAccess","referencedDeclaration":998,"src":"948:30:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1076,"name":"email","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1045,"src":"981:5:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"948:38:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1078,"nodeType":"ExpressionStatement","src":"948:38:3"},{"expression":{"argumentTypes":null,"id":1084,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1079,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"996:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1081,"indexExpression":{"argumentTypes":null,"id":1080,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"1008:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"996:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1082,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"age","nodeType":"MemberAccess","referencedDeclaration":1000,"src":"996:28:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1083,"name":"age","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1047,"src":"1027:3:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"src":"996:34:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"id":1085,"nodeType":"ExpressionStatement","src":"996:34:3"},{"expression":{"argumentTypes":null,"id":1091,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1086,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1040:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1088,"indexExpression":{"argumentTypes":null,"id":1087,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"1052:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1040:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1089,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"userAddress","nodeType":"MemberAccess","referencedDeclaration":1002,"src":"1040:36:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1090,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"1079:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"src":"1040:50:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"id":1092,"nodeType":"ExpressionStatement","src":"1040:50:3"},{"expression":{"argumentTypes":null,"id":1098,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1093,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1100:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1095,"indexExpression":{"argumentTypes":null,"id":1094,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"1112:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1100:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1096,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"sex","nodeType":"MemberAccess","referencedDeclaration":1004,"src":"1100:28:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1097,"name":"sex","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1051,"src":"1131:3:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"1100:34:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1099,"nodeType":"ExpressionStatement","src":"1100:34:3"},{"expression":{"argumentTypes":null,"id":1105,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1100,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1144:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1102,"indexExpression":{"argumentTypes":null,"id":1101,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"1156:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1144:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1103,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"description","nodeType":"MemberAccess","referencedDeclaration":1006,"src":"1144:36:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1104,"name":"description","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1053,"src":"1183:11:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"1144:50:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1106,"nodeType":"ExpressionStatement","src":"1144:50:3"},{"expression":{"argumentTypes":null,"id":1117,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1107,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1204:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1109,"indexExpression":{"argumentTypes":null,"id":1108,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"1216:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1204:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1110,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"index","nodeType":"MemberAccess","referencedDeclaration":992,"src":"1204:30:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"commonType":{"typeIdentifier":"t_uint256","typeString":"uint256"},"id":1116,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftExpression":{"argumentTypes":null,"arguments":[{"argumentTypes":null,"id":1113,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"1252:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}}],"expression":{"argumentTypes":[{"typeIdentifier":"t_address","typeString":"address"}],"expression":{"argumentTypes":null,"id":1111,"name":"userIndex","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1018,"src":"1237:9:3","typeDescriptions":{"typeIdentifier":"t_array$_t_address_$dyn_storage","typeString":"address[] storage ref"}},"id":1112,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"memberName":"push","nodeType":"MemberAccess","referencedDeclaration":null,"src":"1237:14:3","typeDescriptions":{"typeIdentifier":"t_function_arraypush_nonpayable$_t_address_$returns$_t_uint256_$","typeString":"function (address) returns (uint256)"}},"id":1114,"isConstant":false,"isLValue":false,"isPure":false,"kind":"functionCall","lValueRequested":false,"names":[],"nodeType":"FunctionCall","src":"1237:27:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"nodeType":"BinaryOperation","operator":"-","rightExpression":{"argumentTypes":null,"hexValue":"31","id":1115,"isConstant":false,"isLValue":false,"isPure":true,"kind":"number","lValueRequested":false,"nodeType":"Literal","src":"1265:1:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_rational_1_by_1","typeString":"int_const 1"},"value":"1"},"src":"1237:29:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"src":"1204:62:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"id":1118,"nodeType":"ExpressionStatement","src":"1204:62:3"},{"expression":{"argumentTypes":null,"hexValue":"74727565","id":1119,"isConstant":false,"isLValue":false,"isPure":true,"kind":"bool","lValueRequested":false,"nodeType":"Literal","src":"1283:4:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"value":"true"},"functionReturnParameters":1057,"id":1120,"nodeType":"Return","src":"1276:11:3"}]},"id":1122,"implemented":true,"isConstructor":false,"isDeclaredConst":false,"modifiers":[],"name":"addNewUser","nodeType":"FunctionDefinition","parameters":{"id":1054,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1041,"name":"userName","nodeType":"VariableDeclaration","scope":1122,"src":"689:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1040,"name":"string","nodeType":"ElementaryTypeName","src":"689:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1043,"name":"passWord","nodeType":"VariableDeclaration","scope":1122,"src":"706:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1042,"name":"string","nodeType":"ElementaryTypeName","src":"706:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1045,"name":"email","nodeType":"VariableDeclaration","scope":1122,"src":"723:12:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1044,"name":"string","nodeType":"ElementaryTypeName","src":"723:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1047,"name":"age","nodeType":"VariableDeclaration","scope":1122,"src":"737:8:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"},"typeName":{"id":1046,"name":"uint","nodeType":"ElementaryTypeName","src":"737:4:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"value":null,"visibility":"internal"},{"constant":false,"id":1049,"name":"userAddress","nodeType":"VariableDeclaration","scope":1122,"src":"747:19:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"},"typeName":{"id":1048,"name":"address","nodeType":"ElementaryTypeName","src":"747:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"value":null,"visibility":"internal"},{"constant":false,"id":1051,"name":"sex","nodeType":"VariableDeclaration","scope":1122,"src":"768:10:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1050,"name":"string","nodeType":"ElementaryTypeName","src":"768:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1053,"name":"description","nodeType":"VariableDeclaration","scope":1122,"src":"780:18:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1052,"name":"string","nodeType":"ElementaryTypeName","src":"780:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"}],"src":"688:111:3"},"payable":false,"returnParameters":{"id":1057,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1056,"name":"success","nodeType":"VariableDeclaration","scope":1122,"src":"816:12:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"typeName":{"id":1055,"name":"bool","nodeType":"ElementaryTypeName","src":"816:4:3","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"}},"value":null,"visibility":"internal"}],"src":"815:14:3"},"scope":1280,"src":"669:625:3","stateMutability":"nonpayable","superFunction":null,"visibility":"public"},{"body":{"id":1171,"nodeType":"Block","src":"1474:334:3","statements":[{"expression":{"argumentTypes":null,"components":[{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1141,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1500:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1143,"indexExpression":{"argumentTypes":null,"id":1142,"name":"_userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1124,"src":"1512:12:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1500:25:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1144,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"userName","nodeType":"MemberAccess","referencedDeclaration":994,"src":"1500:34:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1145,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1544:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1147,"indexExpression":{"argumentTypes":null,"id":1146,"name":"_userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1124,"src":"1556:12:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1544:25:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1148,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"passWord","nodeType":"MemberAccess","referencedDeclaration":996,"src":"1544:34:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1149,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1588:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1151,"indexExpression":{"argumentTypes":null,"id":1150,"name":"_userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1124,"src":"1600:12:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1588:25:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1152,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"email","nodeType":"MemberAccess","referencedDeclaration":998,"src":"1588:31:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1153,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1629:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1155,"indexExpression":{"argumentTypes":null,"id":1154,"name":"_userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1124,"src":"1641:12:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1629:25:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1156,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"age","nodeType":"MemberAccess","referencedDeclaration":1000,"src":"1629:29:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1157,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1668:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1159,"indexExpression":{"argumentTypes":null,"id":1158,"name":"_userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1124,"src":"1680:12:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1668:25:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1160,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"userAddress","nodeType":"MemberAccess","referencedDeclaration":1002,"src":"1668:37:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1161,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1715:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1163,"indexExpression":{"argumentTypes":null,"id":1162,"name":"_userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1124,"src":"1727:12:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1715:25:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1164,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"sex","nodeType":"MemberAccess","referencedDeclaration":1004,"src":"1715:29:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1165,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1754:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1167,"indexExpression":{"argumentTypes":null,"id":1166,"name":"_userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1124,"src":"1766:12:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1754:25:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1168,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"description","nodeType":"MemberAccess","referencedDeclaration":1006,"src":"1754:37:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}}],"id":1169,"isConstant":false,"isInlineArray":false,"isLValue":false,"isPure":false,"lValueRequested":false,"nodeType":"TupleExpression","src":"1490:311:3","typeDescriptions":{"typeIdentifier":"t_tuple$_t_string_storage_$_t_string_storage_$_t_string_storage_$_t_uint256_$_t_address_$_t_string_storage_$_t_string_storage_$","typeString":"tuple(string storage ref,string storage ref,string storage ref,uint256,address,string storage ref,string storage ref)"}},"functionReturnParameters":1140,"id":1170,"nodeType":"Return","src":"1484:317:3"}]},"id":1172,"implemented":true,"isConstructor":false,"isDeclaredConst":true,"modifiers":[],"name":"getUser","nodeType":"FunctionDefinition","parameters":{"id":1125,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1124,"name":"_userAddress","nodeType":"VariableDeclaration","scope":1172,"src":"1317:20:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"},"typeName":{"id":1123,"name":"address","nodeType":"ElementaryTypeName","src":"1317:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"value":null,"visibility":"internal"}],"src":"1316:22:3"},"payable":false,"returnParameters":{"id":1140,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1127,"name":"userName","nodeType":"VariableDeclaration","scope":1172,"src":"1363:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1126,"name":"string","nodeType":"ElementaryTypeName","src":"1363:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1129,"name":"passWord","nodeType":"VariableDeclaration","scope":1172,"src":"1380:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1128,"name":"string","nodeType":"ElementaryTypeName","src":"1380:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1131,"name":"email","nodeType":"VariableDeclaration","scope":1172,"src":"1397:12:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1130,"name":"string","nodeType":"ElementaryTypeName","src":"1397:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1133,"name":"age","nodeType":"VariableDeclaration","scope":1172,"src":"1411:8:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"},"typeName":{"id":1132,"name":"uint","nodeType":"ElementaryTypeName","src":"1411:4:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"value":null,"visibility":"internal"},{"constant":false,"id":1135,"name":"userAddress","nodeType":"VariableDeclaration","scope":1172,"src":"1421:19:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"},"typeName":{"id":1134,"name":"address","nodeType":"ElementaryTypeName","src":"1421:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"value":null,"visibility":"internal"},{"constant":false,"id":1137,"name":"sex","nodeType":"VariableDeclaration","scope":1172,"src":"1442:10:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1136,"name":"string","nodeType":"ElementaryTypeName","src":"1442:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1139,"name":"description","nodeType":"VariableDeclaration","scope":1172,"src":"1454:18:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1138,"name":"string","nodeType":"ElementaryTypeName","src":"1454:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"}],"src":"1362:111:3"},"scope":1280,"src":"1300:508:3","stateMutability":"view","superFunction":null,"visibility":"public"},{"body":{"id":1209,"nodeType":"Block","src":"1901:290:3","statements":[{"condition":{"argumentTypes":null,"commonType":{"typeIdentifier":"t_uint256","typeString":"uint256"},"id":1186,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftExpression":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1181,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1915:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1183,"indexExpression":{"argumentTypes":null,"id":1182,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1174,"src":"1927:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1915:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1184,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"index","nodeType":"MemberAccess","referencedDeclaration":992,"src":"1915:30:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"nodeType":"BinaryOperation","operator":">","rightExpression":{"argumentTypes":null,"hexValue":"30","id":1185,"isConstant":false,"isLValue":false,"isPure":true,"kind":"number","lValueRequested":false,"nodeType":"Literal","src":"1948:1:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_rational_0_by_1","typeString":"int_const 0"},"value":"0"},"src":"1915:34:3","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"}},"falseBody":{"id":1207,"nodeType":"Block","src":"2148:37:3","statements":[{"expression":{"argumentTypes":null,"hexValue":"66616c7365","id":1205,"isConstant":false,"isLValue":false,"isPure":true,"kind":"bool","lValueRequested":false,"nodeType":"Literal","src":"2169:5:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"value":"false"},"functionReturnParameters":1180,"id":1206,"nodeType":"Return","src":"2162:12:3"}]},"id":1208,"nodeType":"IfStatement","src":"1911:274:3","trueBody":{"id":1204,"nodeType":"Block","src":"1951:191:3","statements":[{"condition":{"argumentTypes":null,"commonType":{"typeIdentifier":"t_bytes32","typeString":"bytes32"},"id":1196,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftExpression":{"argumentTypes":null,"arguments":[{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1188,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1979:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1190,"indexExpression":{"argumentTypes":null,"id":1189,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1174,"src":"1991:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1979:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1191,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"passWord","nodeType":"MemberAccess","referencedDeclaration":996,"src":"1979:33:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}}],"expression":{"argumentTypes":[{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}],"id":1187,"name":"keccak256","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1286,"src":"1969:9:3","typeDescriptions":{"typeIdentifier":"t_function_sha3_pure$__$returns$_t_bytes32_$","typeString":"function () pure returns (bytes32)"}},"id":1192,"isConstant":false,"isLValue":false,"isPure":false,"kind":"functionCall","lValueRequested":false,"names":[],"nodeType":"FunctionCall","src":"1969:44:3","typeDescriptions":{"typeIdentifier":"t_bytes32","typeString":"bytes32"}},"nodeType":"BinaryOperation","operator":"==","rightExpression":{"argumentTypes":null,"arguments":[{"argumentTypes":null,"id":1194,"name":"passWord","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1176,"src":"2027:8:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}}],"expression":{"argumentTypes":[{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}],"id":1193,"name":"keccak256","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1286,"src":"2017:9:3","typeDescriptions":{"typeIdentifier":"t_function_sha3_pure$__$returns$_t_bytes32_$","typeString":"function () pure returns (bytes32)"}},"id":1195,"isConstant":false,"isLValue":false,"isPure":false,"kind":"functionCall","lValueRequested":false,"names":[],"nodeType":"FunctionCall","src":"2017:19:3","typeDescriptions":{"typeIdentifier":"t_bytes32","typeString":"bytes32"}},"src":"1969:67:3","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"}},"falseBody":{"id":1202,"nodeType":"Block","src":"2087:45:3","statements":[{"expression":{"argumentTypes":null,"hexValue":"66616c7365","id":1200,"isConstant":false,"isLValue":false,"isPure":true,"kind":"bool","lValueRequested":false,"nodeType":"Literal","src":"2112:5:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"value":"false"},"functionReturnParameters":1180,"id":1201,"nodeType":"Return","src":"2105:12:3"}]},"id":1203,"nodeType":"IfStatement","src":"1965:167:3","trueBody":{"id":1199,"nodeType":"Block","src":"2038:44:3","statements":[{"expression":{"argumentTypes":null,"hexValue":"74727565","id":1197,"isConstant":false,"isLValue":false,"isPure":true,"kind":"bool","lValueRequested":false,"nodeType":"Literal","src":"2063:4:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"value":"true"},"functionReturnParameters":1180,"id":1198,"nodeType":"Return","src":"2056:11:3"}]}}]}}]},"id":1210,"implemented":true,"isConstructor":false,"isDeclaredConst":false,"modifiers":[],"name":"checkUser","nodeType":"FunctionDefinition","parameters":{"id":1177,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1174,"name":"userAddress","nodeType":"VariableDeclaration","scope":1210,"src":"1833:19:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"},"typeName":{"id":1173,"name":"address","nodeType":"ElementaryTypeName","src":"1833:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"value":null,"visibility":"internal"},{"constant":false,"id":1176,"name":"passWord","nodeType":"VariableDeclaration","scope":1210,"src":"1854:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1175,"name":"string","nodeType":"ElementaryTypeName","src":"1854:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"}],"src":"1832:38:3"},"payable":false,"returnParameters":{"id":1180,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1179,"name":"success","nodeType":"VariableDeclaration","scope":1210,"src":"1887:12:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"typeName":{"id":1178,"name":"bool","nodeType":"ElementaryTypeName","src":"1887:4:3","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"}},"value":null,"visibility":"internal"}],"src":"1886:14:3"},"scope":1280,"src":"1814:377:3","stateMutability":"nonpayable","superFunction":null,"visibility":"public"},{"body":{"id":1278,"nodeType":"Block","src":"2358:371:3","statements":[{"expression":{"argumentTypes":null,"id":1234,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1229,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"2368:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1231,"indexExpression":{"argumentTypes":null,"id":1230,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1220,"src":"2380:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"2368:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1232,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"userName","nodeType":"MemberAccess","referencedDeclaration":994,"src":"2368:33:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1233,"name":"userName","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1212,"src":"2404:8:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"2368:44:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1235,"nodeType":"ExpressionStatement","src":"2368:44:3"},{"expression":{"argumentTypes":null,"id":1241,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1236,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"2422:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1238,"indexExpression":{"argumentTypes":null,"id":1237,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1220,"src":"2434:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"2422:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1239,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"passWord","nodeType":"MemberAccess","referencedDeclaration":996,"src":"2422:33:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1240,"name":"passWord","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1214,"src":"2458:8:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"2422:44:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1242,"nodeType":"ExpressionStatement","src":"2422:44:3"},{"expression":{"argumentTypes":null,"id":1248,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1243,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"2476:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1245,"indexExpression":{"argumentTypes":null,"id":1244,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1220,"src":"2488:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"2476:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1246,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"email","nodeType":"MemberAccess","referencedDeclaration":998,"src":"2476:30:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1247,"name":"email","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1216,"src":"2509:5:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"2476:38:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1249,"nodeType":"ExpressionStatement","src":"2476:38:3"},{"expression":{"argumentTypes":null,"id":1255,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1250,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"2524:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1252,"indexExpression":{"argumentTypes":null,"id":1251,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1220,"src":"2536:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"2524:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1253,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"age","nodeType":"MemberAccess","referencedDeclaration":1000,"src":"2524:28:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1254,"name":"age","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1218,"src":"2555:3:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"src":"2524:34:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"id":1256,"nodeType":"ExpressionStatement","src":"2524:34:3"},{"expression":{"argumentTypes":null,"id":1262,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1257,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"2568:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1259,"indexExpression":{"argumentTypes":null,"id":1258,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1220,"src":"2580:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"2568:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1260,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"userAddress","nodeType":"MemberAccess","referencedDeclaration":1002,"src":"2568:36:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1261,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1220,"src":"2607:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"src":"2568:50:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"id":1263,"nodeType":"ExpressionStatement","src":"2568:50:3"},{"expression":{"argumentTypes":null,"id":1269,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1264,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"2628:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1266,"indexExpression":{"argumentTypes":null,"id":1265,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1220,"src":"2640:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"2628:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1267,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"sex","nodeType":"MemberAccess","referencedDeclaration":1004,"src":"2628:28:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1268,"name":"sex","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1222,"src":"2659:3:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"2628:34:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1270,"nodeType":"ExpressionStatement","src":"2628:34:3"},{"expression":{"argumentTypes":null,"id":1276,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1271,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"2672:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1273,"indexExpression":{"argumentTypes":null,"id":1272,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1220,"src":"2684:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"2672:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1274,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"description","nodeType":"MemberAccess","referencedDeclaration":1006,"src":"2672:36:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1275,"name":"description","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1224,"src":"2711:11:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"2672:50:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1277,"nodeType":"ExpressionStatement","src":"2672:50:3"}]},"id":1279,"implemented":true,"isConstructor":false,"isDeclaredConst":false,"modifiers":[],"name":"modifyUser","nodeType":"FunctionDefinition","parameters":{"id":1225,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1212,"name":"userName","nodeType":"VariableDeclaration","scope":1279,"src":"2217:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1211,"name":"string","nodeType":"ElementaryTypeName","src":"2217:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1214,"name":"passWord","nodeType":"VariableDeclaration","scope":1279,"src":"2234:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1213,"name":"string","nodeType":"ElementaryTypeName","src":"2234:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1216,"name":"email","nodeType":"VariableDeclaration","scope":1279,"src":"2251:12:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1215,"name":"string","nodeType":"ElementaryTypeName","src":"2251:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1218,"name":"age","nodeType":"VariableDeclaration","scope":1279,"src":"2265:8:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"},"typeName":{"id":1217,"name":"uint","nodeType":"ElementaryTypeName","src":"2265:4:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"value":null,"visibility":"internal"},{"constant":false,"id":1220,"name":"userAddress","nodeType":"VariableDeclaration","scope":1279,"src":"2275:19:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"},"typeName":{"id":1219,"name":"address","nodeType":"ElementaryTypeName","src":"2275:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"value":null,"visibility":"internal"},{"constant":false,"id":1222,"name":"sex","nodeType":"VariableDeclaration","scope":1279,"src":"2296:10:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1221,"name":"string","nodeType":"ElementaryTypeName","src":"2296:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1224,"name":"description","nodeType":"VariableDeclaration","scope":1279,"src":"2308:18:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1223,"name":"string","nodeType":"ElementaryTypeName","src":"2308:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"}],"src":"2216:111:3"},"payable":false,"returnParameters":{"id":1228,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1227,"name":"success","nodeType":"VariableDeclaration","scope":1279,"src":"2344:12:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"typeName":{"id":1226,"name":"bool","nodeType":"ElementaryTypeName","src":"2344:4:3","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"}},"value":null,"visibility":"internal"}],"src":"2343:14:3"},"scope":1280,"src":"2197:532:3","stateMutability":"nonpayable","superFunction":null,"visibility":"public"}],"scope":1281,"src":"26:2705:3"}],"src":"0:2731:3"},"legacyAST":{"absolutePath":"/Users/steveniiv/Test/Market-DApp/contracts/UserApp.sol","exportedSymbols":{"UserApp":[1280]},"id":1281,"nodeType":"SourceUnit","nodes":[{"id":990,"literals":["solidity","^","0.4",".19"],"nodeType":"PragmaDirective","src":"0:24:3"},{"baseContracts":[],"contractDependencies":[],"contractKind":"contract","documentation":null,"fullyImplemented":true,"id":1280,"linearizedBaseContracts":[1280],"name":"UserApp","nodeType":"ContractDefinition","nodes":[{"canonicalName":"UserApp.UserStruct","id":1007,"members":[{"constant":false,"id":992,"name":"index","nodeType":"VariableDeclaration","scope":1007,"src":"77:10:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"},"typeName":{"id":991,"name":"uint","nodeType":"ElementaryTypeName","src":"77:4:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"value":null,"visibility":"internal"},{"constant":false,"id":994,"name":"userName","nodeType":"VariableDeclaration","scope":1007,"src":"97:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"},"typeName":{"id":993,"name":"string","nodeType":"ElementaryTypeName","src":"97:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":996,"name":"passWord","nodeType":"VariableDeclaration","scope":1007,"src":"122:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"},"typeName":{"id":995,"name":"string","nodeType":"ElementaryTypeName","src":"122:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":998,"name":"email","nodeType":"VariableDeclaration","scope":1007,"src":"147:12:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"},"typeName":{"id":997,"name":"string","nodeType":"ElementaryTypeName","src":"147:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1000,"name":"age","nodeType":"VariableDeclaration","scope":1007,"src":"169:8:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"},"typeName":{"id":999,"name":"uint","nodeType":"ElementaryTypeName","src":"169:4:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"value":null,"visibility":"internal"},{"constant":false,"id":1002,"name":"userAddress","nodeType":"VariableDeclaration","scope":1007,"src":"187:19:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"},"typeName":{"id":1001,"name":"address","nodeType":"ElementaryTypeName","src":"187:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"value":null,"visibility":"internal"},{"constant":false,"id":1004,"name":"sex","nodeType":"VariableDeclaration","scope":1007,"src":"216:10:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"},"typeName":{"id":1003,"name":"string","nodeType":"ElementaryTypeName","src":"216:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1006,"name":"description","nodeType":"VariableDeclaration","scope":1007,"src":"236:18:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"},"typeName":{"id":1005,"name":"string","nodeType":"ElementaryTypeName","src":"236:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"}],"name":"UserStruct","nodeType":"StructDefinition","scope":1280,"src":"49:212:3","visibility":"public"},{"constant":false,"id":1011,"name":"userBalances","nodeType":"VariableDeclaration","scope":1280,"src":"267:38:3","stateVariable":true,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_uint256_$","typeString":"mapping(address => uint256)"},"typeName":{"id":1010,"keyType":{"id":1008,"name":"address","nodeType":"ElementaryTypeName","src":"276:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"nodeType":"Mapping","src":"267:25:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_uint256_$","typeString":"mapping(address => uint256)"},"valueType":{"id":1009,"name":"uint","nodeType":"ElementaryTypeName","src":"287:4:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}}},"value":null,"visibility":"internal"},{"constant":false,"id":1015,"name":"userStructs","nodeType":"VariableDeclaration","scope":1280,"src":"362:50:3","stateVariable":true,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"},"typeName":{"id":1014,"keyType":{"id":1012,"name":"address","nodeType":"ElementaryTypeName","src":"370:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"nodeType":"Mapping","src":"362:30:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"},"valueType":{"contractScope":null,"id":1013,"name":"UserStruct","nodeType":"UserDefinedTypeName","referencedDeclaration":1007,"src":"381:10:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage_ptr","typeString":"struct UserApp.UserStruct storage pointer"}}},"value":null,"visibility":"private"},{"constant":false,"id":1018,"name":"userIndex","nodeType":"VariableDeclaration","scope":1280,"src":"418:27:3","stateVariable":true,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_array$_t_address_$dyn_storage","typeString":"address[] storage ref"},"typeName":{"baseType":{"id":1016,"name":"address","nodeType":"ElementaryTypeName","src":"418:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"id":1017,"length":null,"nodeType":"ArrayTypeName","src":"418:9:3","typeDescriptions":{"typeIdentifier":"t_array$_t_address_$dyn_storage_ptr","typeString":"address[] storage pointer"}},"value":null,"visibility":"private"},{"body":{"id":1038,"nodeType":"Block","src":"529:134:3","statements":[{"condition":{"argumentTypes":null,"commonType":{"typeIdentifier":"t_uint256","typeString":"uint256"},"id":1030,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftExpression":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1025,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"542:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1027,"indexExpression":{"argumentTypes":null,"id":1026,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1020,"src":"554:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"542:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1028,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"index","nodeType":"MemberAccess","referencedDeclaration":992,"src":"542:30:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"nodeType":"BinaryOperation","operator":">","rightExpression":{"argumentTypes":null,"hexValue":"30","id":1029,"isConstant":false,"isLValue":false,"isPure":true,"kind":"number","lValueRequested":false,"nodeType":"Literal","src":"575:1:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_rational_0_by_1","typeString":"int_const 0"},"value":"0"},"src":"542:34:3","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"}},"falseBody":{"id":1036,"nodeType":"Block","src":"620:37:3","statements":[{"expression":{"argumentTypes":null,"hexValue":"66616c7365","id":1034,"isConstant":false,"isLValue":false,"isPure":true,"kind":"bool","lValueRequested":false,"nodeType":"Literal","src":"641:5:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"value":"false"},"functionReturnParameters":1024,"id":1035,"nodeType":"Return","src":"634:12:3"}]},"id":1037,"nodeType":"IfStatement","src":"539:118:3","trueBody":{"id":1033,"nodeType":"Block","src":"578:36:3","statements":[{"expression":{"argumentTypes":null,"hexValue":"74727565","id":1031,"isConstant":false,"isLValue":false,"isPure":true,"kind":"bool","lValueRequested":false,"nodeType":"Literal","src":"599:4:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"value":"true"},"functionReturnParameters":1024,"id":1032,"nodeType":"Return","src":"592:11:3"}]}}]},"id":1039,"implemented":true,"isConstructor":false,"isDeclaredConst":true,"modifiers":[],"name":"isUser","nodeType":"FunctionDefinition","parameters":{"id":1021,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1020,"name":"userAddress","nodeType":"VariableDeclaration","scope":1039,"src":"469:19:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"},"typeName":{"id":1019,"name":"address","nodeType":"ElementaryTypeName","src":"469:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"value":null,"visibility":"internal"}],"src":"468:21:3"},"payable":false,"returnParameters":{"id":1024,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1023,"name":"isIndeed","nodeType":"VariableDeclaration","scope":1039,"src":"514:13:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"typeName":{"id":1022,"name":"bool","nodeType":"ElementaryTypeName","src":"514:4:3","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"}},"value":null,"visibility":"internal"}],"src":"513:15:3"},"scope":1280,"src":"453:210:3","stateMutability":"view","superFunction":null,"visibility":"public"},{"body":{"id":1121,"nodeType":"Block","src":"830:464:3","statements":[{"expression":{"argumentTypes":null,"id":1063,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1058,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"840:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1060,"indexExpression":{"argumentTypes":null,"id":1059,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"852:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"840:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1061,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"userName","nodeType":"MemberAccess","referencedDeclaration":994,"src":"840:33:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1062,"name":"userName","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1041,"src":"876:8:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"840:44:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1064,"nodeType":"ExpressionStatement","src":"840:44:3"},{"expression":{"argumentTypes":null,"id":1070,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1065,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"894:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1067,"indexExpression":{"argumentTypes":null,"id":1066,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"906:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"894:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1068,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"passWord","nodeType":"MemberAccess","referencedDeclaration":996,"src":"894:33:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1069,"name":"passWord","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1043,"src":"930:8:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"894:44:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1071,"nodeType":"ExpressionStatement","src":"894:44:3"},{"expression":{"argumentTypes":null,"id":1077,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1072,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"948:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1074,"indexExpression":{"argumentTypes":null,"id":1073,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"960:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"948:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1075,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"email","nodeType":"MemberAccess","referencedDeclaration":998,"src":"948:30:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1076,"name":"email","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1045,"src":"981:5:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"948:38:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1078,"nodeType":"ExpressionStatement","src":"948:38:3"},{"expression":{"argumentTypes":null,"id":1084,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1079,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"996:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1081,"indexExpression":{"argumentTypes":null,"id":1080,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"1008:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"996:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1082,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"age","nodeType":"MemberAccess","referencedDeclaration":1000,"src":"996:28:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1083,"name":"age","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1047,"src":"1027:3:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"src":"996:34:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"id":1085,"nodeType":"ExpressionStatement","src":"996:34:3"},{"expression":{"argumentTypes":null,"id":1091,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1086,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1040:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1088,"indexExpression":{"argumentTypes":null,"id":1087,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"1052:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1040:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1089,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"userAddress","nodeType":"MemberAccess","referencedDeclaration":1002,"src":"1040:36:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1090,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"1079:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"src":"1040:50:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"id":1092,"nodeType":"ExpressionStatement","src":"1040:50:3"},{"expression":{"argumentTypes":null,"id":1098,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1093,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1100:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1095,"indexExpression":{"argumentTypes":null,"id":1094,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"1112:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1100:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1096,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"sex","nodeType":"MemberAccess","referencedDeclaration":1004,"src":"1100:28:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1097,"name":"sex","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1051,"src":"1131:3:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"1100:34:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1099,"nodeType":"ExpressionStatement","src":"1100:34:3"},{"expression":{"argumentTypes":null,"id":1105,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1100,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1144:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1102,"indexExpression":{"argumentTypes":null,"id":1101,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"1156:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1144:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1103,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"description","nodeType":"MemberAccess","referencedDeclaration":1006,"src":"1144:36:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1104,"name":"description","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1053,"src":"1183:11:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"1144:50:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1106,"nodeType":"ExpressionStatement","src":"1144:50:3"},{"expression":{"argumentTypes":null,"id":1117,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1107,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1204:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1109,"indexExpression":{"argumentTypes":null,"id":1108,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"1216:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1204:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1110,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"index","nodeType":"MemberAccess","referencedDeclaration":992,"src":"1204:30:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"commonType":{"typeIdentifier":"t_uint256","typeString":"uint256"},"id":1116,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftExpression":{"argumentTypes":null,"arguments":[{"argumentTypes":null,"id":1113,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1049,"src":"1252:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}}],"expression":{"argumentTypes":[{"typeIdentifier":"t_address","typeString":"address"}],"expression":{"argumentTypes":null,"id":1111,"name":"userIndex","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1018,"src":"1237:9:3","typeDescriptions":{"typeIdentifier":"t_array$_t_address_$dyn_storage","typeString":"address[] storage ref"}},"id":1112,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"memberName":"push","nodeType":"MemberAccess","referencedDeclaration":null,"src":"1237:14:3","typeDescriptions":{"typeIdentifier":"t_function_arraypush_nonpayable$_t_address_$returns$_t_uint256_$","typeString":"function (address) returns (uint256)"}},"id":1114,"isConstant":false,"isLValue":false,"isPure":false,"kind":"functionCall","lValueRequested":false,"names":[],"nodeType":"FunctionCall","src":"1237:27:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"nodeType":"BinaryOperation","operator":"-","rightExpression":{"argumentTypes":null,"hexValue":"31","id":1115,"isConstant":false,"isLValue":false,"isPure":true,"kind":"number","lValueRequested":false,"nodeType":"Literal","src":"1265:1:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_rational_1_by_1","typeString":"int_const 1"},"value":"1"},"src":"1237:29:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"src":"1204:62:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"id":1118,"nodeType":"ExpressionStatement","src":"1204:62:3"},{"expression":{"argumentTypes":null,"hexValue":"74727565","id":1119,"isConstant":false,"isLValue":false,"isPure":true,"kind":"bool","lValueRequested":false,"nodeType":"Literal","src":"1283:4:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"value":"true"},"functionReturnParameters":1057,"id":1120,"nodeType":"Return","src":"1276:11:3"}]},"id":1122,"implemented":true,"isConstructor":false,"isDeclaredConst":false,"modifiers":[],"name":"addNewUser","nodeType":"FunctionDefinition","parameters":{"id":1054,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1041,"name":"userName","nodeType":"VariableDeclaration","scope":1122,"src":"689:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1040,"name":"string","nodeType":"ElementaryTypeName","src":"689:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1043,"name":"passWord","nodeType":"VariableDeclaration","scope":1122,"src":"706:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1042,"name":"string","nodeType":"ElementaryTypeName","src":"706:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1045,"name":"email","nodeType":"VariableDeclaration","scope":1122,"src":"723:12:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1044,"name":"string","nodeType":"ElementaryTypeName","src":"723:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1047,"name":"age","nodeType":"VariableDeclaration","scope":1122,"src":"737:8:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"},"typeName":{"id":1046,"name":"uint","nodeType":"ElementaryTypeName","src":"737:4:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"value":null,"visibility":"internal"},{"constant":false,"id":1049,"name":"userAddress","nodeType":"VariableDeclaration","scope":1122,"src":"747:19:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"},"typeName":{"id":1048,"name":"address","nodeType":"ElementaryTypeName","src":"747:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"value":null,"visibility":"internal"},{"constant":false,"id":1051,"name":"sex","nodeType":"VariableDeclaration","scope":1122,"src":"768:10:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1050,"name":"string","nodeType":"ElementaryTypeName","src":"768:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1053,"name":"description","nodeType":"VariableDeclaration","scope":1122,"src":"780:18:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1052,"name":"string","nodeType":"ElementaryTypeName","src":"780:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"}],"src":"688:111:3"},"payable":false,"returnParameters":{"id":1057,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1056,"name":"success","nodeType":"VariableDeclaration","scope":1122,"src":"816:12:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"typeName":{"id":1055,"name":"bool","nodeType":"ElementaryTypeName","src":"816:4:3","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"}},"value":null,"visibility":"internal"}],"src":"815:14:3"},"scope":1280,"src":"669:625:3","stateMutability":"nonpayable","superFunction":null,"visibility":"public"},{"body":{"id":1171,"nodeType":"Block","src":"1474:334:3","statements":[{"expression":{"argumentTypes":null,"components":[{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1141,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1500:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1143,"indexExpression":{"argumentTypes":null,"id":1142,"name":"_userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1124,"src":"1512:12:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1500:25:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1144,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"userName","nodeType":"MemberAccess","referencedDeclaration":994,"src":"1500:34:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1145,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1544:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1147,"indexExpression":{"argumentTypes":null,"id":1146,"name":"_userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1124,"src":"1556:12:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1544:25:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1148,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"passWord","nodeType":"MemberAccess","referencedDeclaration":996,"src":"1544:34:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1149,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1588:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1151,"indexExpression":{"argumentTypes":null,"id":1150,"name":"_userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1124,"src":"1600:12:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1588:25:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1152,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"email","nodeType":"MemberAccess","referencedDeclaration":998,"src":"1588:31:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1153,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1629:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1155,"indexExpression":{"argumentTypes":null,"id":1154,"name":"_userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1124,"src":"1641:12:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1629:25:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1156,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"age","nodeType":"MemberAccess","referencedDeclaration":1000,"src":"1629:29:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1157,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1668:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1159,"indexExpression":{"argumentTypes":null,"id":1158,"name":"_userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1124,"src":"1680:12:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1668:25:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1160,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"userAddress","nodeType":"MemberAccess","referencedDeclaration":1002,"src":"1668:37:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1161,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1715:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1163,"indexExpression":{"argumentTypes":null,"id":1162,"name":"_userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1124,"src":"1727:12:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1715:25:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1164,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"sex","nodeType":"MemberAccess","referencedDeclaration":1004,"src":"1715:29:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1165,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1754:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1167,"indexExpression":{"argumentTypes":null,"id":1166,"name":"_userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1124,"src":"1766:12:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1754:25:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1168,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"description","nodeType":"MemberAccess","referencedDeclaration":1006,"src":"1754:37:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}}],"id":1169,"isConstant":false,"isInlineArray":false,"isLValue":false,"isPure":false,"lValueRequested":false,"nodeType":"TupleExpression","src":"1490:311:3","typeDescriptions":{"typeIdentifier":"t_tuple$_t_string_storage_$_t_string_storage_$_t_string_storage_$_t_uint256_$_t_address_$_t_string_storage_$_t_string_storage_$","typeString":"tuple(string storage ref,string storage ref,string storage ref,uint256,address,string storage ref,string storage ref)"}},"functionReturnParameters":1140,"id":1170,"nodeType":"Return","src":"1484:317:3"}]},"id":1172,"implemented":true,"isConstructor":false,"isDeclaredConst":true,"modifiers":[],"name":"getUser","nodeType":"FunctionDefinition","parameters":{"id":1125,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1124,"name":"_userAddress","nodeType":"VariableDeclaration","scope":1172,"src":"1317:20:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"},"typeName":{"id":1123,"name":"address","nodeType":"ElementaryTypeName","src":"1317:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"value":null,"visibility":"internal"}],"src":"1316:22:3"},"payable":false,"returnParameters":{"id":1140,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1127,"name":"userName","nodeType":"VariableDeclaration","scope":1172,"src":"1363:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1126,"name":"string","nodeType":"ElementaryTypeName","src":"1363:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1129,"name":"passWord","nodeType":"VariableDeclaration","scope":1172,"src":"1380:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1128,"name":"string","nodeType":"ElementaryTypeName","src":"1380:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1131,"name":"email","nodeType":"VariableDeclaration","scope":1172,"src":"1397:12:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1130,"name":"string","nodeType":"ElementaryTypeName","src":"1397:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1133,"name":"age","nodeType":"VariableDeclaration","scope":1172,"src":"1411:8:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"},"typeName":{"id":1132,"name":"uint","nodeType":"ElementaryTypeName","src":"1411:4:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"value":null,"visibility":"internal"},{"constant":false,"id":1135,"name":"userAddress","nodeType":"VariableDeclaration","scope":1172,"src":"1421:19:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"},"typeName":{"id":1134,"name":"address","nodeType":"ElementaryTypeName","src":"1421:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"value":null,"visibility":"internal"},{"constant":false,"id":1137,"name":"sex","nodeType":"VariableDeclaration","scope":1172,"src":"1442:10:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1136,"name":"string","nodeType":"ElementaryTypeName","src":"1442:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1139,"name":"description","nodeType":"VariableDeclaration","scope":1172,"src":"1454:18:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1138,"name":"string","nodeType":"ElementaryTypeName","src":"1454:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"}],"src":"1362:111:3"},"scope":1280,"src":"1300:508:3","stateMutability":"view","superFunction":null,"visibility":"public"},{"body":{"id":1209,"nodeType":"Block","src":"1901:290:3","statements":[{"condition":{"argumentTypes":null,"commonType":{"typeIdentifier":"t_uint256","typeString":"uint256"},"id":1186,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftExpression":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1181,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1915:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1183,"indexExpression":{"argumentTypes":null,"id":1182,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1174,"src":"1927:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1915:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1184,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"index","nodeType":"MemberAccess","referencedDeclaration":992,"src":"1915:30:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"nodeType":"BinaryOperation","operator":">","rightExpression":{"argumentTypes":null,"hexValue":"30","id":1185,"isConstant":false,"isLValue":false,"isPure":true,"kind":"number","lValueRequested":false,"nodeType":"Literal","src":"1948:1:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_rational_0_by_1","typeString":"int_const 0"},"value":"0"},"src":"1915:34:3","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"}},"falseBody":{"id":1207,"nodeType":"Block","src":"2148:37:3","statements":[{"expression":{"argumentTypes":null,"hexValue":"66616c7365","id":1205,"isConstant":false,"isLValue":false,"isPure":true,"kind":"bool","lValueRequested":false,"nodeType":"Literal","src":"2169:5:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"value":"false"},"functionReturnParameters":1180,"id":1206,"nodeType":"Return","src":"2162:12:3"}]},"id":1208,"nodeType":"IfStatement","src":"1911:274:3","trueBody":{"id":1204,"nodeType":"Block","src":"1951:191:3","statements":[{"condition":{"argumentTypes":null,"commonType":{"typeIdentifier":"t_bytes32","typeString":"bytes32"},"id":1196,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftExpression":{"argumentTypes":null,"arguments":[{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1188,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"1979:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1190,"indexExpression":{"argumentTypes":null,"id":1189,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1174,"src":"1991:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"1979:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1191,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"memberName":"passWord","nodeType":"MemberAccess","referencedDeclaration":996,"src":"1979:33:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}}],"expression":{"argumentTypes":[{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}],"id":1187,"name":"keccak256","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1286,"src":"1969:9:3","typeDescriptions":{"typeIdentifier":"t_function_sha3_pure$__$returns$_t_bytes32_$","typeString":"function () pure returns (bytes32)"}},"id":1192,"isConstant":false,"isLValue":false,"isPure":false,"kind":"functionCall","lValueRequested":false,"names":[],"nodeType":"FunctionCall","src":"1969:44:3","typeDescriptions":{"typeIdentifier":"t_bytes32","typeString":"bytes32"}},"nodeType":"BinaryOperation","operator":"==","rightExpression":{"argumentTypes":null,"arguments":[{"argumentTypes":null,"id":1194,"name":"passWord","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1176,"src":"2027:8:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}}],"expression":{"argumentTypes":[{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}],"id":1193,"name":"keccak256","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1286,"src":"2017:9:3","typeDescriptions":{"typeIdentifier":"t_function_sha3_pure$__$returns$_t_bytes32_$","typeString":"function () pure returns (bytes32)"}},"id":1195,"isConstant":false,"isLValue":false,"isPure":false,"kind":"functionCall","lValueRequested":false,"names":[],"nodeType":"FunctionCall","src":"2017:19:3","typeDescriptions":{"typeIdentifier":"t_bytes32","typeString":"bytes32"}},"src":"1969:67:3","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"}},"falseBody":{"id":1202,"nodeType":"Block","src":"2087:45:3","statements":[{"expression":{"argumentTypes":null,"hexValue":"66616c7365","id":1200,"isConstant":false,"isLValue":false,"isPure":true,"kind":"bool","lValueRequested":false,"nodeType":"Literal","src":"2112:5:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"value":"false"},"functionReturnParameters":1180,"id":1201,"nodeType":"Return","src":"2105:12:3"}]},"id":1203,"nodeType":"IfStatement","src":"1965:167:3","trueBody":{"id":1199,"nodeType":"Block","src":"2038:44:3","statements":[{"expression":{"argumentTypes":null,"hexValue":"74727565","id":1197,"isConstant":false,"isLValue":false,"isPure":true,"kind":"bool","lValueRequested":false,"nodeType":"Literal","src":"2063:4:3","subdenomination":null,"typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"value":"true"},"functionReturnParameters":1180,"id":1198,"nodeType":"Return","src":"2056:11:3"}]}}]}}]},"id":1210,"implemented":true,"isConstructor":false,"isDeclaredConst":false,"modifiers":[],"name":"checkUser","nodeType":"FunctionDefinition","parameters":{"id":1177,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1174,"name":"userAddress","nodeType":"VariableDeclaration","scope":1210,"src":"1833:19:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"},"typeName":{"id":1173,"name":"address","nodeType":"ElementaryTypeName","src":"1833:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"value":null,"visibility":"internal"},{"constant":false,"id":1176,"name":"passWord","nodeType":"VariableDeclaration","scope":1210,"src":"1854:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1175,"name":"string","nodeType":"ElementaryTypeName","src":"1854:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"}],"src":"1832:38:3"},"payable":false,"returnParameters":{"id":1180,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1179,"name":"success","nodeType":"VariableDeclaration","scope":1210,"src":"1887:12:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"typeName":{"id":1178,"name":"bool","nodeType":"ElementaryTypeName","src":"1887:4:3","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"}},"value":null,"visibility":"internal"}],"src":"1886:14:3"},"scope":1280,"src":"1814:377:3","stateMutability":"nonpayable","superFunction":null,"visibility":"public"},{"body":{"id":1278,"nodeType":"Block","src":"2358:371:3","statements":[{"expression":{"argumentTypes":null,"id":1234,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1229,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"2368:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1231,"indexExpression":{"argumentTypes":null,"id":1230,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1220,"src":"2380:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"2368:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1232,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"userName","nodeType":"MemberAccess","referencedDeclaration":994,"src":"2368:33:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1233,"name":"userName","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1212,"src":"2404:8:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"2368:44:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1235,"nodeType":"ExpressionStatement","src":"2368:44:3"},{"expression":{"argumentTypes":null,"id":1241,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1236,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"2422:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1238,"indexExpression":{"argumentTypes":null,"id":1237,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1220,"src":"2434:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"2422:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1239,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"passWord","nodeType":"MemberAccess","referencedDeclaration":996,"src":"2422:33:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1240,"name":"passWord","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1214,"src":"2458:8:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"2422:44:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1242,"nodeType":"ExpressionStatement","src":"2422:44:3"},{"expression":{"argumentTypes":null,"id":1248,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1243,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"2476:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1245,"indexExpression":{"argumentTypes":null,"id":1244,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1220,"src":"2488:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"2476:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1246,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"email","nodeType":"MemberAccess","referencedDeclaration":998,"src":"2476:30:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1247,"name":"email","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1216,"src":"2509:5:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"2476:38:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1249,"nodeType":"ExpressionStatement","src":"2476:38:3"},{"expression":{"argumentTypes":null,"id":1255,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1250,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"2524:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1252,"indexExpression":{"argumentTypes":null,"id":1251,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1220,"src":"2536:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"2524:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1253,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"age","nodeType":"MemberAccess","referencedDeclaration":1000,"src":"2524:28:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1254,"name":"age","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1218,"src":"2555:3:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"src":"2524:34:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"id":1256,"nodeType":"ExpressionStatement","src":"2524:34:3"},{"expression":{"argumentTypes":null,"id":1262,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1257,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"2568:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1259,"indexExpression":{"argumentTypes":null,"id":1258,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1220,"src":"2580:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"2568:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1260,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"userAddress","nodeType":"MemberAccess","referencedDeclaration":1002,"src":"2568:36:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1261,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1220,"src":"2607:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"src":"2568:50:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"id":1263,"nodeType":"ExpressionStatement","src":"2568:50:3"},{"expression":{"argumentTypes":null,"id":1269,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1264,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"2628:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1266,"indexExpression":{"argumentTypes":null,"id":1265,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1220,"src":"2640:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"2628:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1267,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"sex","nodeType":"MemberAccess","referencedDeclaration":1004,"src":"2628:28:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1268,"name":"sex","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1222,"src":"2659:3:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"2628:34:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1270,"nodeType":"ExpressionStatement","src":"2628:34:3"},{"expression":{"argumentTypes":null,"id":1276,"isConstant":false,"isLValue":false,"isPure":false,"lValueRequested":false,"leftHandSide":{"argumentTypes":null,"expression":{"argumentTypes":null,"baseExpression":{"argumentTypes":null,"id":1271,"name":"userStructs","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1015,"src":"2672:11:3","typeDescriptions":{"typeIdentifier":"t_mapping$_t_address_$_t_struct$_UserStruct_$1007_storage_$","typeString":"mapping(address => struct UserApp.UserStruct storage ref)"}},"id":1273,"indexExpression":{"argumentTypes":null,"id":1272,"name":"userAddress","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1220,"src":"2684:11:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":false,"nodeType":"IndexAccess","src":"2672:24:3","typeDescriptions":{"typeIdentifier":"t_struct$_UserStruct_$1007_storage","typeString":"struct UserApp.UserStruct storage ref"}},"id":1274,"isConstant":false,"isLValue":true,"isPure":false,"lValueRequested":true,"memberName":"description","nodeType":"MemberAccess","referencedDeclaration":1006,"src":"2672:36:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"nodeType":"Assignment","operator":"=","rightHandSide":{"argumentTypes":null,"id":1275,"name":"description","nodeType":"Identifier","overloadedDeclarations":[],"referencedDeclaration":1224,"src":"2711:11:3","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"}},"src":"2672:50:3","typeDescriptions":{"typeIdentifier":"t_string_storage","typeString":"string storage ref"}},"id":1277,"nodeType":"ExpressionStatement","src":"2672:50:3"}]},"id":1279,"implemented":true,"isConstructor":false,"isDeclaredConst":false,"modifiers":[],"name":"modifyUser","nodeType":"FunctionDefinition","parameters":{"id":1225,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1212,"name":"userName","nodeType":"VariableDeclaration","scope":1279,"src":"2217:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1211,"name":"string","nodeType":"ElementaryTypeName","src":"2217:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1214,"name":"passWord","nodeType":"VariableDeclaration","scope":1279,"src":"2234:15:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1213,"name":"string","nodeType":"ElementaryTypeName","src":"2234:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1216,"name":"email","nodeType":"VariableDeclaration","scope":1279,"src":"2251:12:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1215,"name":"string","nodeType":"ElementaryTypeName","src":"2251:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1218,"name":"age","nodeType":"VariableDeclaration","scope":1279,"src":"2265:8:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"},"typeName":{"id":1217,"name":"uint","nodeType":"ElementaryTypeName","src":"2265:4:3","typeDescriptions":{"typeIdentifier":"t_uint256","typeString":"uint256"}},"value":null,"visibility":"internal"},{"constant":false,"id":1220,"name":"userAddress","nodeType":"VariableDeclaration","scope":1279,"src":"2275:19:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"},"typeName":{"id":1219,"name":"address","nodeType":"ElementaryTypeName","src":"2275:7:3","typeDescriptions":{"typeIdentifier":"t_address","typeString":"address"}},"value":null,"visibility":"internal"},{"constant":false,"id":1222,"name":"sex","nodeType":"VariableDeclaration","scope":1279,"src":"2296:10:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1221,"name":"string","nodeType":"ElementaryTypeName","src":"2296:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"},{"constant":false,"id":1224,"name":"description","nodeType":"VariableDeclaration","scope":1279,"src":"2308:18:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_string_memory_ptr","typeString":"string memory"},"typeName":{"id":1223,"name":"string","nodeType":"ElementaryTypeName","src":"2308:6:3","typeDescriptions":{"typeIdentifier":"t_string_storage_ptr","typeString":"string storage pointer"}},"value":null,"visibility":"internal"}],"src":"2216:111:3"},"payable":false,"returnParameters":{"id":1228,"nodeType":"ParameterList","parameters":[{"constant":false,"id":1227,"name":"success","nodeType":"VariableDeclaration","scope":1279,"src":"2344:12:3","stateVariable":false,"storageLocation":"default","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"},"typeName":{"id":1226,"name":"bool","nodeType":"ElementaryTypeName","src":"2344:4:3","typeDescriptions":{"typeIdentifier":"t_bool","typeString":"bool"}},"value":null,"visibility":"internal"}],"src":"2343:14:3"},"scope":1280,"src":"2197:532:3","stateMutability":"nonpayable","superFunction":null,"visibility":"public"}],"scope":1281,"src":"26:2705:3"}],"src":"0:2731:3"},"compiler":{"name":"solc","version":"0.4.19+commit.c4cbbb05.Emscripten.clang"},"networks":{"5777":{"events":{},"links":{},"address":"0xBaA125935587D39516983547D0Bc6cA91111542B","transactionHash":"0xcb9d7e407d0fdb92986d2b3d2c5632e11cfcf07673b3b5d95dcfca1fcdbbb2c8"}},"schemaVersion":"3.0.19","updatedAt":"2020-02-28T04:25:56.581Z","networkType":"ethereum","devdoc":{"methods":{}},"userdoc":{"methods":{}}}
 
 /***/ }),
 
@@ -31598,15 +31598,15 @@ module.exports = {
 
 var f = __webpack_require__(10);
 
-var SolidityTypeAddress = __webpack_require__(163);
-var SolidityTypeBool = __webpack_require__(164);
-var SolidityTypeInt = __webpack_require__(167);
-var SolidityTypeUInt = __webpack_require__(170);
-var SolidityTypeDynamicBytes = __webpack_require__(166);
-var SolidityTypeString = __webpack_require__(169);
-var SolidityTypeReal = __webpack_require__(168);
-var SolidityTypeUReal = __webpack_require__(171);
-var SolidityTypeBytes = __webpack_require__(165);
+var SolidityTypeAddress = __webpack_require__(160);
+var SolidityTypeBool = __webpack_require__(161);
+var SolidityTypeInt = __webpack_require__(164);
+var SolidityTypeUInt = __webpack_require__(167);
+var SolidityTypeDynamicBytes = __webpack_require__(163);
+var SolidityTypeString = __webpack_require__(166);
+var SolidityTypeReal = __webpack_require__(165);
+var SolidityTypeUReal = __webpack_require__(168);
+var SolidityTypeBytes = __webpack_require__(162);
 
 var isDynamic = function (solidityType, type) {
    return solidityType.isDynamicType(type) ||
@@ -31868,15 +31868,15 @@ module.exports = coder;
 
 var f = __webpack_require__(11);
 
-var SolidityTypeAddress = __webpack_require__(202);
-var SolidityTypeBool = __webpack_require__(203);
-var SolidityTypeInt = __webpack_require__(206);
-var SolidityTypeUInt = __webpack_require__(209);
-var SolidityTypeDynamicBytes = __webpack_require__(205);
-var SolidityTypeString = __webpack_require__(208);
-var SolidityTypeReal = __webpack_require__(207);
-var SolidityTypeUReal = __webpack_require__(210);
-var SolidityTypeBytes = __webpack_require__(204);
+var SolidityTypeAddress = __webpack_require__(199);
+var SolidityTypeBool = __webpack_require__(200);
+var SolidityTypeInt = __webpack_require__(203);
+var SolidityTypeUInt = __webpack_require__(206);
+var SolidityTypeDynamicBytes = __webpack_require__(202);
+var SolidityTypeString = __webpack_require__(205);
+var SolidityTypeReal = __webpack_require__(204);
+var SolidityTypeUReal = __webpack_require__(207);
+var SolidityTypeBytes = __webpack_require__(201);
 
 /**
  * SolidityCoder prototype should be used to encode/decode solidity params of any type
@@ -34624,35 +34624,8 @@ module.exports = Jsonrpc;
 /***/ 78:
 /***/ (function(module, exports, __webpack_require__) {
 
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(133);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// add the styles to the DOM
-var update = __webpack_require__(157)(content, {});
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/css-loader/index.js!./app.css", function() {
-			var newContent = require("!!../../node_modules/css-loader/index.js!./app.css");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-
-/***/ 79:
-/***/ (function(module, exports, __webpack_require__) {
-
-var Schema = __webpack_require__(193);
-var Contract = __webpack_require__(197);
+var Schema = __webpack_require__(190);
+var Contract = __webpack_require__(194);
 
 var contract = function(options) {
   options = Schema.normalizeOptions(options);
@@ -34724,11 +34697,11 @@ if (typeof window !== "undefined") {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__stylesheets_app_css__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__stylesheets_app_css__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__stylesheets_app_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__stylesheets_app_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_truffle_contract__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_truffle_contract__ = __webpack_require__(78);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_truffle_contract___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_truffle_contract__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__build_contracts_UserApp_json__ = __webpack_require__(454);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__build_contracts_UserApp_json__ = __webpack_require__(455);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__build_contracts_UserApp_json___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__build_contracts_UserApp_json__);
 
 
@@ -34743,6 +34716,33 @@ window.App = {
         });
     },
 };
+
+/***/ }),
+
+/***/ 88:
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(234);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__(251)(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../node_modules/css-loader/index.js!./app.css", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!./app.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
 
 /***/ }),
 

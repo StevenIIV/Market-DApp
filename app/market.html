@@ -6,31 +6,108 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MarketPlace</title>
   <script src="./market.js"></script>
-  <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="http://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-  <script src="http://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
-  <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  <!-- Application -->
-<!--  <link href="css/app.css" rel="stylesheet">-->
+  <!-- Google Fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="assets/css/vendor.css">
+  <link rel="stylesheet" href="assets/css/nice-select.css">
+  <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="assets/css/line-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/market-style.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Latest jQuery form server -->
+  <script src="https://code.jquery.com/jquery.min.js"></script>
+  <!-- Bootstrap JS form CDN -->
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <!-- jQuery easing -->
+  <script src="assets/js/countdown.js"></script>
+  <script src="assets/js/popper.min.js"></script>
+  <script src="assets/js/vendor.js"></script>
+  <script src="../assets/js/market-header.js"></script>
+  <script src="assets/js/owl.carousel.min.js"></script>
+  <script src="assets/js/jquery.sticky.js"></script>
+  <script src="assets/js/jquery.easing.1.3.min.js"></script>
+  <script src="assets/js/bxslider.min.js"></script>
+  <script src="assets/js/script.slider.js"></script>
+  <script src="../assets/js/market-header.js"></script>
+
+
+
 </head>
 
 <body>
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container max-width-960">
-    <div class="navbar-header" style="float: left">
-      <a href="rentalMarket.html"><img src="../img/logo.png" alt="logo" class="navbar-brand"></a>
+<!-- navbar  -->
+  <div class="navbar-area">
+    <div class="navbar-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 text-md-left text-center">
+          <ul class="topbar-left">
+            <li class="topbar-single-info"><i class="fa fa-phone"></i>+123 4567 8910</li>
+            <li class="topbar-single-info"><i class="fa fa-map-marker"></i>Store Location</li>
+            <li class="topbar-single-info d-none d-lg-block"><i class="fa fa-crosshairs"></i>Track Your Order</li>
+          </ul>
+        </div>
+        <div class="col-md-6 text-md-right text-center">
+          <ul class="topbar-right float-md-right">
+            <li class="topbar-single-info">
+              <i class="fa fa-user"></i>
+              <span class="d-none d-lg-inline-block">My Account</span>
+            </li>
+            <li>
+              <select class="topbar-select topbar-currency">
+                <option value="rating">BTC</option>
+                <option value="categories" selected="selected">ETH</option>
+              </select>
+            </li>
+            <li>
+              <div class="dropdown topbar-help">
+                <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Help
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <a class="dropdown-item" href="#">Help 1</a>
+                  <a class="dropdown-item" href="#">Help 2</a>
+                  <a class="dropdown-item" href="#">Help 3</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <div style="float: left; margin-top: 15px">
-      <button onclick="location='rentalMarket.html'">rent</button>
-      <button onclick="location='market.html'">market</button>
-    </div>
-    <div style="float: right; margin-top: 15px"><button onclick="location='userInfo.html'">userInfo</button> </div>
   </div>
-</nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-2 align-self-center">
+          <div class="logo-area">
+            <a href="index.html"> <img src="assets/img/logo.png" alt="logo"></a>
+          </div>
+        </div>
+        <div class="col-lg-7 text-center" style="margin-top: 35px">
+          <form class="main-search d-inline-flex">
+            <input type="text" placeholder="Search product...">
+            <button>Search</button>
+          </form>
+        </div>
+        <div class="col-sm-3 align-self-center" style="margin-bottom: 40px">
+          <div class="shopping-item">
+            <a href="cart.html">Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <div class="container">
     <div class="jumbotron text-center">
       <h1>Market Place</h1>
@@ -63,7 +140,6 @@
       </div>
     </div>
   </div>
-
 
   <div id="articleTemplate" style="display: none;">
     <div class="row-lg-12">
