@@ -23,6 +23,7 @@ window.App = {
     self.displayAccountInfo();
     self.reloadArticles();
   },
+
   searchArticleByName: function() {
     var name = document.getElementById("search-name").value;
     document.getElementById("articlesRow").innerHTML = "";
@@ -38,10 +39,8 @@ window.App = {
         marketPlaceInstance.articles(id).then(function (article) {
           App.displayArticle(
               article[0],
-              article[1],
               article[3],
               article[4],
-              article[5],
               article[6],
               article[8]
           );
@@ -49,6 +48,7 @@ window.App = {
       }
     })
   },
+
   reloadArticles: function() {
     if (App.loading) {
       return;
@@ -68,10 +68,8 @@ window.App = {
         marketPlaceInstance.articles(articleId.toNumber()).then(function(article) {
           App.displayArticle(
               article[0],
-              article[1],
               article[3],
               article[4],
-              article[5],
               article[6],
               article[8]
           );
@@ -84,31 +82,20 @@ window.App = {
     });
   },
 
-  displayArticle: function(id, seller, photo, name, description, price, type) {
+  displayArticle: function(id, photo, name, price, type) {
     // Retrieve the article placeholder
     var articlesRow = $('#articlesRow');
 
     var etherPrice = web3.fromWei(price, "ether");
 
     // Retrieve and fill the article template
-    var articleTemplate = $('#articleTemplate');
+    var articleTemplate = $('#article-template');
     var photoHash = 'http://localhost:8080/ipfs/' + photo;
     articleTemplate.find('.photo-hash').attr('src',photoHash);
-    articleTemplate.find('.panel-title').text(name);
-    articleTemplate.find('.article-description').text(description);
+    articleTemplate.find('.article-name').text(name);
     articleTemplate.find('.article-price').text(etherPrice + " ETH");
     articleTemplate.find('.article-display').attr('href',"productDetails.html?type=0&id="+id);
-    articleTemplate.find('.btn-buy').attr('data-id', id);
-    articleTemplate.find('.btn-buy').attr('data-value', etherPrice);
     articleTemplate.find('.article-type').text(categories[type]);
-    // seller?
-    if (seller == App.account) {
-      articleTemplate.find('.article-seller').text("You");
-      articleTemplate.find('.btn-buy').hide();
-    } else {
-      articleTemplate.find('.article-seller').text(seller);
-      articleTemplate.find('.btn-buy').show();
-    }
 
     // add this new article
     articlesRow.append(articleTemplate.html());
