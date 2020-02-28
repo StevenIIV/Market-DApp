@@ -9,7 +9,7 @@ const ipfs = ipfsAPI({
   protocol: 'http'
 });
 var reader;
-const categories = ["Clothing","Food","Digital Products","Book","Jewellery","Crafts","Others"];
+const categories = ["Clothing","Food","Electronic","Book","Jewellery","Crafts","Others"];
 window.App = {
   account: 0x0,
   start: function() {

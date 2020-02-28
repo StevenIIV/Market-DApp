@@ -8,7 +8,7 @@ import Comment_artifacts from '../../build/contracts/Comment.json'
 var Market = contract(Market_artifacts);
 var ShareApp = contract(ShareApp_artifacts);
 var Comment = contract(Comment_artifacts);
-const categories = ["Clothing","Food","Digital Products","Book","Jewellery","Crafts","Others"];
+const categories = ["Clothing","Food","Electronic","Book","Jewellery","Crafts","Others"];
 window.App = {
   account: 0x0,
   start: function() {
