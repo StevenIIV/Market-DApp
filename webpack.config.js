@@ -7,7 +7,8 @@ module.exports = {
     rentalMarket: './app/javascripts/rentalMarket.js',
     productDetails: './app/javascripts/productDetails.js',
     market: './app/javascripts/market.js',
-    userInfo:'./app/javascripts/userInfo.js',
+    userInfo: './app/javascripts/userInfo.js',
+    cart: './app/javascripts/cart.js',
     test: './app/javascripts/test.js'
   },
   output: {
@@ -22,6 +23,7 @@ module.exports = {
       { from: './app/market.html', to: "market.html" },
       { from: './app/userInfo.html', to: "userInfo.html"},
       { from: './app/index.html', to: "index.html"},
+      { from: './app/cart.html', to: "cart.html"},
       { from: './app/test.html', to: "test.html"}
     ])
   ],

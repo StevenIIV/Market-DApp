@@ -11,188 +11,239 @@
   <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
 
-  <link rel="stylesheet" href="app/stylesheets/bootstrap.min.css">
-  <link rel="stylesheet" href="app/stylesheets/font-awesome.min.css">
-  <link rel="stylesheet" href="app/stylesheets/owl.carousel.css">
-  <link rel="stylesheet" href="app/stylesheets/responsive.css">
-  <link rel="stylesheet" href="app/stylesheets/style.css">
+  <link rel="stylesheet" href="assets/css/vendor.css">
+  <link rel="stylesheet" href="assets/css/nice-select.css">
+  <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="assets/css/owl.carousel.css">
+  <link rel="stylesheet" href="assets/css/line-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/market-style.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/font-awesome.min.css">
 
   <!-- Latest jQuery form server -->
   <script src="https://code.jquery.com/jquery.min.js"></script>
   <!-- Bootstrap JS form CDN -->
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <!-- jQuery easing -->
-  <script src="app/javascripts/jquery.easing.1.3.min.js"></script>
-  <script src="app/javascripts/bxslider.min.js"></script>
-  <script src="app/javascripts/script.slider.js"></script>
-  <script src="app/javascripts/jquery.sticky.js"></script>
-  <script src="app/javascripts/owl.carousel.min.js"></script>
+  <script src="assets/js/popper.min.js"></script>
+  <script src="assets/js/vendor.js"></script>
+  <script src="assets/js/market.js"></script>
+  <script src="assets/js/owl.carousel.min.js"></script>
+  <script src="assets/js/jquery.sticky.js"></script>
+  <script src="assets/js/jquery.easing.1.3.min.js"></script>
+  <script src="assets/js/bxslider.min.js"></script>
+  <script src="assets/js/script.slider.js"></script>
 
 </head>
-
 <body>
-<!-- navigation-->
-<div class="header-area">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8">
-        <div class="user-menu">
-          <ul>
-            <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
-            <li><a href="cart.html"><i class="fa fa-user"></i> My Cart</a></li>
-            <li><a href="checkout.html"><i class="fa fa-user"></i> Checkout</a></li>
-            <li><a href="#"><i class="fa fa-user"></i> Login</a></li>
-          </ul>
+<!-- navbar  -->
+  <div id="navbar">
+    <!-- header -->
+    <div class="navbar-top">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 text-md-left text-center">
+            <ul class="topbar-left">
+              <li class="topbar-single-info"><i class="fa fa-phone"></i>+123 4567 8910</li>
+              <li class="topbar-single-info"><i class="fa fa-map-marker"></i>Store Location</li>
+              <li class="topbar-single-info d-none d-lg-block"><i class="fa fa-crosshairs"></i>Track Your Order</li>
+            </ul>
+          </div>
+          <div class="col-md-6 text-md-right text-center">
+            <ul class="topbar-right float-md-right">
+              <li class="topbar-single-info">
+                <i class="fa fa-user"></i>
+                <span class="d-none d-lg-inline-block">My Account</span>
+              </li>
+              <li>
+                <select class="topbar-select topbar-currency">
+                  <option value="rating">BTC</option>
+                  <option value="categories" selected="selected">ETH</option>
+                </select>
+              </li>
+              <li>
+                <div class="topbar-help">
+                  <button class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#sellArticle"><b>Sell an article</b></button>
+                </div>
+              </li>
+            </ul>
+          </div>
+      </div>
+      </div>
+    </div>
+    <!-- search bar -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-2 align-self-center">
+          <div class="logo-area">
+            <a href="index.html"> <img src="assets/img/marketplace_logo.png" alt="logo"></a>
+          </div>
+        </div>
+        <div class="col-lg-7 text-center" style="margin-top: 35px">
+          <form class="main-search d-inline-flex">
+            <input type="text" name="search" id="search-name" placeholder="Search product...">
+            <button onclick="App.searchArticleByName()">Search</button>
+          </form>
+        </div>
+        <div class="col-sm-3 align-self-center" style="margin-bottom: 40px">
+          <div class="shopping-item">
+            <a href="cart.html">Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+          </div>
         </div>
       </div>
+    </div>
+  </div>
 
-      <div class="col-md-4">
-        <div class="header-right">
-          <ul class="list-unstyled list-inline">
-            <li class="dropdown dropdown-small">
-              <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">currency :</span><span class="value">USD </span><b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">ETH</a></li>
-              </ul>
+<div class="top-product-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-title text-center">
+        <div class="top-product-tab">
+          <!-- header -->
+          <ul class="nav nav-pills" id="pills-tab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="javascript:void(0);" onclick="App.reloadArticles(0)" role="tab" aria-controls="pills-1" aria-selected="true">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clothing&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </a>
             </li>
-
-            <li class="dropdown dropdown-small">
-              <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">language :</span><span class="value">English </span><b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">English</a></li>
-                <li><a href="#">Chinese</a></li>
-              </ul>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="javascript:void(0);" onclick="App.reloadArticles(1)" role="tab" aria-controls="pills-2" aria-selected="false">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Food&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-contact-tab1" data-toggle="pill" href="javascript:void(0);" onclick="App.reloadArticles(2)" role="tab" aria-controls="pills-3" aria-selected="false">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Electronic&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-contact-tab2" data-toggle="pill" href="javascript:void(0);" onclick="App.reloadArticles(3)" role="tab" aria-controls="pills-4" aria-selected="false">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Book&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-contact-tab3" data-toggle="pill" href="javascript:void(0);" onclick="App.reloadArticles(4)" role="tab" aria-controls="pills-5" aria-selected="false">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jewellery&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-contact-tab4" data-toggle="pill" href="javascript:void(0);" onclick="App.reloadArticles(5)" role="tab" aria-controls="pills-6" aria-selected="false">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Crafts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-contact-tab5" data-toggle="pill" href="javascript:void(0);" onclick="App.reloadArticles(6)" role="tab" aria-controls="pills-7" aria-selected="false">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Others&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </a>
             </li>
           </ul>
+          <!-- main -->
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="panel" role="tabpanel" aria-labelledby="pills-home-tab">
+              <div id="articlesRow" class="row">
+                <!-- ARTICLES LOAD HERE -->
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<!-- template -->
+<div id="article-template" style="display: none">
+<div class="col-lg-3 col-md-6">
+  <div class="single-product-card">
+    <div class="thumb">
+      <img src="" alt="top-product" class="photo-hash" height="220" width="260">
+    </div>
+    <div class="product-card-details">
+      <p class="categories"><span class="article-type"></span></p>
+      <h4 class="title"><a href="" class="article-display"><span class="article-name"></span></a></h4>
+      <div class="price" style="margin-top: 30px">
+        <span class="article-price"></span>
+      </div>
+      <div class="product-cart" style="margin-top: 25px">
+        <span class="fav-icon"><a href="#" ><i class="fa fa-heart-o"></i></a></span>
+        <span class="shop-cart-icon"><a href="#"><i class="las la-shopping-cart"></i></a></span>
       </div>
     </div>
   </div>
 </div>
-<!--<nav class="navbar navbar-default navbar-fixed-top" role="navigation">-->
-<!--  <div class="container max-width-960">-->
-<!--    <div class="navbar-header" style="float: left">-->
-<!--      <a href="rentalMarket.html"><img src="../img/logo.png" alt="logo" class="navbar-brand"></a>-->
-<!--    </div>-->
-<!--    <div style="float: left; margin-top: 15px">-->
-<!--      <button onclick="location='rentalMarket.html'">rent</button>-->
-<!--      <button onclick="location='market.html'">market</button>-->
-<!--    </div>-->
-<!--    <div style="float: right; margin-top: 15px"><button onclick="location='userInfo.html'">userInfo</button> </div>-->
-<!--  </div>-->
-<!--</nav>-->
-  <div class="container">
-    <div class="jumbotron text-center">
-      <h1>Market Place</h1>
-    </div>
+</div>
 
-    <div class="col-md-12" id="article-list">
-      <div class="row">
-        <div class="col-lg-12">
-          <p id="account" class="welcome pull-right"></p>
-          <p id="accountBalance" class="welcome pull-left"></p>
-        </div>
-      </div>
-
-      <div class="row panel panel-default">
-        <div class="panel-heading clearfix">
-          <div class="panel-title">
-            <div class="container max-width-960 text-center" style="float: left">
-              <form>
-                <div class="input-group col-md-3 center-block" style="float: left"><input type="text" name="search" id="search-name" class="form-control" placeholder="Object Name"></div>
-                <div style="float: left"><button class="btn btn-default" type="button" onclick="App.searchArticleByName()">SearchByName</button></div>
-              </form>
-            </div>
-            <button class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#sellArticle">Sell an article</button>
-          </div>
-        </div>
-      </div>
-
-      <div id="articlesRow" class="row">
-        <!-- ARTICLES LOAD HERE -->
-      </div>
-    </div>
-  </div>
-
-
-  <div id="articleTemplate" style="display: none;">
-    <div class="row-lg-12">
-      <div class="panel panel-default panel-article">
-        <div class="panel-heading">
-          <h3 class="panel-title"></h3>
-        </div>
-        <div class="panel-body">
-          <img src="" class="photo-hash"><br/>
-          <strong>Type</strong>: <span class="article-type"></span><br/>
-          <strong>Description</strong>: <span class="article-description"></span><br/>
-          <strong>Price (ETH)</strong>: <span class="article-price"></span><br/>
-          <strong>Sold by</strong>: <span class="article-seller"></span><br/>
-          <a href="" class="article-display">display</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
+<!--<div class="container">-->
+<!--    <div class="col-md-12" id="article-list">-->
+<!--      <div class="row">-->
+<!--        <div class="col-lg-12">-->
+<!--          <p id="account" class="welcome pull-right"></p>-->
+<!--          <p id="accountBalance" class="welcome pull-left"></p>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--</div>-->
   <!-- Modal form to sell an article -->
-  <div class="modal fade" id="sellArticle" role="dialog">
-    <div class="modal-dialog">
+<div class="modal fade" id="sellArticle" role="dialog">
+  <div class="modal-dialog">
 
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Sell your article</h4>
-        </div>
-        <div class="modal-body">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" style="color: red">Sell your article</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
 
-          <div class="row">
-            <div class="col-lg-12">
-              <form>
-                <div class="form-group">
-                  <label for="product-image">Product Photo</label>
-                  <input type="file" name="product-image" class="form-control" id="product-image" required="required">
-                </div>
-                <div class="form-group">
-                  <label for="article_name">Article name</label>
-                  <input type="text" class="form-control" id="article_name" placeholder="Enter the name of your article">
-                </div>
-                <div class="form-group">
-                  <label for="article_price">Price in ETH</label>
-                  <input type="number" class="form-control" id="article_price" placeholder="1" pattern="[0-9]+([\.,][0-9]+)?" step="0.01">
-                </div>
-                <div class="form-group">
-                  <label for="article_Number">Number in ETH</label>
-                  <input type="number" class="form-control" id="article_Number" placeholder="1" pattern="[0-9]+([\.,][0-9]+)?" step="0.01">
-                </div>
-                <div class="form-group">
-                  <label for="article_Type">Number in ETH</label>
-                  <select id="article_Type">
-                    <option value ="0">Clothing</option>
-                    <option value ="1">Food</option>
-                    <option value ="2">Digital Products</option>
-                    <option value ="3">Book</option>
-                    <option value ="4">Jewellery</option>
-                    <option value ="5">Crafts</option>
-                    <option value ="6">Others</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="article_description">Description</label>
-                  <textarea type="text" class="form-control vresize" id="article_description" placeholder="Describe your article" maxlength="255"></textarea>
-                </div>
-              </form>
-            </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <form>
+              <div class="form-group">
+                <label for="product-image">Product Photo</label>
+                <input type="file" name="product-image" class="form-control" id="product-image" required="required">
+              </div>
+              <div class="form-group">
+                <label for="article_name">Article name</label>
+                <input type="text" class="form-control" id="article_name" placeholder="Enter the name of your article">
+              </div>
+              <div class="form-group">
+                <label for="article_price">Price in ETH</label>
+                <input type="number" class="form-control" id="article_price" placeholder="1" pattern="[0-9]+([\.,][0-9]+)?" step="0.01">
+              </div>
+              <div class="form-group">
+                <label for="article_Number">Number in ETH</label>
+                <input type="number" class="form-control" id="article_Number" placeholder="1" pattern="[0-9]+([\.,][0-9]+)?" step="0.01">
+              </div>
+              <div class="form-group">
+                <select id="article_Type">
+                  <option value ="0">Clothing</option>
+                  <option value ="1">Food</option>
+                  <option value ="2">Electronic</option>
+                  <option value ="3">Book</option>
+                  <option value ="4">Jewellery</option>
+                  <option value ="5">Crafts</option>
+                  <option value ="6">Others</option>
+                </select>
+              </div>
+              <br/><br/><br/>
+              <div class="form-group">
+                <label for="article_description">Description</label>
+                <textarea type="text" class="form-control vresize" id="article_description" placeholder="Describe your article" maxlength="255"></textarea>
+              </div>
+            </form>
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary btn-success" data-dismiss="modal" onclick="App.sellArticle(); return false;">Submit</button>
-          <button type="button" class="btn" data-dismiss="modal">Close</button>
-        </div>
       </div>
-
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-success" data-dismiss="modal" onclick="App.sellArticle(); return false;">Submit</button>
+        <button type="button" class="btn" data-dismiss="modal">Close</button>
+      </div>
     </div>
-  </div>
 
+  </div>
+</div>
 </body>
 
 </html>

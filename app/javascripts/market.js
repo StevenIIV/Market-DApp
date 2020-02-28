@@ -21,7 +21,7 @@ window.App = {
       reader.readAsArrayBuffer(file)
     });
     self.displayAccountInfo();
-    self.reloadArticles();
+    self.reloadArticles(0);
   },
 
   searchArticleByName: function() {
@@ -49,22 +49,14 @@ window.App = {
     })
   },
 
-  reloadArticles: function() {
-    if (App.loading) {
-      return;
-    }
-    App.loading = true;
+  reloadArticles: function(type) {
+    document.getElementById("articlesRow").innerHTML = "";
     var marketPlaceInstance;
     Market.deployed().then(function(instance) {
       marketPlaceInstance = instance;
-      return marketPlaceInstance.getArticlesForSale();
-    }).then(function(articleIds) {
-      // Retrieve and clear the article placeholder
-      var articlesRow = $('#articlesRow');
-      articlesRow.empty();
-
-      for (var i = 0; i < articleIds.length; i++) {
-        var articleId = articleIds[i];
+      return marketPlaceInstance.findByType.call(type);
+    }).then(function(ids){
+      for (let articleId of ids){
         marketPlaceInstance.articles(articleId.toNumber()).then(function(article) {
           App.displayArticle(
               article[0],
@@ -75,7 +67,6 @@ window.App = {
           );
         });
       }
-      App.loading = false;
     }).catch(function(err) {
       console.log(err.message);
       App.loading = false;
@@ -85,7 +76,6 @@ window.App = {
   displayArticle: function(id, photo, name, price, type) {
     // Retrieve the article placeholder
     var articlesRow = $('#articlesRow');
-
     var etherPrice = web3.fromWei(price, "ether");
 
     // Retrieve and fill the article template
