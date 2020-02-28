@@ -27,6 +27,9 @@ window.App = {
   searchArticleByName: function() {
     var name = document.getElementById("search-name").value;
     document.getElementById("articlesRow").innerHTML = "";
+    for (var i=0;i<=6;i++){
+      document.getElementById("pills-tab-"+i).className = 'nav-link';
+    }
     var ids;
     var marketPlaceInstance;
     Market.deployed().then(function(instance){
