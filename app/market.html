@@ -39,46 +39,38 @@
 </head>
 <body>
 <!-- navbar  -->
-  <div class="navbar-area">
+  <div id="navbar">
     <div class="navbar-top">
       <div class="container">
         <div class="row">
           <div class="col-md-6 text-md-left text-center">
             <ul class="topbar-left">
-            <li class="topbar-single-info"><i class="fa fa-phone"></i>+123 4567 8910</li>
-            <li class="topbar-single-info"><i class="fa fa-map-marker"></i>Store Location</li>
-            <li class="topbar-single-info d-none d-lg-block"><i class="fa fa-crosshairs"></i>Track Your Order</li>
-          </ul>
+              <li class="topbar-single-info"><i class="fa fa-phone"></i>+123 4567 8910</li>
+              <li class="topbar-single-info"><i class="fa fa-map-marker"></i>Store Location</li>
+              <li class="topbar-single-info d-none d-lg-block"><i class="fa fa-crosshairs"></i>Track Your Order</li>
+            </ul>
           </div>
-        <div class="col-md-6 text-md-right text-center">
-          <ul class="topbar-right float-md-right">
-            <li class="topbar-single-info">
-              <i class="fa fa-user"></i>
-              <span class="d-none d-lg-inline-block">My Account</span>
-            </li>
-            <li>
-              <select class="topbar-select topbar-currency">
-                <option value="rating">BTC</option>
-                <option value="categories" selected="selected">ETH</option>
-              </select>
-            </li>
-            <li>
-              <div class="dropdown topbar-help">
-                <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Help
-                </a>
-
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <a class="dropdown-item" href="#">Help 1</a>
-                  <a class="dropdown-item" href="#">Help 2</a>
-                  <a class="dropdown-item" href="#">Help 3</a>
+          <div class="col-md-6 text-md-right text-center">
+            <ul class="topbar-right float-md-right">
+              <li class="topbar-single-info">
+                <i class="fa fa-user"></i>
+                <span class="d-none d-lg-inline-block">My Account</span>
+              </li>
+              <li>
+                <select class="topbar-select topbar-currency">
+                  <option value="rating">BTC</option>
+                  <option value="categories" selected="selected">ETH</option>
+                </select>
+              </li>
+              <li>
+                <div class="topbar-help">
+                  <button class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#sellArticle"><b>Sell an article</b></button>
                 </div>
-              </div>
-            </li>
-          </ul>
-        </div>
+              </li>
+            </ul>
+          </div>
       </div>
-    </div>
+      </div>
     </div>
     <div class="container">
       <div class="row">
@@ -1492,7 +1484,6 @@
         <!-- ARTICLES LOAD HERE -->
       </div>
     </div>
-  </div>
   <!--  template-->
   <div id="articleTemplate" style="display: none;">
     <div class="row-lg-12">
@@ -1513,65 +1504,64 @@
   </div>
 </div>
   <!-- Modal form to sell an article -->
-  <div class="modal fade" id="sellArticle" role="dialog">
-    <div class="modal-dialog">
+<div class="modal fade" id="sellArticle" role="dialog">
+  <div class="modal-dialog">
 
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Sell your article</h4>
-        </div>
-        <div class="modal-body">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Sell your article</h4>
+      </div>
+      <div class="modal-body">
 
-          <div class="row">
-            <div class="col-lg-12">
-              <form>
-                <div class="form-group">
-                  <label for="product-image">Product Photo</label>
-                  <input type="file" name="product-image" class="form-control" id="product-image" required="required">
-                </div>
-                <div class="form-group">
-                  <label for="article_name">Article name</label>
-                  <input type="text" class="form-control" id="article_name" placeholder="Enter the name of your article">
-                </div>
-                <div class="form-group">
-                  <label for="article_price">Price in ETH</label>
-                  <input type="number" class="form-control" id="article_price" placeholder="1" pattern="[0-9]+([\.,][0-9]+)?" step="0.01">
-                </div>
-                <div class="form-group">
-                  <label for="article_Number">Number in ETH</label>
-                  <input type="number" class="form-control" id="article_Number" placeholder="1" pattern="[0-9]+([\.,][0-9]+)?" step="0.01">
-                </div>
-                <div class="form-group">
-                  <label for="article_Type">Number in ETH</label>
-                  <select id="article_Type">
-                    <option value ="0">Clothing</option>
-                    <option value ="1">Food</option>
-                    <option value ="2">Digital Products</option>
-                    <option value ="3">Book</option>
-                    <option value ="4">Jewellery</option>
-                    <option value ="5">Crafts</option>
-                    <option value ="6">Others</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="article_description">Description</label>
-                  <textarea type="text" class="form-control vresize" id="article_description" placeholder="Describe your article" maxlength="255"></textarea>
-                </div>
-              </form>
-            </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <form>
+              <div class="form-group">
+                <label for="product-image">Product Photo</label>
+                <input type="file" name="product-image" class="form-control" id="product-image" required="required">
+              </div>
+              <div class="form-group">
+                <label for="article_name">Article name</label>
+                <input type="text" class="form-control" id="article_name" placeholder="Enter the name of your article">
+              </div>
+              <div class="form-group">
+                <label for="article_price">Price in ETH</label>
+                <input type="number" class="form-control" id="article_price" placeholder="1" pattern="[0-9]+([\.,][0-9]+)?" step="0.01">
+              </div>
+              <div class="form-group">
+                <label for="article_Number">Number in ETH</label>
+                <input type="number" class="form-control" id="article_Number" placeholder="1" pattern="[0-9]+([\.,][0-9]+)?" step="0.01">
+              </div>
+              <div class="form-group">
+                <label for="article_Type">Number in ETH</label>
+                <select id="article_Type">
+                  <option value ="0">Clothing</option>
+                  <option value ="1">Food</option>
+                  <option value ="2">Digital Products</option>
+                  <option value ="3">Book</option>
+                  <option value ="4">Jewellery</option>
+                  <option value ="5">Crafts</option>
+                  <option value ="6">Others</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="article_description">Description</label>
+                <textarea type="text" class="form-control vresize" id="article_description" placeholder="Describe your article" maxlength="255"></textarea>
+              </div>
+            </form>
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary btn-success" data-dismiss="modal" onclick="App.sellArticle(); return false;">Submit</button>
-          <button type="button" class="btn" data-dismiss="modal">Close</button>
-        </div>
       </div>
-
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-success" data-dismiss="modal" onclick="App.sellArticle(); return false;">Submit</button>
+        <button type="button" class="btn" data-dismiss="modal">Close</button>
+      </div>
     </div>
-  </div>
 
+  </div>
+</div>
 </body>
 
 </html>
