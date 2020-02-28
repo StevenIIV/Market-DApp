@@ -23,12 +23,32 @@ window.App = {
     self.displayAccountInfo();
     self.reloadArticles();
   },
-
-  setStatus: function(message) {
-    var status = document.getElementById("status");
-    status.innerHTML = message;
+  searchArticleByName: function() {
+    var name = document.getElementById("search-name").value;
+    document.getElementById("articlesRow").innerHTML = "";
+    var ids;
+    var marketPlaceInstance;
+    Market.deployed().then(function(instance){
+      marketPlaceInstance = instance;
+      return instance.findByNames.call(name);
+    }).then(function (res) {
+      ids = res;
+      for (let element of ids){
+        let id = element.toNumber();
+        marketPlaceInstance.articles(id).then(function (article) {
+          App.displayArticle(
+              article[0],
+              article[1],
+              article[3],
+              article[4],
+              article[5],
+              article[6],
+              article[8]
+          );
+        })
+      }
+    })
   },
-
   reloadArticles: function() {
     if (App.loading) {
       return;
@@ -119,47 +139,6 @@ window.App = {
         console.error(err);
       });
     });
-  },
-
-  // buyArticle: function() {
-  //   event.preventDefault();
-  //
-  //   // retrieve the article price
-  //   var _articleId = $(event.target).data('id');
-  //   var _price = parseFloat($(event.target).data('value'));
-  //
-  //   Market.deployed().then(function(instance) {
-  //     return instance.buyArticle(_articleId, {
-  //       from: App.account,
-  //       value: web3.toWei(_price, "ether"),
-  //       gas: 500000
-  //     });
-  //   }).then(function(result) {
-  //     setTimeout(function(){window.location.reload();},800);
-  //   }).catch(function(err) {
-  //     console.error(err);
-  //   });
-  // },
-
-  //中文编码格式转换
-  toUtf8: function(str) {
-    var out, i, len, c;
-    out = "";
-    len = str.length;
-    for(i = 0; i < len; i++) {
-      c = str.charCodeAt(i);
-      if ((c >= 0x0001) && (c <= 0x007F)) {
-        out += str.charAt(i);
-      } else if (c > 0x07FF) {
-        out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));
-        out += String.fromCharCode(0x80 | ((c >>  6) & 0x3F));
-        out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));
-      } else {
-        out += String.fromCharCode(0xC0 | ((c >>  6) & 0x1F));
-        out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));
-      }
-    }
-    return out;
   },
 
   displayAccountInfo: function() {

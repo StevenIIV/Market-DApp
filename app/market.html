@@ -47,10 +47,15 @@
       <div class="row panel panel-default">
         <div class="panel-heading clearfix">
           <div class="panel-title">
+            <div class="container max-width-960 text-center" style="float: left">
+              <form>
+                <div class="input-group col-md-3 center-block" style="float: left"><input type="text" name="search" id="search-name" class="form-control" placeholder="Object Name"></div>
+                <div style="float: left"><button class="btn btn-default" type="button" onclick="App.searchArticleByName()">SearchByName</button></div>
+              </form>
+            </div>
             <button class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#sellArticle">Sell an article</button>
           </div>
         </div>
-        <ul id="events" class="collapse list-group"></ul>
       </div>
 
       <div id="articlesRow" class="row">
@@ -74,9 +79,6 @@
           <strong>Sold by</strong>: <span class="article-seller"></span><br/>
           <a href="" class="article-display">display</a>
         </div>
-<!--        <div class="panel-footer">-->
-<!--          <button type="button" class="btn btn-primary btn-success btn-buy" onclick="App.buyArticle(); return false;">Buy</button>-->
-<!--        </div>-->
       </div>
     </div>
   </div>
@@ -141,14 +143,6 @@
     </div>
   </div>
 
-<!--  <div id="footer" class="container">-->
-<!--    <nav class="navbar navbar-default navbar-fixed-bottom">-->
-<!--      <div class="navbar-inner navbar-content-center text-center">-->
-<!--        <p class="text-muted" credit><a href="http://about.me/zalakshah">Zalak Shah</a> - &copy; 2017 - <a href="https://github.com/zalak13" class="fa fa-github" aria-hidden="true"></a></p>-->
-
-<!--      </div>-->
-<!--    </nav>-->
-<!--  </div>-->
 </body>
 
 </html>

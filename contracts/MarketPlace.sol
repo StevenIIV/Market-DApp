@@ -1,6 +1,5 @@
 pragma solidity ^0.4.19;
 
-
 contract MarketPlace {
 
   // Custom types
@@ -16,9 +15,19 @@ contract MarketPlace {
     uint categories;
   }
 
+  struct NameKey {
+    uint[] keys;
+  }
+  struct TypeKey {
+    uint[] keys;
+  }
   // State variables
   mapping(uint => Article) public articles;
+  mapping(string => NameKey) private nameToKeys;
+  mapping(uint => TypeKey) private typeToKeys;
   uint articleCounter;
+
+
   address owner;
   //Events
   event sellArticleEvent(
@@ -57,7 +66,8 @@ contract MarketPlace {
   function sellArticle(string _photo, string _name, string _description, uint _price, uint _number, uint _categories) public {
     // a new article
     articleCounter++;
-
+    nameToKeys[_name].keys.push(articleCounter);
+    typeToKeys[_categories].keys.push(articleCounter);
     //store this article
     articles[articleCounter] = Article(
       articleCounter,
@@ -146,5 +156,13 @@ contract MarketPlace {
   // constructor
   function Owned(){
     owner = msg.sender;
+  }
+
+  function findByNames(string name) constant returns (uint[]){
+    return nameToKeys[name].keys;
+  }
+
+  function findByType(uint categories) constant returns (uint[]){
+    return typeToKeys[categories].keys;
   }
 }
