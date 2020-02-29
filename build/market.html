@@ -21,11 +21,8 @@
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/css/font-awesome.min.css">
 
-  <!-- Latest jQuery form server -->
-  <script src="https://code.jquery.com/jquery.min.js"></script>
-  <!-- Bootstrap JS form CDN -->
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-  <!-- jQuery easing -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
   <script src="assets/js/popper.min.js"></script>
   <script src="assets/js/vendor.js"></script>
   <script src="assets/js/market.js"></script>
@@ -45,16 +42,26 @@
         <div class="row">
           <div class="col-md-6 text-md-left text-center">
             <ul class="topbar-left">
-              <li class="topbar-single-info"><i class="fa fa-phone"></i>+123 4567 8910</li>
-              <li class="topbar-single-info"><i class="fa fa-map-marker"></i>Store Location</li>
+              <li class="topbar-single-info">
+                <button style = "background-color: transparent; border: 0; height: 60px" onclick="window.location.href = 'market.html'">
+                  <i class="fa fa-university"></i>Market
+                </button>
+              </li>
+              <li class="topbar-single-info">
+                <button style = "background-color: transparent; border: 0; height: 60px" onclick="window.location.href = 'rentalMarket.html'">
+                  <i class="fa fa-slideshare"></i>Rental Market
+                </button>
+              </li>
               <li class="topbar-single-info d-none d-lg-block"><i class="fa fa-crosshairs"></i>Track Your Order</li>
             </ul>
           </div>
           <div class="col-md-6 text-md-right text-center">
             <ul class="topbar-right float-md-right">
               <li class="topbar-single-info">
-                <i class="fa fa-user"></i>
-                <span class="d-none d-lg-inline-block">My Account</span>
+                <button style = "background-color: transparent; border: 0; height: 60px" onclick="window.location.href = 'userInfo.html'">
+                  <i class="fa fa-user"></i>
+                  <span class="d-none d-lg-inline-block" >My Account</span>
+                </button>
               </li>
               <li>
                 <select class="topbar-select topbar-currency">
@@ -75,17 +82,20 @@
     <!-- search bar -->
     <div class="container">
       <div class="row">
+        <!-- market logo -->
         <div class="col-lg-2 align-self-center">
           <div class="logo-area">
             <a href="index.html"> <img src="assets/img/marketplace_logo.png" alt="logo"></a>
           </div>
         </div>
+        <!-- search -->
         <div class="col-lg-7 text-center" style="margin-top: 35px">
           <form class="main-search d-inline-flex">
             <input type="text" name="search" id="search-name" placeholder="Search product...">
-            <button onclick="App.searchArticleByName()">Search</button>
+            <button type="button" onclick="App.searchArticleByName()">Search</button>
           </form>
         </div>
+        <!-- cart -->
         <div class="col-sm-3 align-self-center" style="margin-bottom: 40px">
           <div class="shopping-item">
             <a href="cart.html">Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
@@ -102,39 +112,39 @@
         <div class="section-title text-center">
         <div class="top-product-tab">
           <!-- header -->
-          <ul class="nav nav-pills" id="pills-tab" role="tablist">
+          <ul class="nav nav-pills" id="pills-tab" role="tablist" >
             <li class="nav-item">
-              <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="javascript:void(0);" onclick="App.reloadArticles(0)" role="tab" aria-controls="pills-1" aria-selected="true">
+              <a class="nav-link active" id="pills-tab-0" data-toggle="pill" href="javascript:void(0);" onclick="App.reloadArticles(0)" role="tab" aria-controls="pills-1" >
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clothing&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="javascript:void(0);" onclick="App.reloadArticles(1)" role="tab" aria-controls="pills-2" aria-selected="false">
+              <a class="nav-link" id="pills-tab-1" data-toggle="pill" href="javascript:void(0);" onclick="App.reloadArticles(1)" role="tab" aria-controls="pills-2">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Food&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="pills-contact-tab1" data-toggle="pill" href="javascript:void(0);" onclick="App.reloadArticles(2)" role="tab" aria-controls="pills-3" aria-selected="false">
+              <a class="nav-link" id="pills-tab-2" data-toggle="pill" href="javascript:void(0);" onclick="App.reloadArticles(2)" role="tab" aria-controls="pills-3">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Electronic&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="pills-contact-tab2" data-toggle="pill" href="javascript:void(0);" onclick="App.reloadArticles(3)" role="tab" aria-controls="pills-4" aria-selected="false">
+              <a class="nav-link" id="pills-tab-3" data-toggle="pill" href="javascript:void(0);" onclick="App.reloadArticles(3)" role="tab" aria-controls="pills-4">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Book&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="pills-contact-tab3" data-toggle="pill" href="javascript:void(0);" onclick="App.reloadArticles(4)" role="tab" aria-controls="pills-5" aria-selected="false">
+              <a class="nav-link" id="pills-tab-4" data-toggle="pill" href="javascript:void(0);" onclick="App.reloadArticles(4)" role="tab" aria-controls="pills-5">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jewellery&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="pills-contact-tab4" data-toggle="pill" href="javascript:void(0);" onclick="App.reloadArticles(5)" role="tab" aria-controls="pills-6" aria-selected="false">
+              <a class="nav-link" id="pills-tab-5" data-toggle="pill" href="javascript:void(0);" onclick="App.reloadArticles(5)" role="tab" aria-controls="pills-6">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Crafts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="pills-contact-tab5" data-toggle="pill" href="javascript:void(0);" onclick="App.reloadArticles(6)" role="tab" aria-controls="pills-7" aria-selected="false">
+              <a class="nav-link" id="pills-tab-6" data-toggle="pill" href="javascript:void(0);" onclick="App.reloadArticles(6)" role="tab" aria-controls="pills-7">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Others&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </a>
             </li>

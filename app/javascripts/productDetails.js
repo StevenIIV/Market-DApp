@@ -89,8 +89,7 @@ window.App = {
           }
         }
 
-        document.getElementById("objPhoto").innerHTML = "<img src='"+_objPhoto+"'>";
-        document.getElementById("objID").innerHTML = _objID;
+        document.getElementById("objPhoto").src = _objPhoto;
         document.getElementById("objName").innerHTML = _objName;
         document.getElementById("objCreator").innerHTML = _objCreator;
         document.getElementById("objPriceDaily").innerHTML = _objPriceDaily;
@@ -99,7 +98,7 @@ window.App = {
         document.getElementById("objRenterSince").innerHTML = (new Date(_objRenterSince*1000)).toLocaleDateString();;
         document.getElementById("objRented").innerHTML = _objRented;
         document.getElementById("objDetail").innerHTML = _objDetail;
-        document.getElementById("objType").innerHTML = categories[_objType];
+        //document.getElementById("objType").innerHTML = categories[_objType];
       }else{
         alert("There is no object with id " + id); // error message
       }

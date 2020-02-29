@@ -87,7 +87,7 @@ window.App = {
     articleTemplate.find('.photo-hash').attr('src',photoHash);
     articleTemplate.find('.article-name').text(name);
     articleTemplate.find('.article-price').text(etherPrice + " ETH");
-    articleTemplate.find('.article-display').attr('href',"productDetails.html?type=0&id="+id);
+    articleTemplate.find('.article-display').attr('href',"productDetails.html?id="+id);
     articleTemplate.find('.article-type').text(categories[type]);
 
     // add this new article

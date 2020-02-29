@@ -150,7 +150,7 @@ window.App = {
           cell5.innerHTML = _objPriceDaily;
           cell6.innerHTML = _objDeposit;
           cell7.innerHTML = _objRented;
-          cell8.innerHTML = '<a href="productDetails.html?type=1&id='+_id+'">Display</a>';
+          cell8.innerHTML = '<a href="objectDetails.html?id='+_id+'">Display</a>';
     })
   },
 

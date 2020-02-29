@@ -4988,3 +4988,56 @@ form .quantity input:focus {
   color:#fff;
   border:1px solid #3c43a4;
 }
+.description{
+  margin:2em 0;
+}
+.description h5{
+  color: #3c43a4;
+  font-size: 1em;
+  margin: 0;
+}
+.description p{
+  color: #999;
+  line-height: 1.8em;
+  margin: 1em 0 0;
+}
+.occasional {
+  margin:3em 0;
+}
+.simpleCart_shelfItem p{
+  font-size: 1.2em;
+  color: #212121;
+  margin: 0.5em 0 1em;
+  font-weight: 600;
+}
+.simpleCart_shelfItem p span{
+  color: #999;
+  font-size: .8em;
+  text-decoration: line-through;
+  padding-right: 1em;
+  font-weight: 300;
+}
+.simpleCart_shelfItem button.w3ls-cart {
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  text-decoration: none;
+  text-transform: capitalize;
+  padding: .5em 1.5em;
+  border: 1px solid #c1c1c1;
+  border-radius: 5px;
+  background: transparent;
+  outline: none;
+  -webkit-transition:.5s all;
+  -moz-transition:.5s all;
+  transition:.5s all;
+}
+.simpleCart_shelfItem button.w3ls-cart:hover{
+  background:#3c43a4;
+  color:#fff;
+  border:1px solid #3c43a4;
+}
+.single-left {
+  width: 70%;
+  margin: 0 auto;
+}

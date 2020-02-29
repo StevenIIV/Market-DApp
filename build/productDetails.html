@@ -3,24 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>productDetails</title>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' type='text/css'>
-    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="./productDetails.js"></script>
-    <script src="http://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-    <script src="http://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
-    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="assets/css/vendor.css">
+    <link rel="stylesheet" href="assets/css/nice-select.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.css">
+    <link rel="stylesheet" href="assets/css/line-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/market-style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/vendor.js"></script>
+    <script src="assets/js/market.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/jquery.sticky.js"></script>
+    <script src="assets/js/jquery.easing.1.3.min.js"></script>
+    <script src="assets/js/bxslider.min.js"></script>
+    <script src="assets/js/script.slider.js"></script>
     <script>
         window.onload = function () {
             var id = getQueryVariable("id");
-            if (getQueryVariable("type") == 1){//rent
-                document.getElementById("object-rent-info").style.display="inline";
-                App.postObjectForRent(id);
-                App.getObjectComment(id)
-            }
-            else if(getQueryVariable("type") == 0){//market
-                App.checkSellValidAndShow(id);
-                App.getArticleComment(id);
-            }
+            App.postObjectForSell(id);
+            App.getArticleComment(id);
         }
         function getQueryVariable(variable) {
             var query = window.location.search.substring(1);
@@ -34,23 +47,254 @@
     </script>
 </head>
 <body>
-<!-- navigation bar -->
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container max-width-960">
-        <div class="navbar-header" style="float: left">
-            <a href="rentalMarket.html"><img src="../img/logo.png" alt="logo" class="navbar-brand"></a>
-        </div>
-        <div style="float: left; margin-top: 15px">
-            <button onclick="location='rentalMarket.html'">rent</button>
-            <button onclick="location='market.html'">market</button>
-        </div>
-        <div style="float: right; margin-top: 15px"><button onclick="location='userInfo.html'">userInfo</button> </div>
-        <div style="float: right">
-            <p id="account"></p>
-            <p id="accountBalance"></p>
+<!-- navbar -->
+<div id="navbar">
+    <!-- header -->
+    <div class="navbar-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-md-left text-center">
+                    <ul class="topbar-left">
+                        <li class="topbar-single-info">
+                            <button style = "background-color: transparent; border: 0; height: 60px" onclick="window.location.href = 'market.html'">
+                                <i class="fa fa-university"></i>Market
+                            </button>
+                        </li>
+                        <li class="topbar-single-info">
+                            <button style = "background-color: transparent; border: 0; height: 60px" onclick="window.location.href = 'rentalMarket.html'">
+                                <i class="fa fa-slideshare"></i>Rental Market
+                            </button>
+                        </li>
+                        <li class="topbar-single-info d-none d-lg-block"><i class="fa fa-crosshairs"></i>Track Your Order</li>
+                    </ul>
+                </div>
+                <div class="col-md-6 text-md-right text-center">
+                    <ul class="topbar-right float-md-right">
+                        <li class="topbar-single-info">
+                            <button style = "background-color: transparent; border: 0; height: 60px" onclick="window.location.href = 'userInfo.html'">
+                                <i class="fa fa-user"></i>
+                                <span class="d-none d-lg-inline-block" >My Account</span>
+                            </button>
+                        </li>
+                        <li>
+                            <select class="topbar-select topbar-currency">
+                                <option value="rating">BTC</option>
+                                <option value="categories" selected="selected">ETH</option>
+                            </select>
+                        </li>
+                        <li>
+                            <div class="topbar-help">
+                                <button class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#sellArticle"><b>Sell an article</b></button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
-</nav>
+    <!-- search bar -->
+    <div class="container">
+        <div class="row">
+            <!-- market logo -->
+            <div class="col-lg-2 align-self-center">
+                <div class="logo-area">
+                    <a href="index.html"> <img src="assets/img/marketplace_logo.png" alt="logo"></a>
+                </div>
+            </div>
+            <!-- search -->
+            <div class="col-lg-7 text-center" style="margin-top: 35px">
+                <form class="main-search d-inline-flex">
+                    <input type="text" name="search" id="search-name" placeholder="Search product...">
+                    <button type="button" onclick="App.searchArticleByName()">Search</button>
+                </form>
+            </div>
+            <!-- cart -->
+            <div class="col-sm-3 align-self-center" style="margin-bottom: 40px">
+                <div class="shopping-item">
+                    <a href="cart.html">Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="shop-details-area bg-gray-4 common-pd-top-2 common-pd-bottom">
+    <div class="container">
+        <div class="row">
+            <!-- photo -->
+            <div class="col-md-7">
+                <div class="product-thumbnail-wrapper">
+                    <div class="row">
+                        <!-- side bar -->
+                        <div class="col-3">
+                            <div class="product-thumbnail-carousel2">
+                                <div class="single-thumbnail-item">
+                                    <img src="assets/img/product/shop/shop-details/01.png" alt="item">
+                                </div>
+                                <div class="single-thumbnail-item">
+                                    <img src="assets/img/product/shop/shop-details/02.png" alt="item">
+                                </div>
+                                <div class="single-thumbnail-item">
+                                    <img src="assets/img/product/shop/shop-details/01.png" alt="item">
+                                </div>
+                                <div class="single-thumbnail-item">
+                                    <img src="assets/img/product/shop/shop-details/02.png" alt="item">
+                                </div>
+                                <div class="single-thumbnail-item">
+                                    <img src="assets/img/product/shop/shop-details/01.png" alt="item">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- main photo -->
+                        <div class="col-9 pl-0">
+                            <div class="single-thumbnail-slider2">
+                                <div class="slider-item">
+                                    <img src="assets/img/product/shop/shop-details/01.png" alt="item">
+                                </div>
+                                <div class="slider-item">
+                                    <img src="assets/img/product/shop/shop-details/02.png" alt="item">
+                                </div>
+                                <div class="slider-item">
+                                    <img src="assets/img/product/shop/shop-details/01.png" alt="item">
+                                </div>
+                                <div class="slider-item">
+                                    <img src="assets/img/product/shop/shop-details/02.png" alt="item">
+                                </div>
+                                <div class="slider-item">
+                                    <img src="assets/img/product/shop/shop-details/02.png" alt="item">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- details -->
+            <div class="col-md-5">
+                <div class="shop-item-details">
+                    <h4 class="entry-title"><span id="_objName"></span></h4>
+                    <div class="star-rating">
+                        creator : <span id="_objCreator"></span>
+                    </div>
+                    <div class="price">$<span id="_objPrice"></span></div>
+                    <div class="stock"><i class="fa fa-check"></i>In Stock</div>
+                    <div class="color-variation">
+                        <h3><strong>total number:</strong></h3><span id="_objNumber"></span>
+                    </div>
+                    <br/>
+                    <form>
+                        <div class="quantity buttons_added">
+                            <input type="button" value="-" class="minus">
+                            <input type="number" class="input-text qty text" step="1" min="1" max="10000" name="quantity" value="1">
+                            <input type="button" value="+" class="plus">
+                        </div>
+                    </form>
+                    <button type="submit" class="btn btn-black" style="margin-right: 50px" onclick="App.buyArticle(getQueryVariable('id')); return false;">buy now</button>
+                    <button type="submit" class="btn btn-black">Add to Cart</button>
+                </div>
+            </div>
+            <!-- comment -->
+            <div class="col-12 mg-top-120">
+                <div class="shop-tabs">
+                    <!-- nav -->
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Specifications</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Description</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="profile" aria-selected="false">Reviews (09)</a>
+                        </li>
+                    </ul>
+                    <!-- content -->
+                    <div class="tab-content specific-tab" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <table class="table table-bordered">
+                                <tbody>
+                                <tr>
+                                    <th>Brand</th>
+                                    <td>Brand Name</td>
+                                </tr>
+                                <tr>
+                                    <th>Model</th>
+                                    <td>2019</td>
+                                </tr>
+                                <tr>
+                                    <th>RAM</th>
+                                    <td>8 GB</td>
+                                </tr>
+                                <tr>
+                                    <th>Storage</th>
+                                    <td>SSD - 512 GB</td>
+                                </tr>
+                                <tr>
+                                    <th>Graphic</th>
+                                    <td>AMD 1 GB</td>
+                                </tr>
+                                <tr>
+                                    <th>Processor</th>
+                                    <td>Intel i5</td>
+                                </tr>
+                                <tr>
+                                    <th>Backup</th>
+                                    <td>Upto 10h</td>
+                                </tr>
+                                <tr>
+                                    <th>Display</th>
+                                    <td>Retina 4k</td>
+                                </tr>
+                                <tr>
+                                    <th>Warranty</th>
+                                    <td>1 Year (Global)</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade describe-tab" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <h3 class="title">Product Details</h3>
+                            <span id="_objDetail"></span>
+
+                        </div>
+                        <div class="tab-pane review-tab fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+                            <p class="woocommerce-noreviews">There are no reviews yet.</p>
+
+                            <!-- comment form -->
+                            <form class="contact-form">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-12" style="margin-bottom: 10px">
+                                        <div class="single-input-wrap">
+                                            <div style="float: left; margin-right: 20px; margin-top: 10px">
+                                                <label>Stars</label>
+                                            </div>
+                                            <div style="float: left">
+                                                <select>
+                                                    <option value="0">0</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="single-input-wrap">
+                                            <label>Your review </label>
+                                            <textarea class="single-input textarea"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="btn btn-black" href="#">Submit</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div class="container max-width-960 margin-top">
     <!-- Object for rent info -->
@@ -79,26 +323,26 @@
         </div>
     </div>
     <!-- Object for sell info -->
-    <div class="container max-width-960" id="object-sell-info" style="display: none">
-        <div class="panel-heading">
-            <h3 class="panel-title">Article Info</h3>
-        </div>
-        <div class="panel-body">
-            <ul class="list-group">
-                <li class="list-group-item"><span id="_objPhoto"></span></li>
-                <li class="list-group-item">
-                    <strong>ID:</strong> <span id="_objID"></span>
-                    <button type="button" class="btn btn-primary btn-success btn-buy" onclick="App.buyArticle(getQueryVariable('id')); return false;" id="buyButton"style="float: right; display: none">Buy</button>
-                </li>
-                <li class="list-group-item"><strong>Name:</strong> <span id="_objName"></span></li>
-                <li class="list-group-item"><strong>Number:</strong> <span id="_objNumber"></span></li>
-                <li class="list-group-item"><strong>Type:</strong> <span id="_objType"></span></li>
-                <li class="list-group-item"><strong>Creator:</strong> <span id="_objCreator"></span></li>
-                <li class="list-group-item"><strong>Price:</strong> <span id="_objPrice"></span></li>
-                <li class="list-group-item"><strong>Detail:</strong> <span id="_objDetail"></span></li>
-            </ul>
-        </div>
-    </div>
+<!--    <div class="container max-width-960" id="object-sell-info" style="display: none">-->
+<!--        <div class="panel-heading">-->
+<!--            <h3 class="panel-title">Article Info</h3>-->
+<!--        </div>-->
+<!--        <div class="panel-body">-->
+<!--            <ul class="list-group">-->
+<!--                <li class="list-group-item"><span id="_objPhoto"></span></li>-->
+<!--                <li class="list-group-item">-->
+<!--                    <strong>ID:</strong> <span id="_objID"></span>-->
+<!--                    <button type="button" class="btn btn-primary btn-success btn-buy" onclick="App.buyArticle(getQueryVariable('id')); return false;" id="buyButton"style="float: right; display: none">Buy</button>-->
+<!--                </li>-->
+<!--                <li class="list-group-item"><strong>Name:</strong> <span id="_objName"></span></li>-->
+<!--                <li class="list-group-item"><strong>Number:</strong> <span id="_objNumber"></span></li>-->
+<!--                <li class="list-group-item"><strong>Type:</strong> <span id="_objType"></span></li>-->
+<!--                <li class="list-group-item"><strong>Creator:</strong> <span id="_objCreator"></span></li>-->
+<!--                <li class="list-group-item"><strong>Price:</strong> <span id="_objPrice"></span></li>-->
+<!--                <li class="list-group-item"><strong>Detail:</strong> <span id="_objDetail"></span></li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </div>-->
     <h1>comment</h1>
     <div id="displayComment" class="row">
         <!-- ARTICLES LOAD HERE -->

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>object details</title>
+    <script src="./productDetails.js"></script>
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="assets/css/vendor.css">
+    <link rel="stylesheet" href="assets/css/nice-select.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.css">
+    <link rel="stylesheet" href="assets/css/line-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/market-style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/fasthover.css">
+    <link rel="stylesheet" href="assets/css/flexslider.css">
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/vendor.js"></script>
+    <script src="assets/js/market.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/jquery.sticky.js"></script>
+    <script src="assets/js/jquery.easing.1.3.min.js"></script>
+    <script src="assets/js/bxslider.min.js"></script>
+    <script src="assets/js/script.slider.js"></script>
+    <script src="assets/js/easyResponsiveTabs.js"></script>
+    <script src="assets/js/imagezoom.js"></script>
+    <script src="assets/js/jquery.flexslider.js"></script>
+
+    <script>
+        window.onload = function () {
+            var id = getQueryVariable("id");
+            App.postObjectForRent(id);
+            App.getObjectComment(id);
+        };
+        function getQueryVariable(variable) {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i=0;i<vars.length;i++) {
+                var pair = vars[i].split("=");
+                if(pair[0] == variable){return pair[1];}
+            }
+            return false;
+        }
+    </script>
+</head>
+<body>
+<!-- navbar -->
+<div id="navbar">
+    <!-- header -->
+    <div class="navbar-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-md-left text-center">
+                    <ul class="topbar-left">
+                        <li class="topbar-single-info">
+                            <button style = "background-color: transparent; border: 0; height: 60px" onclick="window.location.href = 'market.html'">
+                                <i class="fa fa-university"></i>Market
+                            </button>
+                        </li>
+                        <li class="topbar-single-info">
+                            <button style = "background-color: transparent; border: 0; height: 60px" onclick="window.location.href = 'rentalMarket.html'">
+                                <i class="fa fa-slideshare"></i>Rental Market
+                            </button>
+                        </li>
+                        <li class="topbar-single-info d-none d-lg-block"><i class="fa fa-crosshairs"></i>Track Your Order</li>
+                    </ul>
+                </div>
+                <div class="col-md-6 text-md-right text-center">
+                    <ul class="topbar-right float-md-right">
+                        <li class="topbar-single-info">
+                            <button style = "background-color: transparent; border: 0; height: 60px" onclick="window.location.href = 'userInfo.html'">
+                                <i class="fa fa-user"></i>
+                                <span class="d-none d-lg-inline-block" >My Account</span>
+                            </button>
+                        </li>
+                        <li>
+                            <select class="topbar-select topbar-currency">
+                                <option value="rating">BTC</option>
+                                <option value="categories" selected="selected">ETH</option>
+                            </select>
+                        </li>
+                        <li>
+                            <div class="topbar-help">
+                                <button class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#sellArticle"><b>Sell an article</b></button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- search bar -->
+    <div class="container">
+        <div class="row">
+            <!-- market logo -->
+            <div class="col-lg-2 align-self-center">
+                <div class="logo-area">
+                    <a href="index.html"> <img src="assets/img/marketplace_logo.png" alt="logo"></a>
+                </div>
+            </div>
+            <!-- search -->
+            <div class="col-lg-7 text-center" style="margin-top: 35px">
+                <form class="main-search d-inline-flex">
+                    <input type="text" name="search" id="search-name" placeholder="Search product...">
+                    <button type="button" onclick="App.searchArticleByName()">Search</button>
+                </form>
+            </div>
+            <!-- cart -->
+            <div class="col-sm-3 align-self-center" style="margin-bottom: 40px">
+                <div class="shopping-item">
+                    <a href="cart.html">Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="single">
+    <div class="container">
+        <div class="col-md-4 single-left" style="margin-top: 100px">
+            <div class="flexslider">
+                <div class="thumb-image" style=" text-align:center; width: 342px; height: 446px; vertical-align: center; border: 1px solid #000">
+                    <img src="" id="objPhoto" data-imagezoom="true" class="img-responsive" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 single-right">
+            <h3><span id="objName"></span></h3>
+            <div class="description">
+                <h5><i>Description</i></h5>
+                <p><span id="objDetail"></span></p>
+            </div>
+            <div class="occasional">
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <th>creator</th>
+                        <td><span id="objCreator"></span></td>
+                    </tr>
+                    <tr>
+                        <th>status</th>
+                        <td><span id="objRented"></span></td>
+                    </tr>
+                    <tr>
+                        <th>renter</th>
+                        <td><span id="objRenterAddress"></span></td>
+                    </tr>
+                    <tr>
+                        <th>rent time </th>
+                        <td><span id="objRenterSince"></span></td>
+                    </tr>
+                    <tr>
+                        <th>daily price</th>
+                        <td><span id="objPriceDaily"></span></td>
+                    </tr>
+                    <tr>
+                        <th>deposit</th>
+                        <td><span id="objDeposit"></span></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="simpleCart_shelfItem">
+                <button type="submit" onclick="App.rentObj()" id="rentButton" class="w3ls-cart">rent</button>
+                <button type="submit" onclick="App.returnObj()" id="returnButton" class="w3ls-cart" style="display: none">return</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
