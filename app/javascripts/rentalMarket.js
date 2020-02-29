@@ -143,7 +143,6 @@ window.App = {
           var cell7 = row.insertCell(6);  //OP
           var cell8 = row.insertCell(7);
 
-          var targetURL = "productDetails.html?id="+_id;
           cell1.innerHTML = "<img src='"+_objPhoto+"'>";
           cell2.innerHTML = _id;
           cell3.innerHTML = _objName;

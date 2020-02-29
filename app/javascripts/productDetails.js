@@ -1,4 +1,4 @@
-import "../stylesheets/app.css";
+//import "../stylesheets/app.css";
 // Import libraries we need.
 //import { default as Web3} from 'web3';
 import { default as contract } from 'truffle-contract'
@@ -112,14 +112,8 @@ window.App = {
       marketPlaceInstance = instance;
       marketPlaceInstance.articles(_objID).then(function (article) {
         var objPhoto = 'http://localhost:8080/ipfs/' + article[3];
-        if(article[1] == App.account){
-          document.getElementById("buyButton").style.display="none";
-        }else{
-          document.getElementById("buyButton").style.display="inline";
-        }
-        document.getElementById("_objID").innerHTML = article[0];
         document.getElementById("_objName").innerHTML = article[4];
-        document.getElementById("_objPhoto").innerHTML = "<img src='"+objPhoto+"'>";
+        //document.getElementById("_objPhoto").innerHTML = "<img src='"+objPhoto+"'>";
         document.getElementById("_objPrice").innerHTML = article[6];
         document.getElementById("_objCreator").innerHTML = article[1];
         document.getElementById("_objDetail").innerHTML = article[5];
@@ -127,17 +121,6 @@ window.App = {
         document.getElementById("_objType").innerHTML = categories[article[8]];
       })
     })
-  },
-
-  qrcode: function(){
-    var content = "test\nhello";
-    $('#qrcode').qrcode({
-      width:200,
-      height:200,
-      render:"canvas",
-      correctLevel:0,
-      text:content
-    });
   },
 
   rentObj: function(){
@@ -216,19 +199,6 @@ window.App = {
           }
         });
       }
-    });
-  },
-
-  checkSellValidAndShow: function (id) {
-    Market.deployed().then(function (instance) {
-      instance.articles(id).then(function (article) {
-        if(article[2]!="0x0000000000000000000000000000000000000000") {
-          document.getElementById("error").style.display = "inline";
-        }else {
-          document.getElementById("object-sell-info").style.display="inline";
-          App.postObjectForSell(getQueryVariable("id"));
-        }
-      })
     });
   },
 
