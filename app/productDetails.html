@@ -34,7 +34,7 @@
             var id = getQueryVariable("id");
             App.postObjectForSell(id);
             App.getArticleComment(id);
-        }
+        };
         function getQueryVariable(variable) {
             var query = window.location.search.substring(1);
             var vars = query.split("&");
@@ -258,10 +258,11 @@
 
                         </div>
                         <div class="tab-pane review-tab fade" id="review" role="tabpanel" aria-labelledby="review-tab">
-                            <p class="woocommerce-noreviews">There are no reviews yet.</p>
-
+                            <div id="displayComment">
+                                <!-- display comment -->
+                            </div>
                             <!-- comment form -->
-                            <form class="contact-form">
+                            <form class="contact-form" style="margin-top: 20px">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-12" style="margin-bottom: 10px">
                                         <div class="single-input-wrap">
@@ -269,7 +270,7 @@
                                                 <label>Stars</label>
                                             </div>
                                             <div style="float: left">
-                                                <select>
+                                                <select id="selectStars">
                                                     <option value="0">0</option>
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
@@ -283,46 +284,17 @@
                                     <div class="col-12">
                                         <div class="single-input-wrap">
                                             <label>Your review </label>
-                                            <textarea class="single-input textarea"></textarea>
+                                            <textarea class="single-input textarea" id="commentContent"></textarea>
                                         </div>
                                     </div>
                                 </div>
-                                <a class="btn btn-black" href="#">Submit</a>
+                                <button type="button" class="btn btn-black" onclick="App.addArticleComment(getQueryVariable('id'))" >Submit</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-
-
-<div class="container max-width-960 margin-top">
-    <!-- Object for sell info -->
-<!--    <div class="container max-width-960" id="object-sell-info" style="display: none">-->
-<!--        <div class="panel-heading">-->
-<!--            <h3 class="panel-title">Article Info</h3>-->
-<!--        </div>-->
-<!--        <div class="panel-body">-->
-<!--            <ul class="list-group">-->
-<!--                <li class="list-group-item"><span id="_objPhoto"></span></li>-->
-<!--                <li class="list-group-item">-->
-<!--                    <strong>ID:</strong> <span id="_objID"></span>-->
-<!--                    <button type="button" class="btn btn-primary btn-success btn-buy" onclick="App.buyArticle(getQueryVariable('id')); return false;" id="buyButton"style="float: right; display: none">Buy</button>-->
-<!--                </li>-->
-<!--                <li class="list-group-item"><strong>Name:</strong> <span id="_objName"></span></li>-->
-<!--                <li class="list-group-item"><strong>Number:</strong> <span id="_objNumber"></span></li>-->
-<!--                <li class="list-group-item"><strong>Type:</strong> <span id="_objType"></span></li>-->
-<!--                <li class="list-group-item"><strong>Creator:</strong> <span id="_objCreator"></span></li>-->
-<!--                <li class="list-group-item"><strong>Price:</strong> <span id="_objPrice"></span></li>-->
-<!--                <li class="list-group-item"><strong>Detail:</strong> <span id="_objDetail"></span></li>-->
-<!--            </ul>-->
-<!--        </div>-->
-<!--    </div>-->
-    <h1>comment</h1>
-    <div id="displayComment" class="row">
-        <!-- ARTICLES LOAD HERE -->
     </div>
 </div>
 
@@ -335,20 +307,23 @@
 </div>
 
 <!-- comment template -->
-<div id="commentTemplate" style="display: none;">
-    <div class="row-lg-12">
-        <div class="panel panel-default panel-article">
-            <div class="panel-heading">
-                <h3 class="panel-title"></h3>
+<div id="commentTemplate" style="display: none">
+    <div class="additional_info_sub_grids"  style="background: #F5F5F5;border-radius:10px;">
+        <div class="col-xs-10 additional_info_sub_grid_right" style="margin-top: 10px">
+            <div class="additional_info_sub_grid_rightl">
+                <a><span class="creator"></span></a>
+                <h5><span class="createTime"></span></h5>
+                <p><span class="comment"></span></p>
             </div>
-            <div class="panel-body">
-                <strong>createTime</strong>: <span class="createTime"></span><br/>
-                <strong>creator</strong>: <span class="creator"></span><br/>
-                <strong>rating</strong>: <span class="rating"></span><br/>
-                <strong>comment</strong>: <span class="comment"></span><br/>
+            <!-- ratings -->
+            <div class="additional_info_sub_grid_rightr">
+                <div class="rating">
+                </div>
             </div>
         </div>
+        <div class="clearfix"> </div>
     </div>
 </div>
+
 </body>
 </html>

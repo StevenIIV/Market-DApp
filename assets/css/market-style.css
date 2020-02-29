@@ -5041,3 +5041,130 @@ form .quantity input:focus {
   width: 70%;
   margin: 0 auto;
 }
+.resp-tab-content {
+  display: none;
+}
+.additional_info_grid {
+  padding: 2em;
+  background:#f3f3f3;
+}
+.additional_info_sub_grids{
+  margin:2em 0 0;
+}
+.additional_info_sub_grid_rightl{
+  float:left;
+  width: 70%;
+}
+.additional_info_sub_grid_rightr{
+  float:right;
+  width:15%;
+}
+.additional_info_sub_grid_rightl a{
+  color:#212121;
+  font-size:1em;
+  text-decoration:none;
+}
+.additional_info_sub_grid_rightl a:hover{
+  color:#3c43a4;
+}
+.additional_info_sub_grid_rightl h5{
+  color:#3c43a4;
+  margin:.5em 0;
+  font-size: .8em;
+}
+.additional_info_sub_grid_rightl p{
+  color:#999;
+  line-height:1.8em;
+}
+rating
+.review_grids h5{
+  font-size:1.5em;
+  color:#212121;
+  margin-bottom:1em;
+}
+.review_grids {
+  margin: 3em 0 0;
+}
+.review_grids input[type="text"],.review_grids input[type="email"],.review_grids textarea{
+  outline: none;
+  padding: 10px;
+  font-size: 14px;
+  color: #212121;
+  width: 48.7%;
+  background: #fff;
+  border: 1px solid #E6E6E6;
+}
+.review_grids input[type="text"]:nth-child(3){
+  margin: 1em 0;
+  width: 100% !important;
+}
+.review_grids input[type="email"]{
+  margin-left:1em;
+}
+.review_grids textarea{
+  width:100% !important;
+  min-height:200px;
+  margin-bottom:.8em;
+}
+.review_grids input[type="submit"]{
+  outline:none;
+  padding:10px 0;
+  font-size:1em;
+  color:#fff;
+  width:35%;
+  background:#ff5063;
+  border:none;
+}
+.review_grids input[type="submit"]:hover{
+  background:#3c43a4;
+}
+.review_grids form {
+  width: 70%;
+  margin: 0 auto;
+}
+/*-- Ratings --*/
+.rating-left {
+  float: left;
+}
+.rating-left img {
+  margin: .3em 0.1em 0;
+}
+.rating1 {
+  direction:ltr;
+  margin-bottom: 2em;
+}
+.starRating:not(old) {
+  display: inline-block;
+  height: 18px;
+  width:100px;
+  overflow: hidden;
+}
+
+.starRating:not(old) > input{
+  margin-right :-26%;
+  opacity      : 0;
+}
+
+.starRating:not(old) > label {
+  float: right;
+  background: url(../images/star.png);
+  background-size: contain;
+  margin-right: 2px;
+}
+
+.starRating:not(old) > label:before{
+  content         : '';
+  display         : block;
+  width           : 18px;
+  height          : 18px;
+  background      : url(../images/star-.png);
+  background-size : contain;
+  opacity         : 0;
+  transition      : opacity 0.2s linear;
+}
+
+.starRating:not(old) > label:hover:before,
+.starRating:not(old) > label:hover ~ label:before,
+.starRating:not(:hover) > :checked ~ label:before{
+  opacity : 1;
+}

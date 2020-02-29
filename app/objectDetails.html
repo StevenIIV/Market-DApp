@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="assets/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/fasthover.css">
     <link rel="stylesheet" href="assets/css/flexslider.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
 
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
@@ -124,7 +126,8 @@
     </div>
 </div>
 
-<div class="single">
+<div>
+    <!-- main -->
     <div class="container">
         <div class="col-md-4 single-left" style="margin-top: 100px">
             <div class="flexslider">
@@ -176,6 +179,62 @@
             </div>
         </div>
     </div>
+    <!-- comment -->
+    <div class="additional_info">
+        <div class="container">
+            <div class="sap_tabs">
+                <div id="horizontalTab1" style="display: block; width: 100%; margin: 0px;">
+                    <div class="additional_info_grid">
+                        <h4>(2) Reviews</h4>
+                        <div class="additional_info_sub_grids" id="comment-template">
+                            <div class="col-xs-10 additional_info_sub_grid_right">
+                                <div class="additional_info_sub_grid_rightl">
+                                    <a href="single.html">Laura</a>
+                                    <h5>Oct 06, 2016.</h5>
+                                    <p>Quis autem vel eum iure reprehenderit qui in ea voluptate
+                                        velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat
+                                        quo voluptas nulla pariatur.</p>
+                                </div>
+                                <div class="additional_info_sub_grid_rightr">
+                                    <div class="rating">
+                                        <div class="rating-left">
+                                            <img src="images/star-.png" alt=" " class="img-responsive">
+                                        </div>
+                                        <div class="rating-left">
+                                            <img src="images/star-.png" alt=" " class="img-responsive">
+                                        </div>
+                                        <div class="rating-left">
+                                            <img src="images/star-.png" alt=" " class="img-responsive">
+                                        </div>
+                                        <div class="rating-left">
+                                            <img src="images/star.png" alt=" " class="img-responsive">
+                                        </div>
+                                        <div class="rating-left">
+                                            <img src="images/star.png" alt=" " class="img-responsive">
+                                        </div>
+                                        <div class="clearfix"> </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"> </div>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script src="js/easyResponsiveTabs.js" type="text/javascript"></script>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('#horizontalTab1').easyResponsiveTabs({
+                        type: 'default', //Types: default, vertical, accordion
+                        width: 'auto', //auto or any width like 600px
+                        fit: true   // 100% fit in a container
+                    });
+                });
+            </script>
+        </div>
+    </div>
+
 </div>
 
 </body>

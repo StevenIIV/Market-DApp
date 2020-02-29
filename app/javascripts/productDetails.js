@@ -73,6 +73,7 @@ window.App = {
     }).then(function (objType) {
       _objType = objType;
       if(_objID < numObjects && _objID >= 0){
+
         if(App.account == _objCreator){
           document.getElementById("rentButton").style.display = "none";
           document.getElementById("returnButton").style.display = "none";
@@ -117,7 +118,7 @@ window.App = {
         document.getElementById("_objCreator").innerHTML = article[1];
         document.getElementById("_objDetail").innerHTML = article[5];
         document.getElementById("_objNumber").innerHTML = article[7];
-        document.getElementById("_objType").innerHTML = categories[article[8]];
+        //document.getElementById("_objType").innerHTML = categories[article[8]];
       })
     })
   },
@@ -206,7 +207,7 @@ window.App = {
       return instance.getArticleCommentsLength.call(articleId);
     }).then(function (size) {
       Comment.deployed().then(function (instance) {
-        for (var i=0;i<size;i++){
+        for (var i=size-1;i>=0;i--){
           instance.getArticleComment(articleId,i).then(function (article) {
             App.displayComment(article[0],article[1],article[2],article[3]);
           })
@@ -220,7 +221,7 @@ window.App = {
       return instance.getObjectCommentsLength.call(objectId);
     }).then(function (size) {
       Comment.deployed().then(function (instance) {
-        for (var i=0;i<size;i++){
+        for (var i=size-1;i>=0;i--){
           instance.getObjectComment(objectId,i).then(function (article) {
             App.displayComment(article[0],article[1],article[2],article[3]);
           })
@@ -232,11 +233,34 @@ window.App = {
   displayComment: function (time, sender, rating, comment) {
     var commentPanel = $('#displayComment');
     var commentTemplate = $('#commentTemplate');
-    commentTemplate.find('.createTime').text(time);
+    commentTemplate.find('.createTime').text(new Date(time*1000).toLocaleDateString()+""+new Date(time*1000).toLocaleTimeString());
     commentTemplate.find('.creator').text(sender);
-    commentTemplate.find('.rating').text(rating);
     commentTemplate.find('.comment').text(comment);
+    for (var j=1;j<=rating;j++){
+      commentTemplate.find('.rating').append(" <div class='rating-left'><img src='assets/img/star-.png' alt='' class='img-responsive'></div>")
+    }
+    for (var j=1;j<=5-rating;j++){
+      commentTemplate.find('.rating').append(" <div class='rating-left'><img src='assets/img/star.png' alt='' class='img-responsive'></div>")
+    }
     commentPanel.append(commentTemplate.html());
+    commentTemplate.find('.rating').empty();
+  },
+
+  addArticleComment: function (_articleId) {
+    var stars = document.getElementById("selectStars").value;
+    var comment = document.getElementById("commentContent").value;
+
+    Comment.deployed().then(function (instance) {
+      return instance.addArticleComment(_articleId,stars,comment,{from:App.account,gas:500000});
+    }).then(function (res) {
+      window.location.href="productDetails.html?id="+_articleId;
+    }).catch(function (err) {
+      console.log(err);
+    })
+  },
+
+  addObjectComment: function () {
+
   }
 };
 

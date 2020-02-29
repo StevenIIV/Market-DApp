@@ -2623,31 +2623,7 @@ div#horizontalTab1 ul {
 .additional_info_sub_grids{
 	margin:2em 0 0;
 }
-.additional_info_sub_grid_rightl{
-	float:left;
-	width: 70%;
-}
-.additional_info_sub_grid_rightr{
-	float:right;
-	width:15%;
-}
-.additional_info_sub_grid_rightl a{
-	color:#212121;
-	font-size:1em;
-	text-decoration:none;
-}
-.additional_info_sub_grid_rightl a:hover{
-	color:#3c43a4;
-}
-.additional_info_sub_grid_rightl h5{
-	color:#3c43a4;
-	margin:.5em 0;
-	font-size: .8em;
-}
-.additional_info_sub_grid_rightl p{
-	color:#999;
-	line-height:1.8em;
-}
+rating
 .review_grids h5{
 	font-size:1.5em;
 	color:#212121;
