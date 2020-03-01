@@ -106,7 +106,7 @@
             <!-- market logo -->
             <div class="col-lg-2 align-self-center">
                 <div class="logo-area">
-                    <a href="index.html"> <img src="assets/img/marketplace_logo.png" alt="logo"></a>
+                    <a href="index.html"> <img src="assets/img/rent-logo.jpg" alt="logo"></a>
                 </div>
             </div>
             <!-- search -->
@@ -174,8 +174,8 @@
                 <div class="clearfix"> </div>
             </div>
             <div class="simpleCart_shelfItem">
-                <button type="submit" onclick="App.rentObj()" id="rentButton" class="w3ls-cart">rent</button>
-                <button type="submit" onclick="App.returnObj()" id="returnButton" class="w3ls-cart" style="display: none">return</button>
+                <button type="submit" onclick="App.rentObj(getQueryVariable('id'))" id="rentButton" class="w3ls-cart">rent</button>
+                <button type="submit" onclick="App.returnObj(getQueryVariable('id'))" id="returnButton" class="w3ls-cart" style="display: none">return</button>
             </div>
         </div>
     </div>

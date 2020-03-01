@@ -75,7 +75,9 @@ window.App = {
   //按名字查询
   searchObjByName: function(){
     var self = this;
-
+    document.getElementById("list1").innerHTML = "";
+    document.getElementById("list2").innerHTML = "";
+    document.getElementById("list3").innerHTML = "";
     var name = document.getElementById("search-name").value;
     self.postObjectsTableByName(name);
   },
@@ -143,13 +145,19 @@ window.App = {
           objectTemplate.find('.object-deposit').text(_objDeposit);
           objectTemplate.find('.object-type').text(categories[_objType]);
           objectTemplate.find('.object-display').attr('href',"objectDetails.html?id="+_id);
-          objectTemplate.find('.object-rented').attr('display','block');
+          if (_objRented){
+            objectTemplate.find('.object-rented').attr('style','display:inline');
+          }
           objectRow.append(objectTemplate.html());
+          objectTemplate.find('.object-rented').attr('style','display:none');
     })
   },
 
   //把所有记录显示出来
   postObjectsTable: function(){
+    document.getElementById("list1").innerHTML = "";
+    document.getElementById("list2").innerHTML = "";
+    document.getElementById("list3").innerHTML = "";
     var self = this;
     var ids;
     var mainInstance;
@@ -181,7 +189,7 @@ window.App = {
     }).then(function (ids) {
       var list = 1;
       for (let objectId of ids){
-        this.addRowObjectTable(objectId,list);
+        App.addRowObjectTable(objectId,list);
         list++;
         if (list == 4){
           list = 1;

@@ -72,7 +72,7 @@ contract ShareApp{
 		// Object newObject = objects[numObjects];
 		Object  newObject = objects[numObjects];
 		nameToKeys[name].keys.push(numObjects); //add the key to the name's keys
-
+		typeToKeys[categories].keys.push(numObjects);
 		newObject.creator = msg.sender;
 		newObject.photo = photo;
 		newObject.name = name;

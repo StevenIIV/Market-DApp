@@ -108,8 +108,10 @@
     <!-- nav side bar -->
     <div class="col-lg-3">
       <div class="sidebar">
-        <div class="single-widget" style="width: 190px">
-          <h4 class="sidebar-title sidebar-title-cat"><img src="assets/img/icon/bar.png" alt="img">All Categories</h4>
+        <div class="single-widget" style="width: 200px">
+          <h4 href="javascript:void(0);" onclick="App.postObjectsTable()" class="sidebar-title sidebar-title-cat"><img src="assets/img/icon/bar.png" alt="img">
+            All Categories
+          </h4>
           <ul class="sidebar-categories">
             <li><a href="javascript:void(0);" onclick="App.postObjectTableByType(0)"><img src="assets/img/icon/clothing.png" alt="img">Clothing</a></li>
             <li><a href="javascript:void(0);" onclick="App.postObjectTableByType(1)"><img src="assets/img/icon/Electronic.png" alt="img">Electronic</a></li>
@@ -140,7 +142,7 @@
   <div class="single-product-card single-product-card-2 text-center border-0">
     <div class="thumb" style="width: 265px; height: 280px;">
       <img style="position: absolute; display: block" src="" alt="top-product" class="photo-hash" width="265px" height="280px">
-      <img class="object-rented" style="filter:alpha(Opacity=80);-moz-opacity:0.85;opacity: 0.85; position: absolute; display: none" src="assets/img/rented.png">
+      <div class="object-rented" style="display: none"><img style="filter:alpha(Opacity=80);-moz-opacity:0.85;opacity: 0.85; position: absolute; display: block" src="assets/img/rented.png"></div>
     </div>
     <div class="product-card-details">
       <p class="categories"><span class="object-type"></span></p>

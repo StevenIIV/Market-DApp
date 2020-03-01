@@ -127,12 +127,9 @@ window.App = {
     })
   },
 
-  rentObj: function(){
+  rentObj: function(objectID){
     console.log(App.account);
     var mainInstance;
-
-    var objectID = parseInt(document.getElementById("objID").innerHTML);
-    // console.log(objectID+1);
     ShareApp.deployed().then(function(instance){
       mainInstance = instance;
       return mainInstance.rentObj(objectID,{from:App.account,value:10000000000000, gas:500000});
@@ -144,10 +141,8 @@ window.App = {
     });
   },
 
-  returnObj:function(){
+  returnObj:function(objectID){
     var mainInstance;
-
-    var objectID = parseInt(document.getElementById("objID").innerHTML);
     ShareApp.deployed().then(function(instance){
       mainInstance = instance;
       return mainInstance.returnObj(objectID,{from:App.account});

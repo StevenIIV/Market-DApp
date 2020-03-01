@@ -7974,12 +7974,13 @@
         }
       },
       "links": {},
-      "address": "0x566Ce86C6d9A850BE6dfe4ad6cD9B6eE14803C19",
-      "transactionHash": "0x1e1172bd2ed5d492f744a5a8d33f983479425862bea433c23a0cad39e42e50f1"
+      "address": "0x80802Bd76A38796ae539bA472793c50113f610E0",
+      "transactionHash": "0x578dcd4415b3c651e4961b4bb20b30de0dc6a6c2bd232cd87f335c0ff3de7020"
     }
   },
   "schemaVersion": "3.0.19",
-  "updatedAt": "2020-03-01T05:50:54.236Z",
+  "updatedAt": "2020-03-01T09:40:58.775Z",
+  "networkType": "ethereum",
   "devdoc": {
     "methods": {}
   },
