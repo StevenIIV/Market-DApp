@@ -1,4 +1,4 @@
-import "../stylesheets/app.css";
+//mport "../stylesheets/app.css";
 // Import libraries we need.
 //import { default as Web3} from 'web3';
 import { default as contract } from 'truffle-contract'
@@ -12,7 +12,7 @@ const ipfs = ipfsAPI({
 });
 import ShareApp_artifacts from '../../build/contracts/ShareApp.json'
 var ShareApp = contract(ShareApp_artifacts);
-const categories = ["Clothing","Food","Digital Products","Book","Jewellery","Crafts","Others"];
+const categories = ["Clothing","Electronic","Book","Crafts","Others"];
 var reader;
 window.App = {
   account: 0x0,
@@ -24,8 +24,8 @@ window.App = {
     self.displayAccountInfo();
     self.postObjectsTable();
     $("#product-image").change(function(event) {
-      const file = event.target.files[0]
-      reader = new window.FileReader()
+      const file = event.target.files[0];
+      reader = new window.FileReader();
       reader.readAsArrayBuffer(file)
     });
   },
@@ -87,23 +87,25 @@ window.App = {
     var mainInstance;
     document.getElementById("nameObjects").style.display = "inline";
     $("#nameObjects-table tr:not(:first)").empty();
-    var tbody = document.getElementById("nameObjects-table").tBodies[0];
     ShareApp.deployed().then(function(instance){
       mainInstance=instance;
       return instance.findNames.call(_name);
     }).then(function(res){
       ids = res;
-
+      var list = 1;
       for(let element of ids){
         let id = element.toNumber();
-        self.addRowObjectTable(id,tbody);
+        self.addRowObjectTable(id,list);
+        list++;
+        if (list == 4){
+          list = 1;
+        }
       }
     });
   },
 
   //向表格中追加记录
-  addRowObjectTable: function(_id,tbody){
-    var self = this;
+  addRowObjectTable: function(_id,list_id){
     var mainInstance;
     var _objPhoto;
     var _objName;
@@ -111,7 +113,6 @@ window.App = {
     var _objDeposit;
     var _objRented;
     var _objType;
-    // var tbody = document.getElementById("objectsTable").tBodies[0];
     ShareApp.deployed().then(function(instance){
           mainInstance = instance;
           return mainInstance.getObjectName.call(_id);
@@ -132,25 +133,18 @@ window.App = {
           return mainInstance.getObjectCategories.call(_id);
         }).then(function (objType) {
           _objType = objType;
-          var row = tbody.insertRow(0);
 
-          var cell1 = row.insertCell(0);  //id
-          var cell2 = row.insertCell(1);  //name
-          var cell3 = row.insertCell(2);  //type
-          var cell4 = row.insertCell(3);  //priceDaily
-          var cell5 = row.insertCell(4);  //deposit
-          var cell6 = row.insertCell(5);  //rented
-          var cell7 = row.insertCell(6);  //OP
-          var cell8 = row.insertCell(7);
+          var objectRow = $('#list'+list_id);
+          var objectTemplate = $('#object-template');
 
-          cell1.innerHTML = "<img src='"+_objPhoto+"'>";
-          cell2.innerHTML = _id;
-          cell3.innerHTML = _objName;
-          cell4.innerHTML = categories[_objType];
-          cell5.innerHTML = _objPriceDaily;
-          cell6.innerHTML = _objDeposit;
-          cell7.innerHTML = _objRented;
-          cell8.innerHTML = '<a href="objectDetails.html?id='+_id+'">Display</a>';
+          objectTemplate.find('.photo-hash').attr('src',_objPhoto);
+          objectTemplate.find('.object-name').text(_objName);
+          objectTemplate.find('.object-priceDaily').text(_objPriceDaily);
+          objectTemplate.find('.object-deposit').text(_objDeposit);
+          objectTemplate.find('.object-type').text(categories[_objType]);
+          objectTemplate.find('.object-display').attr('href',"objectDetails.html?id="+_id);
+          objectTemplate.find('.object-rented').attr('display','block');
+          objectRow.append(objectTemplate.html());
     })
   },
 
@@ -159,50 +153,41 @@ window.App = {
     var self = this;
     var ids;
     var mainInstance;
-    var tbody = document.getElementById("objectsTable").tBodies[0];
     ShareApp.deployed().then(function(instance){
       mainInstance = instance;
       return instance.getObjectIds.call();
     }).then(function(result){
       ids = result;
-
+      var list = 1;
       for(let element of ids){
         let id = element.toNumber();
-        self.addRowObjectTable(id,tbody);
+        self.addRowObjectTable(id,list);
+        list ++;
+        if (list == 4){
+          list = 1;
+        }
       }
     });
   },
 
-  //中文编码格式转换
-  toUtf8: function(str) {
-        var out, i, len, c;
-        out = "";
-        len = str.length;
-        for(i = 0; i < len; i++) {
-            c = str.charCodeAt(i);
-            if ((c >= 0x0001) && (c <= 0x007F)) {
-                out += str.charAt(i);
-            } else if (c > 0x07FF) {
-                out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));
-                out += String.fromCharCode(0x80 | ((c >>  6) & 0x3F));
-                out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));
-            } else {
-                out += String.fromCharCode(0xC0 | ((c >>  6) & 0x1F));
-                out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));
-            }
+  postObjectTableByType: function(type_id){
+    document.getElementById("list1").innerHTML = "";
+    document.getElementById("list2").innerHTML = "";
+    document.getElementById("list3").innerHTML = "";
+    var mainInstance;
+    ShareApp.deployed().then(function (instance) {
+      mainInstance = instance;
+      return mainInstance.findTypes.call(type_id);
+    }).then(function (ids) {
+      var list = 1;
+      for (let objectId of ids){
+        this.addRowObjectTable(objectId,list);
+        list++;
+        if (list == 4){
+          list = 1;
         }
-        return out;
-  },
-
-  qrcode: function(){
-    var content = "test\nhello";
-    $('#qrcode').qrcode({
-      width:200,
-      height:200,
-      render:"canvas",
-      correctLevel:0,
-      text:content
-    });
+      }
+    })
   },
 
   remove: function(){

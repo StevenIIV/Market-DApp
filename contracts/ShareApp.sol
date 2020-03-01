@@ -23,11 +23,16 @@ contract ShareApp{
 		uint[] keys;
 	}
 
+	struct TypeKey{
+		uint[] keys;
+	}
+
 	//List of objects
 	uint[] private ids;  //Use it to return the ids of Objects
 	uint public numObjects;
 	mapping(uint => Object) private objects;
 	mapping(string => NameKey) private nameToKeys;
+	mapping(uint => TypeKey) private typeToKeys;
 	// mapping(address => uint) public balances;
 
 	address public owner;
@@ -158,6 +163,10 @@ contract ShareApp{
 
 	function findNames(string name) constant returns(uint[]){
 		return nameToKeys[name].keys;
+	}
+
+	function findTypes(uint categories) constant returns(uint[]) {
+		return typeToKeys[categories].keys;
 	}
 
 	function getNumObjects() constant returns(uint){
