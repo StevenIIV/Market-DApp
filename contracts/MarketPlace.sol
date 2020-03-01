@@ -4,15 +4,14 @@ contract MarketPlace {
 
   // Custom types
   struct Article {
-    uint id;
-    address seller;
-    address buyer;
-    string photo;
-    string name;
-    string description;
-    uint price;
-    uint number;
-    uint categories;
+    uint id;//0
+    address seller;//1
+    string photo;//2
+    string name;//3
+    string description;//4
+    uint price;//5
+    uint number;//6
+    uint categories;//7
   }
 
   struct NameKey {
@@ -72,7 +71,6 @@ contract MarketPlace {
     articles[articleCounter] = Article(
       articleCounter,
       msg.sender,
-      0x0,
       _photo,
       _name,
       _description,
@@ -90,33 +88,33 @@ contract MarketPlace {
     return articleCounter;
   }
 
-  // fetch and returns all article IDs available for sale
-  function getArticlesForSale() public constant returns (uint[]) {
-    // we check whether there is at least one article
-    if(articleCounter == 0) {
-      return new uint[](0);
-    }
-
-    // prepare intermediary array
-    uint[] memory articleIds = new uint[](articleCounter);
-
-    uint numberOfArticlesForSale = 0;
-    // iterate over articles
-    for (uint i = 1; i <= articleCounter; i++) {
-      // keep only the ID of articles not sold yet
-      if (articles[i].buyer == 0x0) {
-        articleIds[numberOfArticlesForSale] = articles[i].id;
-        numberOfArticlesForSale++;
-      }
-    }
-
-    // copy the articleIds array into the smaller forSale array
-    uint[] memory forSale = new uint[](numberOfArticlesForSale);
-    for (uint j = 0; j < numberOfArticlesForSale; j++) {
-      forSale[j] = articleIds[j];
-    }
-    return (forSale);
-  }
+//  // fetch and returns all article IDs available for sale
+//  function getArticlesForSale() public constant returns (uint[]) {
+//    // we check whether there is at least one article
+//    if(articleCounter == 0) {
+//      return new uint[](0);
+//    }
+//
+//    // prepare intermediary array
+//    uint[] memory articleIds = new uint[](articleCounter);
+//
+//    uint numberOfArticlesForSale = 0;
+//    // iterate over articles
+//    for (uint i = 1; i <= articleCounter; i++) {
+//      // keep only the ID of articles not sold yet
+//      if (articles[i].buyer == 0x0) {
+//        articleIds[numberOfArticlesForSale] = articles[i].id;
+//        numberOfArticlesForSale++;
+//      }
+//    }
+//
+//    // copy the articleIds array into the smaller forSale array
+//    uint[] memory forSale = new uint[](numberOfArticlesForSale);
+//    for (uint j = 0; j < numberOfArticlesForSale; j++) {
+//      forSale[j] = articleIds[j];
+//    }
+//    return (forSale);
+//  }
 
   // buy an article
   function buyArticle(uint _id) payable public {
@@ -129,23 +127,21 @@ contract MarketPlace {
     // we retrieve the article
     Article storage article = articles[_id];
 
-    // we check whether the article has not already been sold
-    require(article.buyer == 0x0);
-
     // we don't allow the seller to buy his/her own article
     require(article.seller != msg.sender);
 
     // we check whether the value sent corresponds to the article price
     require(article.price == msg.value);
 
-    // keep buyer's information
-    article.buyer = msg.sender;
+    require(article.number > 0);
 
     // the buyer can buy the article
     article.seller.transfer(msg.value);
 
+    article.number--;
+
     // trigger the event
-    buyArticleEvent(_id, article.seller, article.buyer, article.photo, article.name, article.price, now);
+    buyArticleEvent(_id, article.seller, msg.sender, article.photo, article.name, article.price, now);
   }
 
   //kill the smart contract

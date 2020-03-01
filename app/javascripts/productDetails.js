@@ -111,14 +111,18 @@ window.App = {
     Market.deployed().then(function(instance) {
       marketPlaceInstance = instance;
       marketPlaceInstance.articles(_objID).then(function (article) {
-        var objPhoto = 'http://localhost:8080/ipfs/' + article[3];
-        document.getElementById("_objName").innerHTML = article[4];
+        var objPhoto = 'http://localhost:8080/ipfs/' + article[2];
+        document.getElementById("_objName").innerHTML = article[3];
         //document.getElementById("_objPhoto").innerHTML = "<img src='"+objPhoto+"'>";
-        document.getElementById("_objPrice").innerHTML = article[6];
+        document.getElementById("_objPrice").innerHTML = article[5];
         document.getElementById("_objCreator").innerHTML = article[1];
-        document.getElementById("_objDetail").innerHTML = article[5];
-        document.getElementById("_objNumber").innerHTML = article[7];
-        //document.getElementById("_objType").innerHTML = categories[article[8]];
+        document.getElementById("_objDetail").innerHTML = article[4];
+        document.getElementById("_objNumber").innerHTML = article[6];
+        if (article[6] == 0){
+          document.getElementById("article-buy").style.display = 'none';
+          document.getElementById("article-cart").style.display = 'none';
+          document.getElementById("out-of-stock").style.display = 'inline';
+        }
       })
     })
   },
@@ -171,20 +175,22 @@ window.App = {
   },
 
   buyArticle: function(_articleId) {
+    var marketInstance;
     Market.deployed().then(function(instance) {
-          instance.articles(_articleId).then(function (article) {
-            return article[6];
-          }).then(function (_price) {
-            return instance.buyArticle(_articleId, {
-              from: App.account,
-              value: _price,
-              gas: 500000
-            });
-          }).then(function (result) {
-            window.location.href="market.html";
-          }).catch(function (err) {
-            console.error(err);
-          });
+      marketInstance = instance;
+      marketInstance.articles(_articleId).then(function (article) {
+        return article[5];
+      }).then(function (_price) {
+        return marketInstance.buyArticle(_articleId, {
+          from: App.account,
+          value: _price,
+          gas: 500000
+        });
+      }).then(function (result) {
+        window.location.href="productDetails.html?id="+_articleId;
+      }).catch(function (err) {
+        console.error(err);
+      });
     });
   },
 

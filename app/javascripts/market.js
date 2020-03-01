@@ -40,13 +40,15 @@ window.App = {
       for (let element of ids){
         let id = element.toNumber();
         marketPlaceInstance.articles(id).then(function (article) {
-          App.displayArticle(
-              article[0],
-              article[3],
-              article[4],
-              article[6],
-              article[8]
-          );
+          if (article[6] > 0){
+            App.displayArticle(
+                article[0],
+                article[2],
+                article[3],
+                article[5],
+                article[7]
+            );
+          }
         })
       }
     })
@@ -61,13 +63,15 @@ window.App = {
     }).then(function(ids){
       for (let articleId of ids){
         marketPlaceInstance.articles(articleId.toNumber()).then(function(article) {
-          App.displayArticle(
-              article[0],
-              article[3],
-              article[4],
-              article[6],
-              article[8]
-          );
+          if (article[6] > 0){
+            App.displayArticle(
+                article[0],
+                article[2],
+                article[3],
+                article[5],
+                article[7]
+            );
+          }
         });
       }
     }).catch(function(err) {
