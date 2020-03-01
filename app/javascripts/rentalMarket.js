@@ -30,11 +30,6 @@ window.App = {
     });
   },
 
-  setStatus: function(message) {
-    var status = document.getElementById("status");
-    status.innerHTML = message;
-  },
-
   createObj: function(){
     var self = this;
     saveImageOnIpfs(reader).then(function (id) {
@@ -52,12 +47,8 @@ window.App = {
         meta = instance;
         return meta.createObj(imageHash,objName,objPriceDaily,objDeposit,objDetail,objType,{from:App.account,gas:500000});
       }).then(function(tx){
-        self.setStatus("create success!");
         console.log(meta.address);
         console.log(tx);
-        // self.qrcode();
-        // document.getElementById("objectInfoDiv").style.display="none";
-        // document.getElementById("qrcodeDiv").style.display="";
         return meta.getNumObjects.call();
       }).then(function(num){
         let newId = num.toNumber() - 1;
@@ -65,49 +56,44 @@ window.App = {
         self.addRowObjectTable(newId);
       }).catch(function(e){
         console.log(e);
-        self.setStatus("Error create;see log.");
       });
     }).then(function () {
       setTimeout(function(){window.location.reload();},1800);
 })
   },
 
-  //按名字查询
+  //按名字查询之后显示出所有记录
   searchObjByName: function(){
     var self = this;
     document.getElementById("list1").innerHTML = "";
     document.getElementById("list2").innerHTML = "";
     document.getElementById("list3").innerHTML = "";
     var name = document.getElementById("search-name").value;
-    self.postObjectsTableByName(name);
-  },
-
-  //按名字查询之后显示出所有记录
-  postObjectsTableByName: function(_name){
-    var self = this;
-    var ids;
     var mainInstance;
-    document.getElementById("nameObjects").style.display = "inline";
-    $("#nameObjects-table tr:not(:first)").empty();
+    var select_rented = document.getElementById("select-rented").value;
     ShareApp.deployed().then(function(instance){
       mainInstance=instance;
-      return instance.findNames.call(_name);
-    }).then(function(res){
-      ids = res;
+      return instance.findNames.call(name);
+    }).then(function(ids){
       var list = 1;
       for(let element of ids){
         let id = element.toNumber();
-        self.addRowObjectTable(id,list);
-        list++;
-        if (list == 4){
-          list = 1;
-        }
+        mainInstance.objectIsRented.call(id).then(function (res) {
+          if (res == true && select_rented == 1){
+          }else {
+            App.addRowObjectTable(id,list);
+            list ++;
+            if (list == 4){
+              list = 1;
+            }
+          }
+        });
       }
     });
   },
 
   //向表格中追加记录
-  addRowObjectTable: function(_id,list_id){
+  addRowObjectTable: function(_id,list){
     var mainInstance;
     var _objPhoto;
     var _objName;
@@ -136,21 +122,21 @@ window.App = {
         }).then(function (objType) {
           _objType = objType;
 
-          var objectRow = $('#list'+list_id);
-          var objectTemplate = $('#object-template');
+        var objectRow = $('#list'+list);
+        var objectTemplate = $('#object-template');
 
-          objectTemplate.find('.photo-hash').attr('src',_objPhoto);
-          objectTemplate.find('.object-name').text(_objName);
-          objectTemplate.find('.object-priceDaily').text(_objPriceDaily);
-          objectTemplate.find('.object-deposit').text(_objDeposit);
-          objectTemplate.find('.object-type').text(categories[_objType]);
-          objectTemplate.find('.object-display').attr('href',"objectDetails.html?id="+_id);
-          if (_objRented){
-            objectTemplate.find('.object-rented').attr('style','display:inline');
-          }
-          objectRow.append(objectTemplate.html());
-          objectTemplate.find('.object-rented').attr('style','display:none');
-    })
+        objectTemplate.find('.photo-hash').attr('src',_objPhoto);
+        objectTemplate.find('.object-name').text(_objName);
+        objectTemplate.find('.object-priceDaily').text(_objPriceDaily);
+        objectTemplate.find('.object-deposit').text(_objDeposit);
+        objectTemplate.find('.object-type').text(categories[_objType]);
+        objectTemplate.find('.object-display').attr('href',"objectDetails.html?id="+_id);
+        if (_objRented){
+          objectTemplate.find('.object-rented').attr('style','display:inline');
+        }
+        objectRow.append(objectTemplate.html());
+        objectTemplate.find('.object-rented').attr('style','display:none');
+    });
   },
 
   //把所有记录显示出来
@@ -161,6 +147,7 @@ window.App = {
     var self = this;
     var ids;
     var mainInstance;
+    var select_rented = document.getElementById("select-rented").value;
     ShareApp.deployed().then(function(instance){
       mainInstance = instance;
       return instance.getObjectIds.call();
@@ -169,11 +156,16 @@ window.App = {
       var list = 1;
       for(let element of ids){
         let id = element.toNumber();
-        self.addRowObjectTable(id,list);
-        list ++;
-        if (list == 4){
-          list = 1;
-        }
+        mainInstance.objectIsRented.call(id).then(function (res) {
+          if (res == true && select_rented == 1){
+          }else {
+            App.addRowObjectTable(id,list);
+            list ++;
+            if (list == 4){
+              list = 1;
+            }
+          }
+        });
       }
     });
   },
@@ -182,6 +174,7 @@ window.App = {
     document.getElementById("list1").innerHTML = "";
     document.getElementById("list2").innerHTML = "";
     document.getElementById("list3").innerHTML = "";
+    var select_rented = document.getElementById("select-rented").value;
     var mainInstance;
     ShareApp.deployed().then(function (instance) {
       mainInstance = instance;
@@ -189,11 +182,16 @@ window.App = {
     }).then(function (ids) {
       var list = 1;
       for (let objectId of ids){
-        App.addRowObjectTable(objectId,list);
-        list++;
-        if (list == 4){
-          list = 1;
-        }
+        mainInstance.objectIsRented.call(objectId).then(function (res) {
+          if (res == true && select_rented == 1){
+          }else {
+            App.addRowObjectTable(objectId,list);
+            list ++;
+            if (list == 4){
+              list = 1;
+            }
+          }
+        });
       }
     })
   },
@@ -206,10 +204,8 @@ window.App = {
       meta = instance;
       return meta.remove({from:App.account});
     }).then(function(){
-      self.setStatus("remove success!");
     }).catch(function(e){
       console.log(e);
-      self.setStatus("Error remove;see log.");
     });
   },
 

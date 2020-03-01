@@ -217,6 +217,22 @@ window.App = {
     })
   },
 
+  getArticleCommentLength: function(articleId) {
+    Comment.deployed().then(function (instance) {
+      instance.getArticleCommentsLength.call(articleId).then(function (res) {
+        document.getElementById("comment-length").innerText = res;
+      })
+    })
+  },
+
+  getObjectCommentLength: function(objectId) {
+    Comment.deployed().then(function (instance) {
+      instance.getObjectCommentsLength.call(objectId).then(function (res) {
+        document.getElementById("comment-length").innerText = res;
+      })
+    })
+  },
+
   getObjectComment: function (objectId) {
     Comment.deployed().then(function (instance) {
       return instance.getObjectCommentsLength.call(objectId);
@@ -260,8 +276,17 @@ window.App = {
     })
   },
 
-  addObjectComment: function () {
+  addObjectComment: function (_objectId) {
+    var stars = document.getElementById("selectStars").value;
+    var comment = document.getElementById("commentContent").value;
 
+    Comment.deployed().then(function (instance) {
+      return instance.addObjectComment(_objectId,stars,comment,{from:App.account,gas:500000});
+    }).then(function (res) {
+      window.location.href="objectDetails.html?id="+_objectId;
+    }).catch(function (err) {
+      console.log(err);
+    })
   }
 };
 
