@@ -113,102 +113,25 @@
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th scope="col">Iteams</th>
+                        <th scope="col">Products</th>
                         <th scope="col"></th>
-                        <th scope="col"></th>
+                        <th class="text-lg-center" scope="col">category</th>
                         <th class="text-lg-center" scope="col">Price</th>
                         <th class="text-lg-center" scope="col">Quantity</th>
                         <th class="text-lg-center" colspan="2">Total Price</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row"><img src="assets/img/card/01.png" alt="img"></th>
-                        <td colspan="2" class="item-name">Universal Color Dual Pro S25 Rapata Loxin Duka</td>
-                        <td class="price">$40.00</td>
-                        <td class="table-quantity">
-                            <form>
-                                <div class="quantity buttons_added">
-                                    <input type="button" value="-" class="minus">
-                                    <input type="number" class="input-text qty text" step="1" min="1" max="10000" name="quantity" value="1">
-                                    <input type="button" value="+" class="plus">
-                                </div>
-                            </form>
-                        </td>
-                        <td class="price">$40.00</td>
-                        <td class="table-close-btn"><i class="fa fa-close"></i></td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><img src="assets/img/card/02.png" alt="img"></th>
-                        <td colspan="2" class="item-name">Wireless Lupda Audio System Multiroom MX2</td>
-                        <td class="price">$25.00</td>
-                        <td class="table-quantity">
-                            <form>
-                                <div class="quantity buttons_added">
-                                    <input type="button" value="-" class="minus">
-                                    <input type="number" class="input-text qty text" step="1" min="1" max="10000" name="quantity" value="1">
-                                    <input type="button" value="+" class="plus">
-                                </div>
-                            </form>
-                        </td>
-                        <td class="price">$25.00</td>
-                        <td class="table-close-btn"><i class="fa fa-close"></i></td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><img src="assets/img/card/03.png" alt="img"></th>
-                        <td colspan="2" class="item-name">Sokim Ultra Dualx Putal PM5 Dusk Deporti</td>
-                        <td class="price">$75.25</td>
-                        <td class="table-quantity">
-                            <form>
-                                <div class="quantity buttons_added">
-                                    <input type="button" value="-" class="minus">
-                                    <input type="number" class="input-text qty text" step="1" min="1" max="10000" name="quantity" value="1">
-                                    <input type="button" value="+" class="plus">
-                                </div>
-                            </form>
-                        </td>
-                        <td class="price">$75.25</td>
-                        <td class="table-close-btn"><i class="fa fa-close"></i></td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><img src="assets/img/card/04.png" alt="img"></th>
-                        <td colspan="2" class="item-name">Smart Muzi Lipattu Pokim 15 Zalim DX2 Laptol</td>
-                        <td class="price">$35.50</td>
-                        <td class="table-quantity">
-                            <form>
-                                <div class="quantity buttons_added">
-                                    <input type="button" value="-" class="minus">
-                                    <input type="number" class="input-text qty text" step="1" min="1" max="10000" name="quantity" value="1">
-                                    <input type="button" value="+" class="plus">
-                                </div>
-                            </form>
-                        </td>
-                        <td class="price">$35.50</td>
-                        <td class="table-close-btn"><i class="fa fa-close"></i></td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><img src="assets/img/card/05.png" alt="img"></th>
-                        <td colspan="2" class="item-name">Yasi Pata H2S Rupal Dimapo Dual Color TX2</td>
-                        <td class="price">$59.30</td>
-                        <td class="table-quantity">
-                            <form>
-                                <div class="quantity buttons_added">
-                                    <input type="button" value="-" class="minus">
-                                    <input type="number" class="input-text qty text" step="1" min="1" max="10000" name="quantity" value="1">
-                                    <input type="button" value="+" class="plus">
-                                </div>
-                            </form>
-                        </td>
-                        <td class="price">$59.30</td>
-                        <td class="table-close-btn"><i class="fa fa-close"></i></td>
-                    </tr>
+                    <tbody id="cartTable">
+                    <!-- display cart -->
+                    </tbody>
+                    <tbody style="border-top: 0px">
                     <tr>
                         <th></th>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td class="total-amount">Total: <span>$484.85</span></td>
+                        <td class="total-amount">Total: <span id="total-amount"></span></td>
                         <td></td>
                     </tr>
                     </tbody>
@@ -221,6 +144,7 @@
         </div>
     </div>
 </div>
+
 
 </body>
 </html>
