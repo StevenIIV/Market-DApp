@@ -3,10 +3,11 @@ import { default as contract } from 'truffle-contract'
 window.App = {
     account: 0x0,
     start: function() {
-        Comment.setProvider(web3.currentProvider);
         web3.eth.getCoinbase(function(err, account) {
             App.account = account;
         });
+        document.getElementById("cartNumber").innerText = JSON.parse(Cookies.get('cart-list')).length;
+        document.getElementById("cartPrice").innerText = Cookies.get('cart-price')+" ETH";
     },
 };
 

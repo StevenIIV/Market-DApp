@@ -4,9 +4,223 @@
     <meta charset="UTF-8">
     <title>cart</title>
     <script src="./cart.js"></script>
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="assets/css/vendor.css">
+    <link rel="stylesheet" href="assets/css/nice-select.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.css">
+    <link rel="stylesheet" href="assets/css/line-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/market-style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/vendor.js"></script>
+    <script src="assets/js/market.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/jquery.sticky.js"></script>
+    <script src="assets/js/jquery.easing.1.3.min.js"></script>
+    <script src="assets/js/bxslider.min.js"></script>
+    <script src="assets/js/script.slider.js"></script>
+    <script src="assets/js/js.cookie-2.2.1.min.js"></script>
 
 </head>
 <body>
+<!-- navbar  -->
+<div id="navbar">
+    <!-- header -->
+    <div class="navbar-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-md-left text-center">
+                    <ul class="topbar-left">
+                        <li class="topbar-single-info">
+                            <button style = "background-color: transparent; border: 0; height: 60px" onclick="window.location.href = 'market.html'">
+                                <i class="fa fa-university"></i>Market
+                            </button>
+                        </li>
+                        <li class="topbar-single-info">
+                            <button style = "background-color: transparent; border: 0; height: 60px" onclick="window.location.href = 'rentalMarket.html'">
+                                <i class="fa fa-slideshare"></i>Rental Market
+                            </button>
+                        </li>
+                        <li class="topbar-single-info d-none d-lg-block"><i class="fa fa-crosshairs"></i>Track Your Order</li>
+                    </ul>
+                </div>
+                <div class="col-md-6 text-md-right text-center">
+                    <ul class="topbar-right float-md-right">
+                        <li class="topbar-single-info">
+                            <button style = "background-color: transparent; border: 0; height: 60px" onclick="window.location.href = 'userInfo.html'">
+                                <i class="fa fa-user"></i>
+                                <span class="d-none d-lg-inline-block" >My Account</span>
+                            </button>
+                        </li>
+                        <li>
+                            <select class="topbar-select topbar-currency">
+                                <option value="rating">BTC</option>
+                                <option value="categories" selected="selected">ETH</option>
+                            </select>
+                        </li>
+                        <li>
+                            <div class="topbar-help">
+                                <button class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#sellArticle"><b>Sell an article</b></button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- search bar -->
+    <div class="container">
+        <div class="row">
+            <!-- market logo -->
+            <div class="col-lg-2 align-self-center">
+                <div class="logo-area">
+                    <a href="market.html"> <img src="assets/img/marketplace_logo.png" alt="logo"></a>
+                </div>
+            </div>
+            <!-- search -->
+            <div class="col-lg-7 text-center" style="margin-top: 35px">
+                <form class="main-search d-inline-flex">
+                    <input type="text" name="search" id="search-name" placeholder="Search product...">
+                    <button type="button" onclick="App.searchArticleByName()">Search</button>
+                </form>
+            </div>
+            <!-- cart -->
+            <div class="col-sm-3 align-self-center" style="margin-bottom: 40px">
+                <div class="shopping-item">
+                    <a href="cart.html">Cart - <span id="cartPrice" class="cart-amunt">0 ETH</span> <i class="fa fa-shopping-cart"></i> <span id="cartNumber" class="product-count">0</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- cart list -->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="wishlist-area card-2-area table-responsive" style="padding: 40px 0">
+                <!--cart list table -->
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th scope="col">Iteams</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th class="text-lg-center" scope="col">Price</th>
+                        <th class="text-lg-center" scope="col">Quantity</th>
+                        <th class="text-lg-center" colspan="2">Total Price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row"><img src="assets/img/card/01.png" alt="img"></th>
+                        <td colspan="2" class="item-name">Universal Color Dual Pro S25 Rapata Loxin Duka</td>
+                        <td class="price">$40.00</td>
+                        <td class="table-quantity">
+                            <form>
+                                <div class="quantity buttons_added">
+                                    <input type="button" value="-" class="minus">
+                                    <input type="number" class="input-text qty text" step="1" min="1" max="10000" name="quantity" value="1">
+                                    <input type="button" value="+" class="plus">
+                                </div>
+                            </form>
+                        </td>
+                        <td class="price">$40.00</td>
+                        <td class="table-close-btn"><i class="fa fa-close"></i></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><img src="assets/img/card/02.png" alt="img"></th>
+                        <td colspan="2" class="item-name">Wireless Lupda Audio System Multiroom MX2</td>
+                        <td class="price">$25.00</td>
+                        <td class="table-quantity">
+                            <form>
+                                <div class="quantity buttons_added">
+                                    <input type="button" value="-" class="minus">
+                                    <input type="number" class="input-text qty text" step="1" min="1" max="10000" name="quantity" value="1">
+                                    <input type="button" value="+" class="plus">
+                                </div>
+                            </form>
+                        </td>
+                        <td class="price">$25.00</td>
+                        <td class="table-close-btn"><i class="fa fa-close"></i></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><img src="assets/img/card/03.png" alt="img"></th>
+                        <td colspan="2" class="item-name">Sokim Ultra Dualx Putal PM5 Dusk Deporti</td>
+                        <td class="price">$75.25</td>
+                        <td class="table-quantity">
+                            <form>
+                                <div class="quantity buttons_added">
+                                    <input type="button" value="-" class="minus">
+                                    <input type="number" class="input-text qty text" step="1" min="1" max="10000" name="quantity" value="1">
+                                    <input type="button" value="+" class="plus">
+                                </div>
+                            </form>
+                        </td>
+                        <td class="price">$75.25</td>
+                        <td class="table-close-btn"><i class="fa fa-close"></i></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><img src="assets/img/card/04.png" alt="img"></th>
+                        <td colspan="2" class="item-name">Smart Muzi Lipattu Pokim 15 Zalim DX2 Laptol</td>
+                        <td class="price">$35.50</td>
+                        <td class="table-quantity">
+                            <form>
+                                <div class="quantity buttons_added">
+                                    <input type="button" value="-" class="minus">
+                                    <input type="number" class="input-text qty text" step="1" min="1" max="10000" name="quantity" value="1">
+                                    <input type="button" value="+" class="plus">
+                                </div>
+                            </form>
+                        </td>
+                        <td class="price">$35.50</td>
+                        <td class="table-close-btn"><i class="fa fa-close"></i></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><img src="assets/img/card/05.png" alt="img"></th>
+                        <td colspan="2" class="item-name">Yasi Pata H2S Rupal Dimapo Dual Color TX2</td>
+                        <td class="price">$59.30</td>
+                        <td class="table-quantity">
+                            <form>
+                                <div class="quantity buttons_added">
+                                    <input type="button" value="-" class="minus">
+                                    <input type="number" class="input-text qty text" step="1" min="1" max="10000" name="quantity" value="1">
+                                    <input type="button" value="+" class="plus">
+                                </div>
+                            </form>
+                        </td>
+                        <td class="price">$59.30</td>
+                        <td class="table-close-btn"><i class="fa fa-close"></i></td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="total-amount">Total: <span>$484.85</span></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <!-- button -->
+                <div class="checkout-btn text-right">
+                    <a class="btn btn-basic-lg" href="#">Process to Checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

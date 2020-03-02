@@ -22,9 +22,9 @@ window.App = {
     });
     self.displayAccountInfo();
     self.reloadArticles(0);
+    document.getElementById("cartNumber").innerText = JSON.parse(Cookies.get('cart-list')).length;
+    document.getElementById("cartPrice").innerText = Cookies.get('cart-price')+" ETH";
 
-    Cookies.remove('cart-list');
-    Cookies.remove('cart-price');
   },
 
   searchArticleByName: function() {
@@ -155,7 +155,7 @@ window.App = {
       totalPrice = parseInt(totalPrice);
       ids = JSON.parse(ids);
     }
-    ids[ids.length] = article_id;
+    ids.push(article_id);
     Cookies.set('cart-list',ids);
     console.log(ids);
     document.getElementById("cartNumber").innerText = ids.length;
