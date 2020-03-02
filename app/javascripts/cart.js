@@ -56,7 +56,7 @@ window.App = {
             "<td class='table-quantity'>" +
                 "<form>" +
                     "<div class='quantity buttons_added'>" +
-                        "<input type='button' value='-' class='minus'>" +
+                        "<input type='button' onclick='App.quantityMinus("+etherPrice+","+article_id+")' value='-' class='minus'>" +
                         "<input type='number' id='quantity_"+article_id+"' class='input-text qty text' step='1' min='1' max='10000' name='quantity' value=" + number + ">" +
                         "<input type='button' value='+' class='plus'>" +
                     "</div>" +
@@ -68,8 +68,25 @@ window.App = {
     },
 
     quantityMinus: function(unitPrice,article_id){
-        var num = document.getElementById("quantity"+article_id).value;
-
+        var ids = Cookies.get('cart-map');
+        var ids_size = parseInt(Cookies.get('cart-size'));
+        var totalPrice = parseInt(Cookies.get('cart-price'));
+        ids = _objToStrMap(JSON.parse(ids));
+        var num = parseInt(ids.get("article"+article_id));
+        num--;
+        if (num < 0){
+            return
+        }
+        ids.set("article"+article_id,num);
+        ids_size--;
+        totalPrice-=parseInt(unitPrice);
+        Cookies.set('cart-map',JSON.stringify(_strMapToObj(ids)));
+        Cookies.set('cart-size',ids_size);
+        Cookies.set('cart-price',totalPrice);
+        document.getElementById("cartNumber").innerText = ids_size;
+        document.getElementById("cartPrice").innerText = totalPrice+" ETH";
+        //document.getElementById("quantity_"+article_id).value = num
+        document.getElementById("total-price_"+article_id).innerText = num * parseInt(unitPrice) + " ETH";
     },
 
 

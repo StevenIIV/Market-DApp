@@ -84,10 +84,27 @@ window.App = {
         Cookies.remove('cart-map');
         Cookies.remove('cart-size');
         Cookies.remove('cart-price');
+    },
+
+    displayCookies: function () {
+        var ids = Cookies.get('cart-map');
+        var ids_size = Cookies.get('cart-size');
+        var totalPrice = Cookies.get('cart-price');
+        ids = _objToStrMap(JSON.parse(ids));
+        console.log(ids);
+        console.log(ids_size);
+        console.log(totalPrice);
     }
 
 };
 
+function _objToStrMap(obj){
+    let strMap = new Map();
+    for (let k of Object.keys(obj)) {
+        strMap.set(k,obj[k]);
+    }
+    return strMap;
+}
 
 window.addEventListener('load', function() {
     // Checking if Web3 has been injected by the browser (Mist/MetaMask)
