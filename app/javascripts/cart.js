@@ -8,43 +8,42 @@ window.App = {
         var self = this;
         Market.setProvider(web3.currentProvider);
         self.displayAccountInfo();
-        document.getElementById("cartNumber").innerText = JSON.parse(Cookies.get('cart-list')).length;
-        document.getElementById("cartPrice").innerText = Cookies.get('cart-price')+" ETH";
+        var size = Cookies.get('cart-size');
+        var price = Cookies.get('cart-price');
+        document.getElementById("cartNumber").innerText = (size==null)?0:size;
+        document.getElementById("cartPrice").innerText = (price==null)?0:price+" ETH";
         App.getAndShowCartInfo();
     },
 
     getAndShowCartInfo: function(){
-        var ids = Cookies.get('cart-list');
+        var ids = Cookies.get('cart-map');
+        var ids_size = Cookies.get('cart-size');
         var totalPrice = Cookies.get('cart-price');
-        if (ids == null && totalPrice == null){
-            ids = new Array();
+
+        if (ids == null && totalPrice == null && ids_size ==null){
+            ids = new Map();
             totalPrice = 0;
+            ids_size = 0;
         }else {
             totalPrice = parseInt(totalPrice);
-            ids = JSON.parse(ids);
-        }
-        document.getElementById("total-amount").innerText = totalPrice+" ETH";
-        var  cartIdMap = new Map();
-        for (var i=0;i<ids.length;i++){
-            var num = 0;
-            if (cartIdMap.get(ids[i]) != null){
-                num = parseInt(cartIdMap.get(ids[i]));
-            }
-            num++;
-            cartIdMap.set(ids[i],num)
+            ids_size = parseInt(ids_size);
+            ids = _objToStrMap(JSON.parse(ids));
         }
 
-        cartIdMap.forEach(function (value,key) {
+        document.getElementById("total-amount").innerText = totalPrice+" ETH";
+
+
+        ids.forEach(function (value,key) {
             console.log(key+" "+value);
             Market.deployed().then(function (instance) {
-                instance.articles(key).then(function (article) {
+                instance.articles(key.substring(7,key.length)).then(function (article) {
                     App.displayCartList(article[0],article[2],article[3],article[5],value,article[7]);
                 })
             })
         })
     },
 
-    displayCartList: function (id,photo,name,price,number,category) {
+    displayCartList: function (article_id,photo,name,price,number,category) {
         var etherPrice = web3.fromWei(price, "ether");
         var photoHash = 'http://localhost:8080/ipfs/' + photo;
         var template = "";
@@ -58,15 +57,27 @@ window.App = {
                 "<form>" +
                     "<div class='quantity buttons_added'>" +
                         "<input type='button' value='-' class='minus'>" +
-                        "<input type='number' class='input-text qty text' step='1' min='1' max='10000' name='quantity' value=" + number + ">" +
+                        "<input type='number' id='quantity_"+article_id+"' class='input-text qty text' step='1' min='1' max='10000' name='quantity' value=" + number + ">" +
                         "<input type='button' value='+' class='plus'>" +
                     "</div>" +
                 "</form>" +
             "</td>" +
-            "<td class='price'>" + etherPrice * number + " ETH</td>" +
+            "<td class='price' id='total-price_"+article_id+"'>" + etherPrice * number + " ETH</td>" +
             "<td class='table-close-btn'><i class='fa fa-close'></i></td>"
         document.getElementById("cartTable").innerHTML += template;
     },
+
+    quantityMinus: function(unitPrice,article_id){
+        var num = document.getElementById("quantity"+article_id).value;
+
+    },
+
+
+
+
+
+
+
 
     displayAccountInfo: function() {
         web3.eth.getCoinbase(function(err, account) {
@@ -81,9 +92,24 @@ window.App = {
                 });
             }
         });
-    },
-
+    }
 };
+
+function _strMapToObj(strMap){
+    let obj= Object.create(null);
+    for (let[k,v] of strMap) {
+        obj[k] = v;
+    }
+    return obj;
+}
+
+function _objToStrMap(obj){
+    let strMap = new Map();
+    for (let k of Object.keys(obj)) {
+        strMap.set(k,obj[k]);
+    }
+    return strMap;
+}
 
 
 window.addEventListener('load', function() {

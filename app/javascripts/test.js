@@ -81,13 +81,9 @@ window.App = {
     },
 
     setCookie: function () {
-        var arr = [1,2,3];
-        Cookies.set("arr",JSON.stringify(arr));
-        console.log(Cookies.get("arr"));
-
-        var s = Cookies.get("arr");
-        var ss = JSON.parse(s);
-        console.log(ss.length);
+        Cookies.remove('cart-map');
+        Cookies.remove('cart-size');
+        Cookies.remove('cart-price');
     }
 
 };

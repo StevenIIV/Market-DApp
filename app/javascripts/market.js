@@ -22,8 +22,10 @@ window.App = {
     });
     self.displayAccountInfo();
     self.reloadArticles(0);
-    document.getElementById("cartNumber").innerText = JSON.parse(Cookies.get('cart-list')).length;
-    document.getElementById("cartPrice").innerText = Cookies.get('cart-price')+" ETH";
+    var size = Cookies.get('cart-size');
+    var price = Cookies.get('cart-price');
+    document.getElementById("cartNumber").innerText = (size==null)?0:size;
+    document.getElementById("cartPrice").innerText = (price==null)?0:price+" ETH";
 
   },
 
@@ -144,21 +146,32 @@ window.App = {
   },
 
   addToCart: function (article_id) {
-    var ids = Cookies.get('cart-list');
-
+    var ids = Cookies.get('cart-map');
+    var ids_size = Cookies.get('cart-size');
     var totalPrice = Cookies.get('cart-price');
 
-    if (ids == null && totalPrice == null){
-      ids = new Array();
+    if (ids == null && totalPrice == null && ids_size ==null){
+      ids = new Map();
       totalPrice = 0;
+      ids_size = 0;
     }else {
       totalPrice = parseInt(totalPrice);
-      ids = JSON.parse(ids);
+      ids_size = parseInt(ids_size);
+      ids = _objToStrMap(JSON.parse(ids));
     }
-    ids.push(article_id);
-    Cookies.set('cart-list',ids);
-    console.log(ids);
-    document.getElementById("cartNumber").innerText = ids.length;
+    console.log(ids);//
+    if (ids.get("article"+article_id) == null){
+      ids.set("article"+article_id,1);
+    }else {
+      var num = parseInt(ids.get("article"+article_id));
+      num++;
+      ids.set("article"+article_id,num);
+    }
+    Cookies.set('cart-map',JSON.stringify(_strMapToObj(ids)));
+    console.log(ids);//
+    ids_size++;
+    Cookies.set('cart-size',ids_size);
+    document.getElementById("cartNumber").innerText = ids_size;
     Market.deployed().then(function (instance) {
       instance.articles(article_id).then(function (article) {
         var etherPrice = web3.fromWei(article[5], "ether");
@@ -182,6 +195,22 @@ function saveImageOnIpfs(file) {
       reject(err);
     })
   })
+}
+
+function _strMapToObj(strMap){
+  let obj= Object.create(null);
+  for (let[k,v] of strMap) {
+    obj[k] = v;
+  }
+  return obj;
+}
+
+function _objToStrMap(obj){
+  let strMap = new Map();
+  for (let k of Object.keys(obj)) {
+    strMap.set(k,obj[k]);
+  }
+  return strMap;
 }
 
 window.addEventListener('load', function() {
