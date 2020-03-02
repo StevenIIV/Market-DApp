@@ -22,6 +22,9 @@ window.App = {
     });
     self.displayAccountInfo();
     self.reloadArticles(0);
+
+    Cookies.remove('cart-list');
+    Cookies.remove('cart-price');
   },
 
   searchArticleByName: function() {
@@ -93,7 +96,7 @@ window.App = {
     articleTemplate.find('.article-price').text(etherPrice + " ETH");
     articleTemplate.find('.article-display').attr('href',"productDetails.html?id="+id);
     articleTemplate.find('.article-type').text(categories[type]);
-
+    articleTemplate.find('.addCart').attr('onclick','App.addToCart('+id+')');
     // add this new article
     articlesRow.append(articleTemplate.html());
   },
@@ -138,8 +141,34 @@ window.App = {
         });
       }
     });
-  }
+  },
 
+  addToCart: function (article_id) {
+    var ids = Cookies.get('cart-list');
+
+    var totalPrice = Cookies.get('cart-price');
+
+    if (ids == null && totalPrice == null){
+      ids = new Array();
+      totalPrice = 0;
+    }else {
+      totalPrice = parseInt(totalPrice);
+      ids = JSON.parse(ids);
+    }
+    ids[ids.length] = article_id;
+    Cookies.set('cart-list',ids);
+    console.log(ids);
+    document.getElementById("cartNumber").innerText = ids.length;
+    Market.deployed().then(function (instance) {
+      instance.articles(article_id).then(function (article) {
+        var etherPrice = web3.fromWei(article[5], "ether");
+        totalPrice += parseInt(etherPrice);
+        document.getElementById("cartPrice").innerText = totalPrice+" ETH";
+        Cookies.set('cart-price',totalPrice);
+      })
+    });
+
+  }
 };
 
 function saveImageOnIpfs(file) {

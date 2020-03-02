@@ -78,6 +78,16 @@ window.App = {
         commentTemplate.find('.rating').text(rating);
         commentTemplate.find('.comment').text(comment);
         articlesRow.append(commentTemplate.html());
+    },
+
+    setCookie: function () {
+        var arr = [1,2,3];
+        Cookies.set("arr",JSON.stringify(arr));
+        console.log(Cookies.get("arr"));
+
+        var s = Cookies.get("arr");
+        var ss = JSON.parse(s);
+        console.log(ss.length);
     }
 
 };
