@@ -7,6 +7,7 @@ window.App = {
     account: 0x0,
     start: function() {
         var self = this;
+        this.testButton();
         Comment.setProvider(web3.currentProvider);
         web3.eth.getCoinbase(function(err, account) {
             App.account = account;
@@ -94,6 +95,16 @@ window.App = {
         console.log(ids);
         console.log(ids_size);
         console.log(totalPrice);
+    },
+
+    testButton: function () {
+        var s = new Map();
+        s.set('1',1);
+        s.set('2',2);
+        s.forEach(function (value, key) {
+            console.log(key+" "+value);
+            s.delete(key);
+        })
     }
 
 };

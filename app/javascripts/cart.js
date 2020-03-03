@@ -24,8 +24,11 @@ window.App = {
         ids_size = (ids_size == null)?0:parseInt(ids_size);
 
         document.getElementById("total-amount").innerText = totalPrice+" ETH";
-
-
+        if (ids_size > 0){
+            document.getElementById("cart-submit").style.display = 'inline';
+        } else {
+            document.getElementById("cart-submit").style.display = 'none';
+        }
         ids.forEach(function (value,key) {
             console.log(key+" "+value);
             Market.deployed().then(function (instance) {
@@ -133,6 +136,39 @@ window.App = {
         Cookies.set('cart-map',JSON.stringify(_strMapToObj(ids)));
         document.getElementById("cartNumber").innerText = ids_size;
         document.getElementById("cartPrice").innerText = totalPrice+" ETH";
+    },
+
+    buyAllCartProducts: function(){
+        var ids = _objToStrMap(JSON.parse(Cookies.get('cart-map')));
+        var ids_size = parseInt(Cookies.get('cart-size'));
+        var totalPrice = parseInt(Cookies.get('cart-price'));
+
+        ids.forEach(function (value,key) {
+            var article_id = key.substring(7,value.length);
+            var str_price = document.getElementById("total-price_"+article_id).innerText;
+            var Price = parseInt(str_price.substring(0,str_price.length-4));
+            var _price = web3.toWei(Price,'ether');
+            Market.deployed().then(function (instance) {
+                console.log(article_id+" "+value);
+                return instance.buyArticle(parseInt(article_id), parseInt(value), {
+                    from: App.account,
+                    value: _price,
+                    gas: 500000
+                }).then(function () {
+                    console.log("x");
+                    ids_size-=parseInt(value);
+                    totalPrice-=Price;
+                    ids.delete(key);
+                    Cookies.set('cart-map',JSON.stringify(_strMapToObj(ids)));
+                    Cookies.set('cart-size',ids_size);
+                    Cookies.set('cart-price',totalPrice);
+                }).catch(function (err) {
+                    console.log(err);
+                })
+            })
+        });
+
+        setTimeout(function(){window.location.reload();},800);
     },
 
     displayAccountInfo: function() {

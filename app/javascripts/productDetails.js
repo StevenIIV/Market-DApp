@@ -176,7 +176,7 @@ window.App = {
       marketInstance.articles(_articleId).then(function (article) {
         return article[5];
       }).then(function (_price) {
-        return marketInstance.buyArticle(_articleId, {
+        return marketInstance.buyArticle(_articleId, 1, {
           from: App.account,
           value: _price,
           gas: 500000

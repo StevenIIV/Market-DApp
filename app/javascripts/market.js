@@ -147,16 +147,10 @@ window.App = {
     var ids_size = Cookies.get('cart-size');
     var totalPrice = Cookies.get('cart-price');
 
-    if (ids == null && totalPrice == null && ids_size ==null){
-      ids = new Map();
-      totalPrice = 0;
-      ids_size = 0;
-    }else {
-      totalPrice = parseInt(totalPrice);
-      ids_size = parseInt(ids_size);
-      ids = _objToStrMap(JSON.parse(ids));
-    }
-    console.log(ids);//
+    ids = (ids == null)?(new Map()):(_objToStrMap(JSON.parse(ids)));
+    totalPrice = (totalPrice == null)?0:parseInt(totalPrice);
+    ids_size = (ids_size == null)?0:parseInt(ids_size);
+
     if (ids.get("article"+article_id) == null){
       ids.set("article"+article_id,1);
     }else {
@@ -184,13 +178,12 @@ window.App = {
     var ids_size = Cookies.get('cart-size');
     var totalPrice = Cookies.get('cart-price');
 
-    console.log(ids);
-    console.log(ids_size);
-    console.log(totalPrice);
     ids = (ids == null)?(new Map()):(_objToStrMap(JSON.parse(ids)));
     totalPrice = (totalPrice == null)?0:parseInt(totalPrice);
     ids_size = (ids_size == null)?0:parseInt(ids_size);
-
+    console.log(ids);
+    console.log(ids_size);
+    console.log(totalPrice);
     ids.forEach(function (value, key) {
       if(value == 0){
         delete ids[key];

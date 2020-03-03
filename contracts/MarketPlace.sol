@@ -46,6 +46,7 @@ contract MarketPlace {
     string _photo,
     string _name,
     uint _price,
+    uint _number,
     uint _createAt
   );
 
@@ -88,36 +89,36 @@ contract MarketPlace {
     return articleCounter;
   }
 
-//  // fetch and returns all article IDs available for sale
-//  function getArticlesForSale() public constant returns (uint[]) {
-//    // we check whether there is at least one article
-//    if(articleCounter == 0) {
-//      return new uint[](0);
-//    }
-//
-//    // prepare intermediary array
-//    uint[] memory articleIds = new uint[](articleCounter);
-//
-//    uint numberOfArticlesForSale = 0;
-//    // iterate over articles
-//    for (uint i = 1; i <= articleCounter; i++) {
-//      // keep only the ID of articles not sold yet
-//      if (articles[i].buyer == 0x0) {
-//        articleIds[numberOfArticlesForSale] = articles[i].id;
-//        numberOfArticlesForSale++;
-//      }
-//    }
-//
-//    // copy the articleIds array into the smaller forSale array
-//    uint[] memory forSale = new uint[](numberOfArticlesForSale);
-//    for (uint j = 0; j < numberOfArticlesForSale; j++) {
-//      forSale[j] = articleIds[j];
-//    }
-//    return (forSale);
-//  }
+  //  // fetch and returns all article IDs available for sale
+  //  function getArticlesForSale() public constant returns (uint[]) {
+  //    // we check whether there is at least one article
+  //    if(articleCounter == 0) {
+  //      return new uint[](0);
+  //    }
+  //
+  //    // prepare intermediary array
+  //    uint[] memory articleIds = new uint[](articleCounter);
+  //
+  //    uint numberOfArticlesForSale = 0;
+  //    // iterate over articles
+  //    for (uint i = 1; i <= articleCounter; i++) {
+  //      // keep only the ID of articles not sold yet
+  //      if (articles[i].buyer == 0x0) {
+  //        articleIds[numberOfArticlesForSale] = articles[i].id;
+  //        numberOfArticlesForSale++;
+  //      }
+  //    }
+  //
+  //    // copy the articleIds array into the smaller forSale array
+  //    uint[] memory forSale = new uint[](numberOfArticlesForSale);
+  //    for (uint j = 0; j < numberOfArticlesForSale; j++) {
+  //      forSale[j] = articleIds[j];
+  //    }
+  //    return (forSale);
+  //  }
 
   // buy an article
-  function buyArticle(uint _id) payable public {
+  function buyArticle(uint _id, uint number) payable public {
     // we check whether there is at least one article
     require(articleCounter > 0);
 
@@ -133,15 +134,15 @@ contract MarketPlace {
     // we check whether the value sent corresponds to the article price
     require(article.price == msg.value);
 
-    require(article.number > 0);
+    require(article.number >= number);
 
     // the buyer can buy the article
     article.seller.transfer(msg.value);
 
-    article.number--;
+    article.number-=number;
 
     // trigger the event
-    buyArticleEvent(_id, article.seller, msg.sender, article.photo, article.name, article.price, now);
+    buyArticleEvent(_id, article.seller, msg.sender, article.photo, article.name, article.price, number, now);
   }
 
   //kill the smart contract
