@@ -5168,3 +5168,17 @@ rating
 .starRating:not(:hover) > :checked ~ label:before{
   opacity : 1;
 }
+.influence-profile {}
+.influence-profile-content.pills-regular .tab-content {
+  background-color: transparent;
+  padding: 0px;
+  border: transparent;
+  border-radius: 0px;
+  border-top-left-radius: 0px;
+}
+.user-avatar {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin-bottom: 10px;
+}
