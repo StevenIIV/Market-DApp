@@ -131,9 +131,6 @@ contract MarketPlace {
     // we don't allow the seller to buy his/her own article
     require(article.seller != msg.sender);
 
-    // we check whether the value sent corresponds to the article price
-    require(article.price == msg.value);
-
     require(article.number >= number);
 
     // the buyer can buy the article
