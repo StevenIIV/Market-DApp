@@ -2,6 +2,12 @@ pragma solidity ^0.4.19;
 
 contract MarketPlace {
 
+  struct user{
+    uint[] article_sold;
+    uint[] article_buyed;
+  }
+
+
   // Custom types
   struct Article {
     uint id;//0
@@ -21,6 +27,7 @@ contract MarketPlace {
     uint[] keys;
   }
   // State variables
+  mapping(address => user) private users;
   mapping(uint => Article) public articles;
   mapping(string => NameKey) private nameToKeys;
   mapping(uint => TypeKey) private typeToKeys;
@@ -79,7 +86,7 @@ contract MarketPlace {
       _number,
       _categories
     );
-
+    users[msg.sender].article_sold.push(articleCounter);
     // trigger the event
     sellArticleEvent(articleCounter, msg.sender, _photo, _name, _price, _number, _categories);
   }
@@ -138,6 +145,7 @@ contract MarketPlace {
 
     article.number-=number;
 
+    users[msg.sender].article_buyed.push(article.id);
     // trigger the event
     buyArticleEvent(_id, article.seller, msg.sender, article.photo, article.name, article.price, number, now);
   }
@@ -158,5 +166,13 @@ contract MarketPlace {
 
   function findByType(uint categories) constant returns (uint[]){
     return typeToKeys[categories].keys;
+  }
+
+  function getUserSold(address user) constant returns (uint[]){
+    return users[user].article_sold;
+  }
+
+  function getUserBuyed(address user) constant returns (uint[]){
+    return users[user].article_buyed;
   }
 }

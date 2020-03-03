@@ -94,48 +94,24 @@ window.App = {
 
   //向表格中追加记录
   addRowObjectTable: function(_id,list){
-    var mainInstance;
-    var _objPhoto;
-    var _objName;
-    var _objPriceDaily;
-    var _objDeposit;
-    var _objRented;
-    var _objType;
-    ShareApp.deployed().then(function(instance){
-          mainInstance = instance;
-          return mainInstance.getObjectName.call(_id);
-        }).then(function(objName){
-          _objName = objName;
-          return mainInstance.getObjectPhoto.call(_id);
-        }).then(function (objPhoto){
-          _objPhoto = 'http://localhost:8080/ipfs/' + objPhoto;
-          return mainInstance.getObjectPriceDaily.call(_id);
-        }).then(function(objPriceDaily){
-          _objPriceDaily = objPriceDaily.valueOf();
-          return mainInstance.getObjectDeposit.call(_id);
-        }).then(function(objDeposit){
-          _objDeposit = objDeposit.valueOf();
-          return mainInstance.objectIsRented.call(_id);
-        }).then(function(objRented){
-          _objRented = objRented;
-          return mainInstance.getObjectCategories.call(_id);
-        }).then(function (objType) {
-          _objType = objType;
 
+    ShareApp.deployed().then(function (instance) {
+      instance.getObj(_id).then(function (object) {
         var objectRow = $('#list'+list);
         var objectTemplate = $('#object-template');
 
-        objectTemplate.find('.photo-hash').attr('src',_objPhoto);
-        objectTemplate.find('.object-name').text(_objName);
-        objectTemplate.find('.object-priceDaily').text(_objPriceDaily);
-        objectTemplate.find('.object-deposit').text(_objDeposit);
-        objectTemplate.find('.object-type').text(categories[_objType]);
+        objectTemplate.find('.photo-hash').attr('src','http://localhost:8080/ipfs/' + object[1]);
+        objectTemplate.find('.object-name').text(object[2]);
+        objectTemplate.find('.object-priceDaily').text(object[3]);
+        objectTemplate.find('.object-deposit').text(object[4]);
+        objectTemplate.find('.object-type').text(categories[object[9]]);
         objectTemplate.find('.object-display').attr('href',"objectDetails.html?id="+_id);
-        if (_objRented){
+        if (object[7]){
           objectTemplate.find('.object-rented').attr('style','display:inline');
         }
         objectRow.append(objectTemplate.html());
         objectTemplate.find('.object-rented').attr('style','display:none');
+      });
     });
   },
 

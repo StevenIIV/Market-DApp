@@ -26,63 +26,16 @@ window.App = {
   },
 
   postObjectForRent: function(_objID){
-    var mainInstance;
-    var numObjects;
-    var _objPhoto;
-    var _objName;
-    var _objCreator;
-    var _objPriceDaily;
-    var _objDeposit;
-    var _objRenterAddress;
-    var _objRenterSince;
-    var _objRented;
-    var _objDetail;
-    var _objType;
-    ShareApp.deployed().then(function(instance){
-      mainInstance = instance;
-      return instance.getNumObjects.call();
-    }).then(function(result){
-      numObjects = result.toNumber();
-      return mainInstance.getObjectName.call(_objID);
-    }).then(function(objName){
-      _objName = objName;
-      return mainInstance.getObjectPhoto.call(_objID);
-    }).then(function(objPhoto){
-      _objPhoto = 'http://localhost:8080/ipfs/' + objPhoto;
-      return mainInstance.getObjectCreator.call(_objID);
-    }).then(function(objCreator){
-      _objCreator = objCreator;
-      return mainInstance.getObjectPriceDaily.call(_objID);
-    }).then(function(objPriceDaily){
-      _objPriceDaily = objPriceDaily.toNumber();
-      return mainInstance.getObjectDeposit.call(_objID);
-    }).then(function(objDeposit){
-      _objDeposit = objDeposit.valueOf();
-      return mainInstance.getObjectRenterAddress.call(_objID);
-    }).then(function(objRenterAddress){
-      _objRenterAddress = (objRenterAddress == "0x0000000000000000000000000000000000000000")?"no renter":objRenterAddress;
-      return mainInstance.getObjectRenterSince.call(_objID);
-    }).then(function(objRenterSince){
-      _objRenterSince = objRenterSince.valueOf();
-      return mainInstance.objectIsRented.call(_objID);
-    }).then(function(objRented){
-      _objRented = objRented;
-      return mainInstance.getObjectDetail.call(_objID);
-    }).then(function(objDetail){
-      _objDetail = objDetail;
-      return mainInstance.getObjectCategories.call(_objID);
-    }).then(function (objType) {
-      _objType = objType;
-      if(_objID < numObjects && _objID >= 0){
-
-        if(App.account == _objCreator){
+    ShareApp.deployed().then(function (instance) {
+      instance.getObj(_objID).then(function (object) {
+        if(App.account == object[0]){
           document.getElementById("rentButton").style.display = "none";
           document.getElementById("returnButton").style.display = "none";
-        } else if(_objRented == false){
+        } else if(object[7] == false){
           document.getElementById("rentButton").style.display = "inline";
           document.getElementById("returnButton").style.display = "none";
         } else if (_objRented == true){
-          if (App.account != _objRenterAddress){
+          if (App.account != object[5]){
             document.getElementById("rentButton").style.display = "none";
             document.getElementById("returnButton").style.display = "none";
           }else{
@@ -90,21 +43,18 @@ window.App = {
             document.getElementById("rentButton").style.display = "none";
           }
         }
+        document.getElementById("objPhoto").src = 'http://localhost:8080/ipfs/' + object[1];
+        document.getElementById("objName").innerHTML = object[2];
+        document.getElementById("objCreator").innerHTML = object[0];
+        document.getElementById("objPriceDaily").innerHTML = object[3];
+        document.getElementById("objDeposit").innerHTML = object[4];
+        document.getElementById("objRenterAddress").innerHTML = (object[5] == "0x0000000000000000000000000000000000000000")?"no renter":object[5];
+        document.getElementById("objRenterSince").innerHTML = (new Date(object[6]*1000)).toLocaleDateString();;
+        document.getElementById("objRented").innerHTML = object[7];
+        document.getElementById("objDetail").innerHTML = object[8];
 
-        document.getElementById("objPhoto").src = _objPhoto;
-        document.getElementById("objName").innerHTML = _objName;
-        document.getElementById("objCreator").innerHTML = _objCreator;
-        document.getElementById("objPriceDaily").innerHTML = _objPriceDaily;
-        document.getElementById("objDeposit").innerHTML = _objDeposit;
-        document.getElementById("objRenterAddress").innerHTML = _objRenterAddress;
-        document.getElementById("objRenterSince").innerHTML = (new Date(_objRenterSince*1000)).toLocaleDateString();;
-        document.getElementById("objRented").innerHTML = _objRented;
-        document.getElementById("objDetail").innerHTML = _objDetail;
-        //document.getElementById("objType").innerHTML = categories[_objType];
-      }else{
-        alert("There is no object with id " + id); // error message
-      }
-    })
+      });
+    });
   },
 
   postObjectForSell: function(_objID){

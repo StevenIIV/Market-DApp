@@ -15,11 +15,28 @@ window.App = {
         ShareApp.setProvider(web3.currentProvider);
         Market.setProvider(web3.currentProvider);
         self.displayAccountInfo();
-        self.showUserRentRecord();
-        self.showUserTransactionRecord();
+        self.showUserRentRecordByETH();
     },
 
-    showUserRentRecord: function() {
+    showUserRentRecordByETH: function(){
+        var shareInstance;
+        ShareApp.deployed().then(function (instance) {
+            shareInstance = instance;
+            return shareInstance.getUserRent.call(App.account);
+        }).then(function (ids) {
+            for (let element of ids){
+                shareInstance.getObj(element).then(function (object) {
+                    App.displayRentInfo(element,object[1],object[2],object[3],object[4],object[7],1582799231);
+                })
+            }
+        })
+    },
+
+    showUserTransactionRecordByETH: function(){
+
+    },
+
+    showUserRentRecordByMongo: function() {
         web3.eth.getCoinbase(function(err, account) {
             var acc = account;
             $.ajax({
@@ -38,28 +55,14 @@ window.App = {
                 while (response.length > 0){
                     let chunks = response.splice(0,8);
                     chunks.forEach(function (value) {
-                        var row = document.getElementById("rentHistory").insertRow(0);
-                        var cell0 = row.insertCell(0);   //photo
-                        var cell1 = row.insertCell(1);  //id
-                        var cell2 = row.insertCell(2);  //name
-                        var cell3 = row.insertCell(3);  //priceDaily
-                        var cell4 = row.insertCell(4);  //deposit
-                        var cell5 = row.insertCell(5);  //rented
-                        var cell6 = row.insertCell(6);  //time
-                        cell0.innerHTML = "<img src='"+ipfsURL+value.objectPhoto+"'>";
-                        cell1.innerHTML = value.objectId;
-                        cell2.innerHTML = value.objectName;
-                        cell3.innerHTML = value.priceDaily;
-                        cell4.innerHTML = value.deposit;
-                        cell5.innerHTML = value.rented;
-                        cell6.innerHTML = (new Date(value.createAt*1000)).toLocaleDateString();
+                        this.displayRentInfo(value.objectId,value.objectPhoto,value.objectName,value.priceDaily,value.deposit,value.rented,value.createAt);
                     })
                 }
             })
         });
     },
 
-    showUserTransactionRecord: function() {
+    showUserTransactionRecordByMongo: function() {
         web3.eth.getCoinbase(function(err, account) {
             var acc = account;
             $.ajax({
@@ -77,23 +80,45 @@ window.App = {
                 while (response.length > 0){
                     let chunks = response.splice(0,6);
                     chunks.forEach(function (value) {
-                        var row = document.getElementById("transactionHistory").insertRow(0);
-                        var cell0 = row.insertCell(0);   //photo
-                        var cell1 = row.insertCell(1);  //id
-                        var cell2 = row.insertCell(2);  //name
-                        var cell3 = row.insertCell(3);  //seller
-                        var cell4 = row.insertCell(4);  //price
-                        var cell5 = row.insertCell(5); //time
-                        cell0.innerHTML = "<img src='"+ipfsURL+value.articlePhoto+"'>";
-                        cell1.innerHTML = value.articleId;
-                        cell2.innerHTML = value.articleName;
-                        cell3.innerHTML = value.seller;
-                        cell4.innerHTML = value.price;
-                        cell5.innerHTML = (new Date(value.createAt*1000)).toLocaleDateString();
+                        this.displayTransactionInfo(value.articleId,value.articlePhoto,value.articleName,value.seller,value.price,value.createAt);
                     })
                 }
             })
         });
+    },
+    
+    displayRentInfo: function(objectId, objectPhoto, objectName, priceDaily, deposit, rented, createAt){
+        var row = document.getElementById("rentHistory").insertRow(0);
+        var cell0 = row.insertCell(0);   //photo
+        var cell1 = row.insertCell(1);  //id
+        var cell2 = row.insertCell(2);  //name
+        var cell3 = row.insertCell(3);  //priceDaily
+        var cell4 = row.insertCell(4);  //deposit
+        var cell5 = row.insertCell(5);  //rented
+        var cell6 = row.insertCell(6);  //time
+        cell0.innerHTML = "<img src='"+ipfsURL+objectPhoto+"'>";
+        cell1.innerHTML = objectId;
+        cell2.innerHTML = objectName;
+        cell3.innerHTML = priceDaily;
+        cell4.innerHTML = deposit;
+        cell5.innerHTML = rented;
+        cell6.innerHTML = (new Date(createAt*1000)).toLocaleDateString();
+    },
+    
+    displayTransactionInfo: function(articleId, articlePhoto, articleName, seller, price, createAt){
+        var row = document.getElementById("transactionHistory").insertRow(0);
+        var cell0 = row.insertCell(0);   //photo
+        var cell1 = row.insertCell(1);  //id
+        var cell2 = row.insertCell(2);  //name
+        var cell3 = row.insertCell(3);  //seller
+        var cell4 = row.insertCell(4);  //price
+        var cell5 = row.insertCell(5); //time
+        cell0.innerHTML = "<img src='"+ipfsURL+articlePhoto+"'>";
+        cell1.innerHTML = articleId;
+        cell2.innerHTML = articleName;
+        cell3.innerHTML = seller;
+        cell4.innerHTML = price;
+        cell5.innerHTML = (new Date(createAt*1000)).toLocaleDateString();
     },
 
     displayAccountInfo: function() {

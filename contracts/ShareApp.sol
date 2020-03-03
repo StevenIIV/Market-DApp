@@ -2,6 +2,11 @@ pragma solidity ^0.4.19;
 
 contract ShareApp{
 
+	struct user{
+		uint[] object_rent;
+		uint[] object_rented;
+	}
+
 	struct Renter{
 		address addr;
 		uint since;
@@ -31,6 +36,7 @@ contract ShareApp{
 	uint[] private ids;  //Use it to return the ids of Objects
 	uint public numObjects;
 	mapping(uint => Object) private objects;
+	mapping(address => user) private users;
 	mapping(string => NameKey) private nameToKeys;
 	mapping(uint => TypeKey) private typeToKeys;
 	// mapping(address => uint) public balances;
@@ -81,36 +87,38 @@ contract ShareApp{
 		newObject.rented = false;
 		newObject.detail = detail;
 		newObject.categories = categories;
-
+		users[msg.sender].object_rent.push(numObjects);
 		// objects[numObjects] = newObject;
 		NewObject(numObjects, msg.sender, photo, name, priceDaily, deposit, categories, false);
 		ids.push(numObjects);
 		numObjects++;
 	}
 
-	//	function getObj(uint objID) constant objectInRange(objID)
-	//	returns(
-	//		address creator,
-	//		string photo,
-	//		string name,
-	//		uint priceDaily,
-	//		uint deposit,
-	//		address renterAddress,
-	//		uint renterSince,
-	//		bool rented,
-	//		string detail
-	//	)
-	//	{
-	//		creator = objects[objID].creator;
-	//		photo = objects[objID].photo;
-	//		name = objects[objID].name;
-	//		priceDaily = objects[objID].priceDaily;
-	//		deposit = objects[objID].deposit;
-	//		renterAddress = objects[objID].renter.addr;
-	//		renterSince = objects[objID].renter.since;
-	//		rented = objects[objID].rented;
-	//		detail = objects[objID].detail;
-	//	}
+	function getObj(uint objID) constant objectInRange(objID)
+	returns(
+		address creator,//0
+		string photo,//1
+		string name,//2
+		uint priceDaily,//3
+		uint deposit,//4
+		address renterAddress,//5
+		uint renterSince,//6
+		bool rented,//7
+		string detail,//8
+		uint categories//9
+	)
+	{
+		creator = objects[objID].creator;
+		photo = objects[objID].photo;
+		name = objects[objID].name;
+		priceDaily = objects[objID].priceDaily;
+		deposit = objects[objID].deposit;
+		renterAddress = objects[objID].renter.addr;
+		renterSince = objects[objID].renter.since;
+		rented = objects[objID].rented;
+		detail = objects[objID].detail;
+		categories = objects[objID].categories;
+	}
 
 	// function getObject(uint objID) constant objectInRange(objID)
 	// 	returns(Object object)
@@ -128,6 +136,7 @@ contract ShareApp{
 			throw;
 		}
 		objects[objID].rented = true;
+		users[msg.sender].object_rented.push(objID);
 		NewRent(objID, objects[objID].creator, objects[objID].renter.addr, objects[objID].photo, objects[objID].name, objects[objID].priceDaily, objects[objID].deposit, true, now);
 		return true;
 	}
@@ -160,6 +169,14 @@ contract ShareApp{
 	// 	balances[msg.sender] = 0;
 	// 	msg.sender.transfer(amount);
 	// }
+
+	function getUserRent(address user) constant returns(uint[]){
+		return users[user].object_rent;
+	}
+
+	function getUserRented(address user) constant returns(uint[]){
+		return users[user].object_rented;
+	}
 
 	function findNames(string name) constant returns(uint[]){
 		return nameToKeys[name].keys;
