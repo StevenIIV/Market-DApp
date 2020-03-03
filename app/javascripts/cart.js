@@ -8,27 +8,20 @@ window.App = {
         var self = this;
         Market.setProvider(web3.currentProvider);
         self.displayAccountInfo();
-        var size = Cookies.get('cart-size');
-        var price = Cookies.get('cart-price');
-        document.getElementById("cartNumber").innerText = (size==null)?0:size;
-        document.getElementById("cartPrice").innerText = (price==null)?0:price+" ETH";
+        self.setCookies();
         App.getAndShowCartInfo();
     },
 
     getAndShowCartInfo: function(){
+        document.getElementById("cartTable").innerHTML = "";
+        this.setCookies();
         var ids = Cookies.get('cart-map');
         var ids_size = Cookies.get('cart-size');
         var totalPrice = Cookies.get('cart-price');
 
-        if (ids == null && totalPrice == null && ids_size ==null){
-            ids = new Map();
-            totalPrice = 0;
-            ids_size = 0;
-        }else {
-            totalPrice = parseInt(totalPrice);
-            ids_size = parseInt(ids_size);
-            ids = _objToStrMap(JSON.parse(ids));
-        }
+        ids = (ids == null)?(new Map()):(_objToStrMap(JSON.parse(ids)));
+        totalPrice = (totalPrice == null)?0:parseInt(totalPrice);
+        ids_size = (ids_size == null)?0:parseInt(ids_size);
 
         document.getElementById("total-amount").innerText = totalPrice+" ETH";
 
@@ -58,7 +51,7 @@ window.App = {
                     "<div class='quantity buttons_added'>" +
                         "<input type='button' onclick='App.quantityMinus("+etherPrice+","+article_id+")' value='-' class='minus'>" +
                         "<input type='number' id='quantity_"+article_id+"' class='input-text qty text' step='1' min='1' max='10000' name='quantity' value=" + number + ">" +
-                        "<input type='button' value='+' class='plus'>" +
+                        "<input type='button' onclick='App.quantityPlus("+etherPrice+","+article_id+")' value='+' class='plus'>" +
                     "</div>" +
                 "</form>" +
             "</td>" +
@@ -74,9 +67,6 @@ window.App = {
         ids = _objToStrMap(JSON.parse(ids));
         var num = parseInt(ids.get("article"+article_id));
         num--;
-        if (num < 0){
-            return
-        }
         ids.set("article"+article_id,num);
         ids_size--;
         totalPrice-=parseInt(unitPrice);
@@ -85,16 +75,49 @@ window.App = {
         Cookies.set('cart-price',totalPrice);
         document.getElementById("cartNumber").innerText = ids_size;
         document.getElementById("cartPrice").innerText = totalPrice+" ETH";
-        //document.getElementById("quantity_"+article_id).value = num
+        document.getElementById("total-price_"+article_id).innerText = num * parseInt(unitPrice) + " ETH";
+        if (num == 0){
+            App.getAndShowCartInfo();
+        }
+    },
+
+    quantityPlus: function(unitPrice,article_id){
+        var ids = Cookies.get('cart-map');
+        var ids_size = parseInt(Cookies.get('cart-size'));
+        var totalPrice = parseInt(Cookies.get('cart-price'));
+        ids = _objToStrMap(JSON.parse(ids));
+        var num = parseInt(ids.get("article"+article_id));
+        num++;
+        ids.set("article"+article_id,num);
+        ids_size++;
+        totalPrice+=parseInt(unitPrice);
+        Cookies.set('cart-map',JSON.stringify(_strMapToObj(ids)));
+        Cookies.set('cart-size',ids_size);
+        Cookies.set('cart-price',totalPrice);
+        document.getElementById("cartNumber").innerText = ids_size;
+        document.getElementById("cartPrice").innerText = totalPrice+" ETH";
         document.getElementById("total-price_"+article_id).innerText = num * parseInt(unitPrice) + " ETH";
     },
 
+    setCookies: function(){
+        var ids = Cookies.get('cart-map');
+        var ids_size = Cookies.get('cart-size');
+        var totalPrice = Cookies.get('cart-price');
 
+        ids = (ids == null)?(new Map()):(_objToStrMap(JSON.parse(ids)));
+        totalPrice = (totalPrice == null)?0:parseInt(totalPrice);
+        ids_size = (ids_size == null)?0:parseInt(ids_size);
 
-
-
-
-
+        ids.forEach(function (value, key) {
+            console.log(key,value);
+            if(value == 0){
+                ids.delete(key);
+            }
+        });
+        Cookies.set('cart-map',JSON.stringify(_strMapToObj(ids)));
+        document.getElementById("cartNumber").innerText = ids_size;
+        document.getElementById("cartPrice").innerText = totalPrice+" ETH";
+    },
 
     displayAccountInfo: function() {
         web3.eth.getCoinbase(function(err, account) {

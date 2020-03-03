@@ -22,10 +22,7 @@ window.App = {
     });
     self.displayAccountInfo();
     self.reloadArticles(0);
-    var size = Cookies.get('cart-size');
-    var price = Cookies.get('cart-price');
-    document.getElementById("cartNumber").innerText = (size==null)?0:size;
-    document.getElementById("cartPrice").innerText = (price==null)?0:price+" ETH";
+    self.setCookies();
 
   },
 
@@ -180,8 +177,29 @@ window.App = {
         Cookies.set('cart-price',totalPrice);
       })
     });
+  },
 
-  }
+  setCookies: function(){
+    var ids = Cookies.get('cart-map');
+    var ids_size = Cookies.get('cart-size');
+    var totalPrice = Cookies.get('cart-price');
+
+    console.log(ids);
+    console.log(ids_size);
+    console.log(totalPrice);
+    ids = (ids == null)?(new Map()):(_objToStrMap(JSON.parse(ids)));
+    totalPrice = (totalPrice == null)?0:parseInt(totalPrice);
+    ids_size = (ids_size == null)?0:parseInt(ids_size);
+
+    ids.forEach(function (value, key) {
+      if(value == 0){
+        delete ids[key];
+      }
+    });
+
+    document.getElementById("cartNumber").innerText = ids_size;
+    document.getElementById("cartPrice").innerText = totalPrice+" ETH";
+  },
 };
 
 function saveImageOnIpfs(file) {
