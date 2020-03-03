@@ -17,6 +17,7 @@ window.App = {
     Market.setProvider(web3.currentProvider);
     Comment.setProvider(web3.currentProvider);
     self.displayAccountInfo();
+    self.setCookies();
   },
 
   setStatus: function(message) {
@@ -287,8 +288,76 @@ window.App = {
     }).catch(function (err) {
       console.log(err);
     })
+  },
+
+  addToCart: function (article_id) {
+    var ids = Cookies.get('cart-map');
+    var ids_size = Cookies.get('cart-size');
+    var totalPrice = Cookies.get('cart-price');
+
+    ids = (ids == null)?(new Map()):(_objToStrMap(JSON.parse(ids)));
+    totalPrice = (totalPrice == null)?0:parseInt(totalPrice);
+    ids_size = (ids_size == null)?0:parseInt(ids_size);
+
+    if (ids.get("article"+article_id) == null){
+      ids.set("article"+article_id,1);
+    }else {
+      var num = parseInt(ids.get("article"+article_id));
+      num++;
+      ids.set("article"+article_id,num);
+    }
+    Cookies.set('cart-map',JSON.stringify(_strMapToObj(ids)));
+    console.log(ids);//
+    ids_size++;
+    Cookies.set('cart-size',ids_size);
+    document.getElementById("cartNumber").innerText = ids_size;
+    Market.deployed().then(function (instance) {
+      instance.articles(article_id).then(function (article) {
+        var etherPrice = web3.fromWei(article[5], "ether");
+        totalPrice += parseInt(etherPrice);
+        document.getElementById("cartPrice").innerText = totalPrice+" ETH";
+        Cookies.set('cart-price',totalPrice);
+      })
+    });
+  },
+
+  setCookies: function(){
+    var ids = Cookies.get('cart-map');
+    var ids_size = Cookies.get('cart-size');
+    var totalPrice = Cookies.get('cart-price');
+
+    ids = (ids == null)?(new Map()):(_objToStrMap(JSON.parse(ids)));
+    totalPrice = (totalPrice == null)?0:parseInt(totalPrice);
+    ids_size = (ids_size == null)?0:parseInt(ids_size);
+
+    ids.forEach(function (value, key) {
+      console.log(key,value);
+      if(value == 0){
+        ids.delete(key);
+      }
+    });
+    Cookies.set('cart-map',JSON.stringify(_strMapToObj(ids)));
+    document.getElementById("cartNumber").innerText = ids_size;
+    document.getElementById("cartPrice").innerText = totalPrice+" ETH";
   }
+
 };
+
+function _strMapToObj(strMap){
+  let obj= Object.create(null);
+  for (let[k,v] of strMap) {
+    obj[k] = v;
+  }
+  return obj;
+}
+
+function _objToStrMap(obj){
+  let strMap = new Map();
+  for (let k of Object.keys(obj)) {
+    strMap.set(k,obj[k]);
+  }
+  return strMap;
+}
 
 window.addEventListener('load', function() {
   // Checking if Web3 has been injected by the browser (Mist/MetaMask)

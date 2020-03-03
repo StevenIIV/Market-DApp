@@ -45,7 +45,7 @@ window.App = {
         var template = "";
 
         template += "<tr>" +
-            "<th scope='row'><img src='" + photoHash + "' alt='img' width='80px' height='80px'></th>" +
+            "<th scope='row'><a href='productDetails.html?id="+article_id+"'><img src='" + photoHash + "' alt='img' width='80px' height='80px'></a></th>" +
             "<td colspan='1' class='item-name' width='390px'>" + name + "</td>" +
             "<td class='price'>" + categories[category] + "</td>" +
             "<td class='price'>" + etherPrice + " ETH</td>" +
