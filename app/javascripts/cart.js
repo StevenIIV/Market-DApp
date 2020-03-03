@@ -142,14 +142,14 @@ window.App = {
         var ids = _objToStrMap(JSON.parse(Cookies.get('cart-map')));
         var ids_size = parseInt(Cookies.get('cart-size'));
         var totalPrice = parseInt(Cookies.get('cart-price'));
-        ids.forEach(function (value,key) {
-            var article_id = key.substring(7,value.length);
-            var str_price = document.getElementById("total-price_"+article_id).innerText;
-            var Price = parseInt(str_price.substring(0,str_price.length-4));
-            var _price = web3.toWei(Price,'ether');
-            Market.deployed().then(function (instance) {
-                console.log(article_id+" "+value);
-                return instance.buyArticle(1, 2, {
+
+        Market.deployed().then(function (instance) {
+            ids.forEach(function (value,key) {
+                var article_id = key.substring(7, value.length);
+                var str_price = document.getElementById("total-price_" + article_id).innerText;
+                var Price = parseInt(str_price.substring(0, str_price.length - 4));
+                var _price = web3.toWei(Price, 'ether');
+                return instance.buyArticle(article_id, parseInt(value), {
                     from: App.account,
                     value: _price,
                     gas: 500000
@@ -161,13 +161,17 @@ window.App = {
                     Cookies.set('cart-map',JSON.stringify(_strMapToObj(ids)));
                     Cookies.set('cart-size',ids_size);
                     Cookies.set('cart-price',totalPrice);
+                    if (ids_size == 0 ){
+                        window.location.reload();
+                    }
                 }).catch(function (err) {
                     console.log(err);
                 })
-            })
-        });
-
-        //setTimeout(function(){window.location.reload();},800);
+            });
+        }).then(function () {
+        }).catch(function (err) {
+            console.log(err);
+        })
     },
 
     displayAccountInfo: function() {
