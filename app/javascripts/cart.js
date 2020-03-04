@@ -59,7 +59,7 @@ window.App = {
                 "</form>" +
             "</td>" +
             "<td class='price' id='total-price_"+article_id+"'>" + etherPrice * number + " ETH</td>" +
-            "<td class='table-close-btn'><a href='javascript:void(0);' onclick='App.deleteCart("+etherPrice+","+article_id+")'><i class='fa fa-close'></i></a></td>";
+            "<td class='table-close-btn'><a href='javascript:void(0)' onclick='App.deleteCart("+etherPrice+","+article_id+")'><i class='fa fa-close'></i></a></td>";
         document.getElementById("cartTable").innerHTML += template;
     },
 

@@ -16,6 +16,26 @@ window.App = {
         Market.setProvider(web3.currentProvider);
         self.displayAccountInfo();
         self.getUserSoldRecordByETH();
+        self.getUserBoughtRecordByETH();
+    },
+
+    chooseSection: function(section_id){
+        $('#pills-tabContent').innerHTML = "";
+        var self = this;
+        switch (section_id) {
+            case 1:
+                self.getUserSoldRecordByETH();
+                break;
+            case 2:
+                self.getUserBoughtRecordByETH();
+                break;
+            case 3:
+                self.getUserRentRecordByETH();
+                break;
+            case 4:
+                self.getUserRentedRecordByETH();
+                break;
+        }
     },
 
     getUserRentRecordByETH: function(){
@@ -33,7 +53,6 @@ window.App = {
     },
 
     getUserSoldRecordByETH: function(){
-        $('#pills-tabContent').innerHTML = "";
         var marketInstance;
         Market.deployed().then(function (instance) {
            marketInstance = instance;
@@ -69,61 +88,10 @@ window.App = {
         }).then(function (ids) {
             for(let element of ids){
                 marketInstance.articles(element).then(function (article) {
-
+                    App.displayTransactionInfo(1, article[0], article[2],article[3],article[5],article[7],1582799231,1);
                 })
             }
         })
-    },
-
-    showUserRentRecordByMongo: function() {
-        web3.eth.getCoinbase(function(err, account) {
-            var acc = account;
-            $.ajax({
-                url: offchainServer + '/getRentRecords',
-                type:'get',
-                contentType: "application/json; charset=utf-8",
-                data: {
-                    _renter: acc
-                }
-            }).done(function (response) {
-                console.log(response.length);
-                if (response.length == 0){
-                    document.getElementById("rentHistory").innerHTML = 'No records found';
-                }
-
-                while (response.length > 0){
-                    let chunks = response.splice(0,8);
-                    chunks.forEach(function (value) {
-                        this.displayRentInfo(value.objectId,value.objectPhoto,value.objectName,value.priceDaily,value.deposit,value.rented,value.createAt);
-                    })
-                }
-            })
-        });
-    },
-
-    showUserTransactionRecordByMongo: function() {
-        web3.eth.getCoinbase(function(err, account) {
-            var acc = account;
-            $.ajax({
-                url: offchainServer + '/getTransactionRecords',
-                type: 'get',
-                contentType: "application/json; charset=utf-8",
-                data: {
-                    _buyer: acc
-                }
-            }).done(function (response) {
-                console.log(response.length);
-                if (response.length == 0){
-                    document.getElementById("transactionHistory").innerHTML = 'No records found';
-                }
-                while (response.length > 0){
-                    let chunks = response.splice(0,6);
-                    chunks.forEach(function (value) {
-                        this.displayTransactionInfo(value.articleId,value.articlePhoto,value.articleName,value.seller,value.price,value.createAt);
-                    })
-                }
-            })
-        });
     },
     
     displayRentInfo: function(objectId, objectPhoto, objectName, priceDaily, deposit, rented, createAt){
@@ -153,12 +121,63 @@ window.App = {
         articleTemplate.find('.name').text(articleName);
         articleTemplate.find('.price').text(etherPrice);
         articleTemplate.find('.type').text(articleCategories[articleType]);
-        articleTemplate.find('.createAt').text(createAt);
+        articleTemplate.find('.createAt').text((new Date(createAt*1000)).toLocaleDateString());
 
         if (target == 0 && number > 0){
             articleTemplate.find('.list-button').attr("style","display:inline");
         }
         articlesContent.append(articleTemplate.html());
+    },
+
+    getUserRentRecordByMongo: function() {
+        web3.eth.getCoinbase(function(err, account) {
+            var acc = account;
+            $.ajax({
+                url: offchainServer + '/getRentRecords',
+                type:'get',
+                contentType: "application/json; charset=utf-8",
+                data: {
+                    _renter: acc
+                }
+            }).done(function (response) {
+                console.log(response.length);
+                if (response.length == 0){
+                    document.getElementById("rentHistory").innerHTML = 'No records found';
+                }
+
+                while (response.length > 0){
+                    let chunks = response.splice(0,8);
+                    chunks.forEach(function (value) {
+                        this.displayRentInfo(value.objectId,value.objectPhoto,value.objectName,value.priceDaily,value.deposit,value.rented,value.createAt);
+                    })
+                }
+            })
+        });
+    },
+
+    getUserTransactionRecordByMongo: function() {
+        web3.eth.getCoinbase(function(err, account) {
+            var acc = account;
+            $.ajax({
+                url: offchainServer + '/getTransactionRecords',
+                type: 'get',
+                contentType: "application/json; charset=utf-8",
+                data: {
+                    _buyer: acc
+                }
+            }).done(function (response) {
+                console.log(response.length);
+                if (response.length == 0){
+                    document.getElementById("transactionHistory").innerHTML = 'No records found';
+                }
+                while (response.length > 0){
+                    let chunks = response.splice(0,6);
+                    chunks.forEach(function (value) {
+                        this.displayTransactionInfo(value.articleId,value.articlePhoto,value.articleName,value.seller,value.price,value.createAt);
+                    })
+                }
+            })
+        });
     },
 
     displayAccountInfo: function() {
@@ -173,7 +192,7 @@ window.App = {
                 });
             }
         });
-    },
+    }
 };
 
 window.addEventListener('load', function() {
