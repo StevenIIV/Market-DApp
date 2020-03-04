@@ -1,4 +1,3 @@
-import "../stylesheets/app.css";
 import { default as contract } from 'truffle-contract'
 import ShareApp_artifacts from '../../build/contracts/ShareApp.json'
 import Market_artifacts from '../../build/contracts/MarketPlace.json'
@@ -8,6 +7,7 @@ var ShareApp = contract(ShareApp_artifacts);
 var UserApp = contract(UserApp_artifacts);
 const offchainServer = "http://localhost:3000";
 const ipfsURL = "http://localhost:8080/ipfs/";
+const articleCategories = ["Clothing","Food","Electronic","Book","Jewellery","Crafts","Others"];
 window.App = {
     account: 0x0,
     start: function() {
@@ -15,10 +15,10 @@ window.App = {
         ShareApp.setProvider(web3.currentProvider);
         Market.setProvider(web3.currentProvider);
         self.displayAccountInfo();
-        self.showUserRentRecordByETH();
+        self.getUserSoldRecordByETH();
     },
 
-    showUserRentRecordByETH: function(){
+    getUserRentRecordByETH: function(){
         var shareInstance;
         ShareApp.deployed().then(function (instance) {
             shareInstance = instance;
@@ -32,8 +32,47 @@ window.App = {
         })
     },
 
-    showUserTransactionRecordByETH: function(){
+    getUserSoldRecordByETH: function(){
+        $('#pills-tabContent').innerHTML = "";
+        var marketInstance;
+        Market.deployed().then(function (instance) {
+           marketInstance = instance;
+           return marketInstance.getUserSold.call(App.account);
+        }).then(function (ids) {
+            for (let element of ids){
+                marketInstance.articles(element).then(function (article) {
+                    App.displayTransactionInfo(0, article[0], article[2],article[3],article[5],article[7],1582799231,article[6]);
+                })
+            }
+        })
+    },
 
+    getUserRentedRecordByETH: function(){
+        var shareInstance;
+        ShareApp.deployed().then(function (instance) {
+            shareInstance = instance;
+            return shareInstance.getUserRented.call(App.account);
+        }).then(function (ids) {
+            for(let element of ids){
+                shareInstance.getObj(element).then(function (object) {
+
+                })
+            }
+        })
+    },
+
+    getUserBoughtRecordByETH: function(){
+        var marketInstance;
+        Market.deployed().then(function (instance) {
+            marketInstance = instance;
+            return marketInstance.getUserBought.call(App.account);
+        }).then(function (ids) {
+            for(let element of ids){
+                marketInstance.articles(element).then(function (article) {
+
+                })
+            }
+        })
     },
 
     showUserRentRecordByMongo: function() {
@@ -105,20 +144,21 @@ window.App = {
         cell6.innerHTML = (new Date(createAt*1000)).toLocaleDateString();
     },
     
-    displayTransactionInfo: function(articleId, articlePhoto, articleName, seller, price, createAt){
-        var row = document.getElementById("transactionHistory").insertRow(0);
-        var cell0 = row.insertCell(0);   //photo
-        var cell1 = row.insertCell(1);  //id
-        var cell2 = row.insertCell(2);  //name
-        var cell3 = row.insertCell(3);  //seller
-        var cell4 = row.insertCell(4);  //price
-        var cell5 = row.insertCell(5); //time
-        cell0.innerHTML = "<img src='"+ipfsURL+articlePhoto+"'>";
-        cell1.innerHTML = articleId;
-        cell2.innerHTML = articleName;
-        cell3.innerHTML = seller;
-        cell4.innerHTML = price;
-        cell5.innerHTML = (new Date(createAt*1000)).toLocaleDateString();
+    displayTransactionInfo: function(target, articleId, articlePhoto, articleName, price, articleType, createAt, number){
+        var articlesContent = $('#pills-tabContent');
+        var etherPrice = web3.fromWei(price, "ether");
+
+        var articleTemplate = $('#article-record-template');
+        articleTemplate.find('.user-avatar-xxl,.photo-hash').attr('src',ipfsURL + articlePhoto);
+        articleTemplate.find('.name').text(articleName);
+        articleTemplate.find('.price').text(etherPrice);
+        articleTemplate.find('.type').text(articleCategories[articleType]);
+        articleTemplate.find('.createAt').text(createAt);
+
+        if (target == 0 && number > 0){
+            articleTemplate.find('.list-button').attr("style","display:inline");
+        }
+        articlesContent.append(articleTemplate.html());
     },
 
     displayAccountInfo: function() {

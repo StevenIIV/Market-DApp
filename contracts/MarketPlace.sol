@@ -172,7 +172,7 @@ contract MarketPlace {
     return users[user].article_sold;
   }
 
-  function getUserBuyed(address user) constant returns (uint[]){
+  function getUserBought(address user) constant returns (uint[]){
     return users[user].article_buyed;
   }
 }
