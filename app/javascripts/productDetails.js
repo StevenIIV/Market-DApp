@@ -81,9 +81,11 @@ window.App = {
   rentObj: function(objectID){
     console.log(App.account);
     var mainInstance;
-    ShareApp.deployed().then(function(instance){
+    ShareApp.deployed().then(function(instance) {
       mainInstance = instance;
-      return mainInstance.rentObj(objectID,{from:App.account,value:10000000000000, gas:500000});
+      return mainInstance.getObjectDeposit(objectID);
+    }).then(function(price){
+      return mainInstance.rentObj(objectID,{from:App.account,value:parseInt(price), gas:500000});
     }).then(function(tx){
       window.location.reload();
       console.log(tx);

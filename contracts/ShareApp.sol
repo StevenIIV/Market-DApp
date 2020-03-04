@@ -5,6 +5,7 @@ contract ShareApp{
 	struct user{
 		uint[] object_rent;
 		uint[] object_rented;
+		uint[] object_rentedTime;
 	}
 
 	struct Renter{
@@ -131,12 +132,13 @@ contract ShareApp{
 			throw;
 		}
 		objects[objID].renter = Renter({addr:msg.sender, since:now});  //record the info of the renter
-		uint rest = msg.value - objects[objID].deposit;
+		uint rest = msg.value - objects[objID].deposit;  //支付一个不低于deposit的值
 		if(!objects[objID].renter.addr.send(rest)){   // return the rest balance扣自己钱存入合约余额中
 			throw;
 		}
 		objects[objID].rented = true;
 		users[msg.sender].object_rented.push(objID);
+		users[msg.sender].object_rentedTime.push(now);
 		NewRent(objID, objects[objID].creator, objects[objID].renter.addr, objects[objID].photo, objects[objID].name, objects[objID].priceDaily, objects[objID].deposit, true, now);
 		return true;
 	}
@@ -176,6 +178,10 @@ contract ShareApp{
 
 	function getUserRented(address user) constant returns(uint[]){
 		return users[user].object_rented;
+	}
+
+	function getUserRentedTime(address user) constant returns(uint[]){
+		return users[user].object_rentedTime;
 	}
 
 	function findNames(string name) constant returns(uint[]){

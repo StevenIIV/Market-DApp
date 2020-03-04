@@ -68,13 +68,23 @@ window.App = {
 
     getUserRentedRecordByETH: function(){
         var shareInstance;
+        var idList;
+        var timeList;
         ShareApp.deployed().then(function (instance) {
             shareInstance = instance;
             return shareInstance.getUserRented.call(App.account);
         }).then(function (ids) {
-            for(let element of ids){
-                shareInstance.getObj(element).then(function (object) {
-                    App.displayRentInfo(1,element,object[1],object[2],object[3],object[4],object[9],object[7],object[6],object[5]);
+            idList = ids;
+            return shareInstance.getUserRentedTime.call(App.account);
+        }).then(function(times){
+            timeList = times;
+
+            for(var i=0;i<idList.length;i++){
+                shareInstance.getObj(idList[i]).then(function (object) {
+                    console.log(i);
+                    // console.log(timeList[i] +" "+ object[6]);
+                    // App.displayRentInfo(1,idList[i],object[1],object[2],object[3],object[4],object[9],object[7],object[6],object[5],(object[6]==timeList[i])?false:true);
+                    //
                 })
             }
         })
@@ -94,7 +104,7 @@ window.App = {
         })
     },
     
-    displayRentInfo: function(target, objectId, objectPhoto, objectName, priceDaily, deposit, objectType, rented, createAt, renter){
+    displayRentInfo: function(target, objectId, objectPhoto, objectName, priceDaily, deposit, objectType, rented, createAt, renter, isOutdate){
         var objectsContent = $('#pills-tabContent');
         var etherPriceDaily = web3.fromWei(priceDaily, "ether");
         var etherDeposit = web3.fromWei(deposit, "ether");
@@ -105,16 +115,17 @@ window.App = {
         objectTemplate.find('.price_daily').text(etherPriceDaily);
         objectTemplate.find('.deposit').text(etherDeposit);
         objectTemplate.find('.type').text(objectCategories[objectType]);
-        objectTemplate.find('.createAt').text((new Date(createAt*1000)).toLocaleDateString());
+        objectTemplate.find('.createAt').text((createAt==0)?"null":(new Date(createAt*1000)).toLocaleDateString());
 
         if (target == 0 && rented == false){
             objectTemplate.find('.list-button').attr("style","display:inline");
         } else if (target == 0 && rented == true){
             objectTemplate.find('.renting').attr("style","display:inline");
             objectTemplate.find('.renter').text(renter);
-        } else if (target == 1 && renter == App.account){
+        } else if (target == 1 && renter == App.account && isOutdate == false){
             objectTemplate.find('.to-be-return').attr("style","display:inline");
-        } else if(target == 1 && renter != App.account){
+            objectTemplate.find('.btn,.btn-success,.returnButton').attr('onclick',"App.returnObj("+objectId+")");
+        } else if(target == 1 && renter != App.account && isOutdate == true){
             objectTemplate.find('.returned').attr("style","display:inline");
         }
         objectsContent.append(objectTemplate.html());
@@ -133,7 +144,7 @@ window.App = {
         articleTemplate.find('.name').text(articleName);
         articleTemplate.find('.price').text(etherPrice);
         articleTemplate.find('.type').text(articleCategories[articleType]);
-        articleTemplate.find('.createAt').text((new Date(createAt*1000)).toLocaleDateString());
+        articleTemplate.find('.createAt').text((createAt==0)?"null":(new Date(createAt*1000)).toLocaleDateString());
 
         if (target == 0 && number > 0){
             articleTemplate.find('.list-button').attr("style","display:inline");
@@ -194,6 +205,19 @@ window.App = {
                     })
                 }
             })
+        });
+    },
+
+    returnObj:function(objectID){
+        var mainInstance;
+        ShareApp.deployed().then(function(instance){
+            mainInstance = instance;
+            return mainInstance.returnObj(objectID,{from:App.account});
+        }).then(function(tx){
+            window.location.reload();
+            console.log(tx);
+        }).catch(function(e){
+            console.log(e);
         });
     },
 
