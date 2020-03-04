@@ -8,6 +8,7 @@ var UserApp = contract(UserApp_artifacts);
 const offchainServer = "http://localhost:3000";
 const ipfsURL = "http://localhost:8080/ipfs/";
 const articleCategories = ["Clothing","Food","Electronic","Book","Jewellery","Crafts","Others"];
+const objectCategories = ["Clothing","Electronic","Book","Crafts","Others"];
 window.App = {
     account: 0x0,
     start: function() {
@@ -16,11 +17,10 @@ window.App = {
         Market.setProvider(web3.currentProvider);
         self.displayAccountInfo();
         self.getUserSoldRecordByETH();
-        self.getUserBoughtRecordByETH();
     },
 
     chooseSection: function(section_id){
-        $('#pills-tabContent').innerHTML = "";
+        $('#pills-tabContent').empty();
         var self = this;
         switch (section_id) {
             case 1:
@@ -46,7 +46,7 @@ window.App = {
         }).then(function (ids) {
             for (let element of ids){
                 shareInstance.getObj(element).then(function (object) {
-                    App.displayRentInfo(element,object[1],object[2],object[3],object[4],object[7],1582799231);
+                    App.displayRentInfo(0,element,object[1],object[2],object[3],object[4],object[9],object[7],1582799231,object[5]);
                 })
             }
         })
@@ -74,7 +74,7 @@ window.App = {
         }).then(function (ids) {
             for(let element of ids){
                 shareInstance.getObj(element).then(function (object) {
-
+                    App.displayRentInfo(1,element,object[1],object[2],object[3],object[4],object[9],object[7],object[6],object[5]);
                 })
             }
         })
@@ -94,22 +94,34 @@ window.App = {
         })
     },
     
-    displayRentInfo: function(objectId, objectPhoto, objectName, priceDaily, deposit, rented, createAt){
-        var row = document.getElementById("rentHistory").insertRow(0);
-        var cell0 = row.insertCell(0);   //photo
-        var cell1 = row.insertCell(1);  //id
-        var cell2 = row.insertCell(2);  //name
-        var cell3 = row.insertCell(3);  //priceDaily
-        var cell4 = row.insertCell(4);  //deposit
-        var cell5 = row.insertCell(5);  //rented
-        var cell6 = row.insertCell(6);  //time
-        cell0.innerHTML = "<img src='"+ipfsURL+objectPhoto+"'>";
-        cell1.innerHTML = objectId;
-        cell2.innerHTML = objectName;
-        cell3.innerHTML = priceDaily;
-        cell4.innerHTML = deposit;
-        cell5.innerHTML = rented;
-        cell6.innerHTML = (new Date(createAt*1000)).toLocaleDateString();
+    displayRentInfo: function(target, objectId, objectPhoto, objectName, priceDaily, deposit, objectType, rented, createAt, renter){
+        var objectsContent = $('#pills-tabContent');
+        var etherPriceDaily = web3.fromWei(priceDaily, "ether");
+        var etherDeposit = web3.fromWei(deposit, "ether");
+
+        var objectTemplate = $('#object-record-template');
+        objectTemplate.find('.user-avatar-xxl,.photo-hash').attr('src',ipfsURL + objectPhoto);
+        objectTemplate.find('.name').text(objectName);
+        objectTemplate.find('.price_daily').text(etherPriceDaily);
+        objectTemplate.find('.deposit').text(etherDeposit);
+        objectTemplate.find('.type').text(objectCategories[objectType]);
+        objectTemplate.find('.createAt').text((new Date(createAt*1000)).toLocaleDateString());
+
+        if (target == 0 && rented == false){
+            objectTemplate.find('.list-button').attr("style","display:inline");
+        } else if (target == 0 && rented == true){
+            objectTemplate.find('.renting').attr("style","display:inline");
+            objectTemplate.find('.renter').text(renter);
+        } else if (target == 1 && renter == App.account){
+            objectTemplate.find('.to-be-return').attr("style","display:inline");
+        } else if(target == 1 && renter != App.account){
+            objectTemplate.find('.returned').attr("style","display:inline");
+        }
+        objectsContent.append(objectTemplate.html());
+        objectTemplate.find('.list-button').attr("style","display:none");
+        objectTemplate.find('.renting').attr("style","display:none");
+        objectTemplate.find('.to-be-return').attr("style","display:none");
+        objectTemplate.find('.returned').attr("style","display:none");
     },
     
     displayTransactionInfo: function(target, articleId, articlePhoto, articleName, price, articleType, createAt, number){
@@ -125,8 +137,13 @@ window.App = {
 
         if (target == 0 && number > 0){
             articleTemplate.find('.list-button').attr("style","display:inline");
+
+        } else if(target ==0 && number ==0 ){
+            articleTemplate.find('.sold-out').attr("style","display:inline");
         }
         articlesContent.append(articleTemplate.html());
+        articleTemplate.find('.list-button').attr("style","display:none");
+        articleTemplate.find('.sold-out').attr("style","display:none");
     },
 
     getUserRentRecordByMongo: function() {

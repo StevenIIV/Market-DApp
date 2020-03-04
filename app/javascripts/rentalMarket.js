@@ -36,8 +36,8 @@ window.App = {
       var imageHash = id;
       console.log(imageHash);
       var objName = document.getElementById("objectName").value;
-      var objPriceDaily = parseInt(document.getElementById("objectPriceDaily").value);
-      var objDeposit = parseInt(document.getElementById("objectDeposit").value);
+      var objPriceDaily = web3.toWei(parseFloat($("#objectPriceDaily").val() || 0), "ether");
+      var objDeposit = web3.toWei(parseFloat($("#objectDeposit").val() || 0), "ether");
       // var objPriceDaily = new BigNumber(document.getElementById("objectPriceDaily").value).toNumber();
       // var objDeposit = new BigNumber(document.getElementById("objectDeposit").value).toNumber();
       var objDetail = document.getElementById("objectDetail").value;
@@ -102,8 +102,8 @@ window.App = {
 
         objectTemplate.find('.photo-hash').attr('src','http://localhost:8080/ipfs/' + object[1]);
         objectTemplate.find('.object-name').text(object[2]);
-        objectTemplate.find('.object-priceDaily').text(object[3]);
-        objectTemplate.find('.object-deposit').text(object[4]);
+        objectTemplate.find('.object-priceDaily').text(web3.fromWei(object[3],'ether'));
+        objectTemplate.find('.object-deposit').text(web3.fromWei(object[4],'ether'));
         objectTemplate.find('.object-type').text(categories[object[9]]);
         objectTemplate.find('.object-display').attr('href',"objectDetails.html?id="+_id);
         if (object[7]){

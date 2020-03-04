@@ -34,7 +34,7 @@ window.App = {
         } else if(object[7] == false){
           document.getElementById("rentButton").style.display = "inline";
           document.getElementById("returnButton").style.display = "none";
-        } else if (_objRented == true){
+        } else if (object[7] == true){
           if (App.account != object[5]){
             document.getElementById("rentButton").style.display = "none";
             document.getElementById("returnButton").style.display = "none";
@@ -46,10 +46,10 @@ window.App = {
         document.getElementById("objPhoto").src = 'http://localhost:8080/ipfs/' + object[1];
         document.getElementById("objName").innerHTML = object[2];
         document.getElementById("objCreator").innerHTML = object[0];
-        document.getElementById("objPriceDaily").innerHTML = object[3];
-        document.getElementById("objDeposit").innerHTML = object[4];
+        document.getElementById("objPriceDaily").innerHTML = web3.fromWei(object[3],'ether') + " ETH";
+        document.getElementById("objDeposit").innerHTML = web3.fromWei(object[4],'ether') + " ETH";
         document.getElementById("objRenterAddress").innerHTML = (object[5] == "0x0000000000000000000000000000000000000000")?"no renter":object[5];
-        document.getElementById("objRenterSince").innerHTML = (new Date(object[6]*1000)).toLocaleDateString();;
+        document.getElementById("objRenterSince").innerHTML = (object[6]==0)?"null":(new Date(object[6]*1000)).toLocaleDateString();
         document.getElementById("objRented").innerHTML = object[7];
         document.getElementById("objDetail").innerHTML = object[8];
 
