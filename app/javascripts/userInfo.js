@@ -76,15 +76,16 @@ window.App = {
         }).then(function (ids) {
             idList = ids;
             return shareInstance.getUserRentedTime.call(App.account);
-        }).then(function(times){
+        }).then(async function(times){
             timeList = times;
-
             for(var i=0;i<idList.length;i++){
-                shareInstance.getObj(idList[i]).then(function (object) {
-                    console.log(i);
-                    // console.log(timeList[i] +" "+ object[6]);
-                    // App.displayRentInfo(1,idList[i],object[1],object[2],object[3],object[4],object[9],object[7],object[6],object[5],(object[6]==timeList[i])?false:true);
-                    //
+                await shareInstance.getObj(idList[i]).then(function (object) {
+                    console.log(timeList[i] +" "+ object[6]);
+                    var isOutdate = true;
+                    if (parseInt(timeList[i]) == parseInt(object[6])){
+                        isOutdate = false;
+                    }
+                    App.displayRentInfo(1,idList[i],object[1],object[2],object[3],object[4],object[9],object[7],object[6],object[5],isOutdate);
                 })
             }
         })
@@ -105,6 +106,7 @@ window.App = {
     },
     
     displayRentInfo: function(target, objectId, objectPhoto, objectName, priceDaily, deposit, objectType, rented, createAt, renter, isOutdate){
+        console.log(isOutdate);
         var objectsContent = $('#pills-tabContent');
         var etherPriceDaily = web3.fromWei(priceDaily, "ether");
         var etherDeposit = web3.fromWei(deposit, "ether");
@@ -125,7 +127,7 @@ window.App = {
         } else if (target == 1 && renter == App.account && isOutdate == false){
             objectTemplate.find('.to-be-return').attr("style","display:inline");
             objectTemplate.find('.btn,.btn-success,.returnButton').attr('onclick',"App.returnObj("+objectId+")");
-        } else if(target == 1 && renter != App.account && isOutdate == true){
+        } else if(target == 1 && isOutdate == true){
             objectTemplate.find('.returned').attr("style","display:inline");
         }
         objectsContent.append(objectTemplate.html());
