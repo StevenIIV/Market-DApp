@@ -23,6 +23,7 @@ contract ShareApp{
 		bool rented;  //rented ?
 		string detail;
 		uint categories;
+		bool isDelete;
 	}
 
 	struct NameKey{ // storage the name's keys
@@ -88,6 +89,7 @@ contract ShareApp{
 		newObject.rented = false;
 		newObject.detail = detail;
 		newObject.categories = categories;
+		newObject.isDelete = false;
 		users[msg.sender].object_rent.push(numObjects);
 		// objects[numObjects] = newObject;
 		NewObject(numObjects, msg.sender, photo, name, priceDaily, deposit, categories, false);
@@ -106,7 +108,8 @@ contract ShareApp{
 		uint renterSince,//6
 		bool rented,//7
 		string detail,//8
-		uint categories//9
+		uint categories,//9
+		bool isDelete
 	)
 	{
 		creator = objects[objID].creator;
@@ -119,6 +122,7 @@ contract ShareApp{
 		rented = objects[objID].rented;
 		detail = objects[objID].detail;
 		categories = objects[objID].categories;
+		isDelete = objects[objID].isDelete;
 	}
 
 	// function getObject(uint objID) constant objectInRange(objID)
@@ -166,11 +170,17 @@ contract ShareApp{
 		return true;
 	}
 
-	// function withdraw() {
-	// 	var amount = balances[msg.sender];
-	// 	balances[msg.sender] = 0;
-	// 	msg.sender.transfer(amount);
-	// }
+	function modifyObject(uint objID,string name,uint priceDaily,uint deposit,string detail, uint categories) public{
+		objects[objID].name = name;
+		objects[objID].priceDaily = priceDaily;
+		objects[objID].deposit = deposit;
+		objects[objID].detail = detail;
+		objects[objID].categories = categories;
+	}
+
+	function deleteObject(uint objID) public{
+		objects[objID].isDelete = true;
+	}
 
 	function getUserRent(address user) constant returns(uint[]){
 		return users[user].object_rent;

@@ -138,6 +138,9 @@ window.App = {
     },
     
     displayTransactionInfo: function(target, articleId, articlePhoto, articleName, price, articleType, createAt, number){
+        if (number == 0){
+            return;
+        }
         var articlesContent = $('#pills-tabContent');
         var etherPrice = web3.fromWei(price, "ether");
 
@@ -152,6 +155,7 @@ window.App = {
             articleTemplate.find('.btn,.btn-primary,.article-edit').attr("data-toggle","modal");
             articleTemplate.find('.btn,.btn-primary,.article-edit').attr("data-target","#modifyArticle");
             articleTemplate.find('.btn,.btn-primary,.article-edit').attr("onclick","App.fillInEditData("+articleId+")");
+            articleTemplate.find('.article-delete').attr("onclick","App.deleteArticle("+articleId+")");
             articleTemplate.find('.article-list-button').attr("style","display:inline");
 
         } else if(target ==0 && number ==0 ){
@@ -255,6 +259,19 @@ window.App = {
         console.log(articleType);
         Market.deployed().then(function (instance) {
             return instance.modifyArticle(articleId,articleName,articleDescription,price,articleNumber,articleType,{
+                from: App.account,
+                gas: 500000
+            });
+        }).then(function (res) {
+            window.location.reload();
+        }).catch(function (err) {
+            console.log(err);
+        })
+    },
+
+    deleteArticle: function(articleId){
+        Market.deployed().then(function (instance) {
+            return instance.deleteArticle(articleId,0,{
                 from: App.account,
                 gas: 500000
             });

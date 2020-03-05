@@ -130,6 +130,10 @@ contract MarketPlace {
     articles[_id].description = _description;
   }
 
+  function deleteArticle(uint _id, uint _number){
+    articles[_id].number = _number;
+  }
+
   //kill the smart contract
   function kill() onlyOwner {
     selfdestruct(owner);
