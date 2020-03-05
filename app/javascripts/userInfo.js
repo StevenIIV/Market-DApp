@@ -62,7 +62,9 @@ window.App = {
         }).then(function (ids) {
             for (let element of ids){
                 marketInstance.articles(element).then(function (article) {
-                    App.displayTransactionInfo(0, article[0], article[2],article[3],article[5],article[7],1582799231,article[6]);
+                    if (article[8] == false){
+                        App.displayTransactionInfo(0, article[0], article[2],article[3],article[5],article[7],1582799231,article[6]);
+                    }
                 })
             }
         })
@@ -115,6 +117,7 @@ window.App = {
 
         var objectTemplate = $('#object-record-template');
         objectTemplate.find('.user-avatar-xxl,.photo-hash').attr('src',ipfsURL + objectPhoto);
+        objectTemplate.find('.object-href').attr('href',"objectDetails.html?id="+objectId);
         objectTemplate.find('.name').text(objectName);
         objectTemplate.find('.price_daily').text(etherPriceDaily);
         objectTemplate.find('.deposit').text(etherDeposit);
@@ -142,14 +145,12 @@ window.App = {
     },
     
     displayTransactionInfo: function(target, articleId, articlePhoto, articleName, price, articleType, createAt, number){
-        if (number == 0){
-            return;
-        }
         var articlesContent = $('#pills-tabContent');
         var etherPrice = web3.fromWei(price, "ether");
 
         var articleTemplate = $('#article-record-template');
         articleTemplate.find('.user-avatar-xxl,.photo-hash').attr('src',ipfsURL + articlePhoto);
+        articleTemplate.find('.article-href').attr('href',"productDetails.html?id="+articleId);
         articleTemplate.find('.name').text(articleName);
         articleTemplate.find('.price').text(etherPrice);
         articleTemplate.find('.type').text(articleCategories[articleType]);

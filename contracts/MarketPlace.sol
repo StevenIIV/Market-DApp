@@ -18,6 +18,7 @@ contract MarketPlace {
     uint price;//5
     uint number;//6
     uint categories;//7
+    bool isDelete;//8
   }
 
   struct NameKey {
@@ -84,7 +85,8 @@ contract MarketPlace {
       _description,
       _price,
       _number,
-      _categories
+      _categories,
+      false
     );
     users[msg.sender].article_sold.push(articleCounter);
     // trigger the event
@@ -131,9 +133,9 @@ contract MarketPlace {
     articles[_id].description = _description;
   }
 
-  function deleteArticle(uint _id, uint _number){
+  function deleteArticle(uint _id){
     require(articles[_id].seller == msg.sender);
-    articles[_id].number = _number;
+    articles[_id].isDelete = true;
   }
 
   //kill the smart contract

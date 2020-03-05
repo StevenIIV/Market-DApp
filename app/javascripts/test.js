@@ -1,4 +1,3 @@
-import "../stylesheets/app.css";
 import { default as contract } from 'truffle-contract'
 import Comment_artifacts from '../../build/contracts/Comment.json'
 var Comment = contract(Comment_artifacts);

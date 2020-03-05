@@ -1,4 +1,3 @@
-// import "../stylesheets/app.css";
 import { default as contract } from 'truffle-contract'
 import Market_artifacts from '../../build/contracts/MarketPlace.json'
 var Market = contract(Market_artifacts);
@@ -41,7 +40,7 @@ window.App = {
       for (let element of ids){
         let id = element.toNumber();
         marketPlaceInstance.articles(id).then(function (article) {
-          if (article[6] > 0){
+          if (article[6] > 0 && article[8] == false){
             App.displayArticle(
                 article[0],
                 article[2],
@@ -64,7 +63,7 @@ window.App = {
     }).then(function(ids){
       for (let articleId of ids){
         marketPlaceInstance.articles(articleId.toNumber()).then(function(article) {
-          if (article[6] > 0){
+          if (article[6] > 0 && article[8] == false){
             App.displayArticle(
                 article[0],
                 article[2],
