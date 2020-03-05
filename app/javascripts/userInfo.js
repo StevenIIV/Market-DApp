@@ -120,7 +120,7 @@ window.App = {
         objectTemplate.find('.createAt').text((createAt==0)?"null":(new Date(createAt*1000)).toLocaleDateString());
 
         if (target == 0 && rented == false){
-            objectTemplate.find('.list-button').attr("style","display:inline");
+            objectTemplate.find('.object-list-button').attr("style","display:inline");
         } else if (target == 0 && rented == true){
             objectTemplate.find('.renting').attr("style","display:inline");
             objectTemplate.find('.renter').text(renter);
@@ -131,7 +131,7 @@ window.App = {
             objectTemplate.find('.returned').attr("style","display:inline");
         }
         objectsContent.append(objectTemplate.html());
-        objectTemplate.find('.list-button').attr("style","display:none");
+        objectTemplate.find('.object-list-button').attr("style","display:none");
         objectTemplate.find('.renting').attr("style","display:none");
         objectTemplate.find('.to-be-return').attr("style","display:none");
         objectTemplate.find('.returned').attr("style","display:none");
@@ -149,13 +149,16 @@ window.App = {
         articleTemplate.find('.createAt').text((createAt==0)?"null":(new Date(createAt*1000)).toLocaleDateString());
 
         if (target == 0 && number > 0){
-            articleTemplate.find('.list-button').attr("style","display:inline");
+            articleTemplate.find('.btn,.btn-primary,.article-edit').attr("data-toggle","modal");
+            articleTemplate.find('.btn,.btn-primary,.article-edit').attr("data-target","#modifyArticle");
+            articleTemplate.find('.btn,.btn-primary,.article-edit').attr("onclick","App.fillInEditData("+articleId+")");
+            articleTemplate.find('.article-list-button').attr("style","display:inline");
 
         } else if(target ==0 && number ==0 ){
             articleTemplate.find('.sold-out').attr("style","display:inline");
         }
         articlesContent.append(articleTemplate.html());
-        articleTemplate.find('.list-button').attr("style","display:none");
+        articleTemplate.find('.article-list-button').attr("style","display:none");
         articleTemplate.find('.sold-out').attr("style","display:none");
     },
 
@@ -210,7 +213,20 @@ window.App = {
         });
     },
 
-    returnObj:function(objectID){
+    fillInEditData: function(articleId){
+        Market.deployed().then(function (instance) {
+            return instance.articles(articleId).then(function (article) {
+                document.getElementById("article_id").value = articleId;
+                document.getElementById("article_name").value = article[3];
+                document.getElementById("article_price").value = web3.fromWei(article[5],'ether');
+                document.getElementById("article_Number").value = article[6];
+                document.getElementById("article_Type").value = article[7];
+                document.getElementById("article_description").value = article[4];
+            })
+        })
+    },
+
+    returnObj: function(objectID){
         var mainInstance;
         ShareApp.deployed().then(function(instance){
             mainInstance = instance;
@@ -221,6 +237,32 @@ window.App = {
         }).catch(function(e){
             console.log(e);
         });
+    },
+
+    modifyArticle: function(){
+        var articleId = document.getElementById("article_id").value;
+        var articleName = document.getElementById("article_name").value;
+        var articlePrice = document.getElementById("article_price").value;
+        var price = web3.toWei(parseFloat(articlePrice || 0), "ether");
+        var articleNumber = document.getElementById("article_Number").value;
+        var articleDescription = document.getElementById("article_description").value;
+        var articleType = document.getElementById("article_Type").value;
+        console.log(articleName);
+        console.log(articleId);
+        console.log(articlePrice);
+        console.log(articleNumber);
+        console.log(articleDescription);
+        console.log(articleType);
+        Market.deployed().then(function (instance) {
+            return instance.modifyArticle(articleId,articleName,articleDescription,price,articleNumber,articleType,{
+                from: App.account,
+                gas: 500000
+            });
+        }).then(function (res) {
+            window.location.reload();
+        }).catch(function (err) {
+            console.log(err);
+        })
     },
 
     displayAccountInfo: function() {

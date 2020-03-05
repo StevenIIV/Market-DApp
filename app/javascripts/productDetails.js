@@ -65,7 +65,7 @@ window.App = {
         var objPhoto = 'http://localhost:8080/ipfs/' + article[2];
         document.getElementById("_objName").innerHTML = article[3];
         //document.getElementById("_objPhoto").innerHTML = "<img src='"+objPhoto+"'>";
-        document.getElementById("_objPrice").innerHTML = article[5];
+        document.getElementById("_objPrice").innerHTML = web3.fromWei(article[5],'ether') + " ETH";
         document.getElementById("_objCreator").innerHTML = article[1];
         document.getElementById("_objDetail").innerHTML = article[4];
         document.getElementById("_objNumber").innerHTML = article[6];

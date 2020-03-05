@@ -23,7 +23,6 @@ window.App = {
     self.displayAccountInfo();
     self.reloadArticles(0);
     self.setCookies();
-
   },
 
   searchArticleByName: function() {

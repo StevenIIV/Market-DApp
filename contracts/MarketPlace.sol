@@ -96,34 +96,6 @@ contract MarketPlace {
     return articleCounter;
   }
 
-  //  // fetch and returns all article IDs available for sale
-  //  function getArticlesForSale() public constant returns (uint[]) {
-  //    // we check whether there is at least one article
-  //    if(articleCounter == 0) {
-  //      return new uint[](0);
-  //    }
-  //
-  //    // prepare intermediary array
-  //    uint[] memory articleIds = new uint[](articleCounter);
-  //
-  //    uint numberOfArticlesForSale = 0;
-  //    // iterate over articles
-  //    for (uint i = 1; i <= articleCounter; i++) {
-  //      // keep only the ID of articles not sold yet
-  //      if (articles[i].buyer == 0x0) {
-  //        articleIds[numberOfArticlesForSale] = articles[i].id;
-  //        numberOfArticlesForSale++;
-  //      }
-  //    }
-  //
-  //    // copy the articleIds array into the smaller forSale array
-  //    uint[] memory forSale = new uint[](numberOfArticlesForSale);
-  //    for (uint j = 0; j < numberOfArticlesForSale; j++) {
-  //      forSale[j] = articleIds[j];
-  //    }
-  //    return (forSale);
-  //  }
-
   // buy an article
   function buyArticle(uint _id, uint number) payable public {
     // we check whether there is at least one article
@@ -148,6 +120,14 @@ contract MarketPlace {
     users[msg.sender].article_buyed.push(article.id);
     // trigger the event
     buyArticleEvent(_id, article.seller, msg.sender, article.photo, article.name, article.price, number, now);
+  }
+
+  function modifyArticle(uint _id, string _name, string _description, uint _price, uint _number, uint _categories) public {
+    articles[_id].name = _name;
+    articles[_id].price = _price;
+    articles[_id].number = _number;
+    articles[_id].categories = _categories;
+    articles[_id].description = _description;
   }
 
   //kill the smart contract

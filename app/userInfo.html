@@ -183,12 +183,12 @@
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="list-button" style="display: none">
+                    <div class="article-list-button" style="display: none">
                         <div class="float-xl-right float-none mt-xl-0 mt-4">
-                            <a href="#" class="btn btn-primary">&nbsp;&nbsp;&nbsp;edit&nbsp;&nbsp;</a>
+                            <a href="#" class="btn btn-primary article-edit">&nbsp;&nbsp;&nbsp;edit&nbsp;&nbsp;</a>
                             <br/>
                             <br/>
-                            <a href="#" class="btn btn-danger">remove</a>
+                            <button style="width: 80px; height: 40px; background: #F6CED8" class="article-delete"><font color="red"><b>remove</b></font></button>
                         </div>
                     </div>
                 </div>
@@ -223,12 +223,12 @@
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="list-button" style="display: none">
+                    <div class="object-list-button" style="display: none">
                         <div class="float-xl-right float-none mt-xl-0 mt-4">
-                            <a href="#" class="btn btn-primary">&nbsp;&nbsp;&nbsp;edit&nbsp;&nbsp;</a>
+                            <a href="#" class="btn btn-primary object-edit">&nbsp;&nbsp;&nbsp;edit&nbsp;&nbsp;</a>
                             <br/>
                             <br/>
-                            <a href="#" class="btn btn-danger">remove</a>
+                            <a href="#" class="btn btn-danger object-delete">remove</a>
                         </div>
                     </div>
                     <div class=renting" style="display: none">
@@ -247,5 +247,60 @@
     </div>
 </div>
 
+<!-- modify article model -->
+<div class="modal fade" id="modifyArticle" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="article_id" class="modal-title" style="color: red">Sell your article</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form>
+                            <div class="form-group">
+                                <label for="article_name">Article name</label>
+                                <input type="text" class="form-control" id="article_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="article_price">Price in ETH</label>
+                                <input type="number" class="form-control" id="article_price"  pattern="[0-9]+([\.,][0-9]+)?" step="0.01">
+                            </div>
+                            <div class="form-group">
+                                <label for="article_Number">Number in ETH</label>
+                                <input type="number" class="form-control" id="article_Number" pattern="[0-9]+([\.,][0-9]+)?" step="1">
+                            </div>
+                            <div class="form-group">
+                                <select id="article_Type">
+                                    <option value ="0">Clothing</option>
+                                    <option value ="1">Food</option>
+                                    <option value ="2">Electronic</option>
+                                    <option value ="3">Book</option>
+                                    <option value ="4">Jewellery</option>
+                                    <option value ="5">Crafts</option>
+                                    <option value ="6">Others</option>
+                                </select>
+                            </div>
+                            <br/><br/><br/>
+                            <div class="form-group">
+                                <label for="article_description">Description</label>
+                                <textarea type="text" class="form-control vresize" id="article_description" maxlength="255"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-success" data-dismiss="modal" onclick="App.modifyArticle(); return false;">Submit</button>
+                <button type="button" class="btn" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 </body>
 </html>
