@@ -123,6 +123,7 @@ contract MarketPlace {
   }
 
   function modifyArticle(uint _id, string _name, string _description, uint _price, uint _number, uint _categories) public {
+    require(articles[_id].seller == msg.sender);
     articles[_id].name = _name;
     articles[_id].price = _price;
     articles[_id].number = _number;
@@ -131,6 +132,7 @@ contract MarketPlace {
   }
 
   function deleteArticle(uint _id, uint _number){
+    require(articles[_id].seller == msg.sender);
     articles[_id].number = _number;
   }
 

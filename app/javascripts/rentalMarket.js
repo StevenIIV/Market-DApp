@@ -18,8 +18,6 @@ window.App = {
   account: 0x0,
   start: function() {
     var self = this;
-
-    // Bootstrap the ShareApp abstraction for Use.
     ShareApp.setProvider(web3.currentProvider);
     self.displayAccountInfo();
     self.postObjectsTable();
@@ -47,19 +45,11 @@ window.App = {
         meta = instance;
         return meta.createObj(imageHash,objName,objPriceDaily,objDeposit,objDetail,objType,{from:App.account,gas:500000});
       }).then(function(tx){
-        console.log(meta.address);
-        console.log(tx);
-        return meta.getNumObjects.call();
-      }).then(function(num){
-        let newId = num.toNumber() - 1;
-        console.log(num.toNumber());
-        self.addRowObjectTable(newId);
+        self.postObjectsTable();
       }).catch(function(e){
         console.log(e);
       });
-    }).then(function () {
-      setTimeout(function(){window.location.reload();},1800);
-})
+    })
   },
 
   //按名字查询之后显示出所有记录
@@ -94,9 +84,10 @@ window.App = {
 
   //向表格中追加记录
   addRowObjectTable: function(_id,list){
-
+    var shareInstance;
     ShareApp.deployed().then(function (instance) {
-      instance.getObj(_id).then(function (object) {
+      shareInstance = instance;
+      shareInstance.getObj(_id).then(function (object) {
         var objectRow = $('#list'+list);
         var objectTemplate = $('#object-template');
 
@@ -131,16 +122,20 @@ window.App = {
       ids = result;
       var list = 1;
       for(let element of ids){
+        var isRented;
         let id = element.toNumber();
         mainInstance.objectIsRented.call(id).then(function (res) {
-          if (res == true && select_rented == 1){
-          }else {
-            App.addRowObjectTable(id,list);
-            list ++;
-            if (list == 4){
-              list = 1;
+          isRented = res;
+          mainInstance.getObjectIsDelete.call(id).then(function (isDelete) {
+            if ((res == true && select_rented == 1)||(isDelete == true)){
+            }else {
+              App.addRowObjectTable(id,list);
+              list ++;
+              if (list == 4){
+                list = 1;
+              }
             }
-          }
+          });
         });
       }
     });
@@ -170,19 +165,6 @@ window.App = {
         });
       }
     })
-  },
-
-  remove: function(){
-    var self = this;
-
-    var meta;
-    ShareApp.deployed().then(function(instance){
-      meta = instance;
-      return meta.remove({from:App.account});
-    }).then(function(){
-    }).catch(function(e){
-      console.log(e);
-    });
   },
 
   displayAccountInfo: function() {

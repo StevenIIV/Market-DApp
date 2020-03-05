@@ -171,6 +171,7 @@ contract ShareApp{
 	}
 
 	function modifyObject(uint objID,string name,uint priceDaily,uint deposit,string detail, uint categories) public{
+		require(objects[objID].creator == msg.sender);
 		objects[objID].name = name;
 		objects[objID].priceDaily = priceDaily;
 		objects[objID].deposit = deposit;
@@ -179,6 +180,7 @@ contract ShareApp{
 	}
 
 	function deleteObject(uint objID) public{
+		require(objects[objID].creator == msg.sender);
 		objects[objID].isDelete = true;
 	}
 
@@ -208,6 +210,10 @@ contract ShareApp{
 
 	function getObjectIds() constant returns(uint[]){
 		return ids;
+	}
+
+	function getObjectIsDelete(uint objID) objectInRange(objID) returns(bool){
+		return objects[objID].isDelete;
 	}
 
 	function getObjectName(uint objID) objectInRange(objID) returns(string objName){
