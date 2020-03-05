@@ -185,7 +185,7 @@
                 <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="article-list-button" style="display: none">
                         <div class="float-xl-right float-none mt-xl-0 mt-4">
-                            <a href="#" class="btn btn-primary article-edit">&nbsp;&nbsp;&nbsp;edit&nbsp;&nbsp;</a>
+                            <a href="#" class="btn btn-primary article-edit" data-toggle="modal" data-target="#modifyArticle">&nbsp;&nbsp;&nbsp;edit&nbsp;&nbsp;</a>
                             <br/>
                             <br/>
                             <button style="width: 80px; height: 40px; background: #F6CED8" class="article-delete"><font color="red"><b>remove</b></font></button>
@@ -225,10 +225,10 @@
                 <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="object-list-button" style="display: none">
                         <div class="float-xl-right float-none mt-xl-0 mt-4">
-                            <a href="#" class="btn btn-primary object-edit">&nbsp;&nbsp;&nbsp;edit&nbsp;&nbsp;</a>
+                            <a href="#" class="btn btn-primary object-edit" data-toggle="modal" data-target="#modifyObject">&nbsp;&nbsp;&nbsp;edit&nbsp;&nbsp;</a>
                             <br/>
                             <br/>
-                            <a href="#" class="btn btn-danger object-delete">remove</a>
+                            <button style="width: 80px; height: 40px; background: #F6CED8" class="object-delete"><font color="red"><b>remove</b></font></button>
                         </div>
                     </div>
                     <div class=renting" style="display: none">
@@ -252,7 +252,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 id="article_id" class="modal-title" style="color: red">Sell your article</h4>
+                <h4 id="article_id" class="modal-title" style="color: red">Modify your article</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
@@ -294,6 +294,57 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary btn-success" data-dismiss="modal" onclick="App.modifyArticle(); return false;">Submit</button>
+                <button type="button" class="btn" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- modify object model -->
+<div class="modal fade" id="modifyObject" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="object_id" class="modal-title" style="color: red">modify your object</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form>
+                            <div class="form-group">
+                                <label for="objectName">Object Name</label>
+                                <input type="text" class="form-control" id="objectName">
+                            </div>
+                            <div class="form-group">
+                                <select id="objectType">
+                                    <option value ="0">Clothing</option>
+                                    <option value ="1">Electronic</option>
+                                    <option value ="2">Book</option>
+                                    <option value ="3">Crafts</option>
+                                    <option value ="4">Others</option>
+                                </select>
+                            </div>
+                            <br/><br/><br/>
+                            <div class="form-group">
+                                <label for="objectPriceDaily">PriceDaily</label>
+                                <input type="number" class="form-control" id="objectPriceDaily">
+                            </div>
+                            <div class="form-group">
+                                <label for="objectDeposit">Deposit</label>
+                                <input type="number" class="form-control" id="objectDeposit">
+                            </div>
+                            <div class="form-group">
+                                <label for="objectDetail">Description</label>
+                                <textarea type="text" class="form-control vresize" id="objectDetail" maxlength="255"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="createObj" class="btn btn-primary btn-success" data-dismiss="modal" onclick="App.modifyObject()">Submit</button>
                 <button type="button" class="btn" data-dismiss="modal">Close</button>
             </div>
         </div>

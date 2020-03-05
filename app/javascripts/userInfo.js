@@ -46,7 +46,9 @@ window.App = {
         }).then(function (ids) {
             for (let element of ids){
                 shareInstance.getObj(element).then(function (object) {
-                    App.displayRentInfo(0,element,object[1],object[2],object[3],object[4],object[9],object[7],1582799231,object[5]);
+                    if (object[10] == false){
+                        App.displayRentInfo(0,element,object[1],object[2],object[3],object[4],object[9],object[7],1582799231,object[5]);
+                    }
                 })
             }
         })
@@ -120,6 +122,8 @@ window.App = {
         objectTemplate.find('.createAt').text((createAt==0)?"null":(new Date(createAt*1000)).toLocaleDateString());
 
         if (target == 0 && rented == false){
+            objectTemplate.find('.btn,.btn-primary,.object-edit').attr("onclick"," App.fillInEditData_object("+objectId+")");
+            objectTemplate.find('.object-delete').attr("onclick","App.deleteObject("+objectId+")");
             objectTemplate.find('.object-list-button').attr("style","display:inline");
         } else if (target == 0 && rented == true){
             objectTemplate.find('.renting').attr("style","display:inline");
@@ -152,9 +156,7 @@ window.App = {
         articleTemplate.find('.createAt').text((createAt==0)?"null":(new Date(createAt*1000)).toLocaleDateString());
 
         if (target == 0 && number > 0){
-            articleTemplate.find('.btn,.btn-primary,.article-edit').attr("data-toggle","modal");
-            articleTemplate.find('.btn,.btn-primary,.article-edit').attr("data-target","#modifyArticle");
-            articleTemplate.find('.btn,.btn-primary,.article-edit').attr("onclick","App.fillInEditData("+articleId+")");
+            articleTemplate.find('.btn,.btn-primary,.article-edit').attr("onclick","App.fillInEditData_article("+articleId+")");
             articleTemplate.find('.article-delete').attr("onclick","App.deleteArticle("+articleId+")");
             articleTemplate.find('.article-list-button').attr("style","display:inline");
 
@@ -217,7 +219,7 @@ window.App = {
         });
     },
 
-    fillInEditData: function(articleId){
+    fillInEditData_article: function(articleId){
         Market.deployed().then(function (instance) {
             return instance.articles(articleId).then(function (article) {
                 document.getElementById("article_id").value = articleId;
@@ -227,6 +229,19 @@ window.App = {
                 document.getElementById("article_Type").value = article[7];
                 document.getElementById("article_description").value = article[4];
             })
+        })
+    },
+
+    fillInEditData_object: function(objectId){
+        ShareApp.deployed().then(function (instance) {
+            return instance.getObj(objectId);
+        }).then(function (object) {
+            document.getElementById("object_id").value = objectId;
+            document.getElementById("objectName").value = object[2];
+            document.getElementById("objectPriceDaily").value =  web3.fromWei(object[3],'ether');
+            document.getElementById("objectDeposit").value =  web3.fromWei(object[4],'ether');
+            document.getElementById("objectDetail").value = object[8];
+            document.getElementById("objectType").value = object[9];
         })
     },
 
@@ -263,7 +278,7 @@ window.App = {
                 gas: 500000
             });
         }).then(function (res) {
-            window.location.reload();
+            App.chooseSection(1);
         }).catch(function (err) {
             console.log(err);
         })
@@ -276,7 +291,42 @@ window.App = {
                 gas: 500000
             });
         }).then(function (res) {
-            window.location.reload();
+            App.chooseSection(1);
+        }).catch(function (err) {
+            console.log(err);
+        })
+    },
+
+    modifyObject: function(){
+        var object_id =  document.getElementById("object_id").value;
+        var objectName = document.getElementById("objectName").value;
+        var objectPriceDaily = document.getElementById("objectPriceDaily").value;
+        var priceDaily = web3.toWei(parseFloat(objectPriceDaily || 0), "ether");
+        var objectDeposit = document.getElementById("objectDeposit").value;
+        var deposit = web3.toWei(parseFloat(objectDeposit || 0), "ether");
+        var objectDetail = document.getElementById("objectDetail").value;
+        var objectType = document.getElementById("objectType").value;
+
+        ShareApp.deployed().then(function (instance) {
+            instance.modifyObject(object_id,objectName,priceDaily,deposit,objectDetail,objectType,{
+                from: App.account,
+                gas: 500000
+            }).then(function (res) {
+                App.chooseSection(3);
+            }).catch(function (err) {
+                console.log(err);
+            })
+        })
+    },
+
+    deleteObject: function(objectId){
+        ShareApp.deployed().then(function (instance) {
+            return instance.deleteObject(objectId,{
+                from: App.account,
+                gas: 500000
+            });
+        }).then(function (res) {
+            App.chooseSection(3);
         }).catch(function (err) {
             console.log(err);
         })
