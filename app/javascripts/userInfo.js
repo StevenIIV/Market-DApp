@@ -15,7 +15,9 @@ window.App = {
         var self = this;
         ShareApp.setProvider(web3.currentProvider);
         Market.setProvider(web3.currentProvider);
+        UserApp.setProvider(web3.currentProvider);
         self.displayAccountInfo();
+        self.displayUserInfo();
         self.getUserSoldRecordByETH();
     },
 
@@ -339,14 +341,28 @@ window.App = {
         })
     },
 
+    displayUserInfo: function(){
+        UserApp.deployed().then(function (instance) {
+            return instance.getUser({
+                from: App.account
+            });
+        }).then(function (user) {
+            $("#user-name").text(user[1]);
+            $("#user-sex").text(user[5]);
+            $("#user-age").text(user[4]);
+            $("#user-email").text(user[3]);
+            document.getElementById("user-photo").src = ipfsURL + user[2];
+        })
+    },
+
     displayAccountInfo: function() {
         web3.eth.getCoinbase(function(err, account) {
             if (err === null) {
                 App.account = account;
-                $("#account").text(account);
+                $("#account-address").text(account);
                 web3.eth.getBalance(account, function(err, balance) {
                     if (err === null) {
-                        $("#accountBalance").text(web3.fromWei(balance, "ether") + " ETH");
+                        $("#account-balance").text(web3.fromWei(balance, "ether") + " ETH");
                     }
                 });
             }

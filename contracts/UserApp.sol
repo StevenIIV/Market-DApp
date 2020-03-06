@@ -5,14 +5,12 @@ contract UserApp {
         uint index;
         string photo;
         string userName;
-        string passWord;
         string email;
         uint age;
         string sex;
-        string description;
+        uint createAt;
     }
 
-    // make these private because they're related
     mapping(address => UserStruct) private userStructs;
     address[] private userIndex;
 
@@ -25,48 +23,38 @@ contract UserApp {
         }
     }
 
-    function addNewUser(string userName, string photo, string passWord, string email, uint age, address userAddress, string sex, string description) public returns (bool success) {
+    function addNewUser(string userName, string photo, string email, uint age,string sex) public returns (bool success) {
+        address userAddress = msg.sender;
         userStructs[userAddress].photo = photo;
         userStructs[userAddress].userName = userName;
-        userStructs[userAddress].passWord = passWord;
         userStructs[userAddress].email = email;
         userStructs[userAddress].age = age;
         userStructs[userAddress].sex = sex;
-        userStructs[userAddress].description = description;
+        userStructs[userAddress].createAt = now;
         userStructs[userAddress].index = userIndex.push(userAddress)-1;
         return true;
     }
 
-    function getUser(address _userAddress) public constant returns(string userName,string photo, string passWord, string email, uint age, string sex, string description) {
+    function getUser() public constant returns(uint, string, string, string, uint, string, uint) {
+        address _userAddress = msg.sender;
+        require(userStructs[_userAddress].createAt > 0);
         return(
+        userStructs[_userAddress].index,
         userStructs[_userAddress].userName,
         userStructs[_userAddress].photo,
-        userStructs[_userAddress].passWord,
         userStructs[_userAddress].email,
         userStructs[_userAddress].age,
         userStructs[_userAddress].sex,
-        userStructs[_userAddress].description
+        userStructs[_userAddress].createAt
         );
     }
 
-    function checkUser(address userAddress, string passWord) public returns (bool success) {
-        if (userStructs[userAddress].index > 0) {
-            if (keccak256(userStructs[userAddress].passWord) == keccak256(passWord)) {
-                return true;
-            } else{
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
-
-    function modifyUser(string userName, string passWord, string email, uint age, address userAddress, string sex, string description) public returns (bool success) {
+    function modifyUser(string userName, string email, uint age, string sex) public returns (bool success) {
+        address userAddress = msg.sender;
+        require(userStructs[userAddress].createAt > 0);
         userStructs[userAddress].userName = userName;
-        userStructs[userAddress].passWord = passWord;
         userStructs[userAddress].email = email;
         userStructs[userAddress].age = age;
         userStructs[userAddress].sex = sex;
-        userStructs[userAddress].description = description;
     }
 }

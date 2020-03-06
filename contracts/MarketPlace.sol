@@ -8,8 +8,6 @@ contract MarketPlace {
     uint[] article_buyedTime;
   }
 
-
-  // Custom types
   struct Article {
     uint id;//0
     address seller;//1
@@ -29,7 +27,7 @@ contract MarketPlace {
   struct TypeKey {
     uint[] keys;
   }
-  // State variables
+
   mapping(address => user) private users;
   mapping(uint => Article) public articles;
   mapping(string => NameKey) private nameToKeys;
@@ -74,11 +72,9 @@ contract MarketPlace {
 
   //sell an article
   function sellArticle(string _photo, string _name, string _description, uint _price, uint _number, uint _categories) public {
-    // a new article
     articleCounter++;
     nameToKeys[_name].keys.push(articleCounter);
     typeToKeys[_categories].keys.push(articleCounter);
-    //store this article
     articles[articleCounter] = Article(
       articleCounter,
       msg.sender,
@@ -92,39 +88,27 @@ contract MarketPlace {
       now
     );
     users[msg.sender].article_sold.push(articleCounter);
-    // trigger the event
     sellArticleEvent(articleCounter, msg.sender, _photo, _name, _price, _number, _categories);
   }
 
-  // fetch the number of articles in the contract
   function getNumberOfArticles() public constant returns (uint) {
     return articleCounter;
   }
 
   // buy an article
   function buyArticle(uint _id, uint number) payable public {
-    // we check whether there is at least one article
     require(articleCounter > 0);
-
-    // we check whether the article exists
     require(_id > 0 && _id <= articleCounter);
 
-    // we retrieve the article
     Article storage article = articles[_id];
 
-    // we don't allow the seller to buy his/her own article
     require(article.seller != msg.sender);
-
     require(article.number >= number);
-
-    // the buyer can buy the article
     article.seller.transfer(msg.value);
-
     article.number-=number;
-
     users[msg.sender].article_buyed.push(article.id);
     users[msg.sender].article_buyedTime.push(now);
-    // trigger the event
+
     buyArticleEvent(_id, article.seller, msg.sender, article.photo, article.name, article.price, number, now);
   }
 
@@ -142,12 +126,10 @@ contract MarketPlace {
     articles[_id].isDelete = true;
   }
 
-  //kill the smart contract
   function kill() onlyOwner {
     selfdestruct(owner);
   }
 
-  // constructor
   function Owned(){
     owner = msg.sender;
   }

@@ -1,83 +1,29 @@
 import { default as contract } from 'truffle-contract'
 import Comment_artifacts from '../../build/contracts/Comment.json'
 var Comment = contract(Comment_artifacts);
-
+import User_artifacts from '../../build/contracts/UserApp.json'
+var UserApp = contract(User_artifacts);
+const ipfsAPI = require('ipfs-api');
+const ipfs = ipfsAPI({
+    host: 'localhost',
+    port: '5001',
+    protocol: 'http'
+});
+var reader;
 window.App = {
     account: 0x0,
     start: function() {
         var self = this;
-        this.testButton();
         Comment.setProvider(web3.currentProvider);
+        UserApp.setProvider(web3.currentProvider);
         web3.eth.getCoinbase(function(err, account) {
             App.account = account;
         });
-    },
-    addComment: function () {
-        var type = document.getElementById("select").value;
-        var objectId = document.getElementById("objectId").value;
-        var rating = document.getElementById("rating").value;
-        var comment = document.getElementById("comment").value;
-        Comment.deployed().then(function (instance) {
-            if (type == 1){
-                return instance.addObjectComment(objectId, rating, comment,{from:App.account,gas:500000});
-            } else if (type == 0){
-                return instance.addArticleComment(objectId, rating, comment,{from:App.account,gas:500000});
-            }
-        }).then(function (res) {
-            console.log(res);
-        }).catch(function (err) {
-            console.log(err);
+        $("#user-image").change(function(event) {
+            const file = event.target.files[0]
+            reader = new window.FileReader()
+            reader.readAsArrayBuffer(file)
         });
-    },
-    getLength: function() {
-        var type = document.getElementById("select").value;
-        Comment.deployed().then(function (instance) {
-            if (type == 1){
-                return instance.getObjectCommentsLength.call(1)
-            } else if (type == 0){
-                return instance.getArticleCommentsLength.call(1)
-            }
-        }).then(function (res) {
-            document.getElementById("show").innerText = res;
-            return res;
-        })
-    },
-    getComment: function () {
-        document.getElementById("articlesRow").innerHTML = "";
-        var type = document.getElementById("select").value;
-        var id = document.getElementById("queryArticleId").value;
-        Comment.deployed().then(function (instance) {
-            if (type == 1){
-                return instance.getObjectCommentsLength.call(id);
-            } else if (type == 0){
-                return instance.getArticleCommentsLength.call(id);
-            }
-        }).then(function (size) {
-            Comment.deployed().then(function (instance) {
-                for (var i=0;i<size;i++){
-                    if (type == 1){
-                        instance.getObjectComment(id,i).then(function (object) {
-                            App.displayComment(object[0],object[1],object[2],object[3]);
-                        })
-                    } else if(type == 0){
-                        instance.getArticleComment(id,i).then(function (article) {
-                            App.displayComment(article[0],article[1],article[2],article[3]);
-                        })
-                    }
-                }
-            });
-        })
-
-    },
-
-    displayComment: function (time, sender, rating, comment) {
-        var articlesRow = $('#articlesRow');
-        var commentTemplate = $('#commentTemplate');
-        commentTemplate.find('.createTime').text(time);
-        commentTemplate.find('.creator').text(sender);
-        commentTemplate.find('.rating').text(rating);
-        commentTemplate.find('.comment').text(comment);
-        articlesRow.append(commentTemplate.html());
     },
 
     setCookie: function () {
@@ -96,13 +42,21 @@ window.App = {
         console.log(totalPrice);
     },
 
-    testButton: function () {
-        var s = new Map();
-        s.set('1',1);
-        s.set('2',2);
-        s.forEach(function (value, key) {
-            console.log(key+" "+value);
-            s.delete(key);
+    addUser: function () {
+        saveImageOnIpfs(reader).then(function (hash) {
+            var _product_photo = hash;
+            var name = document.getElementById("name").value;
+            var sex = document.getElementById("sex").value;
+            var email = document.getElementById("email").value;
+            var age = document.getElementById("age").value;
+            UserApp.deployed().then(function (instace) {
+                return instace.addNewUser(name,_product_photo,email,age,sex,{
+                    from: App.account,
+                    gas: 500000
+                })
+            }).catch(function (err) {
+                console.log(err);
+            })
         })
     }
 
@@ -114,6 +68,19 @@ function _objToStrMap(obj){
         strMap.set(k,obj[k]);
     }
     return strMap;
+}
+
+function saveImageOnIpfs(file) {
+    return new Promise(function(resolve, reject) {
+        const buffer = Buffer.from(file.result);
+        ipfs.add(buffer)
+            .then((response) => {
+                resolve(response[0].hash);
+            }).catch((err) => {
+            console.error(err)
+            reject(err);
+        })
+    })
 }
 
 window.addEventListener('load', function() {

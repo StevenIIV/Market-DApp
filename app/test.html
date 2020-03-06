@@ -4,57 +4,62 @@
     <meta charset="UTF-8">
     <title>test</title>
     <script src="./test.js"></script>
-    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="http://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-    <script src="http://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
-    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="assets/css/vendor.css">
+    <link rel="stylesheet" href="assets/css/nice-select.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.css">
+    <link rel="stylesheet" href="assets/css/line-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/market-style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/vendor.js"></script>
+    <script src="assets/js/market.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/jquery.sticky.js"></script>
+    <script src="assets/js/jquery.easing.1.3.min.js"></script>
+    <script src="assets/js/bxslider.min.js"></script>
+    <script src="assets/js/script.slider.js"></script>
     <script src="assets/js/js.cookie-2.2.1.min.js"></script>
 </head>
 <body>
-<div>
-    <form>
-        <select id="select">
-            <option value ="1">rent</option>
-            <option value ="0">article</option>
-        </select>
-        <input type="text" id="objectId">
-        <input type="text" id="rating">
-        <input type="text" id="comment">
-        <input type="button" id="submit" onclick="App.addComment()">
-    </form>
-</div>
-<input type="button" onclick="App.getLength()">
-<div>
-    <form>
-        <input type="text" id="queryArticleId">
-        <input type="button" onclick="App.getComment()">
-    </form>
-</div>
-<div id="show">
-
-</div>
-<div id="articlesRow" class="row">
-    <!-- ARTICLES LOAD HERE -->
-</div>
-
-<div id="commentTemplate" style="display: none;">
-    <div class="row-lg-12">
-        <div class="panel panel-default panel-article">
-            <div class="panel-heading">
-                <h3 class="panel-title"></h3>
-            </div>
-            <div class="panel-body">
-                <strong>createTime</strong>: <span class="createTime"></span><br/>
-                <strong>creator</strong>: <span class="creator"></span><br/>
-                <strong>rating</strong>: <span class="rating"></span><br/>
-                <strong>comment</strong>: <span class="comment"></span><br/>
-            </div>
-        </div>
-    </div>
-</div>
 
 <button onclick="App.displayCookies()">logCookies</button>
 <button onclick="App.setCookie()">resetCookies</button>
 
+<div>
+    <form>
+        <div class="form-group">
+            <label for="user-image">Photo</label>
+            <input type="file" name="image" class="form-control" id="user-image" required="required">
+        </div>
+        <div class="form-group">
+            <label for="name">name</label>
+            <input type="text" class="form-control" id="name">
+        </div>
+        <div class="form-group">
+            <label for="sex">sex</label>
+            <input type="text" class="form-control" id="sex">
+        </div>
+        <div class="form-group">
+            <label for="email">email</label>
+            <input type="text" class="form-control" id="email">
+        </div>
+        <div class="form-group">
+            <label for="age">age</label>
+            <input type="number" class="form-control" id="age">
+        </div>
+        <button type="button" onclick="App.addUser()">submit</button>
+    </form>
+</div>
 </body>
 </html>

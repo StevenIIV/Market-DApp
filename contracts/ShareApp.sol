@@ -64,9 +64,6 @@ contract ShareApp{
 		_;
 	}
 
-	/*
-	* Functions
-	*/
 	function ShareApp(){
 		owner = msg.sender;
 	}
@@ -129,11 +126,6 @@ contract ShareApp{
 		createAt = objects[objID].createAt;
 	}
 
-	// function getObject(uint objID) constant objectInRange(objID)
-	// 	returns(Object object)
-	// {
-	// 	object = objects[objID];
-	// }
 
 	function rentObj(uint objID) payable objectInRange(objID) returns(bool){
 		if(objectIsRented(objID) || msg.value < objects[objID].deposit || msg.sender == objects[objID].creator){
@@ -255,10 +247,5 @@ contract ShareApp{
 
 	function getObjectCategories(uint objID) constant objectInRange(objID) returns(uint){
 		return objects[objID].categories;
-	}
-
-	function remove() onlyOwner {
-		selfdestruct(owner);
-		// suicide(owner);
 	}
 }
