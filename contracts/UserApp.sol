@@ -57,4 +57,9 @@ contract UserApp {
         userStructs[userAddress].age = age;
         userStructs[userAddress].sex = sex;
     }
+
+    function getUserName() constant returns(string){
+        require(userStructs[msg.sender].createAt > 0);
+        return userStructs[msg.sender].userName;
+    }
 }
