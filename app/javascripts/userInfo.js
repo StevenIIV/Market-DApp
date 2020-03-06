@@ -47,7 +47,7 @@ window.App = {
             for (let element of ids){
                 shareInstance.getObj(element).then(function (object) {
                     if (object[10] == false){
-                        App.displayRentInfo(0,element,object[1],object[2],object[3],object[4],object[9],object[7],1582799231,object[5]);
+                        App.displayRentInfo(0,element,object[1],object[2],object[3],object[4],object[9],object[7],object[11],object[5]);
                     }
                 })
             }
@@ -63,7 +63,7 @@ window.App = {
             for (let element of ids){
                 marketInstance.articles(element).then(function (article) {
                     if (article[8] == false){
-                        App.displayTransactionInfo(0, article[0], article[2],article[3],article[5],article[7],1582799231,article[6]);
+                        App.displayTransactionInfo(0, article[0], article[2],article[3],article[5],article[7],article[9],article[6]);
                     }
                 })
             }
@@ -97,13 +97,19 @@ window.App = {
 
     getUserBoughtRecordByETH: function(){
         var marketInstance;
+        var idList;
+        var timeList;
         Market.deployed().then(function (instance) {
             marketInstance = instance;
             return marketInstance.getUserBought.call(App.account);
         }).then(function (ids) {
-            for(let element of ids){
-                marketInstance.articles(element).then(function (article) {
-                    App.displayTransactionInfo(1, article[0], article[2],article[3],article[5],article[7],1582799231,1);
+            idList = ids;
+            return marketInstance.getUserBoughtTime.call(App.account);
+        }).then(async function (times) {
+            timeList = times;
+            for(var i=0;i<idList.length;i++){
+                await marketInstance.articles(idList[i]).then(function (article) {
+                    App.displayTransactionInfo(1, article[0], article[2],article[3],article[5],article[7],timeList[i],1);
                 })
             }
         })

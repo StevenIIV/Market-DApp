@@ -24,6 +24,7 @@ contract ShareApp{
 		string detail;
 		uint categories;
 		bool isDelete;
+		uint createAt;
 	}
 
 	struct NameKey{ // storage the name's keys
@@ -90,6 +91,7 @@ contract ShareApp{
 		newObject.detail = detail;
 		newObject.categories = categories;
 		newObject.isDelete = false;
+		newObject.createAt = now;
 		users[msg.sender].object_rent.push(numObjects);
 		// objects[numObjects] = newObject;
 		NewObject(numObjects, msg.sender, photo, name, priceDaily, deposit, categories, false);
@@ -109,7 +111,8 @@ contract ShareApp{
 		bool rented,//7
 		string detail,//8
 		uint categories,//9
-		bool isDelete
+		bool isDelete,//10
+		uint createAt//11
 	)
 	{
 		creator = objects[objID].creator;
@@ -123,6 +126,7 @@ contract ShareApp{
 		detail = objects[objID].detail;
 		categories = objects[objID].categories;
 		isDelete = objects[objID].isDelete;
+		createAt = objects[objID].createAt;
 	}
 
 	// function getObject(uint objID) constant objectInRange(objID)

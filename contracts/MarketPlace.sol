@@ -5,6 +5,7 @@ contract MarketPlace {
   struct user{
     uint[] article_sold;
     uint[] article_buyed;
+    uint[] article_buyedTime;
   }
 
 
@@ -19,6 +20,7 @@ contract MarketPlace {
     uint number;//6
     uint categories;//7
     bool isDelete;//8
+    uint createAt;//9
   }
 
   struct NameKey {
@@ -86,7 +88,8 @@ contract MarketPlace {
       _price,
       _number,
       _categories,
-      false
+      false,
+      now
     );
     users[msg.sender].article_sold.push(articleCounter);
     // trigger the event
@@ -120,6 +123,7 @@ contract MarketPlace {
     article.number-=number;
 
     users[msg.sender].article_buyed.push(article.id);
+    users[msg.sender].article_buyedTime.push(now);
     // trigger the event
     buyArticleEvent(_id, article.seller, msg.sender, article.photo, article.name, article.price, number, now);
   }
@@ -162,5 +166,9 @@ contract MarketPlace {
 
   function getUserBought(address user) constant returns (uint[]){
     return users[user].article_buyed;
+  }
+
+  function getUserBoughtTime(address user) constant returns (uint[]){
+    return users[user].article_buyedTime;
   }
 }

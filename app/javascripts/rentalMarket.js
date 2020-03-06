@@ -43,8 +43,8 @@ window.App = {
       ShareApp.deployed().then(function(instance){
         meta = instance;
         return meta.createObj(imageHash,objName,objPriceDaily,objDeposit,objDetail,objType,{from:App.account,gas:500000});
-      }).then(function(tx){
-        self.postObjectsTable();
+      }).then(function(){
+        window.location.reload();
       }).catch(function(e){
         console.log(e);
       });
