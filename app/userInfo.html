@@ -86,7 +86,8 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="user-avatar text-center d-block">
-                                <img src="assets/img/extra/avatar-1.jpg" alt="User Avatar" class="rounded-circle user-avatar-xxl" id="user-photo">
+                                <img src="assets/img/avatar-1.png" alt="User Avatar" class="rounded-circle user-avatar-xxl" id="register" style="display: none" data-toggle="modal" data-target="#regiser-form">
+                                <img src="" alt="User Avatar" class="rounded-circle user-avatar-xxl" id="user-photo" style="display: none">
                             </div>
                             <div class="text-center">
                                 <h2 class="font-24 mb-0"><span id="user-name"></span></h2>
@@ -323,6 +324,55 @@
             </div>
             <div class="modal-footer">
                 <button type="button" id="createObj" class="btn btn-primary btn-success" data-dismiss="modal" onclick="App.modifyObject()">Submit</button>
+                <button type="button" class="btn" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- user info model -->
+<div class="modal fade" id="regiser-form" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" style="color: red">register user info</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form>
+                            <div class="form-group">
+                                <label for="user_image">User Photo</label>
+                                <input type="file" class="form-control" id="user_image" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label for="user_name">User name</label>
+                                <input type="text" class="form-control" id="user_name">
+                            </div>
+                            <div class="form-group">
+                                <select id="user_sex">
+                                    <option value ="Male">Male</option>
+                                    <option value ="Female">Female</option>
+                                </select>
+                            </div>
+                            <br/><br/><br/>
+                            <div class="form-group">
+                                <label for="user_age">User age</label>
+                                <input type="number" class="form-control" id="user_age">
+                            </div>
+                            <div class="form-group">
+                                <label for="user_email">User email</label>
+                                <input type="text" class="form-control" id="user_email">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-success" data-dismiss="modal" onclick="App.addNewUser(); return false;">Submit</button>
                 <button type="button" class="btn" data-dismiss="modal">Close</button>
             </div>
         </div>

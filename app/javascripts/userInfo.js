@@ -5,10 +5,17 @@ import UserApp_artifacts from  '../../build/contracts/UserApp.json'
 var Market = contract(Market_artifacts);
 var ShareApp = contract(ShareApp_artifacts);
 var UserApp = contract(UserApp_artifacts);
+const ipfsAPI = require('ipfs-api');
+const ipfs = ipfsAPI({
+    host: 'localhost',
+    port: '5001',
+    protocol: 'http'
+});
 const offchainServer = "http://localhost:3000";
 const ipfsURL = "http://localhost:8080/ipfs/";
 const articleCategories = ["Clothing","Food","Electronic","Book","Jewellery","Crafts","Others"];
 const objectCategories = ["Clothing","Electronic","Book","Crafts","Others"];
+var reader;
 window.App = {
     account: 0x0,
     start: function() {
@@ -19,6 +26,11 @@ window.App = {
         self.displayAccountInfo();
         self.displayUserInfo();
         self.getUserSoldRecordByETH();
+        $("#user_image").change(function(event) {
+            const file = event.target.files[0]
+            reader = new window.FileReader()
+            reader.readAsArrayBuffer(file)
+        });
     },
 
     chooseSection: function(section_id){
@@ -341,6 +353,26 @@ window.App = {
         })
     },
 
+    addNewUser: function () {
+        saveImageOnIpfs(reader).then(function (hash) {
+            var _product_photo = hash;
+            var name = document.getElementById("user_name").value;
+            var sex = document.getElementById("user_sex").value;
+            var email = document.getElementById("user_email").value;
+            var age = document.getElementById("user_age").value;
+            UserApp.deployed().then(function (instance) {
+                return instance.addNewUser(name,_product_photo,email,age,sex,{
+                    from: App.account,
+                    gas: 500000
+                })
+            }).then(function () {
+                window.location.reload();
+            }).catch(function (err) {
+                console.log(err);
+            })
+        })
+    },
+
     displayUserInfo: function(){
         UserApp.deployed().then(function (instance) {
             return instance.getUser({
@@ -352,6 +384,9 @@ window.App = {
             $("#user-age").text(user[4]);
             $("#user-email").text(user[3]);
             document.getElementById("user-photo").src = ipfsURL + user[2];
+            document.getElementById("user-photo").style.display = "inline";
+        }).catch(function (err) {
+            document.getElementById("register").style.display = "inline";
         })
     },
 
@@ -369,6 +404,19 @@ window.App = {
         });
     }
 };
+
+function saveImageOnIpfs(file) {
+    return new Promise(function(resolve, reject) {
+        const buffer = Buffer.from(file.result);
+        ipfs.add(buffer)
+            .then((response) => {
+                resolve(response[0].hash);
+            }).catch((err) => {
+            console.error(err)
+            reject(err);
+        })
+    })
+}
 
 window.addEventListener('load', function() {
     // Checking if Web3 has been injected by the browser (Mist/MetaMask)
