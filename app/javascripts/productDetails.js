@@ -51,7 +51,7 @@ window.App = {
         document.getElementById("objRenterSince").innerHTML = (object[6]==0)?"null":(new Date(object[6]*1000)).toLocaleDateString();
         document.getElementById("objRented").innerHTML = object[7];
         document.getElementById("objDetail").innerHTML = object[8];
-
+        document.getElementById("_objDetail").innerText = object[8];
       });
     });
   },
@@ -63,7 +63,10 @@ window.App = {
       marketPlaceInstance.articles(_objID).then(function (article) {
         var objPhoto = 'http://localhost:8080/ipfs/' + article[2];
         document.getElementById("_objName").innerHTML = article[3];
-        //document.getElementById("_objPhoto").innerHTML = "<img src='"+objPhoto+"'>";
+        for (var i=1;i<=4;i++){
+          document.getElementById("side-photo-"+i).src = objPhoto;
+          document.getElementById("main-photo-"+i).src = objPhoto;
+        }
         document.getElementById("_objPrice").innerHTML = web3.fromWei(article[5],'ether') + " ETH";
         document.getElementById("_objCreator").innerHTML = article[1];
         document.getElementById("_objDetail").innerHTML = article[4];
