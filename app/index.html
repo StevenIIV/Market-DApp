@@ -2,15 +2,61 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>index</title>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' type='text/css'>
-    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="./index.js"></script>
-    <script src="http://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-    <script src="http://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
-    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/materialize.min.css">
+    <link rel="stylesheet" href="assets/css/tooplate.css">
+    <style>
+        #home {
+            background-image: url(../assets/img/index-bg.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center top;
+        }
+    </style>
 </head>
-<body>
+<body id="home">
+<div class="container tm-home-container">
+    <div class="row">
+        <div class="col-12">
+            <div class="tm-home-left" style="float: left">
+                <h1 class="tm-site-title">Decentralized Marketplace Application System</h1>
+            </div>
+            <div style="float: left; margin-top: 40px; margin-left: 100px">
+                <img src="assets/img/ethereum-logo.png" width="200px" height="200px">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+            <div class="tm-home-left mt-3 font-weight-light">
+                <p class="tm-mb-35">This is a free <a href="">HTML Form Package</a> provided by Tooplate. Five different input forms included.</p>
+                <p class="tm-mb-35">Feel free to modify and use any form design. Please share it to your friends.</p>
+                <p>Thank you!</p>
+            </div>
+        </div><div class="tlinks">Collect from </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+            <ul class="list-group tm-home-list tm-bg-black font-weight-light">
+                <li class="d-flex justify-content-between align-items-center">
+                    <a href="userInfo.html" class="tm-white-text">01. Personal Info</a>
+                </li>
+                <li class="d-flex justify-content-between align-items-center">
+                    <a href="market.html" class="tm-white-text">02. Market</a>
+                </li>
+                <li class="d-flex justify-content-between align-items-center">
+                    <a href="rentalMarket.html" class="tm-white-text">03. Rental Market</a>
+                </li>
+                <li class="d-flex justify-content-between align-items-center">
+                    <a href="cart.html" class="tm-white-text">04. Personal Cart</a>
+                </li>
 
+            </ul>
+        </div>
+    </div>
+</div>
 </body>
 </html>
