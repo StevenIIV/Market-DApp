@@ -148,9 +148,7 @@ window.App = {
       return instance.getArticleCommentsLength.call(articleId);
     }).then(async function (size) {
       for (var i=size-1;i>=0;i--){
-        var article;
-        await commentInstance.getArticleComment(articleId,i).then(function (res) {
-          article = res;
+        await commentInstance.getArticleComment(articleId,i).then(function (article) {
           User.deployed().then(function (userInstance) {
             return userInstance.getUserName(article[1]);
           }).then(function (userName) {
@@ -186,9 +184,7 @@ window.App = {
       return instance.getObjectCommentsLength.call(objectId);
     }).then(async function (size) {
       for (var i=size-1;i>=0;i--){
-        var object;
-        await commentInstance.getObjectComment(objectId,i).then(function (res) {
-          object = res;
+        await commentInstance.getObjectComment(objectId,i).then(function (object) {
           User.deployed().then(function (userInstance) {
             return userInstance.getUserName(object[1]);
           }).then(function (userName) {
