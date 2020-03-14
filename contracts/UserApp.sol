@@ -9,6 +9,8 @@ contract UserApp {
         uint age;
         string sex;
         uint createAt;
+        uint credit;
+        uint soldNumber;
     }
 
     mapping(address => UserStruct) private userStructs;
@@ -31,11 +33,13 @@ contract UserApp {
         userStructs[userAddress].age = age;
         userStructs[userAddress].sex = sex;
         userStructs[userAddress].createAt = now;
+        userStructs[userAddress].credit = 5;
+        userStructs[userAddress].soldNumber = 0;
         userStructs[userAddress].index = userIndex.push(userAddress)-1;
         return true;
     }
 
-    function getUser() public constant returns(uint, string, string, string, uint, string, uint) {
+    function getUser() public constant returns(uint, string, string, string, uint, string, uint, uint, uint) {
         address _userAddress = msg.sender;
         require(userStructs[_userAddress].createAt > 0);
         return(
@@ -45,7 +49,9 @@ contract UserApp {
         userStructs[_userAddress].email,
         userStructs[_userAddress].age,
         userStructs[_userAddress].sex,
-        userStructs[_userAddress].createAt
+        userStructs[_userAddress].createAt,
+        userStructs[_userAddress].credit,
+        userStructs[_userAddress].soldNumber
         );
     }
 
@@ -61,5 +67,14 @@ contract UserApp {
     function getUserName() constant returns(string){
         require(userStructs[msg.sender].createAt > 0);
         return userStructs[msg.sender].userName;
+    }
+
+    function modifyUserCredit(uint stars) public{
+        address userAddress = msg.sender;
+        require(userStructs[userAddress].createAt > 0);
+        uint oldCredit = userStructs[userAddress].credit * userStructs[userAddress].soldNumber;
+        uint newCredit = (oldCredit + stars) / (userStructs[userAddress].soldNumber + 1);
+        userStructs[userAddress].credit = newCredit;
+        userStructs[userAddress].soldNumber++;
     }
 }

@@ -19,11 +19,6 @@ window.App = {
     self.setCookies();
   },
 
-  setStatus: function(message) {
-    var status = document.getElementById("status");
-    status.innerHTML = message;
-  },
-
   postObjectForRent: function(_objID){
     ShareApp.deployed().then(function (instance) {
       instance.getObj(_objID).then(function (object) {
@@ -107,21 +102,6 @@ window.App = {
     }).catch(function(e){
       console.log(e);
     });
-  },
-
-  remove: function(){
-    var self = this;
-
-    var meta;
-    ShareApp.deployed().then(function(instance){
-      meta = instance;
-      return meta.remove({from:APP.account});
-      }).then(function(){
-        self.setStatus("remove success!");
-      }).catch(function(e){
-        console.log(e);
-        self.setStatus("Error remove;see log.");
-      });
   },
 
   buyArticle: function(_articleId) {
