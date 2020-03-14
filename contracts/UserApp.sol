@@ -64,9 +64,9 @@ contract UserApp {
         userStructs[userAddress].sex = sex;
     }
 
-    function getUserName() constant returns(string){
-        require(userStructs[msg.sender].createAt > 0);
-        return userStructs[msg.sender].userName;
+    function getUserName(address sender) constant returns(string){
+        require(userStructs[sender].createAt > 0);
+        return userStructs[sender].userName;
     }
 
     function modifyUserCredit(uint stars) public{

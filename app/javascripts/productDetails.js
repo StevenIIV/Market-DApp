@@ -4,9 +4,11 @@ import { default as contract } from 'truffle-contract'
 import ShareApp_artifacts from '../../build/contracts/ShareApp.json'
 import Market_artifacts from '../../build/contracts/MarketPlace.json'
 import Comment_artifacts from '../../build/contracts/Comment.json'
+import User_artifacts from '../../build/contracts/UserApp.json'
 var Market = contract(Market_artifacts);
 var ShareApp = contract(ShareApp_artifacts);
 var Comment = contract(Comment_artifacts);
+var User = contract(User_artifacts);
 const categories = ["Clothing","Food","Electronic","Book","Jewellery","Crafts","Others"];
 window.App = {
   account: 0x0,
@@ -15,6 +17,7 @@ window.App = {
     ShareApp.setProvider(web3.currentProvider);
     Market.setProvider(web3.currentProvider);
     Comment.setProvider(web3.currentProvider);
+    User.setProvider(web3.currentProvider);
     self.displayAccountInfo();
     self.setCookies();
   },
@@ -139,17 +142,25 @@ window.App = {
   },
 
   getArticleComment: function (articleId) {
+    var commentInstance;
     Comment.deployed().then(function (instance) {
+      commentInstance = instance;
       return instance.getArticleCommentsLength.call(articleId);
-    }).then(function (size) {
-      Comment.deployed().then(function (instance) {
-        for (var i=size-1;i>=0;i--){
-          instance.getArticleComment(articleId,i).then(function (article) {
+    }).then(async function (size) {
+      for (var i=size-1;i>=0;i--){
+        var article;
+        await commentInstance.getArticleComment(articleId,i).then(function (res) {
+          article = res;
+          User.deployed().then(function (userInstance) {
+            return userInstance.getUserName(article[1]);
+          }).then(function (userName) {
+            App.displayComment(article[0],userName,article[2],article[3]);
+          }).catch(function (err) {
             App.displayComment(article[0],article[1],article[2],article[3]);
           })
-        }
-      });
-    })
+        })
+      }
+    });
   },
 
   getArticleCommentLength: function(articleId) {
@@ -169,17 +180,25 @@ window.App = {
   },
 
   getObjectComment: function (objectId) {
+    var commentInstance;
     Comment.deployed().then(function (instance) {
+      commentInstance = instance;
       return instance.getObjectCommentsLength.call(objectId);
-    }).then(function (size) {
-      Comment.deployed().then(function (instance) {
-        for (var i=size-1;i>=0;i--){
-          instance.getObjectComment(objectId,i).then(function (article) {
-            App.displayComment(article[0],article[1],article[2],article[3]);
+    }).then(async function (size) {
+      for (var i=size-1;i>=0;i--){
+        var object;
+        await commentInstance.getObjectComment(objectId,i).then(function (res) {
+          object = res;
+          User.deployed().then(function (userInstance) {
+            return userInstance.getUserName(object[1]);
+          }).then(function (userName) {
+            App.displayComment(object[0],userName,object[2],object[3]);
+          }).catch(function (err) {
+            App.displayComment(object[0],object[1],object[2],object[3]);
           })
-        }
-      });
-    })
+        })
+      }
+    });
   },
 
   displayComment: function (time, sender, rating, comment) {
@@ -274,7 +293,6 @@ window.App = {
     document.getElementById("cartNumber").innerText = ids_size;
     document.getElementById("cartPrice").innerText = totalPrice+" ETH";
   }
-
 };
 
 function _strMapToObj(strMap){
