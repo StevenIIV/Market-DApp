@@ -146,7 +146,7 @@ window.App = {
     var totalPrice = Cookies.get('cart-price');
 
     ids = (ids == null)?(new Map()):(_objToStrMap(JSON.parse(ids)));
-    totalPrice = (totalPrice == null)?0:parseInt(totalPrice);
+    totalPrice = (totalPrice == null)?0:parseFloat(totalPrice);
     ids_size = (ids_size == null)?0:parseInt(ids_size);
 
     if (ids.get("article"+article_id) == null){
@@ -164,7 +164,8 @@ window.App = {
     Market.deployed().then(function (instance) {
       instance.articles(article_id).then(function (article) {
         var etherPrice = web3.fromWei(article[5], "ether");
-        totalPrice += parseInt(etherPrice);
+        console.log(etherPrice);
+        totalPrice += parseFloat(etherPrice);
         document.getElementById("cartPrice").innerText = totalPrice+" ETH";
         Cookies.set('cart-price',totalPrice);
       })
@@ -177,7 +178,7 @@ window.App = {
     var totalPrice = Cookies.get('cart-price');
 
     ids = (ids == null)?(new Map()):(_objToStrMap(JSON.parse(ids)));
-    totalPrice = (totalPrice == null)?0:parseInt(totalPrice);
+    totalPrice = (totalPrice == null)?0:parseFloat(totalPrice);
     ids_size = (ids_size == null)?0:parseInt(ids_size);
     console.log(ids);
     console.log(ids_size);

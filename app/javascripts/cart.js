@@ -20,7 +20,7 @@ window.App = {
         var totalPrice = Cookies.get('cart-price');
 
         ids = (ids == null)?(new Map()):(_objToStrMap(JSON.parse(ids)));
-        totalPrice = (totalPrice == null)?0:parseInt(totalPrice);
+        totalPrice = (totalPrice == null)?0:parseFloat(totalPrice);
         ids_size = (ids_size == null)?0:parseInt(ids_size);
 
         document.getElementById("total-amount").innerText = totalPrice+" ETH";
@@ -66,18 +66,19 @@ window.App = {
     quantityMinus: function(unitPrice,article_id){
         var ids = _objToStrMap(JSON.parse(Cookies.get('cart-map')));
         var ids_size = parseInt(Cookies.get('cart-size'));
-        var totalPrice = parseInt(Cookies.get('cart-price'));
+        var totalPrice = parseFloat(Cookies.get('cart-price'));
         var num = parseInt(ids.get("article"+article_id));
         num--;
         ids.set("article"+article_id,num);
         ids_size--;
-        totalPrice-=parseInt(unitPrice);
+        totalPrice-=parseFloat(unitPrice);
         Cookies.set('cart-map',JSON.stringify(_strMapToObj(ids)));
         Cookies.set('cart-size',ids_size);
         Cookies.set('cart-price',totalPrice);
         document.getElementById("cartNumber").innerText = ids_size;
         document.getElementById("cartPrice").innerText = totalPrice+" ETH";
-        document.getElementById("total-price_"+article_id).innerText = num * parseInt(unitPrice) + " ETH";
+        document.getElementById("total-price_"+article_id).innerText = num * parseFloat(unitPrice) + " ETH";
+        document.getElementById("total-amount").innerText = totalPrice+" ETH";
         if (num == 0){
             App.getAndShowCartInfo();
         }
@@ -86,27 +87,28 @@ window.App = {
     quantityPlus: function(unitPrice,article_id){
         var ids = _objToStrMap(JSON.parse(Cookies.get('cart-map')));
         var ids_size = parseInt(Cookies.get('cart-size'));
-        var totalPrice = parseInt(Cookies.get('cart-price'));
+        var totalPrice = parseFloat(Cookies.get('cart-price'));
         var num = parseInt(ids.get("article"+article_id));
         num++;
         ids.set("article"+article_id,num);
         ids_size++;
-        totalPrice+=parseInt(unitPrice);
+        totalPrice+=parseFloat(unitPrice);
         Cookies.set('cart-map',JSON.stringify(_strMapToObj(ids)));
         Cookies.set('cart-size',ids_size);
         Cookies.set('cart-price',totalPrice);
         document.getElementById("cartNumber").innerText = ids_size;
         document.getElementById("cartPrice").innerText = totalPrice+" ETH";
-        document.getElementById("total-price_"+article_id).innerText = num * parseInt(unitPrice) + " ETH";
+        document.getElementById("total-price_"+article_id).innerText = num * parseFloat(unitPrice) + " ETH";
+        document.getElementById("total-amount").innerText = totalPrice+" ETH";
     },
 
     deleteCart: function(unitPrice,article_id){
         var ids = _objToStrMap(JSON.parse(Cookies.get('cart-map')));
         var ids_size = parseInt(Cookies.get('cart-size'));
-        var totalPrice = parseInt(Cookies.get('cart-price'));
+        var totalPrice = parseFloat(Cookies.get('cart-price'));
 
         var num = parseInt(document.getElementById("quantity_"+article_id).value);
-        totalPrice-=(parseInt(unitPrice)*num);
+        totalPrice-=(parseFloat(unitPrice)*num);
         ids_size-=num;
         ids.delete("article"+article_id);
 
@@ -124,8 +126,8 @@ window.App = {
         var totalPrice = Cookies.get('cart-price');
 
         ids = (ids == null)?(new Map()):(_objToStrMap(JSON.parse(ids)));
-        totalPrice = (totalPrice == null)?0:parseInt(totalPrice);
-        ids_size = (ids_size == null)?0:parseInt(ids_size);
+        totalPrice = (totalPrice == null)?0:parseFloat(totalPrice);
+        ids_size = (ids_size == null)?0:parseFloat(ids_size);
 
         ids.forEach(function (value, key) {
             console.log(key,value);
@@ -141,13 +143,13 @@ window.App = {
     buyAllCartProducts: function(){
         var ids = _objToStrMap(JSON.parse(Cookies.get('cart-map')));
         var ids_size = parseInt(Cookies.get('cart-size'));
-        var totalPrice = parseInt(Cookies.get('cart-price'));
+        var totalPrice = parseFloat(Cookies.get('cart-price'));
 
         Market.deployed().then(function (instance) {
             ids.forEach(function (value,key) {
                 var article_id = key.substring(7, value.length);
                 var str_price = document.getElementById("total-price_" + article_id).innerText;
-                var Price = parseInt(str_price.substring(0, str_price.length - 4));
+                var Price = parseFloat(str_price.substring(0, str_price.length - 4));
                 var _price = web3.toWei(Price, 'ether');
                 return instance.buyArticle(article_id, parseInt(value), {
                     from: App.account,
