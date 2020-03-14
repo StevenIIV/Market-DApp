@@ -74,19 +74,20 @@ window.App = {
           document.getElementById("article-cart").style.display = 'none';
           document.getElementById("out-of-stock").style.display = 'inline';
         }
+        User.deployed().then(function (userInstance) {
+          return userInstance.getUser({from: article[1]});
+        }).then(function (user) {
+          document.getElementById("userName").innerHTML = user[1];
+          for (var i=1;i<=user[7];i++){
+            $("#stars").append("<i class='fa fa-fw fa-star'></i>");
+          }
+          for (var i=5-user[7];i>=1;i--){
+            $("#stars").append("<i class='fa fa-fw fa-star-o'></i>");
+          }
+        })
       })
     });
-    User.deployed().then(function (userInstance) {
-      var userAddress = document.getElementById("_objCreator").innerHTML;
-      return userInstance.getUser({from: userAddress});
-    }).then(function (user) {
-      for (var i=1;i<=user[7];i++){
-        $("#stars").append("<i class='fa fa-fw fa-star'></i>");
-      }
-      for (var i=5-user[7];i>=1;i--){
-        $("#stars").append("<i class='fa fa-fw fa-star-o'></i>");
-      }
-    })
+
   },
 
   rentObj: function(objectID){
@@ -166,6 +167,8 @@ window.App = {
             var as = "";
             if (isBuyer) {
               as = " (buyer)";
+            }else if (App.account == document.getElementById("_objCreator").innerHTML){
+              as = " (seller)"
             }
             User.deployed().then(function (userInstance) {
               return userInstance.getUserName(article[1]);
