@@ -224,14 +224,26 @@ window.App = {
   addArticleComment: function (_articleId) {
     var stars = document.getElementById("selectStars").value;
     var comment = document.getElementById("commentContent").value;
-
-    Comment.deployed().then(function (instance) {
-      return instance.addArticleComment(_articleId,stars,comment,{from:App.account,gas:500000});
+    Market.deployed().then(function (marketIntance) {
+      return marketIntance.isBuyer(_articleId,App.account);
     }).then(function (res) {
-      window.location.href="productDetails.html?id="+_articleId;
-    }).catch(function (err) {
-      console.log(err);
-    })
+      if (res){
+        User.deployed().then(function (userInstance) {
+          var address = document.getElementById("_objCreator").innerHTML;
+          userInstance.modifyUserCredit(stars,address,{
+            from:App.account
+          });
+        })
+      }
+      Comment.deployed().then(function (instance) {
+        return instance.addArticleComment(_articleId,stars,comment,{from:App.account});
+      }).then(function (res) {
+        window.location.href="productDetails.html?id="+_articleId;
+      }).catch(function (err) {
+        console.log(err);
+      })
+    });
+
   },
 
   addObjectComment: function (_objectId) {

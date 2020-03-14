@@ -58,8 +58,15 @@ window.App = {
                 console.log(err);
             })
         })
-    }
+    },
 
+    showUserCredit: function () {
+        UserApp.deployed().then(function (instance) {
+            return instance.getUser({from: App.account});
+        }).then(function (user) {
+            document.getElementById("userCredit").innerHTML = user[7] + " "+ user[8];
+        })
+    }
 };
 
 function _objToStrMap(obj){

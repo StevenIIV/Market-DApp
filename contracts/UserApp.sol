@@ -69,8 +69,7 @@ contract UserApp {
         return userStructs[sender].userName;
     }
 
-    function modifyUserCredit(uint stars) public{
-        address userAddress = msg.sender;
+    function modifyUserCredit(uint stars, address userAddress) public{
         require(userStructs[userAddress].createAt > 0);
         uint oldCredit = userStructs[userAddress].credit * userStructs[userAddress].soldNumber;
         uint newCredit = (oldCredit + stars) / (userStructs[userAddress].soldNumber + 1);

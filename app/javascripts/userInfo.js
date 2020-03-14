@@ -383,6 +383,14 @@ window.App = {
             $("#user-sex").text(user[5]);
             $("#user-age").text(user[4]);
             $("#user-email").text(user[3]);
+            $("#user-credit").text(user[7]);
+            $("#user-soldNumber").text(user[8]);
+            for (var i=1;i<=user[7];i++){
+                $("#stars").append("<i class='fa fa-fw fa-star'></i>");
+            }
+            for (var i=5-user[7];i>=1;i--){
+                $("#stars").append("<i class='fa fa-fw fa-star-o'></i>");
+            }
             document.getElementById("user-photo").src = ipfsURL + user[2];
             document.getElementById("user-photo").style.display = "inline";
         }).catch(function (err) {
