@@ -75,6 +75,17 @@ window.App = {
           document.getElementById("out-of-stock").style.display = 'inline';
         }
       })
+    });
+    User.deployed().then(function (userInstance) {
+      var userAddress = document.getElementById("_objCreator").innerHTML;
+      return userInstance.getUser({from: userAddress});
+    }).then(function (user) {
+      for (var i=1;i<=user[7];i++){
+        $("#stars").append("<i class='fa fa-fw fa-star'></i>");
+      }
+      for (var i=5-user[7];i>=1;i--){
+        $("#stars").append("<i class='fa fa-fw fa-star-o'></i>");
+      }
     })
   },
 
