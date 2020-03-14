@@ -248,4 +248,13 @@ contract ShareApp{
 	function getObjectCategories(uint objID) constant objectInRange(objID) returns(uint){
 		return objects[objID].categories;
 	}
+
+	function isRenter(uint objectId, address user) constant returns (bool){
+		for(uint i=0;i<users[user].object_rented.length;i++){
+			if(users[user].object_rented[i] == objectId){
+				return true;
+			}
+		}
+		return false;
+	}
 }

@@ -9343,12 +9343,13 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xa83016bA6036BC0CA5B9134d39c4573c87EC325C",
-      "transactionHash": "0xc8dd10804db9bc81d788f4b1b4d558a565789340976cafd00c595840eebdf3d1"
+      "address": "0x3cbc09F3dC968e2494Af709eC70aDA872Ef777Ce",
+      "transactionHash": "0x2426d62a6bbb7e0c7de453100399160995eb0c9291f1f2ecfcef99518fe614ab"
     }
   },
   "schemaVersion": "3.0.19",
-  "updatedAt": "2020-03-14T09:19:23.021Z",
+  "updatedAt": "2020-03-14T13:40:40.683Z",
+  "networkType": "ethereum",
   "devdoc": {
     "methods": {}
   },

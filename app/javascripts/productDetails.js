@@ -50,6 +50,18 @@ window.App = {
         document.getElementById("objRented").innerHTML = object[7];
         document.getElementById("objDetail").innerHTML = object[8];
         document.getElementById("_objDetail").innerText = object[8];
+
+        User.deployed().then(function (userInstance) {
+          return userInstance.getUser({from: object[0]});
+        }).then(function (user) {
+          document.getElementById("userName").innerHTML = user[1];
+          for (var i=1;i<=user[7];i++){
+            $("#stars").append("<i class='fa fa-fw fa-star'></i>");
+          }
+          for (var i=5-user[7];i>=1;i--){
+            $("#stars").append("<i class='fa fa-fw fa-star-o'></i>");
+          }
+        })
       });
     });
   },
@@ -166,9 +178,9 @@ window.App = {
           }).then(function (isBuyer) {
             var as = "";
             if (isBuyer) {
-              as = " (buyer)";
+              as = " (Buyer)";
             }else if (App.account == document.getElementById("_objCreator").innerHTML){
-              as = " (seller)"
+              as = " (Seller)"
             }
             User.deployed().then(function (userInstance) {
               return userInstance.getUserName(article[1]);
@@ -207,13 +219,24 @@ window.App = {
     }).then(async function (size) {
       for (var i=size-1;i>=0;i--){
         await commentInstance.getObjectComment(objectId,i).then(function (object) {
-          User.deployed().then(function (userInstance) {
-            return userInstance.getUserName(object[1]);
-          }).then(function (userName) {
-            App.displayComment(object[0],userName,object[2],object[3]);
-          }).catch(function (err) {
-            App.displayComment(object[0],object[1],object[2],object[3]);
-          })
+          ShareApp.deployed().then(function (shareInstance) {
+            return shareInstance.isRenter(objectId,object[1]);
+          }).then(function (isRenter) {
+            var as = "";
+            if (isRenter){
+              as = "(Renter)";
+            }else if (App.account == document.getElementById("objCreator").innerHTML){
+              as = "(Creator)";
+            }
+            User.deployed().then(function (userInstance) {
+              return userInstance.getUserName(object[1]);
+            }).then(function (userName) {
+              App.displayComment(object[0],userName+as,object[2],object[3]);
+            }).catch(function (err) {
+              App.displayComment(object[0],object[1]+as,object[2],object[3]);
+            })
+          });
+
         })
       }
     });
@@ -251,7 +274,7 @@ window.App = {
       }
       Comment.deployed().then(function (instance) {
         return instance.addArticleComment(_articleId,stars,comment,{from:App.account});
-      }).then(function (res) {
+      }).then(function () {
         window.location.href="productDetails.html?id="+_articleId;
       }).catch(function (err) {
         console.log(err);
@@ -263,14 +286,25 @@ window.App = {
   addObjectComment: function (_objectId) {
     var stars = document.getElementById("selectStars").value;
     var comment = document.getElementById("commentContent").value;
-
-    Comment.deployed().then(function (instance) {
-      return instance.addObjectComment(_objectId,stars,comment,{from:App.account,gas:500000});
+    ShareApp.deployed().then(function (shareInstance) {
+      return shareInstance.isRenter(_objectId,App.account);
     }).then(function (res) {
-      window.location.href="objectDetails.html?id="+_objectId;
-    }).catch(function (err) {
-      console.log(err);
-    })
+      if (res){
+        User.deployed().then(function (userInstance) {
+          var address = document.getElementById("objCreator").innerHTML;
+          userInstance.modifyUserCredit(stars,address,{
+            from:App.account
+          });
+        })
+      }
+      Comment.deployed().then(function (instance) {
+        return instance.addObjectComment(_objectId,stars,comment,{from:App.account});
+      }).then(function () {
+        window.location.href="objectDetails.html?id="+_objectId;
+      }).catch(function (err) {
+        console.log(err);
+      })
+    });
   },
 
   addToCart: function (article_id) {
