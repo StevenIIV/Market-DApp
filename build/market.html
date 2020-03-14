@@ -31,13 +31,14 @@
   <script src="assets/js/jquery.easing.1.3.min.js"></script>
   <script src="assets/js/bxslider.min.js"></script>
   <script src="assets/js/script.slider.js"></script>
+  <script src="assets/js/js.cookie-2.2.1.min.js"></script>
 
 </head>
-<body>
+<body style="background: #F5F5F5">
 <!-- navbar  -->
   <div id="navbar">
     <!-- header -->
-    <div class="navbar-top">
+    <div class="navbar-top" style="background: white">
       <div class="container">
         <div class="row">
           <div class="col-md-6 text-md-left text-center">
@@ -85,7 +86,7 @@
         <!-- market logo -->
         <div class="col-lg-2 align-self-center">
           <div class="logo-area">
-            <a href="index.html"> <img src="assets/img/marketplace_logo.png" alt="logo"></a>
+            <a href="market.html"> <img src="assets/img/marketplace_logo.png" alt="logo"></a>
           </div>
         </div>
         <!-- search -->
@@ -98,7 +99,7 @@
         <!-- cart -->
         <div class="col-sm-3 align-self-center" style="margin-bottom: 40px">
           <div class="shopping-item">
-            <a href="cart.html">Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+            <a href="cart.html">Cart - <span id="cartPrice" class="cart-amunt">0 ETH</span> <i class="fa fa-shopping-cart"></i> <span id="cartNumber" class="product-count">0</span></a>
           </div>
         </div>
       </div>
@@ -114,37 +115,37 @@
           <!-- header -->
           <ul class="nav nav-pills" id="pills-tab" role="tablist" >
             <li class="nav-item">
-              <a class="nav-link active" id="pills-tab-0" data-toggle="pill" href="javascript:void(0);" onclick="App.reloadArticles(0)" role="tab" aria-controls="pills-1" >
+              <a class="nav-link active" id="pills-tab-0" data-toggle="pill" href="javascript:void(0)" onclick="App.reloadArticles(0)" role="tab" aria-controls="pills-1" >
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clothing&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="pills-tab-1" data-toggle="pill" href="javascript:void(0);" onclick="App.reloadArticles(1)" role="tab" aria-controls="pills-2">
+              <a class="nav-link" id="pills-tab-1" data-toggle="pill" href="javascript:void(0)" onclick="App.reloadArticles(1)" role="tab" aria-controls="pills-2">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Food&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="pills-tab-2" data-toggle="pill" href="javascript:void(0);" onclick="App.reloadArticles(2)" role="tab" aria-controls="pills-3">
+              <a class="nav-link" id="pills-tab-2" data-toggle="pill" href="javascript:void(0)" onclick="App.reloadArticles(2)" role="tab" aria-controls="pills-3">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Electronic&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="pills-tab-3" data-toggle="pill" href="javascript:void(0);" onclick="App.reloadArticles(3)" role="tab" aria-controls="pills-4">
+              <a class="nav-link" id="pills-tab-3" data-toggle="pill" href="javascript:void(0)" onclick="App.reloadArticles(3)" role="tab" aria-controls="pills-4">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Book&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="pills-tab-4" data-toggle="pill" href="javascript:void(0);" onclick="App.reloadArticles(4)" role="tab" aria-controls="pills-5">
+              <a class="nav-link" id="pills-tab-4" data-toggle="pill" href="javascript:void(0)" onclick="App.reloadArticles(4)" role="tab" aria-controls="pills-5">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jewellery&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="pills-tab-5" data-toggle="pill" href="javascript:void(0);" onclick="App.reloadArticles(5)" role="tab" aria-controls="pills-6">
+              <a class="nav-link" id="pills-tab-5" data-toggle="pill" href="javascript:void(0)" onclick="App.reloadArticles(5)" role="tab" aria-controls="pills-6">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Crafts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="pills-tab-6" data-toggle="pill" href="javascript:void(0);" onclick="App.reloadArticles(6)" role="tab" aria-controls="pills-7">
+              <a class="nav-link" id="pills-tab-6" data-toggle="pill" href="javascript:void(0)" onclick="App.reloadArticles(6)" role="tab" aria-controls="pills-7">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Others&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </a>
             </li>
@@ -179,22 +180,13 @@
       </div>
       <div class="product-cart" style="margin-top: 25px">
         <span class="fav-icon"><a href="#" ><i class="fa fa-heart-o"></i></a></span>
-        <span class="shop-cart-icon"><a href="#"><i class="las la-shopping-cart"></i></a></span>
+        <span class="shop-cart-icon"><a class="addCart" href="javascript:void(0)" onclick=""><i class="las la-shopping-cart"></i></a></span>
       </div>
     </div>
   </div>
 </div>
 </div>
 
-<!--<div class="container">-->
-<!--    <div class="col-md-12" id="article-list">-->
-<!--      <div class="row">-->
-<!--        <div class="col-lg-12">-->
-<!--          <p id="account" class="welcome pull-right"></p>-->
-<!--          <p id="accountBalance" class="welcome pull-left"></p>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--</div>-->
   <!-- Modal form to sell an article -->
 <div class="modal fade" id="sellArticle" role="dialog">
   <div class="modal-dialog">

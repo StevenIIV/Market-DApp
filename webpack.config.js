@@ -3,7 +3,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: {
-    index: './app/javascripts/index.js',
     rentalMarket: './app/javascripts/rentalMarket.js',
     productDetails: './app/javascripts/productDetails.js',
     market: './app/javascripts/market.js',

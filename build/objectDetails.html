@@ -2,9 +2,264 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <title>object details</title>
+    <script src="./productDetails.js"></script>
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
 
+    <link rel="stylesheet" href="assets/css/vendor.css">
+    <link rel="stylesheet" href="assets/css/nice-select.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.css">
+    <link rel="stylesheet" href="assets/css/line-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/market-style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/fasthover.css">
+    <link rel="stylesheet" href="assets/css/flexslider.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/vendor.js"></script>
+    <script src="assets/js/market.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/jquery.sticky.js"></script>
+    <script src="assets/js/jquery.easing.1.3.min.js"></script>
+    <script src="assets/js/bxslider.min.js"></script>
+    <script src="assets/js/script.slider.js"></script>
+    <script src="assets/js/easyResponsiveTabs.js"></script>
+    <script src="assets/js/imagezoom.js"></script>
+    <script src="assets/js/jquery.flexslider.js"></script>
+    <script src="assets/js/js.cookie-2.2.1.min.js"></script>
+    <script>
+        window.onload = function () {
+            var id = getQueryVariable("id");
+            App.postObjectForRent(id);
+            App.getObjectComment(id);
+            App.getObjectCommentLength(id);
+            setTimeout(function (){
+                document.getElementById("info-content").style.display = "inline";
+            },900);
+        };
+        function getQueryVariable(variable) {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i=0;i<vars.length;i++) {
+                var pair = vars[i].split("=");
+                if(pair[0] == variable){return pair[1];}
+            }
+            return false;
+        }
+    </script>
+</head>
+<body style="background: whitesmoke">
+<!-- navbar -->
+<div id="navbar">
+    <!-- header -->
+    <div class="navbar-top" style="background: white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-md-left text-center">
+                    <ul class="topbar-left">
+                        <li class="topbar-single-info">
+                            <button style = "background-color: transparent; border: 0; height: 60px" onclick="window.location.href = 'market.html'">
+                                <i class="fa fa-university"></i>Market
+                            </button>
+                        </li>
+                        <li class="topbar-single-info">
+                            <button style = "background-color: transparent; border: 0; height: 60px" onclick="window.location.href = 'rentalMarket.html'">
+                                <i class="fa fa-slideshare"></i>Rental Market
+                            </button>
+                        </li>
+                        <li class="topbar-single-info d-none d-lg-block"><i class="fa fa-crosshairs"></i>Track Your Order</li>
+                    </ul>
+                </div>
+                <div class="col-md-6 text-md-right text-center">
+                    <ul class="topbar-right float-md-right">
+                        <li class="topbar-single-info">
+                            <button style = "background-color: transparent; border: 0; height: 60px" onclick="window.location.href = 'userInfo.html'">
+                                <i class="fa fa-user"></i>
+                                <span class="d-none d-lg-inline-block" >My Account</span>
+                            </button>
+                        </li>
+                        <li>
+                            <select class="topbar-select topbar-currency">
+                                <option value="rating">BTC</option>
+                                <option value="categories" selected="selected">ETH</option>
+                            </select>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- search bar -->
+    <div class="container">
+        <div class="row">
+            <!-- market logo -->
+            <div class="col-lg-2 align-self-center" style="margin-top: 30px">
+                <div class="logo-area">
+                    <a href="rentalMarket.html"> <img src="assets/img/rent-logo.jpg" alt="logo"></a>
+                </div>
+            </div>
+            <!-- search -->
+            <div class="col-lg-7 text-center" style="margin-top: 35px">
+                <form class="main-search d-inline-flex">
+                    <input type="text" name="search" id="search-name" placeholder="Search product...">
+                    <button type="button" onclick="App.searchArticleByName()">Search</button>
+                </form>
+            </div>
+            <!-- cart -->
+            <div class="col-sm-3 align-self-center" style="margin-bottom: 40px; display: none">
+                <div class="shopping-item">
+                    <a href="cart.html">Cart - <span id="cartPrice" class="cart-amunt">0 ETH</span> <i class="fa fa-shopping-cart"></i> <span id="cartNumber" class="product-count">0</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="info-content" style="display: none">
+    <!-- main -->
+    <div class="container">
+        <div class="col-md-4 single-left" style="margin-top: 100px">
+            <div class="flexslider">
+                <div class="thumb-image" style=" text-align:center; width: 342px; height: 446px; vertical-align: center; border: 1px solid #000">
+                    <img src="" id="objPhoto" data-imagezoom="true" class="img-responsive" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 single-right">
+            <h3><span id="objName"></span></h3>
+            <div class="description">
+                <h5><i>Description</i></h5>
+                <p><span id="objDetail"></span></p>
+            </div>
+            <div class="occasional">
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <th>creator</th>
+                        <td><span id="userName"></span> (<span id="objCreator"></span>)</td>
+                    </tr>
+                    <tr>
+                        <th>rating</th>
+                        <td><div id="stars"></div></td>
+                    </tr>
+                    <tr>
+                        <th>status</th>
+                        <td><span id="objRented"></span></td>
+                    </tr>
+                    <tr>
+                        <th>renter</th>
+                        <td><span id="objRenterAddress"></span></td>
+                    </tr>
+                    <tr>
+                        <th>rent time </th>
+                        <td><span id="objRenterSince"></span></td>
+                    </tr>
+                    <tr>
+                        <th>daily price</th>
+                        <td><span id="objPriceDaily"></span></td>
+                    </tr>
+                    <tr>
+                        <th>deposit</th>
+                        <td><span id="objDeposit"></span></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="simpleCart_shelfItem">
+                <button type="submit" onclick="App.rentObj(getQueryVariable('id'))" id="rentButton" class="w3ls-cart">rent</button>
+                <button type="submit" onclick="App.returnObj(getQueryVariable('id'))" id="returnButton" class="w3ls-cart" style="display: none">return</button>
+            </div>
+        </div>
+    </div>
+    <!-- comment -->
+    <div class="container">
+        <div class="col-12 mg-top-120">
+            <div class="shop-tabs">
+                <!-- nav -->
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">Description</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="profile" aria-selected="false">Reviews (<span id="comment-length">0</span>)</a>
+                    </li>
+                </ul>
+                <!-- content -->
+                <div class="tab-content specific-tab" id="myTabContent">
+                    <div class="tab-pane fade describe-tab show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <h3 class="title">Product Details</h3>
+                        <span id="_objDetail"></span>
+
+                    </div>
+                    <div class="tab-pane review-tab fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+                        <div id="displayComment">
+                            <!-- display comment -->
+                        </div>
+                        <!-- comment form -->
+                        <form class="contact-form" style="margin-top: 20px">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-12" style="margin-bottom: 10px">
+                                    <div class="single-input-wrap">
+                                        <div style="float: left; margin-right: 20px; margin-top: 10px">
+                                            <label>Stars</label>
+                                        </div>
+                                        <div style="float: left">
+                                            <select id="selectStars">
+                                                <option value="0">0</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="single-input-wrap">
+                                        <label>Your review </label>
+                                        <textarea class="single-input textarea" id="commentContent"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-black" onclick="App.addObjectComment(getQueryVariable('id'))" >Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- comment template -->
+<div id="commentTemplate" style="display: none">
+    <div class="additional_info_sub_grids"  style="background: #F5F5F5;border-radius:10px;">
+        <div class="col-xs-10 additional_info_sub_grid_right" style="margin-top: 10px">
+            <div class="additional_info_sub_grid_rightl">
+                <a><span class="creator"></span></a>
+                <h5><span class="createTime"></span></h5>
+                <p><span class="comment"></span></p>
+            </div>
+            <!-- ratings -->
+            <div class="additional_info_sub_grid_rightr">
+                <div class="rating">
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>
 </body>
 </html>
