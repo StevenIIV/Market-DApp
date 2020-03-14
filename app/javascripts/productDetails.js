@@ -147,16 +147,24 @@ window.App = {
       commentInstance = instance;
       return instance.getArticleCommentsLength.call(articleId);
     }).then(async function (size) {
-      for (var i=size-1;i>=0;i--){
-        await commentInstance.getArticleComment(articleId,i).then(function (article) {
-          User.deployed().then(function (userInstance) {
-            return userInstance.getUserName(article[1]);
-          }).then(function (userName) {
-            App.displayComment(article[0],userName,article[2],article[3]);
-          }).catch(function (err) {
-            App.displayComment(article[0],article[1],article[2],article[3]);
+      for (var i = size - 1; i >= 0; i--) {
+        await commentInstance.getArticleComment(articleId, i).then(function (article) {
+          Market.deployed().then(function (marketInstance) {
+            return marketInstance.isBuyer(articleId, article[1]);
+          }).then(function (isBuyer) {
+            var as = "";
+            if (isBuyer) {
+              as = " (buyer)";
+            }
+            User.deployed().then(function (userInstance) {
+              return userInstance.getUserName(article[1]);
+            }).then(function (userName) {
+              App.displayComment(article[0], userName + as, article[2], article[3]);
+            }).catch(function (err) {
+              App.displayComment(article[0], article[1] + as, article[2], article[3]);
+            })
           })
-        })
+        });
       }
     });
   },

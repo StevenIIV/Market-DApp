@@ -153,4 +153,13 @@ contract MarketPlace {
   function getUserBoughtTime(address user) constant returns (uint[]){
     return users[user].article_buyedTime;
   }
+
+  function isBuyer(uint articleId, address user) constant returns (bool){
+    for(uint i=0;i<users[user].article_buyed.length;i++){
+      if(users[user].article_buyed[i] == articleId){
+        return true;
+      }
+    }
+    return false;
+  }
 }
