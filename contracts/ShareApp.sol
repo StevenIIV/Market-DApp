@@ -128,14 +128,13 @@ contract ShareApp{
 
 
 	function rentObj(uint objID) payable objectInRange(objID) returns(bool){
-		if(objectIsRented(objID) || msg.value < objects[objID].deposit || msg.sender == objects[objID].creator){
-			throw;
-		}
-		objects[objID].renter = Renter({addr:msg.sender, since:now});  //record the info of the renter
-		uint rest = msg.value - objects[objID].deposit;  //支付一个不低于deposit的值
-		if(!objects[objID].renter.addr.send(rest)){   // return the rest balance扣自己钱存入合约余额中
-			throw;
-		}
+		require(objectIsRented(objID) == false);
+		require(msg.value >= objects[objID].deposit);
+		require(msg.sender != objects[objID].creator);
+
+		objects[objID].renter = Renter({addr:msg.sender, since:now});
+		uint rest = msg.value - objects[objID].deposit;
+		objects[objID].renter.addr.send(rest);
 		objects[objID].rented = true;
 		users[msg.sender].object_rented.push(objID);
 		users[msg.sender].object_rentedTime.push(now);
@@ -144,12 +143,9 @@ contract ShareApp{
 	}
 
 	function returnObj(uint objID) payable objectInRange(objID) returns (bool){
-		if(!objects[objID].rented){
-			throw;
-		}
-		if(objects[objID].renter.addr != msg.sender){
-			throw;
-		}
+		require(objects[objID].rented == true);
+		require(objects[objID].renter.addr == msg.sender);
+
 		uint duration = (now - objects[objID].renter.since) / (24*60*60*1.0);
 		uint charge = duration * objects[objID].priceDaily;
 		// uint days = (duration / (24*60*60*1.0));
