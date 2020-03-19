@@ -87,6 +87,24 @@ express.get('/getAllArticles', function (req, res) {
     })
 });
 
+express.get('/getArticleByType', function (req, res) {
+    var query = {
+        'categories': req.query._type
+    };
+    ArticleModel.find(query, function (err, records) {
+        res.send(records);
+    })
+});
+
+express.get('/getArticleByName', function (req, res) {
+    var query = {
+        'articleName': {'$regex': req.query._name, $options: '$i'}
+    };
+    ArticleModel.find(query, function (err, records) {
+        res.send(records);
+    })
+});
+
 function restart() {
     deleteAllArticle();
     var marketPlaceInstance;

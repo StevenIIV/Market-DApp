@@ -31,28 +31,54 @@ window.App = {
     for (var i=0;i<=6;i++){
       document.getElementById("pills-tab-"+i).className = 'nav-link';
     }
-    var ids;
-    var marketPlaceInstance;
-    Market.deployed().then(function(instance){
-      marketPlaceInstance = instance;
-      return instance.findByNames.call(name);
-    }).then(function (res) {
-      ids = res;
-      for (let element of ids){
-        let id = element.toNumber();
-        marketPlaceInstance.articles(id).then(function (article) {
-          if (article[6] > 0 && article[8] == false){
-            App.displayArticle(
-                article[0],
-                article[2],
-                article[3],
-                article[5],
-                article[7]
-            );
-          }
+    $.ajax({
+      url: offchainServer + '/getArticleByName',
+      type:'get',
+      contentType: "application/json; charset=utf-8",
+      data: {
+        _name: name
+      }
+    }).done(function (response) {
+      console.log(response.length);
+      if (response.length == 0){
+        console.log('No records found');
+      }
+      while (response.length > 0){
+        let chunks = response.splice(0,8);
+        chunks.forEach(function (value) {
+          App.displayArticle(
+              value.articleId,
+              value.articlePhoto,
+              value.articleName,
+              value.price,
+              value.categories
+          );
         })
       }
-    })
+    }).fail(function (err) {
+      var ids;
+      var marketPlaceInstance;
+      Market.deployed().then(function(instance){
+        marketPlaceInstance = instance;
+        return instance.findByNames.call(name);
+      }).then(function (res) {
+        ids = res;
+        for (let element of ids){
+          let id = element.toNumber();
+          marketPlaceInstance.articles(id).then(function (article) {
+            if (article[6] > 0 && article[8] == false){
+              App.displayArticle(
+                  article[0],
+                  article[2],
+                  article[3],
+                  article[5],
+                  article[7]
+              );
+            }
+          })
+        }
+      })
+    });
   },
 
   reloadAllArticles:function(){
@@ -107,27 +133,53 @@ window.App = {
 
   reloadArticles: function(type) {
     document.getElementById("articlesRow").innerHTML = "";
-    var marketPlaceInstance;
-    Market.deployed().then(function(instance) {
-      marketPlaceInstance = instance;
-      return marketPlaceInstance.findByType.call(type);
-    }).then(function(ids){
-      for (let articleId of ids){
-        marketPlaceInstance.articles(articleId.toNumber()).then(function(article) {
-          if (article[6] > 0 && article[8] == false){
-            App.displayArticle(
-                article[0],
-                article[2],
-                article[3],
-                article[5],
-                article[7]
-            );
-          }
-        });
+    $.ajax({
+      url: offchainServer + '/getArticleByType',
+      type:'get',
+      contentType: "application/json; charset=utf-8",
+      data: {
+        _type: type
       }
-    }).catch(function(err) {
-      console.log(err.message);
-      App.loading = false;
+    }).done(function (response) {
+      console.log(response.length);
+      if (response.length == 0){
+        console.log('No records found');
+      }
+      while (response.length > 0){
+        let chunks = response.splice(0,8);
+        chunks.forEach(function (value) {
+          App.displayArticle(
+              value.articleId,
+              value.articlePhoto,
+              value.articleName,
+              value.price,
+              value.categories
+          );
+        })
+      }
+    }).fail(function (err) {
+      var marketPlaceInstance;
+      Market.deployed().then(function(instance) {
+        marketPlaceInstance = instance;
+        return marketPlaceInstance.findByType.call(type);
+      }).then(function(ids){
+        for (let articleId of ids){
+          marketPlaceInstance.articles(articleId.toNumber()).then(function(article) {
+            if (article[6] > 0 && article[8] == false){
+              App.displayArticle(
+                  article[0],
+                  article[2],
+                  article[3],
+                  article[5],
+                  article[7]
+              );
+            }
+          });
+        }
+      }).catch(function(err) {
+        console.log(err.message);
+        App.loading = false;
+      });
     });
   },
 
