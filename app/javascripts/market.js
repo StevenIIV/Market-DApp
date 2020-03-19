@@ -20,7 +20,7 @@ window.App = {
       reader.readAsArrayBuffer(file)
     });
     self.displayAccountInfo();
-    self.reloadArticles(0);
+    self.reloadAllArticles();
     self.setCookies();
   },
 
@@ -52,6 +52,32 @@ window.App = {
         })
       }
     })
+  },
+
+  reloadAllArticles:function(){
+    document.getElementById("articlesRow").innerHTML = "";
+    var marketPlaceInstance;
+    Market.deployed().then(function(instance) {
+      marketPlaceInstance = instance;
+      return marketPlaceInstance.getNumberOfArticles();
+    }).then(async function(size){
+      for (var i=1;i<=size;i++){
+        await marketPlaceInstance.articles(i).then(function(article) {
+          if (article[6] > 0 && article[8] == false){
+            App.displayArticle(
+                article[0],
+                article[2],
+                article[3],
+                article[5],
+                article[7]
+            );
+          }
+        });
+      }
+    }).catch(function(err) {
+      console.log(err.message);
+      App.loading = false;
+    });
   },
 
   reloadArticles: function(type) {
