@@ -9,6 +9,7 @@ const ipfs = ipfsAPI({
 });
 var reader;
 const categories = ["Clothing","Food","Electronic","Book","Jewellery","Crafts","Others"];
+const offchainServer = "http://localhost:3000";
 window.App = {
   account: 0x0,
   start: function() {
@@ -56,28 +57,52 @@ window.App = {
 
   reloadAllArticles:function(){
     document.getElementById("articlesRow").innerHTML = "";
-    var marketPlaceInstance;
-    Market.deployed().then(function(instance) {
-      marketPlaceInstance = instance;
-      return marketPlaceInstance.getNumberOfArticles();
-    }).then(async function(size){
-      for (var i=1;i<=size;i++){
-        await marketPlaceInstance.articles(i).then(function(article) {
-          if (article[6] > 0 && article[8] == false){
-            App.displayArticle(
-                article[0],
-                article[2],
-                article[3],
-                article[5],
-                article[7]
-            );
-          }
-        });
+    $.ajax({
+      url: offchainServer + '/getAllArticles',
+      type:'get',
+      contentType: "application/json; charset=utf-8"
+    }).done(function (response) {
+      console.log(response.length);
+      if (response.length == 0){
+        console.log('No records found');
       }
-    }).catch(function(err) {
-      console.log(err.message);
-      App.loading = false;
+      while (response.length > 0){
+        let chunks = response.splice(0,8);
+        chunks.forEach(function (value) {
+          App.displayArticle(
+              value.articleId,
+              value.articlePhoto,
+              value.articleName,
+              value.price,
+              value.categories
+          );
+        })
+      }
+    }).fail(function (err) {
+      var marketPlaceInstance;
+      Market.deployed().then(function(instance) {
+        marketPlaceInstance = instance;
+        return marketPlaceInstance.getNumberOfArticles();
+      }).then(async function(size){
+        for (var i=1;i<=size;i++){
+          await marketPlaceInstance.articles(i).then(function(article) {
+            if (article[6] > 0 && article[8] == false){
+              App.displayArticle(
+                  article[0],
+                  article[2],
+                  article[3],
+                  article[5],
+                  article[7]
+              );
+            }
+          });
+        }
+      }).catch(function(err) {
+        console.log(err.message);
+        App.loading = false;
+      });
     });
+
   },
 
   reloadArticles: function(type) {

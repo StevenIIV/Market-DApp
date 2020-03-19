@@ -44,6 +44,8 @@ db.on('error', function(){
 
 const RentingModel = require('./models/renting');
 const TransactionModel = require('./models/transaction');
+const ArticleModel = require('./models/article');
+const ObjectModel = require('./models/object');
 express.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -78,6 +80,57 @@ express.get('/getTransactionRecords', function (req, res) {
         res.send(records);
     })
 });
+
+express.get('/getAllArticles', function (req, res) {
+    ArticleModel.find(function (err, records) {
+        res.send(records);
+    })
+});
+
+function restart() {
+    var marketPlaceInstance;
+    var shareInstance;
+    Market.deployed().then(function (instance) {
+        marketPlaceInstance = instance;
+        return marketPlaceInstance.getNumberOfArticles();
+    }).then(async function (size) {
+        for (var i=1;i<=size;i++){
+            await marketPlaceInstance.articles(i).then(function(article) {
+                if (article[6] > 0 && article[8] == false){
+                    checkArticle(
+                        article[0],
+                        article[2],
+                        article[3],
+                        article[5],
+                        article[7]
+                    )
+                }
+            });
+        }
+    });
+
+    ShareApp.deployed().then(function (instance) {
+        shareInstance = instance;
+
+    })
+}
+
+function newArticleListener() {
+    let rentEvent;
+    Market.deployed().then(function (instance) {
+        rentEvent = instance.sellArticleEvent({
+            fromBlock: 0,
+            toBlock: 'latest'
+        });
+        rentEvent.watch(function (err, result) {
+            if (err){
+                console.log(err);
+                return;
+            }
+            saveArticle(result.args);
+        })
+    })
+}
 
 function rentEventListener() {
     let rentEvent;
@@ -214,6 +267,61 @@ function saveTransaction(article) {
     )
 }
 
-rentEventListener();
-returnEventListener();
-TransactionEventListener();
+function saveArticle(article) {
+    ArticleModel.findOne({
+            'articleId': article._id.toLocaleString()
+        },function (err, result) {
+            if (result != null){
+                return
+            }
+            var articleRecord = new ArticleModel({
+                articleId: article._id,
+                articlePhoto: article._photo,
+                articleName: article._name,
+                price: article._price,
+                categories:article._categories
+            });
+            articleRecord.save(function (err) {
+                if (err){
+                    handleError(err)
+                }else {
+                    console.log('insert article success');
+                    ArticleModel.count({}, function (err, count) {
+                        console.log('count is '+count);
+                    })
+                }
+            })
+        }
+    )
+}
+
+function checkArticle(id, photo, name, price, type) {
+    ArticleModel.findOne({
+            'articleId': id.toLocaleString()
+        },function (err, result) {
+            if (result != null){
+                return
+            }
+            var articleRecord = new ArticleModel({
+                articleId: id,
+                articlePhoto: photo,
+                articleName: name,
+                price: price,
+                categories:type
+            });
+            articleRecord.save(function (err) {
+                if (err){
+                    handleError(err)
+                }
+            })
+        }
+    )
+}
+
+
+restart();
+newArticleListener();
+
+// rentEventListener();
+// returnEventListener();
+// TransactionEventListener();
