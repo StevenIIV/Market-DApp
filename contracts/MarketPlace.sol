@@ -58,6 +58,17 @@ contract MarketPlace {
     uint _createAt
   );
 
+  event deleteArticleEvent(
+    uint indexed _id
+  );
+
+  event modifyArticleEvent(
+    uint indexed _id,
+    string _name,
+    uint _price,
+    uint _categories
+  );
+
   //modifiers
   modifier onlyOwner() {
     require(msg.sender == owner);
@@ -119,11 +130,13 @@ contract MarketPlace {
     articles[_id].number = _number;
     articles[_id].categories = _categories;
     articles[_id].description = _description;
+    modifyArticleEvent(_id,_name,_price,_categories);
   }
 
   function deleteArticle(uint _id){
     require(articles[_id].seller == msg.sender);
     articles[_id].isDelete = true;
+    deleteArticleEvent(_id);
   }
 
   function kill() onlyOwner {

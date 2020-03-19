@@ -88,8 +88,8 @@ express.get('/getAllArticles', function (req, res) {
 });
 
 function restart() {
+    deleteAllArticle();
     var marketPlaceInstance;
-    var shareInstance;
     Market.deployed().then(function (instance) {
         marketPlaceInstance = instance;
         return marketPlaceInstance.getNumberOfArticles();
@@ -97,7 +97,7 @@ function restart() {
         for (var i=1;i<=size;i++){
             await marketPlaceInstance.articles(i).then(function(article) {
                 if (article[6] > 0 && article[8] == false){
-                    checkArticle(
+                    insertArticle(
                         article[0],
                         article[2],
                         article[3],
@@ -108,10 +108,8 @@ function restart() {
             });
         }
     });
-
-    ShareApp.deployed().then(function (instance) {
-        shareInstance = instance;
-
+    ArticleModel.count({}, function (err, count) {
+        console.log('count is '+count);
     })
 }
 
@@ -128,6 +126,40 @@ function newArticleListener() {
                 return;
             }
             saveArticle(result.args);
+        })
+    })
+}
+
+function modifyArticleListener() {
+    let rentEvent;
+    Market.deployed().then(function (instance) {
+        rentEvent = instance.modifyArticleEvent({
+            fromBlock: 0,
+            toBlock: 'latest'
+        });
+        rentEvent.watch(function (err, result) {
+            if (err){
+                console.log(err);
+                return;
+            }
+            modifyArticle(result.args);
+        })
+    })
+}
+
+function deleteArticleListener() {
+    let rentEvent;
+    Market.deployed().then(function (instance) {
+        rentEvent = instance.deleteArticleEvent({
+            fromBlock: 0,
+            toBlock: 'latest'
+        });
+        rentEvent.watch(function (err, result) {
+            if (err){
+                console.log(err);
+                return;
+            }
+            deleteArticle(result.args);
         })
     })
 }
@@ -205,7 +237,7 @@ function saveRentRecord(obj) {
         });
         rentRecord.save(function (err) {
             if (err){
-                handleError(err)
+                console.log(err);
             }else {
                 console.log('rent success');
                 RentingModel.count({}, function (err, count) {
@@ -255,7 +287,7 @@ function saveTransaction(article) {
             });
             transactionRecord.save(function (err) {
                 if (err){
-                    handleError(err)
+                    console.log(err);
                 }else {
                     console.log('buy success');
                     TransactionModel.count({}, function (err, count) {
@@ -283,7 +315,7 @@ function saveArticle(article) {
             });
             articleRecord.save(function (err) {
                 if (err){
-                    handleError(err)
+                    console.log(err);
                 }else {
                     console.log('insert article success');
                     ArticleModel.count({}, function (err, count) {
@@ -295,7 +327,38 @@ function saveArticle(article) {
     )
 }
 
-function checkArticle(id, photo, name, price, type) {
+function deleteArticle(article) {
+    var condition = {
+      'articleId': article._id
+    };
+    ArticleModel.deleteOne(condition,function (err, result) {
+        if (err){
+            console.log(err);
+        }else {
+            console.log('delete success');
+        }
+    })
+}
+
+function modifyArticle(article) {
+    var condition = {
+      'articleId': article._id
+    };
+    var updateStr = {
+        'articleName': article._name,
+        'price': article._price,
+        'categories':article._categories
+    };
+    ArticleModel.update(condition,updateStr,function (err, result) {
+        if (err){
+            console.log(err);
+        }else {
+            console.log('modify success');
+        }
+    })
+}
+
+function insertArticle(id, photo, name, price, type) {
     ArticleModel.findOne({
             'articleId': id.toLocaleString()
         },function (err, result) {
@@ -311,17 +374,23 @@ function checkArticle(id, photo, name, price, type) {
             });
             articleRecord.save(function (err) {
                 if (err){
-                    handleError(err)
+                    console.log(err);
                 }
             })
         }
     )
 }
 
-
+function deleteAllArticle() {
+    var condition = {
+    };
+    ArticleModel.deleteMany(condition,function (err, result) {
+    });
+}
 restart();
 newArticleListener();
-
+deleteArticleListener();
+modifyArticleListener();
 // rentEventListener();
 // returnEventListener();
 // TransactionEventListener();
