@@ -287,12 +287,6 @@ window.App = {
         var articleNumber = document.getElementById("article_Number").value;
         var articleDescription = document.getElementById("article_description").value;
         var articleType = document.getElementById("article_Type").value;
-        console.log(articleName);
-        console.log(articleId);
-        console.log(articlePrice);
-        console.log(articleNumber);
-        console.log(articleDescription);
-        console.log(articleType);
         Market.deployed().then(function (instance) {
             return instance.modifyArticle(articleId,articleName,articleDescription,price,articleNumber,articleType,{
                 from: App.account,

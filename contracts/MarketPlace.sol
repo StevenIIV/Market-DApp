@@ -2,7 +2,7 @@ pragma solidity ^0.4.19;
 
 contract MarketPlace {
 
-  struct user{
+  struct user {
     uint[] article_sold;
     uint[] article_buyed;
     uint[] article_buyedTime;
